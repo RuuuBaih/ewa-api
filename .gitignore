@@ -1,3 +1,5 @@
+/config
+/spec/**/*
 *.gem
 *.rbc
 /.config
