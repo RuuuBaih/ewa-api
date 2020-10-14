@@ -30,7 +30,7 @@ ig_results['user_id'] = username_obj['graphql']['user']['id']
 ig_results['user_name'] = username_obj['graphql']['user']['username']
 
 # put the username & user id into the yaml file which named by the username
-File.open("../spec/fixtures/#{username}_ig_info.yml", "w") do |f|     
+File.open("../../spec/fixtures/ig_data/#{username}_ig_info.yml", "w") do |f|     
       f.write(ig_results.to_yaml) 
 end
 
