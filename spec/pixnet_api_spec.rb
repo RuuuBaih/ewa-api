@@ -5,18 +5,22 @@ require 'minitest/rg'
 require 'yaml'
 require_relative '../lib/pix_keyword_api'
 
-USERNAME = 'soumyaray'.freeze
-PROJECT_NAME = 'YPBT-app'.freeze
-CONFIG = YAML.safe_load(File.read('config/secrets.yml'))
-GH_TOKEN = CONFIG['GITHUB_TOKEN']
-CORRECT = YAML.safe_load(File.read('spec/fixtures/github_results.yml'))
+include JustRuIt
 
-describe 'Tests Github API library' do
-  describe 'Project information' do
-    it 'HAPPY: should provide correct project attributes' do
-      project = CodePraise::GithubApi.new(GH_TOKEN)
-                                     .project(USERNAME, PROJECT_NAME)
-      _(project.size).must_equal CORRECT['size']
+KEYWORDS_EN_test = 'Gucci'
+KEYWORDS_CN_test = '螺絲瑪麗'
+KEYWORDS_EN_list = ["GUCCI","巴黎迪士尼","古董","精品","義大利","歐洲自助","東京","下午茶","VOGUE","Snoopy","sur","outlet","巴黎","咖啡","甜點","日本","FacebookSEO","Noir Gucci Ceintures","時尚潮流-時尚單品","Facebook讚好"].freeze
+KEYWORDS_CN_list = ["螺絲瑪麗","義大利麵","螺絲瑪麗意麵坊","Rose Mary","Rose Mary螺絲瑪麗意麵坊","中山捷運"]
+
+describe 'Tests PIXNET API library' do
+  describe 'keywords' do
+
+    it 'supports yaml inputs' do
+      _(FlipFlap.input_formats).must_include 'yaml'
+    end
+
+    it 'HAPPY: should create correct English keyword file ' do
+      _(PixKeywordApi.new(KEYWORDS_EN_test).keyword_lists).must_equal KEYWORDS_EN_list
       _(project.git_url).must_equal CORRECT['git_url']
     end
 
