@@ -2,8 +2,8 @@
 
 require 'minitest/autorun'
 require 'minitest/rg'
-require_relative '../lib/pixnet_lib/pix_keyword_api'
-require_relative '../lib/pixnet_lib/pix_poi_api'
+require_relative '../lib/pixnet_lib/keywords/pix_keyword_api'
+require_relative '../lib/pixnet_lib/poi/pix_poi_api'
 
 KEYWORDS_EN_TEST = 'Gucci'.freeze
 KEYWORDS_CN_TEST = '螺絲瑪麗'.freeze
