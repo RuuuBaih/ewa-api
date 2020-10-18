@@ -1,7 +1,6 @@
 config/secrets.yml
 spec/fixtures/
 /config
-/spec/**/*
 *.gem
 *.rbc
 /.config
