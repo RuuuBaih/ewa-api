@@ -5,30 +5,31 @@ require_relative 'keywordlists'
 
 # Food & Restaurant reviews and articles integrated application
 module JustRuIt
-  module Errors
-    class NotFound < StandardError; end
-    class Unauthorized < StandardError; end
-  end
 
-  HTTP_ERROR = {
-    401 => Errors::Unauthorized,
-    404 => Errors::NotFound
-  }.freeze
-
-  def call_pix_url(url)
-    result = HTTP.get(url)
-    # below puts is for testing
-    puts result
-    successful?(result) ? result : raise(HTTP_ERROR[result.code])
-  end
-
-  def successful?(result)
-    HTTP_ERROR.keys.include?(result.code) ? false : true
-  end
-
-  # Library for Pixnet keyword find keyword API
   class PixKeywordApi
+
     API_PROJECT_ROOT = 'https://emma.pixnet.cc/explorer/keywords?format=json&key='
+
+    module Errors
+      class NotFound < StandardError; end
+      class Unauthorized < StandardError; end
+    end
+
+    HTTP_ERROR = {
+      401 => Errors::Unauthorized,
+      404 => Errors::NotFound
+    }.freeze
+
+    def call_pix_url(url)
+      result = HTTP.get(url)
+      # below puts is for testing
+      puts result
+      successful?(result) ? result : raise(HTTP_ERROR[result.code])
+    end
+
+    def successful?(result)
+      HTTP_ERROR.keys.include?(result.code) ? false : true
+    end
 
     def initialize(keyword)
       @keyword = keyword
@@ -47,5 +48,6 @@ module JustRuIt
     def pix_keyword_api_path(path)
       "#{API_PROJECT_ROOT}#{path}"
     end
+
   end
 end
