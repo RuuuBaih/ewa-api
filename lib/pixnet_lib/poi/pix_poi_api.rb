@@ -22,7 +22,7 @@ module JustRuIt
     def call_pix_url(url)
       result = HTTP.get(url)
       # below puts is for testing
-      puts result
+      # puts result
       successful?(result) ? result : raise(HTTP_ERROR[result.code])
     end
 
