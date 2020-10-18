@@ -5,9 +5,8 @@ require_relative 'keywordlists'
 
 # Food & Restaurant reviews and articles integrated application
 module JustRuIt
-
+  # An api which can get a list of keywords from one keyword
   class PixKeywordApi
-
     API_PROJECT_ROOT = 'https://emma.pixnet.cc/explorer/keywords?format=json&key='
 
     module Errors
@@ -48,6 +47,5 @@ module JustRuIt
     def pix_keyword_api_path(path)
       "#{API_PROJECT_ROOT}#{path}"
     end
-
   end
 end
