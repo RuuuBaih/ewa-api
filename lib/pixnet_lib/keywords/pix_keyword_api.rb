@@ -23,7 +23,7 @@ module JustRuIt
     def call_pix_url(url)
       result = HTTP.get(url)
       # below puts is for testing
-      puts result
+      # puts result
       successful?(result) ? result : raise(HTTP_ERROR[result.code])
     end
 
@@ -38,7 +38,7 @@ module JustRuIt
     def keyword_lists
       keyword_req_url = pix_keyword_api_path(@keyword)
       # below puts is for testing
-      puts keyword_req_url
+      # puts keyword_req_url
       related_keywords = call_pix_url(keyword_req_url).parse
       KeywordLists.new(related_keywords).keyword_lists
     end
