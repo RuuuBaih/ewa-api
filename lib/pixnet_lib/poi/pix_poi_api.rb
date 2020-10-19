@@ -37,7 +37,7 @@ module JustRuIt
     def poi_lists
       poi_req_url = pix_poi_api_path(@per_page)
       # below puts is for testing
-      puts poi_req_url
+      # puts poi_req_url
       related_poi = call_pix_url(poi_req_url).parse
       PoiLists.new(related_poi).poi_lists
     end
