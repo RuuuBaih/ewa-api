@@ -19,13 +19,6 @@ module JustRuIt
       404 => Errors::NotFound
     }.freeze
 
-    def call_pix_url(url)
-      result = HTTP.get(url)
-      # below puts is for testing
-      puts result
-      successful?(result) ? result : raise(HTTP_ERROR[result.code])
-    end
-
     def successful?(result)
       HTTP_ERROR.keys.include?(result.code) ? false : true
     end
@@ -37,7 +30,7 @@ module JustRuIt
     def poi_lists
       poi_req_url = pix_poi_api_path(@per_page)
       # below puts is for testing
-      puts poi_req_url
+      # puts poi_req_url
       related_poi = call_pix_url(poi_req_url).parse
       PoiLists.new(related_poi).poi_lists
     end
@@ -47,5 +40,13 @@ module JustRuIt
     def pix_poi_api_path(path)
       "#{API_PROJECT_ROOT}#{path}"
     end
+
+    def call_pix_url(url)
+      result = HTTP.get(url)
+      # below puts is for testing
+      # puts result
+      successful?(result) ? result : raise(HTTP_ERROR[result.code])
+    end
+
   end
 end
