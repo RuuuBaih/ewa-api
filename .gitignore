@@ -1,10 +1,6 @@
-<<<<<<< HEAD
 config/secrets.yml
 spec/fixtures/
-=======
 /config
-/spec/**/*
->>>>>>> origin/main
 *.gem
 *.rbc
 /.config
