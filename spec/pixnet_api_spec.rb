@@ -1,16 +1,10 @@
-# frozen_string_literal: false
+# frozen_string_literal: true
 
-#require 'simplecov'
-#SimpleCov.start
 require_relative 'spec_helper'
-require 'minitest/autorun'
-require 'minitest/rg'
-require_relative '../lib/pixnet_lib/keywords/pix_keyword_api'
-require_relative '../lib/pixnet_lib/poi/pix_poi_api'
 
-KEYWORDS_EN_TEST = 'Gucci'.freeze
-KEYWORDS_CN_TEST = '螺絲瑪麗'.freeze
-KEYWORDS_ERR_TEST = 'soumyaray'.freeze
+KEYWORDS_EN_TEST = 'Gucci'
+KEYWORDS_CN_TEST = '螺絲瑪麗'
+KEYWORDS_ERR_TEST = 'soumyaray'
 POI_LENGTH = 10
 
 describe 'Tests PIXNET API library' do
