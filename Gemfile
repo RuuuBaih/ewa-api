@@ -10,4 +10,4 @@ gem 'vcr', '~> 6.0'
 gem 'webmock', '~> 3.0'
 
 # Testing coverage
-gem 'simpleconv', '~> 0'
+gem 'simplecov', '~> 0'

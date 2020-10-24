@@ -1,10 +1,12 @@
 # frozen_string_literal: false
 
+#require 'simplecov'
+#SimpleCov.start
+require_relative 'spec_helper'
 require 'minitest/autorun'
 require 'minitest/rg'
 require_relative '../lib/pixnet_lib/keywords/pix_keyword_api'
 require_relative '../lib/pixnet_lib/poi/pix_poi_api'
-require_relative 'spec_helper'
 
 KEYWORDS_EN_TEST = 'Gucci'.freeze
 KEYWORDS_CN_TEST = '螺絲瑪麗'.freeze
