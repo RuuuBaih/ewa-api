@@ -7,40 +7,79 @@ require_relative 'poilists'
 module JustRuIt
   # Library for Pixnet poi list API
   class PixPoiApi
-    POI_API_PATH = 'https://emma.pixnet.cc/poi?page=1&per_page='
+    POI_API_PATH = 'https://emma.pixnet.cc/poi?'
 
-    def initialize(per_page)
+    def initialize(page, per_page, tags, city, town, min_money, max_money)
+      @page = page
       @per_page = per_page
+      @tags = tags
+      @city = city
+      @town = town
+      @min_money = min_money
+      @max_money = max_money
     end
 
     def poi_lists
-      poi_req_url = pix_poi_api_path(@per_page)
-      # below puts is for testing
-      # puts poi_req_url
-      related_poi = call_pix_url(poi_req_url).parse
-      PoiLists.new(related_poi).poi_lists
+      poi_lists_response = Request.new(POI_API_PATH, @page, @per_page, @tags, @city, @town, @min_money, @max_money)
+                                  .poi_http.parse
+      puts poi_lists_response
+      poi_lists_file = PoiLists.new(poi_lists_response).poi_lists
+      Yamlfile.new(poi_lists_file).save_as_yaml_file
     end
 
-    private
-
-    def pix_poi_api_path(path)
-      "#{API_PROJECT_ROOT}#{path}"
-    end
-
-    def call_pix_url(url)
-      result = HTTP.get(url)
-      # below puts is for testing
-      # puts result
-      successful?(result) ? result : raise(HTTP_ERROR[result.code])
-    end
-    class Request
-      def initialize(resource_root, keyword)
-        @resource_root = resource_root
-        @keyword = keyword
+    # convert poi results to yaml file
+    class Yamlfile
+      def initialize(poi_file)
+        @poi_file = poi_file
       end
 
-      def keyword_http
-        get(@resource_root + @keyword)
+      def save_as_yaml_file
+        File.open('../../../spec/pixnet_data/poi.yml', 'w') do |file|
+          file.write(@poi_file.to_yaml)
+        end
+      end
+    end
+
+    # Sends out HTTP requests to POI
+    class Request
+      def initialize(resource_root, page, per_page, tags, city, town, min_money, max_money)
+        @resource_root = resource_root
+        @page = page
+        @per_page = per_page
+        @tags = tags
+        @city = city
+        @town = town
+        @min_money = min_money
+        @max_money = max_money
+      end
+
+      def poi_hash
+        {
+          'page': @page,
+          'per_page': @per_page,
+          'tags': @tags,
+          'city': @city,
+          'town': @town,
+          'min_money': @min_money,
+          'max_money': @max_money
+        }
+      end
+
+      def input_empty?(input_name, input)
+        input.to_s.empty? ? nil : "#{input_name}=#{input}"
+      end
+
+      def collect_input
+        input_new = []
+
+        poi_hash.map do |key, value|
+          test_not_empty = input_empty?(key, value)
+          input_new << test_not_empty unless test_not_empty == nil
+        end
+      end
+
+      def poi_http
+        get(@resource_root + collect_input.join('&'))
       end
 
       def get(url)
@@ -54,7 +93,9 @@ module JustRuIt
 
     # Decorates HTTP responses from Github with success/error
     class Response < SimpleDelegator
+      # No authority to the http
       Unauthorized = Class.new(StandardError)
+      # Can't find the http
       NotFound = Class.new(StandardError)
 
       HTTP_ERROR = {

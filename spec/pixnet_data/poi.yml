@@ -1,0 +1,604 @@
+---
+page: 1
+per_page: 10
+total_num: 1205
+total_page: 121
+pois:
+- hash_id: 13a11353bf33a49f5f7da0c068d7b8d1
+  category_id: 0
+  cover_image_url: https://s.pixfs.net/common/poi/restaurant.jpg
+  name: 杏桃鬆餅屋
+  branch_store_name: ''
+  opening_hours_info:
+    date:
+      Mo:
+      - 11:00-22:00
+      Tu:
+      - 11:00-22:00
+      We:
+      - 11:00-22:00
+      Th:
+      - 11:00-22:00
+      Fr:
+      - 11:00-22:00
+      - 11:00-23:00
+      Sa:
+      - 11:00-22:00
+      - 11:00-23:00
+      Su:
+      - 11:00-22:00
+    is_open: false
+    opening_time: '11:00'
+    permanently_closed: false
+  icon:
+    url: ''
+    source_name: ''
+    source_url: ''
+    locked: false
+  money: 337
+  money_description: 平均301-500元/人
+  telephone: 02 2771 2977
+  payment_method: []
+  equipment: []
+  urls:
+    website: ''
+    facebook: ''
+    instagram: ''
+  view: 146
+  articles_count: 0
+  address:
+    zipcode: ''
+    country: TW
+    city: 台北市
+    town: 大安區
+    street: 忠孝東路四段216巷19弄16號
+  geo:
+    latitude: 25.0402348
+    longitude: 121.553906
+    distance:
+  rating:
+    avg: 5
+    count: 1
+  tags:
+  - 蛋糕
+  - 西點
+  - 西點蛋糕
+  - 西點蛋糕麵包
+  - 麵包
+  comment_tags: []
+- hash_id: 026072b54c3765eb1d3237251dff171b
+  category_id: 0
+  cover_image_url: https://s.pixfs.net/common/poi/restaurant.jpg
+  name: Dazzling Cafe Badass Babes Club
+  branch_store_name: ''
+  opening_hours_info:
+    date:
+      Mo:
+      - 12:00-21:00
+      Tu:
+      - 12:00-21:00
+      We:
+      - 12:00-21:00
+      Th:
+      - 12:00-21:00
+      Fr:
+      - 12:00-21:00
+      Sa:
+      - 11:30-21:00
+      Su:
+      - 11:30-21:00
+    is_open: false
+    opening_time: '11:30'
+    permanently_closed: false
+  icon:
+    url: ''
+    source_name: ''
+    source_url: ''
+    locked: false
+  money: 379
+  money_description: 平均301-500元/人
+  telephone: 02 8773 9238
+  payment_method: []
+  equipment: []
+  urls:
+    website: ''
+    facebook: ''
+    instagram: ''
+  view: 96
+  articles_count: 0
+  address:
+    zipcode: ''
+    country: TW
+    city: 台北市
+    town: 大安區
+    street: 忠孝東路四段205巷7弄11號1樓
+  geo:
+    latitude: 25.0421772
+    longitude: 121.5525477
+    distance:
+  rating:
+    avg: 0
+    count: 0
+  tags:
+  - 簡餐
+  - 複合式
+  - 複合式簡餐輕食
+  - 複合式餐飲
+  comment_tags: []
+- hash_id: 4936ec57966794f84561bd86913bbbf8
+  category_id: 0
+  cover_image_url: https://s.pixfs.net/common/poi/restaurant.jpg
+  name: 美好年代
+  branch_store_name: ''
+  opening_hours_info:
+    date:
+      Mo:
+      - 11:00-22:00
+      Tu:
+      - 11:00-22:00
+      We:
+      - 11:00-22:00
+      Th:
+      - 11:00-22:00
+      Fr:
+      - 11:00-22:00
+      Sa:
+      - 11:00-22:00
+      Su:
+      - 11:00-22:00
+    is_open: false
+    opening_time: '11:00'
+    permanently_closed: false
+  icon:
+    url: ''
+    source_name: ''
+    source_url: ''
+    locked: false
+  money: 381
+  money_description: 平均301-500元/人
+  telephone: 02 2775 3393
+  payment_method: []
+  equipment: []
+  urls:
+    website: ''
+    facebook: ''
+    instagram: ''
+  view: 34669
+  articles_count: 0
+  address:
+    zipcode: 106
+    country: TW
+    city: 台北市
+    town: 大安區
+    street: 大安路一段52巷23號
+  geo:
+    latitude: 25.0432947
+    longitude: 121.545071
+    distance:
+  rating:
+    avg: 4.7
+    count: 10
+  tags:
+  - 義式料理
+  comment_tags: []
+- hash_id: 844e17c45daa0a487e4a476638e65b3a
+  category_id: 0
+  cover_image_url: https://s.pixfs.net/common/poi/restaurant.jpg
+  name: Color C'ode
+  branch_store_name: ''
+  opening_hours_info:
+    date:
+      Mo:
+      - 12:00-20:00
+      Tu:
+      - 12:00-20:00
+      We:
+      - 12:00-20:00
+      Th:
+      - 12:00-20:00
+      Fr:
+      - 12:00-21:00
+      - 12:00-20:00
+      Sa:
+      - 12:00-21:00
+      - 12:00-20:00
+      Su:
+      - 12:00-20:00
+    is_open: false
+    opening_time: '12:00'
+    permanently_closed: false
+  icon:
+    url: ''
+    source_name: ''
+    source_url: ''
+    locked: false
+  money: 372
+  money_description: 平均301-500元/人
+  telephone: 02 8665 5199
+  payment_method: []
+  equipment: []
+  urls:
+    website: ''
+    facebook: ''
+    instagram: ''
+  view: 4750
+  articles_count: 0
+  address:
+    zipcode: ''
+    country: TW
+    city: 台北市
+    town: 大安區
+    street: 羅斯福路三段107號
+  geo:
+    latitude: 25.0222136
+    longitude: 121.5266006
+    distance:
+  rating:
+    avg: 5
+    count: 8
+  tags:
+  - 蛋糕
+  - 西點
+  - 西點蛋糕
+  - 西點蛋糕麵包
+  - 麵包
+  comment_tags: []
+- hash_id: a326d7dacdb271a90785f736453d5676
+  category_id: 0
+  cover_image_url: https://s.pixfs.net/common/poi/restaurant.jpg
+  name: Lagondola 宮都拉義式主題餐廳
+  branch_store_name: ''
+  opening_hours_info:
+    date:
+      Mo:
+      - 11:30-22:30
+      Tu:
+      - 11:30-22:30
+      We:
+      - 11:30-22:30
+      Th:
+      - 11:30-22:30
+      Fr:
+      - 11:30-22:30
+      Sa:
+      - 11:30-22:30
+      Su:
+      - 11:30-22:30
+    is_open: false
+    opening_time: '11:30'
+    permanently_closed: false
+  icon:
+    url: ''
+    source_name: ''
+    source_url: ''
+    locked: false
+  money: 473
+  money_description: 平均301-500元/人
+  telephone: 02 2771 1808
+  payment_method: []
+  equipment: []
+  urls:
+    website: ''
+    facebook: ''
+    instagram: ''
+  view: 22
+  articles_count: 0
+  address:
+    zipcode: ''
+    country: TW
+    city: 台北市
+    town: 大安區
+    street: 忠孝東路四段170巷17弄5號
+  geo:
+    latitude: 25.0399976
+    longitude: 121.5513128
+    distance:
+  rating:
+    avg: 0
+    count: 0
+  tags:
+  - 義式料理
+  comment_tags: []
+- hash_id: 0e3772691ddae00b0c77cba3a2709ebe
+  category_id: 0
+  cover_image_url: https://s.pixfs.net/common/poi/restaurant.jpg
+  name: Jamling Cafe
+  branch_store_name: ''
+  opening_hours_info:
+    date:
+      Mo: []
+      Tu: []
+      We: []
+      Th: []
+      Fr: []
+      Sa: []
+      Su: []
+    is_open: false
+    opening_time: ''
+    permanently_closed: false
+  icon:
+    url: ''
+    source_name: ''
+    source_url: ''
+    locked: false
+  money: 327
+  money_description: 平均301-500元/人
+  telephone: 02 2701 2030
+  payment_method: []
+  equipment: []
+  urls:
+    website: ''
+    facebook: ''
+    instagram: ''
+  view: 60
+  articles_count: 0
+  address:
+    zipcode: ''
+    country: TW
+    city: 台北市
+    town: 大安區
+    street: 安和路一段127巷29弄15號
+  geo:
+    latitude: 25.0357382
+    longitude: 121.5535182
+    distance:
+  rating:
+    avg: 5
+    count: 1
+  tags:
+  - 簡餐
+  - 複合式
+  - 複合式簡餐輕食
+  - 複合式餐飲
+  comment_tags: []
+- hash_id: 5cfa3bc3989ee4d300db3348ddd937bf
+  category_id: 0
+  cover_image_url: https://s.pixfs.net/common/poi/restaurant.jpg
+  name: 上菜囉法式餐廳 Vivalafete
+  branch_store_name: ''
+  opening_hours_info:
+    date:
+      Mo: []
+      Tu:
+      - 12:00-14:00
+      - 18:00-21:00
+      We:
+      - 12:00-14:00
+      - 18:00-21:00
+      Th:
+      - 12:00-14:00
+      - 18:00-21:00
+      Fr:
+      - 12:00-14:00
+      - 18:00-21:00
+      Sa:
+      - 12:00-14:00
+      - 18:00-21:00
+      Su:
+      - 12:00-14:00
+      - 18:00-21:00
+    is_open: false
+    opening_time: '12:00'
+    permanently_closed: false
+  icon:
+    url: ''
+    source_name: ''
+    source_url: ''
+    locked: false
+  money: 579
+  money_description: 平均501-700元/人
+  telephone: 02 2752 0968
+  payment_method: []
+  equipment: []
+  urls:
+    website: ''
+    facebook: ''
+    instagram: ''
+  view: 10
+  articles_count: 0
+  address:
+    zipcode: ''
+    country: TW
+    city: 台北市
+    town: 大安區
+    street: 濟南路三段40號
+  geo:
+    latitude: 25.0401028
+    longitude: 121.5357761
+    distance:
+  rating:
+    avg: 0
+    count: 0
+  tags:
+  - 法式料理
+  comment_tags: []
+- hash_id: 76d7b087130fc143d153d71030672b32
+  category_id: 0
+  cover_image_url: https://s.pixfs.net/common/poi/restaurant.jpg
+  name: 瞞著爹
+  branch_store_name: 八德丼飯
+  opening_hours_info:
+    date:
+      Mo:
+      - 11:30-22:00
+      Tu:
+      - 11:30-22:00
+      We:
+      - 11:30-22:00
+      Th:
+      - 11:30-22:00
+      Fr:
+      - 11:30-22:00
+      Sa:
+      - 11:30-22:00
+      Su:
+      - 11:30-22:00
+    is_open: false
+    opening_time: '11:30'
+    permanently_closed: false
+  icon:
+    url: https://farm2.staticflickr.com/1600/23729675724_e524acbfb9_c.jpg
+    source_name: 蒲．臺島
+    source_url: http://watergold.pixnet.net/blog/post/316949364
+    locked: false
+  money: 531
+  money_description: 平均501-700元/人
+  telephone: 02 7728 6588
+  payment_method: []
+  equipment: []
+  urls:
+    website: ''
+    facebook: ''
+    instagram: ''
+  view: 1268
+  articles_count: 0
+  address:
+    zipcode: ''
+    country: TW
+    city: 台北市
+    town: 大安區
+    street: 八德路二段346巷9弄17號
+  geo:
+    latitude: 25.0465348
+    longitude: 121.5454572
+    distance:
+  rating:
+    avg: 5
+    count: 1
+  tags:
+  - 其他日式料理
+  - 日式料理
+  - 日本料理
+  comment_tags: []
+- hash_id: cbadc96a8f3ce30723ee960d692c1231
+  category_id: 0
+  cover_image_url: https://s.pixfs.net/common/poi/restaurant.jpg
+  name: The Villa Herbsrestaurant
+  branch_store_name: 樂利店
+  opening_hours_info:
+    date:
+      Mo:
+      - 00:00-02:00
+      - 11:30-24:00
+      Tu:
+      - 00:00-02:00
+      - 11:30-24:00
+      We:
+      - 00:00-02:00
+      - 11:30-24:00
+      Th:
+      - 00:00-02:00
+      - 11:30-24:00
+      Fr:
+      - 00:00-02:00
+      - 11:30-24:00
+      - 00:00-03:00
+      - 11:30-24:00
+      Sa:
+      - 00:00-02:00
+      - 11:30-24:00
+      - 00:00-03:00
+      - 11:30-24:00
+      Su:
+      - 00:00-02:00
+      - 11:30-24:00
+    is_open: true
+    opening_time: ''
+    permanently_closed: false
+  icon:
+    url: ''
+    source_name: ''
+    source_url: ''
+    locked: false
+  money: 617
+  money_description: 平均501-700元/人
+  telephone: 02 2732 3255
+  payment_method: []
+  equipment: []
+  urls:
+    website: ''
+    facebook: ''
+    instagram: ''
+  view: 20
+  articles_count: 0
+  address:
+    zipcode: ''
+    country: TW
+    city: 台北市
+    town: 大安區
+    street: 樂利路11巷32號
+  geo:
+    latitude: 25.0282444
+    longitude: 121.5524415
+    distance:
+  rating:
+    avg: 0
+    count: 0
+  tags:
+  - Bar
+  - 酒吧
+  - 酒吧LoungeBar
+  comment_tags: []
+- hash_id: 28994eca550959b8bba248ce095d1666
+  category_id: 0
+  cover_image_url: https://s.pixfs.net/common/poi/restaurant.jpg
+  name: 滿堂紅頂級麻辣鴛鴦火鍋
+  branch_store_name: ''
+  opening_hours_info:
+    date:
+      Mo:
+      - 00:00-01:30
+      - 11:30-15:30
+      Tu:
+      - 00:00-01:30
+      - 11:30-15:30
+      We:
+      - 00:00-01:30
+      - 11:30-15:30
+      Th:
+      - 00:00-01:30
+      - 11:30-15:30
+      Fr:
+      - 00:00-01:30
+      - 11:30-15:30
+      Sa:
+      - 00:00-01:30
+      - 11:30-24:00
+      Su:
+      - 00:00-01:30
+      - 11:30-24:00
+    is_open: true
+    opening_time: ''
+    permanently_closed: false
+  icon:
+    url: ''
+    source_name: ''
+    source_url: ''
+    locked: false
+  money: 521
+  money_description: 平均501-700元/人
+  telephone: 02 2701 6669
+  payment_method: []
+  equipment: []
+  urls:
+    website: ''
+    facebook: ''
+    instagram: ''
+  view: 364
+  articles_count: 0
+  address:
+    zipcode: ''
+    country: TW
+    city: 台北市
+    town: 大安區
+    street: 仁愛路四段228-4號
+  geo:
+    latitude: 25.0373948
+    longitude: 121.5521626
+    distance:
+  rating:
+    avg: 0
+    count: 0
+  tags:
+  - 麻辣火鍋
+  comment_tags: []
