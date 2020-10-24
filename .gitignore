@@ -1,5 +1,4 @@
 config/secrets.yml
-spec/fixtures/
 /config
 *.gem
 *.rbc
