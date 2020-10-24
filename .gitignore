@@ -1,5 +1,7 @@
 config/secrets.yml
 spec/fixtures/
+coverage/*
+!coverage/.resultset.json
 
 # Used by dotenv library to load environment variables.
 # .env
