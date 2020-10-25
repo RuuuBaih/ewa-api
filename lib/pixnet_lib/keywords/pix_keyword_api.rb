@@ -7,46 +7,58 @@ require_relative 'keywordlists'
 module JustRuIt
   # An api which can get a list of keywords from one keyword
   class PixKeywordApi
-    API_PROJECT_ROOT = 'https://emma.pixnet.cc/explorer/keywords?format=json&key='
-
-    module Errors
-      class NotFound < StandardError; end
-      class Unauthorized < StandardError; end
-    end
-
-    HTTP_ERROR = {
-      401 => Errors::Unauthorized,
-      404 => Errors::NotFound
-    }.freeze
-
-    def successful?(result)
-      HTTP_ERROR.keys.include?(result.code) ? false : true
-    end
+    KEYWORD_API_PATH = 'https://emma.pixnet.cc/explorer/keywords?format=json&key='
 
     def initialize(keyword)
-      @keyword = keyword
+      @new_keyword = keyword
     end
 
     def keyword_lists
-      keyword_req_url = pix_keyword_api_path(@keyword)
+      keyword_response = Request.new(KEYWORD_API_PATH, @new_keyword).keyword_http.parse
       # below puts is for testing
-      # puts keyword_req_url
-      related_keywords = call_pix_url(keyword_req_url).parse
-      KeywordLists.new(related_keywords).keyword_lists
+      # puts keyword_response
+      KeywordLists.new(keyword_response).keyword_lists
     end
 
-    private
+    # Sends out HTTP requests to PIXNET
+    class Request
+      def initialize(resource_root, keyword)
+        @resource_root = resource_root
+        @keyword = keyword
+      end
 
-    def pix_keyword_api_path(path)
-      "#{API_PROJECT_ROOT}#{path}"
+      def keyword_http
+        get(@resource_root + @keyword)
+      end
+
+      def get(url)
+        http_response = HTTP.get(url)
+
+        Response.new(http_response).tap do |response|
+          raise(response.error) unless response.successful?
+        end
+      end
     end
 
-    def call_pix_url(url)
-      result = HTTP.get(url)
-      # below puts is for testing
-      # puts result
-      successful?(result) ? result : raise(HTTP_ERROR[result.code])
-    end
+    # Decorates HTTP responses from Github with success/error
+    class Response < SimpleDelegator
+      # No authority to the http
+      Unauthorized = Class.new(StandardError)
+      # Can't find the http
+      NotFound = Class.new(StandardError)
 
+      HTTP_ERROR = {
+        401 => Unauthorized,
+        404 => NotFound
+      }.freeze
+
+      def successful?
+        HTTP_ERROR.keys.include?(code) ? false : true
+      end
+
+      def error
+        HTTP_ERROR[code]
+      end
+    end
   end
 end
