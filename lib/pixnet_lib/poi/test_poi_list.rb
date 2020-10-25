@@ -13,4 +13,3 @@ data = PixPoiApi.new(1, 10,'', '台北市', '大安區', '300', '')
 
 puts data
 
-puts data.poi_lists
