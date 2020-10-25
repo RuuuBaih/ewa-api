@@ -47,6 +47,5 @@ module JustRuIt
       # puts result
       successful?(result) ? result : raise(HTTP_ERROR[result.code])
     end
-
   end
 end
