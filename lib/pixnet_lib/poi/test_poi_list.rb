@@ -12,6 +12,6 @@ data = PixPoiApi.new(per_page)
 poi_hash = data.poi_lists
 
 # put the username & user id into the poi yaml file
-File.open('../../../spec/fixtures/pixnet_data/poi.yml', 'w') do |f|
+File.open('../../../spec/fixtures/pixnet_data/poi_lists/poi.yml', 'w') do |f|
   f.write(poi_hash.to_yaml)
 end
