@@ -14,15 +14,15 @@ task :spec do
 end
 
 namespace :vcr do
-  desc 'delete cassette fixtures'
+  desc 'delete pix fixtures'
   task :wipe_keyword do
     sh 'rm spec/fixtures/pixnet_data/keyword_lists/*.yml' do |ok, _|
-      puts(ok ? 'Cassettes deleted' : 'No cassettes found')
+      puts(ok ? 'pix keyword fixtures deleted' : 'No pix keyword fixtues found')
     end
   end
   task :wipe_poi do
     sh 'rm spec/fixtures/pixnet_data/poi_lists/*.yml' do |ok, _|
-      puts(ok ? 'Cassettes deleted' : 'No cassettes found')
+      puts(ok ? 'pix poi deleted' : 'No pix poi found')
     end
   end
 end
