@@ -14,7 +14,7 @@ task :spec do
 end
 
 namespace :vcr do
-  desc 'delete pix fixtures'
+  desc 'delete Cassettes fixtures'
   task :wipe do
     sh 'rm spec/fixtures/cassettes/*.yml' do |ok, _|
       puts(ok ? 'Cassettes deleted' : 'No Cassettes found')
