@@ -34,7 +34,7 @@ module JustRuIt
       end
 
       def save_as_yaml_file
-        File.open('../../../spec/pixnet_data/poi.yml', 'w') do |file|
+        File.open('../../../spec/fixtures/pixnet_data/poi_lists/poi.yml', 'w') do |file|
           file.write(@poi_file.to_yaml)
         end
       end
