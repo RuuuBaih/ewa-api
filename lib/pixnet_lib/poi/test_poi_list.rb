@@ -4,14 +4,12 @@ require 'http'
 require 'yaml'
 require 'json'
 
-per_page = ARGV[0]
+# per_page = ARGV[0]
+
 require_relative 'pix_poi_api'
 include JustRuIt
-data = PixPoiApi.new(per_page)
 
-poi_hash = data.poi_lists
+data = PixPoiApi.new(1, 10,'', '台北市', '大安區', '300', '')
 
-# put the username & user id into the poi yaml file
-File.open('../../../spec/fixtures/pixnet_data/poi_lists/poi.yml', 'w') do |f|
-  f.write(poi_hash.to_yaml)
-end
+puts data
+
