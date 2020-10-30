@@ -82,9 +82,10 @@ module Ewa
 
             end
 
-            def get_restaurant_obj_lists(poi_filtered_hashes)
+            def get_restaurant_obj_lists
+                poi_filtered_hashes = self.get_poi_details
                 restaurant_obj_lists = poi_filtered_hashes.map do |hash|
-                    agg_hash = get_gmap_place_details(hash)
+                    agg_hash = self.get_gmap_place_details(hash)
                 end
             end 
 
