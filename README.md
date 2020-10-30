@@ -1,16 +1,17 @@
-# RuuuBaih project API library
+# Ewa
 
-This is an API library demo for RuuuBaih project. In this project, we use the API from Pixnet, a well known blog platform in Taiwan. We use 2 API in this library which are keyword API and POI API.
+Don't know what to eat? Ewa help you decide your breakfast, lunch and dinner!
 
+## Overview
 
-## Keywords API
+Ewa combines Pixnet poi API and Google Map API and recommands you delicious restaurants with restaurants information, related food blog articles,and Google map rating and reviews. We hope to solve the "Don't know what to eat for ...?" issues and make our life simpler by eating the food based on the restaurants recommand by Ewa!
 
-This API is used for searching related keywords based on the articles in Pixnet. If you type a keyword, this api will return 20 related keywords based on the articles in Pixnet.
+## Short-term usability goals
 
-* Keywords API: 'https://emma.pixnet.cc/explorer/keywords?format=json&key='
+- Pull data from Pixnet API and Google Map API.
+- Randomize recommand the restaurants based on certain conditions.
+- Combine restaurants information, related blog articles, Google map rating, reviews, and beautiful photos.
 
-## POI API
+## Long-term goals
 
-This API could provide famous restaurants data based on the articles in Pixnet.
-
-* POI API: 'https://emma.pixnet.cc/poi'
+- Recommand restaurants based on users' preferences.
