@@ -1,12 +1,15 @@
 # frozen_string_literal: true
 
+require_relative 'reviews.rb'
+
 module Ewa
   module Entity
     # Restaurant Entity
     class Restaurant < Dry::Struct
       include Dry::Types.module
 
-      attribute :name,          Strict::String
+      attribute :restaurant_id, Integer.required
+      attribute :name,          Strict::String.required
       attribute :town,          Strict::String.optional
       attribute :money,         Strict::Integer.optional
       attribute :city,          Strict::String.optional
@@ -17,6 +20,7 @@ module Ewa
       attribute :google_rating, Strict::Ingeter.optional
       attribute :open_hours,    Strict::Array.of(String).optional
       attribute :reviews,       Strict::Array.of(Reviews)
+      attribute :reviews_id,    Integer.required
     end
   end
 end
