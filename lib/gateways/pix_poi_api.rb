@@ -3,7 +3,7 @@
 require 'http'
 
 # Food & Restaurant reviews and articles integrated application
-module Ew
+module Ewa
   module Pixnet
     # Library for Pixnet poi list API
     class PoiApi
