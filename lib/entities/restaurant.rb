@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative 'reviews.rb'
+require_relative 'reviews'
 
 module Ewa
   module Entity
@@ -19,8 +19,11 @@ module Ewa
       attribute :pixnet_rating, Strict::Integer.optional
       attribute :google_rating, Strict::Ingeter.optional
       attribute :open_hours,    Strict::Array.of(String).optional
-      attribute :reviews,       Strict::Array.of(Reviews)
-      attribute :reviews_id,    Integer.required
+      attribute :reviews,       Strict::Array.of(Hash.schema(author_name: Strict::String.optional,
+                                                             profile_photo_url: Strict::String.optional,
+                                                             relative_time_description: Strict::String.optional,
+                                                             text: Strict::String.optional,
+                                                             language: Strict::String.optional))
     end
   end
 end
