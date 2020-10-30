@@ -3,10 +3,10 @@
 require 'http'
 
 # Food & Restaurant reviews and articles integrated application
-module Ewa
+module Ew
   module Pixnet
     # Library for Pixnet poi list API
-    class PixPoiApi
+    class PoiApi
       POI_API_PATH = 'https://emma.pixnet.cc/poi?'
 
       def initialize(page, per_page)

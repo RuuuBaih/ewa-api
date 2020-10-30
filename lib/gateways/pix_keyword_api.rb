@@ -6,7 +6,7 @@ require 'http'
 module Ewa
   module Pixnet
     # An api which can get a list of keywords from one keyword
-    class PixKeywordApi
+    class KeywordApi
       KEYWORD_API_PATH = 'https://emma.pixnet.cc/explorer/keywords?format=json&key='
 
       def initialize(keyword)
