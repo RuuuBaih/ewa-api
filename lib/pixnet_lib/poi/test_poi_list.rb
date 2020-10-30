@@ -12,4 +12,3 @@ include JustRuIt
 data = PixPoiApi.new(1, 10,'', '台北市', '大安區', '300', '').poi_lists
 
 puts data
-
