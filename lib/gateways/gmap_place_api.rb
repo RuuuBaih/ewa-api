@@ -15,8 +15,9 @@ module Ewa
 
       def place_id
         place_id_response = Request.new(GMAP_API_PATH, @gmap_token, @new_place).gmap_place_http.parse
+        puts 'place_id_response:'
         puts place_id_response
-        Yamlfile.new(place_id_response).save_as_yaml_file
+        place_id_response
       end
 
       # Sends out HTTP requests to Gmap
