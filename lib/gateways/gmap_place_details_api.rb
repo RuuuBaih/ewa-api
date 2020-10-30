@@ -9,16 +9,14 @@ module Ewa
       GMAP_API_PATH = 'https://maps.googleapis.com/maps/api/place/details/json?'
 
       # language default is Taiwanese
-      def initialize(token, place_id, language = "zh-TW")
+      def initialize(token, place_id, language = 'zh-TW')
         @gmap_token = token
         @place_id = place_id
         @language = language
       end
 
       def place_details
-        place_details_response = Request.new(GMAP_API_PATH, @gmap_token, @place_id, @language).gmap_place_http.parse
-        puts place_details_response
-        Yamlfile.new(place_details_response).save_as_yaml_file
+        Request.new(GMAP_API_PATH, @gmap_token, @place_id, @language).gmap_place_http.parse
       end
 
       # Sends out HTTP requests to Gmap

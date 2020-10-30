@@ -15,11 +15,7 @@ module Ewa
       end
 
       def poi_lists
-        poi_lists_response = Request.new(POI_API_PATH, @page, @per_page)
-                                    .poi_http.parse
-        puts poi_lists_response
-        poi_lists_file = PoiLists.new(poi_lists_response).poi_lists
-        Yamlfile.new(poi_lists_file).save_as_yaml_file
+        Request.new(POI_API_PATH, @page, @per_page).poi_http.parse
       end
 
       # Sends out HTTP requests to POI
@@ -28,6 +24,10 @@ module Ewa
           @resource_root = resource_root
           @page = page
           @per_page = per_page
+        end
+
+        def poi_http
+          get("#{@resource_root}page=#{@page}&per_page=#{@per_page}")
         end
 
         def get(url)
