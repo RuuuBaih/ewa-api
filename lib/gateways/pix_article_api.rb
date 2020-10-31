@@ -16,7 +16,7 @@ module Ewa
       end
 
       def article_lists
-        Request.new(POI_API_PATH, @page, @per_page, @key).article_http.parse
+        Request.new(ARTICLE_API_PATH, @page, @per_page, @key).article_http.parse
       end
 
       # Sends out HTTP requests to POI
