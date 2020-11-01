@@ -18,16 +18,15 @@ module Ewa
         view 'home'
       end
 
-      routing.on 'restautant' do
-        routing.on String do |restaurant_name|
-          
-          # GET /project/owner/project
-          routing.get do
+      routing.on 'restaurant' do
+        routing.is do
+          # POST /restaurant
+          routing.post do
             restaurant_object = Restaurant::RestaurantMapper
-              .new(GMAP_TOKEN)
-              .restaurant_obj_list
+                .new(GMAP_TOKEN)
+                .restaurant_obj_lists[0]
 
-            view 'restaurant', locals: { restaurant: restaurant_object }
+          view 'restaurant', locals: { restaurant: restaurant_object }
           end
         end
       end

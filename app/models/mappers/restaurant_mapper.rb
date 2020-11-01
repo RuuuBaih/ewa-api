@@ -49,6 +49,7 @@ module Ewa
           place_details = gmap_place_details(hash)
           AggregatedRestaurantObjs.new(hash, place_details).aggregate_restaurant_objs
         end
+        RestaurantMapper::BuildRestaurantEntity.new(poi_filtered_hashes).build_entity
       end
 
       # build Restaurant Entity
