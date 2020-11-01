@@ -8,7 +8,7 @@ require 'minitest/rg'
 require 'vcr'
 require 'webmock'
 
-require_relative '../lib/mappers/restaurant_mapper'
+require_relative '../app/models/mappers/restaurant_mapper'
 
 USERNAME = ''
 PROJECT_NAME = 'SOA_project'
