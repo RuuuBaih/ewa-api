@@ -171,11 +171,11 @@ module Ewa
       class FilterHash
         def initialize(hash)
           @hash = hash
+          @addr = @hash['address']
         end
 
         # filter the poi fields, select what we want
         def filtered_poi_hash
-          addr = @hash['address']
           {
             'name' => @hash['name'],
             'money' => @hash['money'],
@@ -183,8 +183,8 @@ module Ewa
             'cover_img' => @hash['cover_image_url'],
             'tags' => @hash['tags'],
             'pixnet_rating' => @hash['rating']['avg'],
-            'city' => addr['city'],
-            'town' => addr['town']
+            'city' => @addr['city'],
+            'town' => @addr['town']
           }
         end
 
