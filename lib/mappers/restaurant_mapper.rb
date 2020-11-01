@@ -67,6 +67,7 @@ module Ewa
           @data = data
         end
 
+        # rubocop:disable Metrics/MethodLength
         def build_entity
           Ewa::Entity::Restaurant.new(
             restaurant_id: nil,
@@ -83,6 +84,7 @@ module Ewa
             reviews: reviews
           )
         end
+        # rubocop:enable Metrics/MethodLength
 
         private
 
@@ -171,11 +173,12 @@ module Ewa
       class FilterHash
         def initialize(hash)
           @hash = hash
-          @addr = @hash['address']
         end
 
         # filter the poi fields, select what we want
+        # rubocop:disable Metrics/MethodLength
         def filtered_poi_hash
+          addr = @hash['address']
           {
             'name' => @hash['name'],
             'money' => @hash['money'],
@@ -183,10 +186,11 @@ module Ewa
             'cover_img' => @hash['cover_image_url'],
             'tags' => @hash['tags'],
             'pixnet_rating' => @hash['rating']['avg'],
-            'city' => @addr['city'],
-            'town' => @addr['town']
+            'city' => addr['city'],
+            'town' => addr['town']
           }
         end
+        # rubocop:enable Metrics/MethodLength
 
         # filter the gmap place details fields, select what we want
         def filtered_gmap_place_details_hash
