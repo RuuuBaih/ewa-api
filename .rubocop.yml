@@ -1,0 +1,21 @@
+---
+# Apply latest style guide and new cops
+AllCops:
+    TargetRubyVersion: 2.7
+    NewCops: enable
+
+# igone block length in test code only
+Metrics/BlockLength:
+    Enabled: true
+    Exclude:
+        - spec/**/*
+
+# allow unsafe YAML loading in test code only
+Security/YAMLLoad:
+    Enabled: true
+    Exclude:
+        - spec/**/*   
+
+# allows metric length > 10
+Metrics/MethodLength:
+    Enabled: false 
