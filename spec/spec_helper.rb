@@ -8,13 +8,13 @@ require 'minitest/rg'
 require 'vcr'
 require 'webmock'
 
-require_relative '../lib/pixnet_lib/poi/pix_poi_api'
-require_relative '../lib/pixnet_lib/keywords/pix_keyword_api'
+require_relative '../lib/mappers/restaurant_mapper'
 
 USERNAME = ''
 PROJECT_NAME = 'SOA_project'
 CONFIG = YAML.safe_load(File.read('config/secrets.yml'))
-POI_CORRECT = YAML.safe_load(File.read('spec/fixtures/pixnet_data/poi.yml'))
+GMAP_TOKEN = CONFIG['gmap_token']
+#POI_CORRECT = YAML.safe_load(File.read('spec/fixtures/pixnet_data/poi.yml'))
 KEYWORD_CORRECT = YAML.safe_load(File.read('spec/fixtures/pixnet_data/keyword_lists/GUCCI_related_keywords.yml'))
 
 CASSETTES_FOLDER = 'spec/fixtures/cassettes'
