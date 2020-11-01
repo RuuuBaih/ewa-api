@@ -14,4 +14,8 @@ Metrics/BlockLength:
 Security/YAMLLoad:
     Enabled: true
     Exclude:
-        - spec/**/*    
+        - spec/**/*   
+
+# allows metric length > 10
+#Metrics/MethodLength:
+#    Enabled: false 
