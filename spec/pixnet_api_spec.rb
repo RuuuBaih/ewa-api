@@ -2,18 +2,18 @@
 
 require_relative 'spec_helper'
 
-KEYWORDS_EN_TEST = 'Gucci'
-KEYWORDS_CN_TEST = '螺絲瑪麗'
+REST_NAME = '螺絲瑪莉 Rose Mary'
 KEYWORDS_ERR_TEST = 'soumyaray'
 POI_LENGTH = 1
+REVIEW_LENGTH = 5
 
 describe 'Tests Ewa API library' do
   VCR.configure do |c|
     c.cassette_library_dir = CASSETTES_FOLDER
     c.hook_into :webmock
 
-    c.filter_sensitive_data('<GITHUB_TOKEN>') { GH_TOKEN }
-    c.filter_sensitive_data('<GITHUB_TOKEN_ESC>') { CGI.escape(GH_TOKEN) }
+    c.filter_sensitive_data('<GMAP_TOKEN>') { GMAP_TOKEN }
+    c.filter_sensitive_data('<GMAP_TOKEN_ESC>') { CGI.escape(GMAP_TOKEN) }
   end
 
   before do
@@ -27,28 +27,6 @@ describe 'Tests Ewa API library' do
   end
 
   describe 'Tests PIXNET API library' do
-=begin
-    describe 'keywords' do
-      it 'HAPPY: chinese keyword should return a list of keywords' do
-        cn_keyword_lists = JustRuIt::PixKeywordApi.new(KEYWORDS_CN_TEST).keyword_lists
-        _(0..20).must_include cn_keyword_lists.count
-        # _(JustRuIt::PixKeywordApi.new(KEYWORDS_CN_TEST).keyword_lists.class).must_equal Array
-      end
-
-      it 'HAPPY: english keyword should return a list of keywords' do
-        en_keyword_lists = JustRuIt::PixKeywordApi.new(KEYWORDS_CN_TEST).keyword_lists
-        _(0..20).must_include en_keyword_lists.count
-        # _(JustRuIt::PixKeywordApi.new(KEYWORDS_EN_TEST).keyword_lists.class).must_equal Array
-      end
-
-      it 'SAD: the keyword is not found' do
-        err_keyword_lists = JustRuIt::PixKeywordApi.new(KEYWORDS_ERR_TEST).keyword_lists
-        _(err_keyword_lists.count).must_equal 0
-        # _(JustRuIt::PixKeywordApi.new(KEYWORDS_ERR_TEST).keyword_lists).must_equal []
-      end
-    end
-=end
-
     describe 'poi' do
       it 'HAPPY: should have same length of poi' do
         poi = Ewa::Restaurant::RestaurantMapper.new(GMAP_TOKEN).poi_details
@@ -62,28 +40,20 @@ describe 'Tests Ewa API library' do
       end
     end
 =end
-
   end
 
   describe 'Tests Google API library' do
     describe 'Google place api' do
       it 'Happy: should have correct google place attribute' do
-
-      end
-
-      it 'BAD: should raise exception on google place attribute' do
-        _(proc do
-          Ewa::Restaurant::RestaurantMapper.new(GMAP_TOKEN)
-            .gmap_place_details(poi_filtered_hash)
-        end).must_raise CodePraise::Github::Api::Response::NotFound
+        restaurant = Ewa::Restaurant::RestaurantMapper.new(GMAP_TOKEN).restaurant_obj_lists
+        _(restaurant[0]['reviews'].length).must_equal REVIEW_LENGTH
+        _(restaurant[0]['name']).must_equal REST_NAME
       end
 
       it 'BAD: should raise exception when unauthorized' do
         _(proc do
-          CodePraise::Github::ProjectMapper
-            .new('BAD_TOKEN')
-            .find(USERNAME, PROJECT_NAME)
-        end).must_raise CodePraise::Github::Api::Response::Unauthorized
+          Ewa::Restaurant::RestaurantMapper.new('BAD_TOKEN').restaurant_obj_lists
+        end).must_raise Ewa::Gmap::PlaceApi::Response::Unauthorized
       end
     end
   end
