@@ -1,0 +1,25 @@
+.container
+  .row
+    h2
+      span.project.owner
+        = restaurant.name
+      br
+      span.project.name
+        - 7.times do |items| 
+          = restaurant.open_hours[items]
+          br
+  .container
+    .row
+      .col-lg-1.col-md-2.col-sm-2
+        span.project.attribute Reviews:
+      .col-lg-11.col-md-10.col-sm-6
+          - 5.times do |items|
+              project.detail = restaurant.reviews[items][:author_name] 
+              img src = restaurant.reviews[items][:profile_photo_url] /
+              br.project.detail = restaurant.reviews[items][:relative_time_description]
+              project.detail = restaurant.reviews[items][:text]
+              hr
+              
+
+
+    
