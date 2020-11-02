@@ -25,7 +25,7 @@ module Ewa
       # get poi full details
       def poi_details
         pix_gateway_class = @gateway_classes[:pixnet]
-        pix_gateway = pix_gateway_class.new(1, 1)
+        pix_gateway = pix_gateway_class.new(1, 2)
         pix_gateway.poi_lists['data']['pois'].reduce([]) do |start, hash|
           start << FilterHash.new(hash).filtered_poi_hash
         end
@@ -46,6 +46,7 @@ module Ewa
           place_details = gmap_place_details(hash)
           AggregatedRestaurantObjs.new(hash, place_details).aggregate_restaurant_objs
         end
+        RestaurantMapper::BuildRestaurantEntity.new(poi_filtered_hashes).build_entity
       end
 
       # build Restaurant Entity
@@ -121,11 +122,11 @@ module Ewa
         end
 
         def pixnet_rating
-          @data['pixnet_rating']
+          @data['pixnet_rating'].to_f
         end
 
         def google_rating
-          @data['google_rating']
+          @data['google_rating'].to_f
         end
 
         def reviews
