@@ -76,13 +76,14 @@ module Ewa
             name: name,
             town: town,
             city: city,
+            money: money,
             open_hours: open_hours,
             telephone: telephone,
             cover_img: cover_img,
             tags: tags,
-            money: money,
             pixnet_rating: pixnet_rating,
             google_rating: google_rating,
+
             reviews: reviews,
             article: article
           )
