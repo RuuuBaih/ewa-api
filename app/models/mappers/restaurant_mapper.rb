@@ -1,9 +1,10 @@
 # frozen_string_literal: false
 
-require_relative '../gateways/gmap_place_api'
-require_relative '../gateways/gmap_place_details_api'
-require_relative '../gateways/pix_poi_api'
+require_relative '../gateways/gmap_api'
+require_relative '../gateways/pix_api'
 require_relative '../entities/restaurant'
+require_relative '../entities/review'
+require_relative '../mappers/review_mapper'
 
 module Ewa
   # Provides access to restuarant sites lists data
@@ -34,11 +35,8 @@ module Ewa
       # get google map place full details
       def gmap_place_details(poi_filtered_hash)
         place_name = poi_filtered_hash['name'].gsub(' ', '')
-        puts place_name
         gmap_place_gateway = @gateway_classes[:gmap_place].new(@token, place_name)
-        puts gmap_place_gateway
         place_id = gmap_place_gateway.place_id['candidates'][0]['place_id']
-        puts place_id
         @gateway_classes[:gmap_place_details].new(@token, place_id).place_details
       end
 
@@ -85,7 +83,13 @@ module Ewa
             money: money,
             pixnet_rating: pixnet_rating,
             google_rating: google_rating,
+<<<<<<< HEAD
             reviews: reviews
+=======
+
+            reviews: reviews,
+            article: article
+>>>>>>> main
           )
         end
         # rubocop:enable Metrics/MethodLength
@@ -133,81 +137,87 @@ module Ewa
         end
 
         def reviews
-          @data['reviews'].map do |hash|
-            hash.transform_keys(&:to_sym)
-          end
+          ReviewMapper::BuildReviewEntity.new(@data['reviews']).build_entity
         end
+<<<<<<< HEAD
+=======
+
+        def article
+          article = ArticleMapper.new(@data['name']).the_newest_article
+          ArticleMapper::BuildArticleEntity.new(article).build_entity
+        end
+>>>>>>> main
+      end
+    end
+
+    # Aggregate poi & gmap place informations
+    class AggregatedRestaurantObjs
+      def initialize(poi_hash, place_hash)
+        @restaurant_hash = poi_hash
+        @place_rets = place_hash['result']
       end
 
-      # Aggregate poi & gmap place informations
-      class AggregatedRestaurantObjs
-        def initialize(poi_hash, place_hash)
-          @restaurant_hash = poi_hash
-          @place_rets = place_hash['result']
-        end
+      # get each aggregated restaurant obj ( Aggregate Pixnet POI, Gmap Place & Place details )
+      def aggregate_restaurant_objs
+        open_hours
+        google_rating
+        reviews
 
-        # get each aggregated restaurant obj ( Aggregate Pixnet POI, Gmap Place & Place details )
-        def aggregate_restaurant_objs
-          open_hours
-          google_rating
-          reviews
-
-          @restaurant_hash
-          # Photos may be added in the future
-        end
-
-        private
-
-        def open_hours
-          @restaurant_hash['open_hours'] = @place_rets['opening_hours']['weekday_text']
-        end
-
-        def google_rating
-          @restaurant_hash['google_rating'] = @place_rets['rating']
-        end
-
-        def reviews
-          @restaurant_hash['reviews'] = @place_rets['reviews'].reduce([]) do |start, hash|
-            start << FilterHash.new(hash).filtered_gmap_place_details_hash
-          end
-        end
+        @restaurant_hash
+        # Photos may be added in the future
       end
 
-      # Use to filter hashes
-      class FilterHash
-        def initialize(hash)
-          @hash = hash
-        end
+      private
 
-        # filter the poi fields, select what we want
-        # rubocop:disable Metrics/MethodLength
-        def filtered_poi_hash
-          addr = @hash['address']
-          {
-            'name' => @hash['name'],
-            'money' => @hash['money'],
-            'telephone' => @hash['telephone'],
-            'cover_img' => @hash['cover_image_url'],
-            'tags' => @hash['tags'],
-            'pixnet_rating' => @hash['rating']['avg'],
-            'city' => addr['city'],
-            'town' => addr['town']
-          }
-        end
-        # rubocop:enable Metrics/MethodLength
+      def open_hours
+        @restaurant_hash['open_hours'] = @place_rets['opening_hours']['weekday_text']
+      end
 
-        # filter the gmap place details fields, select what we want
-        def filtered_gmap_place_details_hash
-          @hash.select do |key, _value|
-            key_lists = %w[
-              author_name
-              profile_photo_url
-              rating
-              text
-              relative_time_description
-            ]
-            key_lists.include? key
-          end
+      def google_rating
+        @restaurant_hash['google_rating'] = @place_rets['rating']
+      end
+
+      def reviews
+        @restaurant_hash['reviews'] = @place_rets['reviews'].reduce([]) do |start, hash|
+          start << FilterHash.new(hash).filtered_gmap_place_details_hash
+        end
+      end
+    end
+
+    # Use to filter hashes
+    class FilterHash
+      def initialize(hash)
+        @hash = hash
+      end
+
+      # filter the poi fields, select what we want
+      # rubocop:disable Metrics/MethodLength
+      def filtered_poi_hash
+        addr = @hash['address']
+        {
+          'name' => @hash['name'],
+          'money' => @hash['money'],
+          'telephone' => @hash['telephone'],
+          'cover_img' => @hash['cover_image_url'],
+          'tags' => @hash['tags'],
+          'pixnet_rating' => @hash['rating']['avg'],
+          'city' => addr['city'],
+          'town' => addr['town']
+        }
+      end
+      # rubocop:enable Metrics/MethodLength
+
+      # filter the gmap place details fields, select what we want
+      def filtered_gmap_place_details_hash
+        @hash.select do |key, _value|
+          key_lists = %w[
+            author_name
+            profile_photo_url
+            rating
+            text
+            relative_time_description
+          ]
+          key_lists.include? key
         end
       end
     end
