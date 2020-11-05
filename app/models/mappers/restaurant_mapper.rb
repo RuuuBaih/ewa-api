@@ -3,6 +3,7 @@
 require_relative '../gateways/gmap_api'
 require_relative '../gateways/pix_api'
 require_relative '../entities/restaurant'
+require_relative '../mappers/article_mapper'
 
 module Ewa
   # Provides access to restuarant sites lists data
@@ -136,7 +137,7 @@ module Ewa
         end
 
         def article
-          ArticleMapper.BuildArticleEntity.build_entity[@data['article']]
+          ArticleMapper::BuildArticleEntity.new(@data['article'])build_entity
         end
       end
 
