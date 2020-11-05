@@ -22,7 +22,6 @@ module Ewa
       attribute :pixnet_rating, Strict::Float.optional
       attribute :google_rating, Strict::Float.optional
       attribute :open_hours,    Strict::Array.of(String).optional
-
       attribute :reviews,       Strict::Array.of(Review)
       attribute :article,       Strict::Article
     end
