@@ -10,6 +10,10 @@ module Ewa
                  class: :'Ewa::Database::RestaurantOrm'
 
       plugin :timstamps, update_on_create: true
+
+      def self.find_or_create(article_info)
+        first(article_link: article_info[:link]) || create(article_info)
+      end
     end
   end
 end
