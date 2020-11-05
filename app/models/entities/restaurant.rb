@@ -2,6 +2,8 @@
 
 require 'dry-types'
 require 'dry-struct'
+require_relative 'review'
+require_relative 'article'
 
 module Ewa
   module Entity
@@ -21,8 +23,8 @@ module Ewa
       attribute :google_rating, Strict::Float.optional
       attribute :open_hours,    Strict::Array.of(String).optional
      
-      attribute :reviews,       Strict::Array.of(Review)
-      attribute :article,       Strict::Article
+      attribute :reviews,       Array.of(Review)
+      attribute :article,       Article
     end
   end
 end
