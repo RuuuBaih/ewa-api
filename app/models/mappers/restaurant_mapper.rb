@@ -1,8 +1,7 @@
 # frozen_string_literal: false
 
-require_relative '../gateways/gmap_place_api'
-require_relative '../gateways/gmap_place_details_api'
-require_relative '../gateways/pix_poi_api'
+require_relative '../gateways/gmap_api'
+require_relative '../gateways/pix_api'
 require_relative '../entities/restaurant'
 
 module Ewa
@@ -34,11 +33,8 @@ module Ewa
       # get google map place full details
       def gmap_place_details(poi_filtered_hash)
         place_name = poi_filtered_hash['name'].gsub(' ', '')
-        puts place_name
         gmap_place_gateway = @gateway_classes[:gmap_place].new(@token, place_name)
-        puts gmap_place_gateway
         place_id = gmap_place_gateway.place_id['candidates'][0]['place_id']
-        puts place_id
         @gateway_classes[:gmap_place_details].new(@token, place_id).place_details
       end
 
@@ -78,14 +74,15 @@ module Ewa
             name: name,
             town: town,
             city: city,
+            money: money,
             open_hours: open_hours,
             telephone: telephone,
             cover_img: cover_img,
             tags: tags,
-            money: money,
             pixnet_rating: pixnet_rating,
             google_rating: google_rating,
             reviews: reviews
+            article: article
           )
         end
         # rubocop:enable Metrics/MethodLength
@@ -136,6 +133,10 @@ module Ewa
           @data['reviews'].map do |hash|
             hash.transform_keys(&:to_sym)
           end
+        end
+
+        def article
+          ArticleMapper.BuildArticleEntity.build_entity[@data['article']]
         end
       end
 
