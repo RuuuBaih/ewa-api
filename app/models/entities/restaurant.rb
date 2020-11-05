@@ -24,7 +24,7 @@ module Ewa
       attribute :open_hours,    Strict::Array.of(String).optional
      
       attribute :reviews,       Array.of(Review)
-      #attribute :article,       Article
+      attribute :article,       Article
     end
   end
 end
