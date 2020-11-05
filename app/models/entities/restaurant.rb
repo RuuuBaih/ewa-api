@@ -22,9 +22,19 @@ module Ewa
       attribute :pixnet_rating, Strict::Float.optional
       attribute :google_rating, Strict::Float.optional
       attribute :open_hours,    Strict::Array.of(String).optional
+<<<<<<< HEAD
      
       attribute :reviews,       Array.of(Review)
+<<<<<<< HEAD
+      #attribute :article,       Article
+=======
+
+      attribute :reviews,       Strict::Array.of(Review)
+      attribute :article,       Strict::Article
+>>>>>>> database
+=======
       attribute :article,       Article
+>>>>>>> main
     end
   end
 end

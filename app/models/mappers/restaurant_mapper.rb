@@ -76,16 +76,20 @@ module Ewa
             name: name,
             town: town,
             city: city,
-            money: money,
             open_hours: open_hours,
             telephone: telephone,
             cover_img: cover_img,
             tags: tags,
+            money: money,
             pixnet_rating: pixnet_rating,
             google_rating: google_rating,
+<<<<<<< HEAD
+            reviews: reviews
+=======
 
             reviews: reviews,
             article: article
+>>>>>>> main
           )
         end
         # rubocop:enable Metrics/MethodLength
@@ -135,11 +139,14 @@ module Ewa
         def reviews
           ReviewMapper::BuildReviewEntity.new(@data['reviews']).build_entity
         end
+<<<<<<< HEAD
+=======
 
         def article
           article = ArticleMapper.new(@data['name']).the_newest_article
           ArticleMapper::BuildArticleEntity.new(article).build_entity
         end
+>>>>>>> main
       end
     end
 

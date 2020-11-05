@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
-require_relative 'projects'
-require_relative 'members'
+require_relative 'restaurant'
+require_relative 'review'
+require_relative 'article'
 require_relative 'for'
