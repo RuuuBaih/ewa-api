@@ -8,20 +8,18 @@ module Ewa
   module Restaurant
     # Data Mapper: Mapping review data into
     class ReviewMapper
-=begin
-      def initialize(data)
-        @data = data
-      end
-=end
 
       # build Review Entity
       class BuildReviewEntity
         def initialize(data)
-          @data = data
+          @array_of_hashes = data
         end
 
         def build_entity
-          DataMapper.new(@data).build_entity
+          @array_of_hashes.map do |hash|
+            hash.transform_keys(&:to_sym)
+            DataMapper.new(hash).build_entity
+          end
         end
       end
 
@@ -29,9 +27,6 @@ module Ewa
       class DataMapper
         def initialize(data)
           @data = data
-          @data.map do |hash|
-          hash.transform_keys(&:to_sym)
-          end
         end
 
         def build_entity

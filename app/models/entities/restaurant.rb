@@ -25,12 +25,16 @@ module Ewa
 <<<<<<< HEAD
      
       attribute :reviews,       Array.of(Review)
+<<<<<<< HEAD
       #attribute :article,       Article
 =======
 
       attribute :reviews,       Strict::Array.of(Review)
       attribute :article,       Strict::Article
 >>>>>>> database
+=======
+      attribute :article,       Article
+>>>>>>> main
     end
   end
 end

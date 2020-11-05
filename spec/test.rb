@@ -14,7 +14,4 @@ puts 'poi_details'
 puts @restaurant_mapper.new(GMAP_TOKEN).poi_details
 
 puts 'restaurant_list'
-puts @restaurant_mapper.new(GMAP_TOKEN).restaurant_obj_lists
-
-puts 'review_details'
-# puts @review_mapper
+puts @restaurant_mapper.new(GMAP_TOKEN).restaurant_obj_lists.inspect
