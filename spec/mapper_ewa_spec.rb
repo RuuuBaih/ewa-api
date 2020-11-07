@@ -38,6 +38,14 @@ describe 'Tests Pix API library' do
       @article_mapper = Ewa::Restaurant::ArticleMapper
       @article_entity = Ewa::Entity::Article
     end
+
+    describe 'poi' do
+      it 'HAPPY: should have same length of poi' do
+        poi = Ewa::Restaurant::RestaurantMapper.new(GMAP_TOKEN).poi_details
+        _(poi.length).must_equal POI_LENGTH
+      end
+    end
+    
     describe 'article result hash' do
       it 'HAPPY: should have same length of the newest article hash' do
         _(@article_mapper.new(REST_NAME).the_newest_article.length).must_equal ARTICLE_LENGTH

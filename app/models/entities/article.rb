@@ -4,6 +4,7 @@ require 'dry-types'
 require 'dry-struct'
 
 module Ewa
+  # Ewa project
   module Entity
     # Article Entity
     class Article < Dry::Struct
@@ -11,6 +12,10 @@ module Ewa
       attribute :article_id, Integer.optional
       attribute :restaurant_name, Strict::String
       attribute :link, Strict::String
+    end
+
+    def to_attr_hash
+      to_hash.reject { |key, _| [:article_id].include? key }
     end
   end
 end
