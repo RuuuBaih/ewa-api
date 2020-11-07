@@ -13,23 +13,13 @@ TEST_PAGE = 1
 TEST_PER_PAGE = 2
 REVIEW_LENGTH = 5
 
-describe 'Tests Pix API library' do
-  VCR.configure do |c|
-    c.cassette_library_dir = CASSETTES_FOLDER
-    c.hook_into :webmock
-
-    c.filter_sensitive_data('<GMAP_TOKEN>') { GMAP_TOKEN }
-    c.filter_sensitive_data('<GMAP_TOKEN_ESC>') { CGI.escape(GMAP_TOKEN) }
-  end
-
+describe 'Tests restaurant API library' do
   before do
-    VCR.insert_cassette CASSETTE_FILE,
-                        record: :new_episodes,
-                        match_requests_on: %i[method uri headers]
+    VcrHelper.configure_vcr_for_restaurant
   end
 
   after do
-    VCR.eject_cassette
+    VcrHelper.eject_vcr
   end
 =begin
   describe 'Tests restaurants API library' do
