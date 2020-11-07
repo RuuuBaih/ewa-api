@@ -31,19 +31,34 @@ describe 'Tests Pix API library' do
   after do
     VCR.eject_cassette
   end
-
-  describe 'Tests PIXNET API library' do
+=begin
+  describe 'Tests restaurants API library' do
     before do
-      @article_api = Ewa::Pixnet::ArticleApi
-      @article_mapper = Ewa::Restaurant::ArticleMapper
-      @article_entity = Ewa::Entity::Article
+      @restaurant_api = Ewa::Gmap::PlaceApi
+      @restaurant_mapper = Ewa::Restaurant::RestaurantMapper
+      @restaurant_entity = Ewa::Entity::Restaurant
     end
 
     describe 'poi' do
       it 'HAPPY: should have same length of poi' do
-        poi = Ewa::Restaurant::RestaurantMapper.new(GMAP_TOKEN).poi_details
+        poi = @restaurant_mapper.new(GMAP_TOKEN).poi_details
         _(poi.length).must_equal POI_LENGTH
       end
+    end
+==begin
+    describe 'restaurant' do
+      it 'HAPPY: should have same ' do
+
+      end
+    end
+==end
+  end
+=end
+  describe 'Tests PIXNET article API library' do
+    before do
+      @article_api = Ewa::Pixnet::ArticleApi
+      @article_mapper = Ewa::Restaurant::ArticleMapper
+      @article_entity = Ewa::Entity::Article
     end
     
     describe 'article result hash' do
@@ -53,7 +68,7 @@ describe 'Tests Pix API library' do
     end
 
     describe 'article result entity' do
-      it 'HAPPY: should have same length of the newest article hash' do
+      it 'HAPPY: should have same length of the newest article hash entity' do
         _(@article_mapper::BuildArticleEntity.new(ARTICLE_HASH).build_entity).must_be_kind_of @article_entity
       end
     end
