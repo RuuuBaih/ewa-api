@@ -23,12 +23,17 @@ module Ewa
       attribute :google_rating, Strict::Float.optional
       attribute :open_hours,    Strict::Array.of(String).optional
 <<<<<<< HEAD
+<<<<<<< HEAD
 
       attribute :reviews,       Strict::Array.of(Review)
       attribute :article,       Strict::Article
 =======
      
       attribute :reviews,       Array.of(Review)
+      attribute :article,       Article
+>>>>>>> main
+=======
+      attribute :reviews,       Strict::Array.of(Review)
       attribute :article,       Article
 >>>>>>> main
     end
