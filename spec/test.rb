@@ -13,10 +13,10 @@ puts @article_mapper.new(REST_NAME).the_newest_article
 #puts 'poi_details'
 poi = @restaurant_mapper.new('GMAP_TOKEN').poi_details
 puts 'restaurant_list'
-# @restaurant_mapper.new('GMAP_TOKEN').restaurant_obj_lists[0][:reviews]
-#puts @restaurant_mapper.new('GMAP_TOKEN').gmap_place_details(poi)
+#puts @restaurant_mapper.new(GMAP_TOKEN).restaurant_obj_lists[0][:reviews]
+#puts @restaurant_mapper.new(GMAP_TOKEN).gmap_place_details(poi)[place_id]
+place_name = '螺絲瑪莉'
+GMAP_API_PATH = 'https://maps.googleapis.com/maps/api/place/findplacefromtext/json?'
 
-@restaurant_api = Ewa::Gmap::PlaceApi
-@restaurant_api.new
-
-@restaurant_detail_api = Ewa::Gmap::PlaceDetailsApi
+@gateway_classes = Ewa::Gmap::PlaceApi
+puts @gateway_classes.new('GMAP_TOKEN', place_name).place_id['candidates'].empty?

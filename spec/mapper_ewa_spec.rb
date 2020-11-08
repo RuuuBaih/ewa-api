@@ -40,17 +40,17 @@ describe 'Tests Ewa API library' do
         poi = @restaurant_mapper.new(GMAP_TOKEN).poi_details
         _(poi.length).must_equal POI_LENGTH
       end
-
-      it 'BAD: should have same length of review' do
-        review = @restaurant_mapper.new(GMAP_TOKEN).restaurant_obj_lists[0][:reviews]
-        _(review.length).must_equal REVIEW_LENGTH
-      end
     end
 
     describe 'review' do
       it 'HAPPY: should have same length of review' do
         review = @restaurant_mapper.new(GMAP_TOKEN).restaurant_obj_lists[0][:reviews]
         _(review.length).must_equal REVIEW_LENGTH
+      end
+
+      it 'BAD: wrong token cause empty array' do
+        bad_token = @restaurant_api.new('GMAP_TOKEN', '螺絲瑪莉').place_id['candidates']
+        _(bad_token.empty?).must_equal true
       end
     end
   end
