@@ -11,7 +11,7 @@ module Ewa
     class Restaurant < Dry::Struct
       include Dry.Types
 
-      attribute :restaurant_id, Integer.optional
+      attribute :id, Integer.optional
       attribute :name,          Strict::String
       attribute :town,          Strict::String.optional
       attribute :money,         Strict::Integer.optional
