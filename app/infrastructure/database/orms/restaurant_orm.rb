@@ -7,10 +7,10 @@ module Ewa
     # Object Relational Mapper for Project Entities
     class RestaurantOrm < Sequel::Model(:restaurants)
       one_to_one :articles,
-                 class: :'Ewa::Database::ArticlesOrm'
+                 class: :'Ewa::Database::ArticleOrm'
 
-      one_to_one :reviews,
-                 class: :'Ewa::Database::ReviewsOrm'
+      one_to_many :reviews,
+                 class: :'Ewa::Database::ReviewOrm'
 
       plugin :timestamps, update_on_create: true
     end

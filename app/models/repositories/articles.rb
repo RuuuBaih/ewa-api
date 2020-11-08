@@ -4,20 +4,21 @@ module Ewa
   module Repository
     # Repository for Articles
     class Articles
-      def self.find_article_by_id(id)
-        rebuild_entity Database::ArticleOrm.first(id: id)
+      def self.find_article_by_id(id, restaurant_name)
+        rebuild_entity(Database::ArticleOrm.first(id: id), restaurant_name)
       end
 
-      def self.find_article_by_restaurant_name(name)
-        rebuild_entity Database::ArticleOrm.first(restaurant_name: name)
+      def self.find_article_by_restaurant_id(restaurant_id, restaurant_name)
+        rebuild_entity(Database::ArticleOrm.first(restaurant_id: restaurant_id), restaurant_name)
       end
 
-      def self.rebuild_entity(db_record)
+      def self.rebuild_entity(db_record, restaurant_name)
         return nil unless db_record
 
         Entity::Article.new(
           id: db_record.id,
-          restaurant_name: db_record.restaurant_name,
+          restaurant_name: restaurant_name, 
+          restaurant_id: db_record.restaurant_id,
           link: db_record.link
         )
       end

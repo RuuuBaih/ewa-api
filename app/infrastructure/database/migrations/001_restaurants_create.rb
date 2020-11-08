@@ -5,9 +5,7 @@ require 'sequel'
 Sequel.migration do
   change do
     create_table(:restaurants) do
-      primary_key :restaurant_id
-      foreign_key :review_id, :reviews
-      foreign_key :article_id, :articles
+      primary_key :id
 
       String :name
       String :town

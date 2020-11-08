@@ -1,6 +1,5 @@
 # frozen_string_literal: true
-require_relative '../models/repositories/init'
-require_relative '../infrastructure/init'
+
 require 'roda'
 require 'slim'
 

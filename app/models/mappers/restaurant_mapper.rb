@@ -74,7 +74,7 @@ module Ewa
         # rubocop:disable Metrics/MethodLength
         def build_entity
           Ewa::Entity::Restaurant.new(
-            restaurant_id: nil,
+            id: nil,
             name: name,
             town: town,
             city: city,

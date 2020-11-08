@@ -9,11 +9,11 @@ module Ewa
         end
   
         def self.find(entity)
-          find_restaurant_id(entity.restaurant_id)
+          find_restaurant_id(entity.id)
         end
   
         def self.find_restaurant_id(restaurant_id)
-          db_record = Database::RestaurantOrm.first(restaurant_id: restaurant_id)
+          db_record = Database::RestaurantOrm.first(id: restaurant_id)
           rebuild_entity(db_record)
         end
   
@@ -21,11 +21,13 @@ module Ewa
   
         def self.rebuild_entity(db_record)
           return nil unless db_record
+
+          db_record[:tags] = db_record[:tags].split(/, /)
   
           Entity::Restaurant.new(
             db_record.to_hash.merge(
-              article: Articles.rebuild_entity(Articles.find_article_by_id(db_record.article_id)),
-              reviews: [Reviews.rebuild_entity(Reviews.find_review_by_id(db_record.review_id))]
+              article: Articles.find_article_by_restaurant_id(db_record.id, db_record.name),
+              reviews: Reviews.find_all_reviews_by_restaurant_id(db_record.id)
             )
           )
         end
