@@ -9,7 +9,7 @@ module Ewa
     # Article Entity
     class Article < Dry::Struct
       include Dry.Types
-      attribute :article_id, Integer.optional
+      attribute :id, Integer.optional
       attribute :restaurant_name, Strict::String
       attribute :link, Strict::String
     end
