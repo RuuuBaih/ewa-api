@@ -6,6 +6,7 @@ Sequel.migration do
   change do
     create_table(:reviews) do
       primary_key :review_id
+      foreign_key :restaurant_id
       
       String :author_name
       String :profile_photo_url
