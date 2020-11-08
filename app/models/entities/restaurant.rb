@@ -23,7 +23,7 @@ module Ewa
       attribute :google_rating, Strict::Float.optional
       attribute :open_hours,    Strict::Array.of(String).optional
       attribute :reviews,       Strict::Array.of(Review)
-      attribute :article,       Strict::Article
+      attribute :article,       Article
     end
   end
 end
