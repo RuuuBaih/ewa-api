@@ -31,7 +31,7 @@ module Ewa
 
         def build_entity
           Ewa::Entity::Review.new(
-            review_id: nil,
+            id: nil,
             author_name: name,
             profile_photo_url: url,
             relative_time_description: time,
