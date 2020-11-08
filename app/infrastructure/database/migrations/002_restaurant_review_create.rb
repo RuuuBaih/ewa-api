@@ -5,7 +5,7 @@ require 'sequel'
 Sequel.migration do
   change do
     create_table(:reviews) do
-      primary_key :review_id
+      primary_key :id
       
       String :author_name
       String :profile_photo_url
