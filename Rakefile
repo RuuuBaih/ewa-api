@@ -55,8 +55,8 @@ namespace :db do
       return
     end
 
-    FileUtils.rm(CodePraise::App.config.DB_FILENAME)
-    puts "Deleted #{CodePraise::App.config.DB_FILENAME}"
+    FileUtils.rm(Ewa::App.config.DB_FILENAME)
+    puts "Deleted #{Ewa::App.config.DB_FILENAME}"
   end
 end
 
