@@ -1,5 +1,6 @@
 # frozen_string_literal: true
-
+require_relative '../models/repositories/init'
+require_relative '../infrastructure/init'
 require 'roda'
 require 'slim'
 
@@ -22,11 +23,8 @@ module Ewa
         routing.is do
           # POST /restaurant
           routing.post do
-            restaurant_object = Restaurant::RestaurantMapper
-                                .new(GMAP_TOKEN)
-                                .restaurant_obj_lists[1]
-
-            view 'restaurant', locals: { restaurant: restaurant_object }
+            restaurants = Repository::For.klass(Entity::Restaurant).all
+            view 'restaurant', locals: { restaurants: restaurants }
           end
         end
       end

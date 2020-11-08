@@ -5,7 +5,7 @@ module Ewa
     # Repository for Articles
     class Articles
       def self.find_article_by_id(id)
-        rebuild_entity Database::ArticleOrm.first(article_id: id)
+        rebuild_entity Database::ArticleOrm.first(id: id)
       end
 
       def self.find_article_by_restaurant_name(name)
@@ -16,7 +16,7 @@ module Ewa
         return nil unless db_record
 
         Entity::Article.new(
-          article_id: db_record.article_id,
+          id: db_record.id,
           restaurant_name: db_record.restaurant_name,
           link: db_record.link
         )

@@ -5,9 +5,9 @@ module Ewa
     # Finds the right repository for an entity object or class
     class For
       ENTITY_REPOSITORY = {
-        Entity::Article => Article,
-        Entity::Restaurant => Restaurant,
-        Entity::Review => Review
+        Entity::Article => Articles,
+        Entity::Restaurant => Restaurants,
+        Entity::Review => Reviews
       }.freeze
 
       def self.klass(entity_klass)

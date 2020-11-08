@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative 'restaurant'
-require_relative 'review'
-require_relative 'article'
+require_relative 'restaurants'
+require_relative 'reviews'
+require_relative 'articles'
 require_relative 'for'
