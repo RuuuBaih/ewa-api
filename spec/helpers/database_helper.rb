@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'database_cleaner'
+require_relative '../spec_helper.rb'
 
 # Helper to clean database during test runs
 class DatabaseHelper
