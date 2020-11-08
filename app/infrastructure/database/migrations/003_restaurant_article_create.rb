@@ -5,8 +5,8 @@ require 'sequel'
 Sequel.migration do
   change do
     create_table(:articles) do
-      primary_key :article_id
-      # 等阿嚕弄完之後要加foreign key
+      primary_key :id
+
       String :restaurant_name, unique: true
       String :link
 
