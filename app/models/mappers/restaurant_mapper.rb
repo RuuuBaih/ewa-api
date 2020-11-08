@@ -39,6 +39,7 @@ module Ewa
         place_name = poi_filtered_hash['name'].gsub(' ', '')
         gmap_place_gateway = @gateway_classes[:gmap_place].new(@token, place_name)
         place_id = gmap_place_gateway.place_id['candidates'][0]['place_id']
+        puts place_id
         @gateway_classes[:gmap_place_details].new(@token, place_id).place_details
       end
 
