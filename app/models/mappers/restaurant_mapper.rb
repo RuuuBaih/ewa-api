@@ -4,7 +4,9 @@ require_relative '../gateways/gmap_api'
 require_relative '../gateways/pix_api'
 require_relative '../entities/restaurant'
 require_relative '../entities/review'
+require_relative '../entities/article'
 require_relative '../mappers/review_mapper'
+require_relative '../mappers/article_mapper'
 
 module Ewa
   # Provides access to restuarant sites lists data

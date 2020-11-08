@@ -13,42 +13,37 @@ TEST_PAGE = 1
 TEST_PER_PAGE = 2
 REVIEW_LENGTH = 5
 
-describe 'Tests restaurant API library' do
+describe 'Tests Pix API library' do
+  VCR.configure do |c|
+    c.cassette_library_dir = CASSETTES_FOLDER
+    c.hook_into :webmock
+
+    c.filter_sensitive_data('<GMAP_TOKEN>') { GMAP_TOKEN }
+    c.filter_sensitive_data('<GMAP_TOKEN_ESC>') { CGI.escape(GMAP_TOKEN) }
+  end
+
   before do
-    VcrHelper.configure_vcr_for_restaurant
+    VCR.insert_cassette CASSETTE_FILE,
+                        record: :new_episodes,
+                        match_requests_on: %i[method uri headers]
   end
 
   after do
-    VcrHelper.eject_vcr
+    VCR.eject_cassette
   end
-=begin
-  describe 'Tests restaurants API library' do
-    before do
-      @restaurant_api = Ewa::Gmap::PlaceApi
-      @restaurant_mapper = Ewa::Restaurant::RestaurantMapper
-      @restaurant_entity = Ewa::Entity::Restaurant
-    end
 
-    describe 'poi' do
-      it 'HAPPY: should have same length of poi' do
-        poi = @restaurant_mapper.new(GMAP_TOKEN).poi_details
-        _(poi.length).must_equal POI_LENGTH
-      end
-    end
-==begin
-    describe 'restaurant' do
-      it 'HAPPY: should have same ' do
-
-      end
-    end
-==end
-  end
-=end
-  describe 'Tests PIXNET article API library' do
+  describe 'Tests PIXNET API library' do
     before do
       @article_api = Ewa::Pixnet::ArticleApi
       @article_mapper = Ewa::Restaurant::ArticleMapper
       @article_entity = Ewa::Entity::Article
+    end
+
+    describe 'poi' do
+      it 'HAPPY: should have same length of poi' do
+        poi = Ewa::Restaurant::RestaurantMapper.new(GMAP_TOKEN).poi_details
+        _(poi.length).must_equal POI_LENGTH
+      end
     end
     
     describe 'article result hash' do
@@ -58,7 +53,7 @@ describe 'Tests restaurant API library' do
     end
 
     describe 'article result entity' do
-      it 'HAPPY: should have same length of the newest article hash entity' do
+      it 'HAPPY: should have same length of the newest article hash' do
         _(@article_mapper::BuildArticleEntity.new(ARTICLE_HASH).build_entity).must_be_kind_of @article_entity
       end
     end

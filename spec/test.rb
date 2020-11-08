@@ -8,9 +8,6 @@ REST_NAME = '螺絲瑪莉 Rose Mary'
 puts 'newest_article'
 puts @article_mapper.new(REST_NAME).the_newest_article
 
-puts 'new article hash'
-puts @article_mapper::BuildArticleEntity.new(ARTICLE_HASH).build_entity
-
 @restaurant_mapper = Ewa::Restaurant::RestaurantMapper
 
 puts 'poi_details'
