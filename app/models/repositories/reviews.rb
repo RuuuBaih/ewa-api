@@ -5,7 +5,7 @@ module Ewa
       # Repository for Reviews
       class Reviews
         def self.find_review_by_id(id)
-          rebuild_entity Database::ReviewOrm.first(review_id: id)
+          rebuild_entity Database::ReviewOrm.first(id: id)
         end
  
         def self.find_review_by_restaurant_name(name)
@@ -16,7 +16,7 @@ module Ewa
           return nil unless db_record
   
           Entity::Review.new(
-            review_id: db_record.review_id,
+            id: db_record.id,
             author_name: db_record.author_name,
             profile_photo_url: db_record.profile_photo_url,
             relative_time_description: db_record.relative_time_description,

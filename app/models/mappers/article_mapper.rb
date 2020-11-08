@@ -41,7 +41,7 @@ module Ewa
 
         def build_entity
           Ewa::Entity::Article.new(
-            article_id: nil,
+            id: nil,
             restaurant_name: name,
             link: link
           )
