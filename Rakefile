@@ -31,7 +31,7 @@ namespace :db do
     require_relative 'spec/helpers/database_helper'
 
     def app
-      CodePraise::App
+      Ewa::App
     end
   end
 
