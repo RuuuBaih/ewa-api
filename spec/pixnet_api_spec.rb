@@ -33,13 +33,11 @@ describe 'Tests Ewa API library' do
         _(poi.length).must_equal POI_LENGTH
       end
     end
-=begin
-    describe 'article' do
-      it 'HAPPY: should have same length of poi' do
-        _(Ewa::Pixnet::PoiApi.new(1, 10).poi_lists.values[2].values[4].length).must_equal POI_LENGTH
-      end
-    end
-=end
+    #     describe 'article' do
+    #       it 'HAPPY: should have same length of poi' do
+    #         _(Ewa::Pixnet::PoiApi.new(1, 10).poi_lists.values[2].values[4].length).must_equal POI_LENGTH
+    #       end
+    #     end
   end
 
   describe 'Tests Google API library' do

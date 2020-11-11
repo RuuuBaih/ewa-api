@@ -8,7 +8,6 @@ module Ewa
   module Restaurant
     # Data Mapper: Mapping review data into
     class ReviewMapper
-
       # build Review Entity
       class BuildReviewEntity
         def initialize(data)
