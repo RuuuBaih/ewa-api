@@ -19,6 +19,26 @@ module Ewa
         rebuild_entity(db_record)
       end
 
+      def self.update_reviews2db(entity)
+        db_entity = find(entity)
+        raise 'Related restaurant not found' unless db_entity
+
+        entity_id = db_entity.id
+        raise 'Already five reviews exist' if Reviews.find_all_reviews_by_restaurant_id(entity_id).length > 4
+
+        Reviews.rebuild_many(PersistRestaurant.new(entity).put_reviews_to_db(entity_id))
+      end
+
+      def self.update_article2db(entity)
+        db_entity = find(entity)
+        raise 'Related restaurant not found' unless db_entity
+
+        entity_id = db_entity.id
+        raise 'Article exist' if Articles.find_article_by_restaurant_id(entity_id)
+
+        Article.rebuild_entity(PersistRestaurant.new(entity).put_article_to_db(entity_id))
+      end
+
       def self.create(entity)
         raise 'Restaurant already exists' if find(entity)
 
@@ -57,7 +77,7 @@ module Ewa
           # change type to avoid sequel value misused problem
           @hash_rest[:tags] = @hash_rest[:tags].to_s
           @hash_rest[:open_hours] = @hash_rest[:open_hours].to_s
-          Database::RestaurantOrm.create(hash_rest)
+          Database::RestaurantOrm.create(@hash_rest)
         end
 
         def call

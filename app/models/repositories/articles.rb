@@ -8,8 +8,8 @@ module Ewa
         rebuild_entity(Database::ArticleOrm.first(id: id), restaurant_name)
       end
 
-      def self.find_article_by_restaurant_id(restaurant_id, restaurant_name)
-        rebuild_entity(Database::ArticleOrm.first(restaurant_id: restaurant_id), restaurant_name)
+      def self.find_article_by_restaurant_id(restaurant_id)
+        Database::ArticleOrm.first(restaurant_id: restaurant_id)
       end
 
       def self.rebuild_entity(db_record, restaurant_name)

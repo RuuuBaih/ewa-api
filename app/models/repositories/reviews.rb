@@ -13,7 +13,7 @@ module Ewa
       end
 
       def self.find_all_reviews_by_restaurant_id(restaurant_id)
-        rebuild_many Database::ReviewOrm.where(restaurant_id: restaurant_id).all
+        Database::ReviewOrm.where(restaurant_id: restaurant_id).all
       end
 
       def self.rebuild_entity(db_record)
