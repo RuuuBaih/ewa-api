@@ -8,25 +8,27 @@ module Ewa
     class PoiApi
       POI_API_PATH = 'https://emma.pixnet.cc/poi?'
 
-      def initialize(page, per_page)
+      def initialize(page, per_page, city)
         @page = page
         @per_page = per_page
+        @city = city
       end
 
       def poi_lists
-        PoiRequest.new(POI_API_PATH, @page, @per_page).poi_http.parse
+        PoiRequest.new(POI_API_PATH, @page, @per_page, @city).poi_http.parse
       end
 
       # Sends out HTTP requests to POI
       class PoiRequest
-        def initialize(resource_root, page, per_page)
+        def initialize(resource_root, page, per_page, city)
           @resource_root = resource_root
           @page = page
           @per_page = per_page
+          @city = city
         end
 
         def poi_http
-          Pixnet::Request.new("#{@resource_root}page=#{@page}&per_page=#{@per_page}").get
+          Pixnet::Request.new("#{@resource_root}page=#{@page}&per_page=#{@per_page}&city=#{@city}").get
         end
       end
     end
