@@ -61,7 +61,7 @@ describe 'Tests Ewa API library' do
       @article_mapper = Ewa::Restaurant::ArticleMapper
       @article_entity = Ewa::Entity::Article
     end
-    
+
     describe 'article result hash' do
       it 'HAPPY: should have same length of the newest article hash' do
         _(@article_mapper.new(REST_NAME).the_newest_article.length).must_equal ARTICLE_LENGTH
