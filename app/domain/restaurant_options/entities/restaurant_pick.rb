@@ -17,8 +17,7 @@ module Ewa
          ewa_tag = Value::EwaTags.new(
              @rest_pick.id, # restaurant_id
              @rest_pick.money,
-             @rest_pick.google_rating,
-             @rest_pick.pixnet_rating
+             @rest_pick.google_rating
          )
       end
 
