@@ -14,7 +14,7 @@ module Ewa
       def ewa_tag_hash
          # hope to return a ewa tag hash back 
          # (e.g. {"restaurant_id": id, "ewa_tag": ewa_tag})
-         ewa_tag = Value::EwaTags.new(
+         Value::EwaTags.new(
              @rest_pick.id, # restaurant_id
              @rest_pick.money,
              @rest_pick.google_rating
