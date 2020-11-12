@@ -33,11 +33,12 @@ module Ewa
           # GET /restaurant
           routing.post do
             # Get restaurant information from pixnet & gmap api
-            restaurant_entity = Restaurant::RestaurantMapper.new(App.config.GMAP_TOKEN).restaurant_obj_lists[0]
+            restaurant_entity = Restaurant::RestaurantMapper.new(App.config.GMAP_TOKEN).restaurant_obj_lists[19]
 
             # Add restaurant to database
             restaurant_repo_entity = Repository::For.entity(restaurant_entity).create(restaurant_entity)
             view 'restaurant', locals: { restaurants: restaurant_repo_entity }
+            # view 'restaurant', locals: { restaurants: restaurant_entity }
           end
         end
       end

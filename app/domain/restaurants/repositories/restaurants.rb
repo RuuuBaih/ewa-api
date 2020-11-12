@@ -54,12 +54,12 @@ module Ewa
         db_record[:tags] = JSON.parse(db_record[:tags])
         db_record[:open_hours] = JSON.parse(db_record[:open_hours])
 
-        Entity::Restaurant.new(
-          db_record.to_hash.merge(
-            article: Articles.find_article_by_restaurant_id(db_record_id, db_record.name),
-            reviews: Reviews.find_all_reviews_by_restaurant_id(db_record_id)
-          )
-        )
+        Entity::Restaurant.new(db_record.to_hash.merge(
+                                 article: Articles.rebuild_entity(
+                                   Articles.find_article_by_restaurant_id(db_record_id), db_record.name
+                                 ),
+                                 reviews: Reviews.find_all_reviews_by_restaurant_id(db_record_id)
+                               ))
       end
 
       # make sure data goes to database also

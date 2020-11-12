@@ -2,5 +2,5 @@
 
 folders = %w[lib values entities repositories mappers]
 folders.each do |folder|
-      require_relative "#{folder}/init.rb"
+  require_relative "#{folder}/init.rb"
 end

@@ -3,5 +3,5 @@
 folders = %w[restaurant_options restaurants]
 
 folders.each do |folder|
-    require_relative "#{folder}/init.rb"
+  require_relative "#{folder}/init.rb"
 end
