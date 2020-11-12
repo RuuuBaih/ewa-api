@@ -2,42 +2,43 @@
 
 module Ewa
     module Value
-
         class EwaTags < SimpleDelegator
             
             def initialize (id, money, google_rating)
-                @id = id 
+                @id = id
                 @money = money
                 @google_rating = google_rating
             end
 
-            def 
+            def ewa_tag_hash
+                {restaurant_id: @id, ewa_tag: tag_rules}
+            end
 
             def tag_rules
-                if @money >= 1000 & @google_rating >= 4.5
-                    ewa_tag = '老闆請客 Boss, please treat me!'
-                elsif @money >= 1000 & 4 <= @google_rating < 4.5
-                    ewa_tag = '存點錢再吃  Eat when you have budget!'
-                elsif 500 <= @money < 1000 & @google_rating >= 4.5
-                    ewa_tag = '女朋友叫你帶她去吃 Girlgfriend said she want to eat that!'
-                elsif 500 <= @money < 1000 & 4 <= @google_rating < 4.5
-                    ewa_tag = '同學會可食 Eat this in the class reunion!'
-                elsif 300 <= @money < 500 & @google_rating >= 4.5
-                    ewa_tag = '發薪日可食 Eat when you get your salary!'
-                elsif 300 <= @money < 500 & 4 <= @google_rating < 4.5
-                    ewa_tag = '吃拉，哪吃不吃~ Ok, just eat that.'
-                elsif 0 < @money < 300 & @google_rating >= 4.5
-                    ewa_tag = '便宜上天堂 Go to heaven~'
-                elsif 0 < @money < 300 & 4 <= @google_rating < 4.5
-                    ewa_tag = 'cp值爆高 Cheap and happy!'
-                elsif 0 < @money < 300 & @google_rating <= 3.5
-                    ewa_tag = '維持生命 Only maintain my life'
-                elsif @money > 300 & @google_rating <= 3.5
-                    ewa_tag = '痛苦盤子 Eat sh**!'
-                elsif @money == 0
-                    ewa_tag = '查無價格 No price'
+                if @money >= 1000 && @google_rating >= 4.5
+                    '老闆請客 Boss, please treat me!'
+                elsif @money >= 1000 && @google_rating.between?(4, 4.5)
+                    '存點錢再吃  Eat when you have budget!'
+                elsif @money.between?(500, 1000) && @google_rating >= 4.5
+                    '女朋友叫你帶她去吃 Girlgfriend said she want to eat that!'
+                elsif @money.between?(500, 1000) && @google_rating.between?(4, 4.5)
+                    '同學會可食 Eat this in the class reunion!'
+                elsif @money.between?(300, 500) && @google_rating >= 4.5
+                    '發薪日可食 Eat when you get your salary!'
+                elsif @money.between?(300, 500) && @google_rating.between?(4, 4.5)
+                    '吃拉，哪次不吃~ Ok, just eat that.'
+                elsif @money.between?(1, 300) && @google_rating >= 4.5
+                    '便宜上天堂 Go to heaven~'
+                elsif @money.between?(1, 300) && @google_rating.between?(4, 4.5)
+                    'cp值爆高 Cheap and happy!'
+                elsif @money.between?(1, 300) && @google_rating <= 3.5
+                    '維持生命 Only maintain my life'
+                elsif @money > 300 && @google_rating <= 3.5
+                    '痛苦盤子 Eat sh**!'
+                elsif @money.zero?
+                    '查無價格 No price'
                 else
-                    ewa_tag = '哎呀還行拉 So~so!'
+                    '哎呀還行拉 So~so!'
                 end
             end
         end

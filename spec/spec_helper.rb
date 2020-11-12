@@ -23,6 +23,7 @@ require 'webmock'
 require_relative '../app/models/init'
 require_relative '../app/controllers/init'
 require_relative '../config/init'
+require_relative '../app/domain/restaurant_options/values/init'
 
 USERNAME = ''
 PROJECT_NAME = 'SOA_project'
