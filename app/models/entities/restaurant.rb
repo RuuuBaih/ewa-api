@@ -27,6 +27,10 @@ module Ewa
 
       attribute :reviews,       Strict::Array.of(Review)
       attribute :article,       Article
+
+      def to_attr_hash
+        to_hash.reject { |key, _| [:id].include? key }
+      end
     end
   end
 end

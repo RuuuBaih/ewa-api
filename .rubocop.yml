@@ -17,5 +17,8 @@ Security/YAMLLoad:
         - spec/**/*   
 
 # allows metric length > 10
-#Metrics/MethodLength:
-#    Enabled: false 
+Metrics/MethodLength:
+    Enabled: true
+    Exclude:
+        - spec/**/*
+        - Rakefile 

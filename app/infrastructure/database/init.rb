@@ -2,5 +2,5 @@
 
 folders = %w[orms]
 folders.each do |folder|
-      require_relative "#{folder}/init.rb"
+  require_relative "#{folder}/init.rb"
 end
