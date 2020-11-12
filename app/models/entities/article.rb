@@ -15,7 +15,7 @@ module Ewa
     end
 
     def to_attr_hash
-      to_hash.reject { |key, _| [:article_id].include? key }
+      to_hash.reject { |key, _| [:id].include? key }
     end
   end
 end

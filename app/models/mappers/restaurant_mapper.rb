@@ -27,11 +27,24 @@ module Ewa
 
       # get poi full details
       def poi_details
-        pix_gateway_class = @gateway_classes[:pixnet]
-        pix_gateway = pix_gateway_class.new(1, 2)
-        pix_gateway.poi_lists['data']['pois'].reduce([]) do |start, hash|
-          start << FilterHash.new(hash).filtered_poi_hash
+        pix_gateway = multi_pages
+        start = []
+        pix_gateway.map do |hash|
+          filter = FilterHash.new(Hash[*hash]).filtered_poi_hash
+          start << filter unless filter['category_id'] != 0
         end
+        start
+      end
+
+      def multi_pages
+        pix_gateway_class = @gateway_classes[:pixnet]
+        pix_gateway = []
+        1.upto(3) do |item|
+          ['新竹市', '新竹縣'].map do |hs_city|
+            pix_gateway << pix_gateway_class.new(item, 1, hs_city).poi_lists['data']['pois']
+          end
+        end
+        pix_gateway 
       end
 
       # get google map place full details
@@ -74,7 +87,7 @@ module Ewa
         # rubocop:disable Metrics/MethodLength
         def build_entity
           Ewa::Entity::Restaurant.new(
-            restaurant_id: nil,
+            id: nil,
             name: name,
             town: town,
             city: city,
@@ -85,6 +98,8 @@ module Ewa
             money: money,
             pixnet_rating: pixnet_rating,
             google_rating: google_rating,
+            address: address,
+            website: website,
 
             reviews: reviews,
             article: article
@@ -132,6 +147,14 @@ module Ewa
 
         def google_rating
           @data['google_rating'].to_f
+        end
+
+        def address
+          @data['address']
+        end
+
+        def website
+          @data['website']
         end
 
         def reviews
@@ -190,6 +213,7 @@ module Ewa
       def filtered_poi_hash
         addr = @hash['address']
         {
+          'category_id' => @hash['category_id'],
           'name' => @hash['name'],
           'money' => @hash['money'],
           'telephone' => @hash['telephone'],

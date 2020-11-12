@@ -6,8 +6,8 @@ Sequel.migration do
   change do
     create_table(:articles) do
       primary_key :id
+      foreign_key :restaurant_id, :restaurants
 
-      String :restaurant_name, unique: true
       String :link
 
       DateTime :created_at
