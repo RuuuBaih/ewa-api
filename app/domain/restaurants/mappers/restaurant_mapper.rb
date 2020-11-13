@@ -19,10 +19,11 @@ module Ewa
 
       # get poi full details
       def poi_details
-        pix_gateway = multi_pages
+        poi_hashes = multi_pages
+        puts poi_hashes
         start = []
-        pix_gateway.map do |hash|
-          filter = FilterHash.new(Hash[*hash]).filtered_poi_hash
+        poi_hashes.map do |hash|
+          filter = FilterHash.new(hash).filtered_poi_hash
           start << filter unless filter['category_id'] != 0
         end
         start
@@ -31,13 +32,13 @@ module Ewa
       # get multi pages of results from 新竹縣 & 新竹市
       def multi_pages
         pix_gateway_class = @gateway_classes[:pixnet]
-        pix_gateway = []
+        poi_hashes = []
         1.upto(3) do |item|
           ['新竹市', '新竹縣'].map do |hs_city|
-            pix_gateway << pix_gateway_class.new(item, 3, hs_city).poi_lists['data']['pois']
+            poi_hashes << pix_gateway_class.new(item, 3, hs_city).poi_lists['data']['pois']
           end
         end
-        pix_gateway 
+        poi_hashes.flatten
       end
 
       # get google map place full details

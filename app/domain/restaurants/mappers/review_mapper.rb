@@ -1,8 +1,5 @@
 # frozen_string_literal: false
 
-require_relative '../gateways/gmap_api'
-require_relative '../entities/review'
-
 module Ewa
   # Provides access to restuarant reviews
   module Restaurant

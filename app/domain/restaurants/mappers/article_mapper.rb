@@ -1,8 +1,5 @@
 # frozen_string_literal: false
 
-require_relative '../gateways/pix_api'
-require_relative '../entities/article'
-
 module Ewa
   # Provides access to restuarant articles
   module Restaurant
