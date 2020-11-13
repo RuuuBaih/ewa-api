@@ -1,35 +1,11 @@
-h1 {
+  h1{
     font-weight: bold;
   }
   
-  .top-buffer { margin-top:20px; }
-  
-  .posting.body {
-    font-size: 1.2em;
-  }
-  
-  .project.attribute {
-    font-weight: bold;
-  }
-  
-  .project.detail {
-    color: grey;
-  }
-  
-  .project.owner {
-    font-weight: bold
-  }
-  
-  .project.name {
-    font-size: 0.5em;
-    color: rgb(101, 121, 158);
+  .top-buffer { 
+    margin-top:20px; 
   }
 
-  img {
-    width: 50px;
-    height: 50px;
-  }
-  
   .vcenter {
     display: inline-block;
     vertical-align: middle;
@@ -49,8 +25,6 @@ h1 {
                                 horizontally inside the column */
   }
   
-  .top-buffer { margin-top:20px; }
-  
   .blank-row {
     height: 30px;
   }
@@ -65,3 +39,13 @@ h1 {
     font-size:11px;
     color:rgb(100, 100, 100);
   }
+
+  button {
+    align-content: center;
+  }
+
+input {
+  width: 90%;
+  height: 90%;
+  border-radius: 3%;
+}
