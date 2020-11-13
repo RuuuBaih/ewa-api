@@ -17,8 +17,13 @@ module Ewa
       def the_newest_article
         data = {}
         data['keyword'] = @keyword
-        # per_page should be set to 2 or there are no results
-        data['link'] = @gateway_class.new(2, 1, @keyword).article_lists['articles'][0]['link']
+        # per_page should be set to > 2 or there are no results
+        article_ret = @gateway_class.new(2, 1, @keyword).article_lists
+        data['link'] = if !article_ret.key?('articles')
+                         'https://i.imgur.com/kfi33rq.png'
+                       else
+                         article_ret['articles'][0]['link']
+                       end
         data
       end
 

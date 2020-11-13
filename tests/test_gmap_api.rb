@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../app/models/gateways/gmap_api'
 require 'yaml'
 
@@ -10,4 +12,4 @@ place_id = PlaceApi.new(config['GMAP_TOKEN'], 'RoseMary').place_id['candidates']
 puts place_id
 place_details = PlaceDetailsApi.new(config['GMAP_TOKEN'], place_id).place_details
 puts place_details.inspect
-#.inspect
+# .inspect

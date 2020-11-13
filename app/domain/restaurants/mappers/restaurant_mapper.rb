@@ -1,13 +1,5 @@
 # frozen_string_literal: false
 
-require_relative '../gateways/gmap_api'
-require_relative '../gateways/pix_api'
-require_relative '../entities/restaurant'
-require_relative '../entities/review'
-require_relative '../entities/article'
-require_relative '../mappers/review_mapper'
-require_relative '../mappers/article_mapper'
-
 module Ewa
   # Provides access to restuarant sites lists data
   module Restaurant
@@ -36,12 +28,13 @@ module Ewa
         start
       end
 
+      # get multi pages of results from 新竹縣 & 新竹市
       def multi_pages
         pix_gateway_class = @gateway_classes[:pixnet]
         pix_gateway = []
         1.upto(3) do |item|
           ['新竹市', '新竹縣'].map do |hs_city|
-            pix_gateway << pix_gateway_class.new(item, 1, hs_city).poi_lists['data']['pois']
+            pix_gateway << pix_gateway_class.new(item, 3, hs_city).poi_lists['data']['pois']
           end
         end
         pix_gateway 
@@ -51,17 +44,28 @@ module Ewa
       def gmap_place_details(poi_filtered_hash)
         place_name = poi_filtered_hash['name'].gsub(' ', '')
         gmap_place_gateway = @gateway_classes[:gmap_place].new(@token, place_name)
-        place_id = gmap_place_gateway.place_id['candidates'][0]['place_id']
-        @gateway_classes[:gmap_place_details].new(@token, place_id).place_details
+        if gmap_place_gateway.place_id['candidates'].length.zero?
+          nil
+        else
+          place_id = gmap_place_gateway.place_id['candidates'][0]['place_id']
+          @gateway_classes[:gmap_place_details].new(@token, place_id).place_details
+        end
       end
 
       # get filtered and aggregated restaurant object lists
       def restaurant_obj_lists
-        poi_filtered_hashes = poi_details
-        poi_filtered_hashes.map do |hash|
+        poi_filtered_hashes = poi_details.map do |hash|
           place_details = gmap_place_details(hash)
-          AggregatedRestaurantObjs.new(hash, place_details).aggregate_restaurant_objs
+          if place_details.nil?
+            hash.clear
+          else
+            AggregatedRestaurantObjs.new(hash, place_details).aggregate_restaurant_objs
+          end
         end
+
+        # filter nil results
+        poi_filtered_hashes.delete_if(&:empty?)
+
         RestaurantMapper::BuildRestaurantEntity.new(poi_filtered_hashes).build_entity
       end
 
@@ -182,13 +186,21 @@ module Ewa
         reviews
 
         @restaurant_hash
-        # Photos may be added in the future
       end
 
       private
 
       def open_hours
-        @restaurant_hash['open_hours'] = @place_rets['opening_hours']['weekday_text']
+        if !@place_rets.key?('opening_hours')
+          open_week = @restaurant_hash['open_hours']['date']
+          @restaurant_hash['open_hours'] = ["星期一: #{open_week['Mo']}", "星期二: #{open_week['Tu']}",
+                                            "星期三: #{open_week['We']}", "星期四: #{open_week['Th']}",
+                                            "星期五: #{open_week['Fr']}", "星期六: #{open_week['Sa']}",
+                                            "星期日: #{open_week['Sun']}"]
+
+        else
+          @restaurant_hash['open_hours'] = @place_rets['opening_hours']['weekday_text']
+        end
       end
 
       def google_rating
@@ -221,7 +233,8 @@ module Ewa
           'tags' => @hash['tags'],
           'pixnet_rating' => @hash['rating']['avg'],
           'city' => addr['city'],
-          'town' => addr['town']
+          'town' => addr['town'],
+          'open_hours' => @hash['opening_hours_info']
         }
       end
       # rubocop:enable Metrics/MethodLength

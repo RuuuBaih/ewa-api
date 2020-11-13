@@ -13,6 +13,10 @@ module Ewa
       attribute :profile_photo_url, Strict::String.optional
       attribute :relative_time_description, Strict::String.optional
       attribute :text, Strict::String.optional
+
+      def to_attr_hash
+        to_hash.reject { |key, _| [:id].include? key }
+      end
     end
   end
 end

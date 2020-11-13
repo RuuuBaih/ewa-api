@@ -18,12 +18,27 @@ module Ewa
         view 'home'
       end
 
+      #       routing.on 'restaurant' do
+      #         routing.is do
+      #           # POST /restaurant
+      #           routing.post do
+      #             restaurants = Repository::For.klass(Entity::Restaurant).all
+      #             view 'restaurant', locals: { restaurants: restaurants }
+      #           end
+      #         end
+      #       end
+
       routing.on 'restaurant' do
         routing.is do
-          # POST /restaurant
+          # GET /restaurant
           routing.post do
-            restaurants = Repository::For.klass(Entity::Restaurant).all
-            view 'restaurant', locals: { restaurants: restaurants }
+            # Get restaurant information from pixnet & gmap api
+            restaurant_entity = Restaurant::RestaurantMapper.new(App.config.GMAP_TOKEN).restaurant_obj_lists[19]
+
+            # Add restaurant to database
+            restaurant_repo_entity = Repository::For.entity(restaurant_entity).create(restaurant_entity)
+            view 'restaurant', locals: { restaurants: restaurant_repo_entity }
+            # view 'restaurant', locals: { restaurants: restaurant_entity }
           end
         end
       end

@@ -12,10 +12,10 @@ module Ewa
       attribute :id, Integer.optional
       attribute :restaurant_name, Strict::String
       attribute :link, Strict::String
-    end
 
-    def to_attr_hash
-      to_hash.reject { |key, _| [:id].include? key }
+      def to_attr_hash
+        to_hash.reject { |key, _| [:id].include? key }
+      end
     end
   end
 end

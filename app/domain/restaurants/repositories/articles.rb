@@ -8,8 +8,8 @@ module Ewa
         rebuild_entity(Database::ArticleOrm.first(id: id), restaurant_name)
       end
 
-      def self.find_article_by_restaurant_id(restaurant_id, restaurant_name)
-        rebuild_entity(Database::ArticleOrm.first(restaurant_id: restaurant_id), restaurant_name)
+      def self.find_article_by_restaurant_id(restaurant_id)
+        Database::ArticleOrm.first(restaurant_id: restaurant_id)
       end
 
       def self.rebuild_entity(db_record, restaurant_name)
@@ -17,20 +17,18 @@ module Ewa
 
         Entity::Article.new(
           id: db_record.id,
-          restaurant_name: restaurant_name, 
+          restaurant_name: restaurant_name,
           restaurant_id: db_record.restaurant_id,
           link: db_record.link
         )
       end
 
-      def self.rebuild_many(db_records)
-        db_records.map do |db_article|
-          Articles.rebuild_entity(db_article)
-        end
-      end
-
-      def self.db_find_or_create(entity)
-        Database::ArticleOrm.find_or_create(entity.to_attr_hash)
+      def self.db_find_or_create(entity, restaurant_id)
+        hash_entity = entity.to_attr_hash
+        hash_entity[:restaurant_id] = restaurant_id
+        # delete the field what database doesn't have
+        hash_entity.delete(:restaurant_name)
+        Database::ArticleOrm.find_or_create(hash_entity)
       end
     end
   end
