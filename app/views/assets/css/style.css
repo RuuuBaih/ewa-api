@@ -2,34 +2,10 @@
     font-weight: bold;
   }
   
-  .top-buffer { margin-top:20px; }
-  
-  .posting.body {
-    font-size: 1.2em;
-  }
-  
-  .project.attribute {
-    font-weight: bold;
-  }
-  
-  .project.detail {
-    color: grey;
-  }
-  
-  .project.owner {
-    font-weight: bold
-  }
-  
-  .project.name {
-    font-size: 0.5em;
-    color: rgb(101, 121, 158);
+  .top-buffer { 
+    margin-top:20px; 
   }
 
-  img {
-    width: 80px;
-    height: 80px;
-  }
-  
   .vcenter {
     display: inline-block;
     vertical-align: middle;
@@ -49,14 +25,8 @@
                                 horizontally inside the column */
   }
   
-  .top-buffer { margin-top:20px; }
-  
   .blank-row {
     height: 30px;
-  }
-
-  .restaurant-image-row {
-    height: 80px;
   }
   
   .query-bar {
@@ -70,26 +40,12 @@
     color:rgb(100, 100, 100);
   }
 
-  .box {
-    width:100%;
-    height:100%;
-    overflow:hidden;
-    display:inline-block;
+  button {
+    align-content: center;
   }
 
-  .row {
-    display: flex;
-    flex-wrap: wrap;
-    padding: 0 4px;
-  }
-  
-  /* Create two equal columns that sits next to each other */
-  .column {
-    flex: 50%;
-    padding: 0 4px;
-  }
-  
-  .column img {
-    margin-top: 8px;
-    vertical-align: middle;
-  }
+input {
+  width: 90%;
+  height: 90%;
+  border-radius: 3%;
+}
