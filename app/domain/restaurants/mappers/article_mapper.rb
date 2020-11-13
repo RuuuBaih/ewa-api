@@ -12,8 +12,7 @@ module Ewa
 
       # get the newest article of restaurant
       def the_newest_article
-        data = {}
-        data['keyword'] = @keyword
+        data = { 'keyword' => @keyword }
         # per_page should be set to > 2 or there are no results
         article_ret = @gateway_class.new(2, 1, @keyword).article_lists
         data['link'] = if !article_ret.key?('articles')

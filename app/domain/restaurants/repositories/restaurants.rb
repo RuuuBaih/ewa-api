@@ -11,7 +11,7 @@ module Ewa
       end
 
       def self.find(entity)
-        Database::RestaurantOrm.first(name: entity.name)
+        Database::RestaurantOrm.first(name: entity.name, branch_store_name: entity.branch_store_name)
       end
 
       def self.find_restaurant_id(entity)
@@ -41,6 +41,9 @@ module Ewa
 
       def self.create(entity)
         raise 'Restaurant already exists' if find(entity)
+
+        # db_restaurant = find(entity)
+        # return rebuild_entity(db_restaurant) if db_restaurant
 
         db_restaurant = PersistRestaurant.new(entity).call
         rebuild_entity(db_restaurant)
@@ -91,7 +94,7 @@ module Ewa
           # create article to database
           put_article_to_db(restaurant_db_entity_id)
 
-          # return restaurante entity
+          # return restaurant entity
           restaurant_db_entity
         end
 

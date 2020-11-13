@@ -12,7 +12,8 @@ module Ewa
       include Dry.Types
 
       attribute :id, Integer.optional
-      attribute :name,          Strict::String
+      attribute :name, Strict::String
+      attribute :branch_store_name, Strict::String.optional
       attribute :town,          Strict::String.optional
       attribute :money,         Strict::Integer.optional
       attribute :city,          Strict::String.optional

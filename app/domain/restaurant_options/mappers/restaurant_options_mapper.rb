@@ -24,16 +24,31 @@ module Ewa
         build_entity.aggregate_filter
       end
 
-      def random_9picks(filtered_all)
-        filtered_all.sample(9)
+      # Pick one restaurant to show details
+      class PickOne
+        def initialize(all_options, choice_num)
+          @all_options = all_options
+          @choice_num = choice_num
+        end
+
+        def restaurant_1pick
+          # all options = all_restaurant_options called
+          RestaurantPick.new(
+            Random.new(@all_options)._9picks,
+            @choice_num
+          ).restaurant_1pick
+        end
       end
 
-      def restaurant_1pick(all_options, choice_num)
-        # all options = all_restaurant_options called
-        RestaurantPick.new(
-          random_9picks(all_options),
-          choice_num
-        ).restaurant_1pick
+      # Get random pics of restaurants
+      class Random
+        def initialize(filtered_all)
+          @filtered_all = filtered_all
+        end
+
+        def _9picks
+          @filtered_all.sample(9)
+        end
       end
     end
   end

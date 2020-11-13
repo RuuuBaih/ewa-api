@@ -7,27 +7,29 @@ module Ewa
       def initialize(restaurant_repo_entities, city, town, min_money, max_money)
         super()
         @restaurant_repo_entities = restaurant_repo_entities
-        @city = city
-        @town = town
-        @min_money = min_money
-        @max_money = max_money
+        @hash = [
+          city: city,
+          town: town,
+          min_money: min_money,
+          max_money: max_money
+        ]
       end
 
       def city_filter(rest_repo_entities)
         rest_repo_entities.select do |rest_repo_entity|
-          rest_repo_entity['city'] == @city
+          rest_repo_entity['city'] == @hash[:city]
         end
       end
 
       def town_filter(rest_repo_entities)
         rest_repo_entities.select do |rest_repo_entity|
-          rest_repo_entity['town'] == @town
+          rest_repo_entity['town'] == @hash[:town]
         end
       end
 
       def money_filter(rest_repo_entities)
         rest_repo_entities.select do |rest_repo_entity|
-          @min_money < rest_repo_entity['money'] && rest_repo_entity['money'] < @max_money
+          rest_repo_entity['money'].between(@hash[:min_money], @hash[:max_money])
         end
       end
 

@@ -22,12 +22,19 @@ module Ewa
         )
       end
 
-      def ewa_tag_build_entity(ewa_tag_hash)
-        Entity::EwaTag.new(
-          id: nil,
-          restaurant_id: ewa_tag_hash[:restaurant_id],
-          ewa_tag: ewa_tag_hash[:ewa_tag]
-        )
+      # build ewa tag entity
+      class BuildEntity
+        def initialize(ewa_tag_hash)
+          @ewa_tag_hash = ewa_tag_hash
+        end
+
+        def ewa_tag_build_entity
+          Entity::EwaTag.new(
+            id: nil,
+            restaurant_id: @ewa_tag_hash[:restaurant_id],
+            ewa_tag: @ewa_tag_hash[:ewa_tag]
+          )
+        end
       end
     end
   end

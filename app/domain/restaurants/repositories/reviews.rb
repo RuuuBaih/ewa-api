@@ -21,7 +21,7 @@ module Ewa
 
         Entity::Review.new(
           id: db_record.id,
-          restaurant_id: db_record.restaurant_id,
+          # restaurant_id: db_record.restaurant_id,
           author_name: db_record.author_name,
           profile_photo_url: db_record.profile_photo_url,
           relative_time_description: db_record.relative_time_description,
