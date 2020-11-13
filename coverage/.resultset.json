@@ -996,5 +996,10 @@
       }
     },
     "timestamp": 1605080440
+  },
+  "Minitest": {
+    "coverage": {
+    },
+    "timestamp": 1605264967
   }
 }
