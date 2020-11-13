@@ -8,7 +8,7 @@ POI_LENGTH = 2
 # testing review
 REVIEW_LENGTH = 5
 
-REST_NAME = '螺絲瑪莉 Rose Mary'
+REST_NAME = '薌筑園'
 ARTICLE_HASH = { 'keyword' => 'RoseMary', 'link' => 'https://atroposbox.pixnet.net/blog/post/66733015' }.freeze
 ARTICLE_LENGTH = 2
 WRONG_REST_NAME = 'soumyaray'
@@ -35,10 +35,14 @@ describe 'Tests Ewa API library' do
       @restaurant_entity = Ewa::Entity::Restaurant
     end
 
-    describe 'restaurant' do
+    describe 'restaurant poi' do
       it 'HAPPY: should have same length of poi' do
         poi = @restaurant_mapper.new(GMAP_TOKEN).poi_details
         _(poi.length).must_equal POI_LENGTH
+      end
+      it 'HAPPY: should have category_id = 0' do
+        poi = @restaurant_mapper.new(GMAP_TOKEN).poi_details
+        _(poi[0]['category_id']).must_equal 0
       end
     end
 
@@ -49,7 +53,7 @@ describe 'Tests Ewa API library' do
       end
 
       it 'BAD: wrong token cause empty array' do
-        bad_token = @restaurant_api.new('GMAP_TOKEN', '螺絲瑪莉').place_id['candidates']
+        bad_token = @restaurant_api.new('GMAP_TOKEN', '薌筑園').place_id['candidates']
         _(bad_token.empty?).must_equal true
       end
     end
