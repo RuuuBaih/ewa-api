@@ -20,7 +20,7 @@ require 'webmock'
 # require_relative '../app/models/mappers/review_mapper'
 # require_relative '../app/models/entities/review'
 
-require_relative '../app/models/init'
+require_relative '../app/init'
 require_relative '../app/controllers/init'
 require_relative '../config/init'
 
