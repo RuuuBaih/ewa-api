@@ -8,6 +8,7 @@ Sequel.migration do
       primary_key :id
 
       String :name
+      String :branch_store_name
       String :town
       Integer :money
       String :city
@@ -17,6 +18,8 @@ Sequel.migration do
       Float :pixnet_rating
       Float :google_rating
       String :open_hours
+      String :address
+      String :website
 
       DateTime :created_at
       DateTime :updated_at
