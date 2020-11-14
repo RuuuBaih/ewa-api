@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 source 'https://rubygems.org'
+ruby File.read('.ruby_version').strip
 
 # Web Application
 gem 'econfig', '~> 2.1'
@@ -51,3 +52,7 @@ end
 
 # Utilities
 gem 'rake'
+
+group :production do
+  gem 'pg'
+end
