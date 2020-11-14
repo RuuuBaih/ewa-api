@@ -16,18 +16,8 @@ module Ewa
       # GET /
       routing.root do
         restaurants = Repository::For.klass(Entity::Restaurant).all
-        view 'home', locals: { restaurants: restaurants }
+        view 'home_test', locals: { restaurants: restaurants }
       end
-
-      #       routing.on 'restaurant' do
-      #         routing.is do
-      #           # POST /restaurant
-      #           routing.post do
-      #             restaurants = Repository::For.klass(Entity::Restaurant).all
-      #             view 'restaurant', locals: { restaurants: restaurants }
-      #           end
-      #         end
-      #       end
 
       routing.on 'restaurant' do
         routing.is do
@@ -41,16 +31,21 @@ module Ewa
               Repository::For.entity(restaurant_entity).create(restaurant_entity)
             end
 =end
-            town = '三峽區'
-            min_money = 10
-            max_money = 1000
-            new_restaurant_entities = Repository::For.klass(Entity::Restaurant)
-              .find_by_town_money(town, min_money, max_money)
-            pick_rests = Mapper::RestaurantOptions.new(new_restaurant_entities)._9picks
-            # Add restaurant to database
-            # view 'restaurant', locals: { restaurants: restaurant_repo_entities.inspect }
+            # parameters call from view
+            town = routing.params['town']
+            min_money = routing.params['min_money']
+            max_money = routing.params['max_money']
 
-            view 'restaurant', locals: { restaurants: pick_rests }
+            # select restaurants from the database
+            selected_entities = Repository::For.klass(Entity::Restaurant)
+              .find_by_town_money(town, min_money, max_money)
+            
+            # pick 9 restaurants
+            pick_9rests = Mapper::Random.new(selected_entities)._9picks
+            # select one of them
+            pick_one = Mapper::PickOne.new(pick_9rests, 2).restaurant_1pick
+
+            view 'restaurant', locals: { pick_9rests: pick_9rests, pick_one: pick_one }
           end
         end
       end
