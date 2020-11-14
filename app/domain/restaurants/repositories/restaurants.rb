@@ -14,6 +14,10 @@ module Ewa
         Database::RestaurantOrm.first(name: entity.name, branch_store_name: entity.branch_store_name)
       end
 
+      def self.find_by_town_money(city, town, min_money, max_money)
+        Database::RestaurantOrm.where(city: city, town: town, money: min_money...max_money).limit(15).all
+      end
+
       def self.find_restaurant_id(entity)
         db_record = Database::RestaurantOrm.first(id: entity.id)
         rebuild_entity(db_record)
