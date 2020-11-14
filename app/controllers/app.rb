@@ -34,19 +34,18 @@ module Ewa
           # GET /restaurant
           routing.post do
             # Get restaurant information from pixnet & gmap api
-
+=begin
             restaurant_entities = Restaurant::RestaurantMapper.new(App.config.GMAP_TOKEN).restaurant_obj_lists
 
             restaurant_repo_entities = restaurant_entities.map do |restaurant_entity|
               Repository::For.entity(restaurant_entity).create(restaurant_entity)
             end
-
-            city = '新北市'
+=end
             town = '三峽區'
             min_money = 10
             max_money = 1000
             new_restaurant_entities = Repository::For.klass(Entity::Restaurant)
-              .find_by_town_money(city, town, min_money, max_money)
+              .find_by_town_money(town, min_money, max_money)
             pick_rests = Mapper::RestaurantOptions.new(new_restaurant_entities)._9picks
             # Add restaurant to database
             # view 'restaurant', locals: { restaurants: restaurant_repo_entities.inspect }

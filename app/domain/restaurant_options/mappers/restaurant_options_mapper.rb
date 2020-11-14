@@ -4,6 +4,14 @@ module Ewa
   module Mapper
     # Get filtered restaurant_repo_entites
     class RestaurantOptions
+      def initialize(filtered_all)
+        @filtered_all = filtered_all
+      end
+
+      def _9picks
+        @filtered_all.sample(9)
+      end
+=begin
       def initialize(restaurant_repo_entities, _city, town, min_money, max_money)
         @restaurant_repo_entities = restaurant_repo_entities
         @town = town
@@ -19,10 +27,8 @@ module Ewa
           @max_money
         )
       end
+=end
 
-      def all_restaurant_options
-        build_entity.aggregate_filter
-      end
 
       # Pick one restaurant to show details
       class PickOne

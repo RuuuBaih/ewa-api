@@ -45,7 +45,7 @@ module Ewa
 
         def iterate_pois(item)
           @cities.map do |tp_city|
-            @poi_hashes << @pix_gateway_class.new(item, 10, tp_city).poi_lists['data']['pois']
+            @poi_hashes << @pix_gateway_class.new(item, 3, tp_city).poi_lists['data']['pois']
           end
         end
       end
@@ -66,6 +66,8 @@ module Ewa
         pix_gateway_class = @gateway_classes[:pixnet]
         PoiDetails.new(pix_gateway_class).poi_details.map do |hash|
           place_details = gmap_place_details(hash)
+          puts place_details
+          puts place_details.class
           if place_details != {}
             AggregatedRestaurantObjs.new(hash, place_details).aggregate_restaurant_objs
           else
