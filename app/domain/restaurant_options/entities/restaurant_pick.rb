@@ -12,6 +12,7 @@ module Ewa
       end
 
       def ewa_tag_hash
+<<<<<<< HEAD
         # hope to return a ewa tag hash back
         # (e.g. {"restaurant_id": id, "ewa_tag": ewa_tag})
         Value::EwaTags.new(
@@ -20,6 +21,15 @@ module Ewa
           @rest_pick.google_rating,
           @rest_pick.pixnet_rating
         )
+=======
+         # hope to return a ewa tag hash back 
+         # (e.g. {"restaurant_id": id, "ewa_tag": ewa_tag})
+         Value::EwaTags.new(
+             @rest_pick.id, # restaurant_id
+             @rest_pick.money,
+             @rest_pick.google_rating
+         )
+>>>>>>> origin/ewa_tag
       end
 
       # build ewa tag entity

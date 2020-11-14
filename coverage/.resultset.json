@@ -39,12 +39,15 @@
           null,
           1,
           null,
+<<<<<<< HEAD
           null,
           null,
           1,
           1,
           1,
           null,
+=======
+>>>>>>> origin/ewa_tag
           1,
           0,
           null,
@@ -183,6 +186,10 @@
           0,
           null,
           null,
+          1,
+          0,
+          null,
+          null,
           null,
           null
         ]
@@ -222,6 +229,10 @@
           1,
           1,
           null,
+          1,
+          0,
+          null,
+          null,
           null,
           1,
           null,
@@ -255,34 +266,27 @@
           1,
           null,
           1,
+<<<<<<< HEAD
           17,
           17,
           null,
           null,
           1,
           17,
+=======
+          0,
+          0,
+          null,
+          null,
+          1,
+          0,
+>>>>>>> origin/ewa_tag
           null,
           null,
           null,
           1,
           1,
-          17,
-          17,
-          17,
-          null,
-          null,
-          1,
-          17,
-          null,
-          null,
-          null,
-          null,
-          null,
-          1,
-          1,
-          null,
-          null,
-          1,
+<<<<<<< HEAD
           17,
           17,
           17,
@@ -290,11 +294,48 @@
           null,
           1,
           17,
+=======
+          0,
+          0,
+          0,
+          null,
+          null,
+          1,
+          0,
+>>>>>>> origin/ewa_tag
+          null,
+          null,
           null,
           null,
           null,
           1,
           1,
+          null,
+          null,
+          1,
+<<<<<<< HEAD
+          17,
+          17,
+          17,
+          null,
+          null,
+          1,
+          17,
+=======
+          0,
+          0,
+          0,
+          null,
+          null,
+          1,
+          0,
+>>>>>>> origin/ewa_tag
+          null,
+          null,
+          null,
+          1,
+          1,
+<<<<<<< HEAD
           17,
           17,
           17,
@@ -303,6 +344,16 @@
           null,
           1,
           17,
+=======
+          0,
+          0,
+          0,
+          0,
+          null,
+          null,
+          1,
+          0,
+>>>>>>> origin/ewa_tag
           null,
           null,
           null,
@@ -310,6 +361,7 @@
           null,
           1,
           1,
+<<<<<<< HEAD
           34,
           null,
           null,
@@ -318,6 +370,16 @@
           null,
           34,
           34,
+=======
+          0,
+          null,
+          null,
+          1,
+          0,
+          null,
+          0,
+          0,
+>>>>>>> origin/ewa_tag
           null,
           null,
           null,
@@ -333,7 +395,11 @@
           null,
           null,
           1,
+<<<<<<< HEAD
           34,
+=======
+          0,
+>>>>>>> origin/ewa_tag
           null,
           null,
           1,
@@ -357,6 +423,7 @@
           1,
           null,
           1,
+<<<<<<< HEAD
           6,
           6,
           6,
@@ -364,11 +431,21 @@
           null,
           1,
           6,
+=======
+          0,
+          0,
+          0,
+          null,
+          null,
+          1,
+          0,
+>>>>>>> origin/ewa_tag
           null,
           null,
           null,
           1,
           1,
+<<<<<<< HEAD
           6,
           6,
           6,
@@ -377,6 +454,16 @@
           null,
           1,
           6,
+=======
+          0,
+          0,
+          0,
+          0,
+          null,
+          null,
+          1,
+          0,
+>>>>>>> origin/ewa_tag
           null,
           null,
           null,
@@ -385,6 +472,7 @@
           1,
           null,
           1,
+<<<<<<< HEAD
           17,
           17,
           17,
@@ -392,11 +480,21 @@
           null,
           1,
           17,
+=======
+          0,
+          0,
+          0,
+          null,
+          null,
+          1,
+          0,
+>>>>>>> origin/ewa_tag
           null,
           null,
           null,
           1,
           1,
+<<<<<<< HEAD
           17,
           17,
           17,
@@ -405,6 +503,16 @@
           null,
           1,
           17,
+=======
+          0,
+          0,
+          0,
+          0,
+          null,
+          null,
+          1,
+          0,
+>>>>>>> origin/ewa_tag
           null,
           null,
           null,
@@ -412,6 +520,7 @@
           null,
           1,
           1,
+<<<<<<< HEAD
           23,
           null,
           null,
@@ -420,6 +529,16 @@
           null,
           23,
           23,
+=======
+          0,
+          null,
+          null,
+          1,
+          0,
+          null,
+          0,
+          0,
+>>>>>>> origin/ewa_tag
           null,
           null,
           null,
@@ -435,7 +554,11 @@
           null,
           null,
           1,
+<<<<<<< HEAD
           23,
+=======
+          0,
+>>>>>>> origin/ewa_tag
           null,
           null,
           1,
@@ -493,11 +616,15 @@
           null,
           1,
           1,
+<<<<<<< HEAD
           1,
           1,
           1,
           null,
           1,
+=======
+          0,
+>>>>>>> origin/ewa_tag
           0,
           null,
           null,
@@ -511,32 +638,33 @@
           null,
           1,
           1,
-          1,
-          1,
+          0,
+          0,
+          null,
+          0,
+          0,
           null,
           1,
           1,
           null,
           1,
           1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
           null,
           1,
           1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          null,
-          1,
-          1,
+<<<<<<< HEAD
           null,
           1,
           0,
@@ -548,10 +676,13 @@
       },
       "/Users/relaxlalalala/SOA_project/app/domain/restaurants/entities/review.rb": {
         "lines": [
+=======
+          0,
+>>>>>>> origin/ewa_tag
           null,
           null,
           1,
-          1,
+          0,
           null,
           1,
           1,
@@ -586,8 +717,12 @@
           null,
           null,
           1,
+<<<<<<< HEAD
           null,
           1,
+=======
+          0,
+>>>>>>> origin/ewa_tag
           null,
           1,
           1,
@@ -597,6 +732,7 @@
           null,
           null,
           1,
+<<<<<<< HEAD
           17,
           null,
           17,
@@ -627,6 +763,9 @@
           null,
           1,
           17,
+=======
+          0,
+>>>>>>> origin/ewa_tag
           null,
           null,
           null,
@@ -636,6 +775,7 @@
           1,
           null,
           1,
+<<<<<<< HEAD
           17,
           null,
           null,
@@ -643,6 +783,9 @@
           17,
           null,
           null,
+=======
+          0,
+>>>>>>> origin/ewa_tag
           null,
           null,
           null
@@ -657,7 +800,7 @@
           1,
           null,
           1,
-          1,
+          0,
           null,
           null,
           null,
@@ -688,14 +831,23 @@
           null,
           null,
           null,
+<<<<<<< HEAD
           1,
           1,
           3,
+=======
+          null,
+          null,
+          null,
+          0,
+          0,
+>>>>>>> origin/ewa_tag
           null,
           1,
           null,
           null,
           1,
+<<<<<<< HEAD
           3,
           6,
           null,
@@ -711,10 +863,31 @@
           0,
           null,
           17,
+=======
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          null,
+          null,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          null,
+          0,
+>>>>>>> origin/ewa_tag
           null,
           null,
           null,
           1,
+<<<<<<< HEAD
           1,
           1,
           17,
@@ -726,13 +899,26 @@
           0,
           null,
           null,
+=======
+          0,
+          0,
+          0,
+          0,
+>>>>>>> origin/ewa_tag
           null,
           null,
           null,
           1,
+<<<<<<< HEAD
           null,
           1,
           1,
+=======
+          0,
+          0,
+          0,
+          0,
+>>>>>>> origin/ewa_tag
           null,
           1,
           null,
@@ -831,18 +1017,35 @@
           null,
           null,
           null,
+<<<<<<< HEAD
           14,
+=======
+          1,
+          1,
+          0,
+          0,
+>>>>>>> origin/ewa_tag
           null,
           null,
           null,
           1,
+<<<<<<< HEAD
           17,
+=======
+          0,
+          0,
+          0,
+          null,
+          0,
+          null,
+>>>>>>> origin/ewa_tag
           null,
           null,
           1,
           17,
           85,
           null,
+<<<<<<< HEAD
           null,
           null,
           null,
@@ -850,17 +1053,43 @@
           1,
           1,
           103,
+=======
+          1,
+          0,
+          null,
+          null,
+          1,
+          0,
+          null,
+          null,
+          1,
+          0,
+          0,
+          null,
+>>>>>>> origin/ewa_tag
           null,
           null,
           null,
           null,
           1,
+<<<<<<< HEAD
+          18,
+=======
+          1,
+          0,
+>>>>>>> origin/ewa_tag
+          null,
           18,
           null,
-          18,
           null,
           null,
+<<<<<<< HEAD
+=======
+          1,
+          0,
           null,
+          0,
+>>>>>>> origin/ewa_tag
           null,
           null,
           null,
@@ -970,6 +1199,8 @@
           1,
           null,
           1,
+<<<<<<< HEAD
+=======
           1,
           null,
           1,
@@ -981,22 +1212,9 @@
           0,
           null,
           null,
+>>>>>>> origin/ewa_tag
           1,
           0,
-          null,
-          null,
-          1,
-          0,
-          0,
-          null,
-          null,
-          1,
-          0,
-          0,
-          null,
-          0,
-          0,
-          null,
           0,
           null,
           null,
@@ -1012,6 +1230,104 @@
           null,
           1,
           0,
+          0,
+          null,
+          0,
+          0,
+          null,
+          0,
+          null,
+          null,
+          1,
+          0,
+          null,
+          0,
+          0,
+          null,
+          null,
+          1,
+          0,
+<<<<<<< HEAD
+=======
+          null,
+          0,
+          null,
+          0,
+          0,
+          null,
+          0,
+>>>>>>> origin/ewa_tag
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          1,
+          0,
+          0,
+          null,
+          null,
+          1,
+          null,
+          0,
+          0,
+<<<<<<< HEAD
+=======
+          null,
+          null,
+          0,
+          0,
+          0,
+          null,
+          null,
+          1,
+          null,
+>>>>>>> origin/ewa_tag
+          0,
+          0,
+          null,
+          null,
+          0,
+          0,
+          null,
+          0,
+          null,
+          0,
+          null,
+          null,
+<<<<<<< HEAD
+          1,
+          0,
+=======
+>>>>>>> origin/ewa_tag
+          0,
+          null,
+          0,
+          0,
+          null,
+<<<<<<< HEAD
+          0,
+=======
+          1,
+          0,
+          0,
+          0,
+          null,
+          null,
+          null,
+          1,
+          0,
+          0,
+          null,
+>>>>>>> origin/ewa_tag
+          null,
+          null,
+          1,
+          0,
           null,
           null,
           null,
@@ -1043,6 +1359,25 @@
           0,
           null,
           null,
+<<<<<<< HEAD
+=======
+          null,
+          1,
+          0,
+          0,
+          0,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "/Users/relaxlalalala/SOA_project/app/models/repositories/articles.rb": {
+        "lines": [
+          null,
+          null,
+          1,
+>>>>>>> origin/ewa_tag
           1,
           null,
           0,
@@ -1074,9 +1409,7 @@
           0,
           0,
           null,
-          null,
-          null,
-          1,
+          0,
           0,
           0,
           null,
@@ -1124,9 +1457,28 @@
           0,
           null,
           null,
+<<<<<<< HEAD
+=======
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          0,
+          0,
+          null,
+          0,
+>>>>>>> origin/ewa_tag
           null,
           1,
           0,
+          null,
+          null,
           0,
           0,
           null,
@@ -1174,7 +1526,59 @@
           null
         ]
       },
+<<<<<<< HEAD
       "/Users/relaxlalalala/SOA_project/app/domain/restaurants/repositories/for.rb": {
+=======
+      "/Users/relaxlalalala/SOA_project/app/domain/restaurant_options/values/init.rb": {
+        "lines": [
+          null,
+          null,
+          1,
+          2,
+          null
+        ]
+      },
+      "/Users/relaxlalalala/SOA_project/app/domain/restaurant_options/values/ewa_tag_calculator.rb": {
+        "lines": [
+          null,
+          null,
+          1,
+          1,
+          1,
+          null,
+          1,
+          2,
+          2,
+          2,
+          null,
+          null,
+          1,
+          2,
+          null,
+          null,
+          1,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          null,
+          0,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "/Users/relaxlalalala/SOA_project/spec/helpers/vcr_helper.rb": {
+>>>>>>> origin/ewa_tag
         "lines": [
           null,
           null,
@@ -1184,8 +1588,17 @@
           1,
           null,
           1,
+<<<<<<< HEAD
           null,
           null,
+=======
+          0,
+          0,
+          0,
+          null,
+          null,
+          0,
+>>>>>>> origin/ewa_tag
           null,
           null,
           1,
@@ -1196,16 +1609,25 @@
           0,
           null,
           null,
+<<<<<<< HEAD
+=======
+          1,
+          0,
+>>>>>>> origin/ewa_tag
           null,
           null
         ]
       }
     },
+<<<<<<< HEAD
     "timestamp": 1605359240
   },
   "Minitest": {
     "coverage": {
     },
     "timestamp": 1605264967
+=======
+    "timestamp": 1605199542
+>>>>>>> origin/ewa_tag
   }
 }
