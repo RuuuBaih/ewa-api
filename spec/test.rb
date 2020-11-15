@@ -1,28 +1,30 @@
 # frozen_string_literal: true
 
-require_relative 'spec_helper'
+require_relative 'helpers/spec_helper'
 REST_NAME = '螺絲瑪莉 Rose Mary'
 # @article_mapper = Ewa::Restaurant::ArticleMapper
 #
 # puts 'newest_article'
 # puts @article_mapper.new(REST_NAME).the_newest_article
 @restaurant_mapper = Ewa::Restaurant::RestaurantMapper
-
+=begin
 # puts 'poi_details'
-poi = @restaurant_mapper.new('GMAP_TOKEN').poi_details
+poi = @restaurant_mapper.new(GMAP_TOKEN).PoiDetails.poi_details
 puts poi
 puts poi.length
 puts poi.class
 puts poi[0]['category_id']
 
-# puts @restaurant_mapper.new(GMAP_TOKEN).gmap_place_details(poi)[place_id]
-=begin
-puts 'restaurant_list'
-# puts @restaurant_mapper.new(GMAP_TOKEN).restaurant_obj_lists[0][:reviews]
-# puts @restaurant_mapper.new(GMAP_TOKEN).gmap_place_details(poi)[place_id]
-place_name = '螺絲瑪莉'
-GMAP_API_PATH = 'https://maps.googleapis.com/maps/api/place/findplacefromtext/json?'
-
-@gateway_classes = Ewa::Gmap::PlaceApi
-puts @gateway_classes.new('GMAP_TOKEN', place_name).place_id['candidates'].empty?
+restaurant_entities = Ewa::Restaurant::RestaurantMapper.new(GMAP_TOKEN).restaurant_obj_lists[2]
+puts restaurant_entities
 =end
+
+town = '三峽區'
+min_money = 10
+max_money = 1000
+Ewa::Repository::For.klass(Entity::Restaurant).all
+new_restaurant_entities = Ewa::Repository::For.klass(Entity::Restaurant).find_by_town_money(town, min_money, max_money)
+pick_rests = Ewa::Mapper::RestaurantOptions.new(new_restaurant_entities)._9picks
+puts pick_rests
+pick_one = Ewa::Mapper::RestaurantOptions::PickOne.new(pick_rests, 2)
+puts pick_one
