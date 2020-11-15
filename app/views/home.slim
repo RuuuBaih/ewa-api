@@ -1,44 +1,116 @@
-- require_relative "../../spec/spec_helper"
+
+
+.container
+  form role="form" action="/restaurant" method='POST' id='show-project-form'
+    .row.vertical-align.query-bar
+      .col-md-2.col-sm-3
+        .text-right restaurant:
+      .col-md-2.col-sm-3
+        button { 
+          type='submit' id='repo-form-submit' class='submit' 
+          value='submit' class="btn btn-success" 
+        } Show restaurant
+    .row
+      .col-md-12.blank-row
+
+
 
 .container
   .row
     .col-md-6
       .row
         .col-md-12
-          form[action="/action_page.php"]
+          form role="form" method='POST' id='filter-form'
               .form-group
                 label[for="sel1"]
                 select#sel1.form-control[name="sellist1"]
                   option
                     | 地區
+                  optgroup label=("台北市") 
                   option
-                    | 新竹市
+                    | 中正區
                   option
-                    | 竹北市
+                    | 大同區
                   option
-                    | 竹東鎮
+                    | 中山區
                   option
-                    | 新埔鎮
+                    | 松山區
                   option
-                    | 關西鎮
+                    | 大安區
                   option
-                    | 新豐鄉
+                    | 萬華區
                   option
-                    | 峨眉鄉
+                    | 信義區
                   option
-                    | 寶山鄉
+                    | 士林區
                   option
-                    | 五峰鄉
+                    | 北投區
                   option
-                    | 橫山鄉
+                    | 內湖區
                   option
-                    | 北埔鄉
+                    | 南港區
                   option
-                    | 尖石鄉
+                    | 文山區
+                  optgroup label=("新北市") 
                   option
-                    | 芎林鄉
+                    | 板橋區
                   option
-                    | 湖口鄉
+                    | 中和區
+                  option
+                    | 新莊區
+                  option
+                    | 土城區
+                  option
+                    | 汐止區
+                  option
+                    | 鶯歌區
+                  option
+                    | 淡水區
+                  option
+                    | 五股區
+                  option
+                    | 林口區
+                  option
+                    | 深坑區
+                  option
+                    | 坪林區
+                  option
+                    | 石門區
+                  option
+                    | 萬里區
+                  option
+                    | 雙溪區
+                  option
+                    | 烏來區
+                  option
+                    | 三重區
+                  option
+                    | 永和區
+                  option
+                    | 新店區
+                  option
+                    | 蘆洲區
+                  option
+                    | 樹林區
+                  option
+                    | 三峽區
+                  option
+                    | 瑞芳區
+                  option
+                    | 泰山區
+                  option
+                    | 八里區
+                  option
+                    | 石碇區
+                  option
+                    | 三芝區
+                  option
+                    | 金山區
+                  option
+                    | 平溪區
+                  option
+                    | 貢寮區
+
       .row
         .col-md-6
           .form-group
@@ -100,14 +172,8 @@
                 .mb-1.text-muted Telephone: 0915913612
                 .mb-1.text-muted Address: 新竹市東區101號
                 .mb-1.text-muted Money: 500
-            iframe allowfullscreen="" frameborder="0" height="150" src="https://www.google.com/maps/embed/v1/place?key=#{GMAP_TOKEN}&q=Space+Needle,螺絲瑪莉" style="border:0" width="100%" 
-            span Mon
-            span Tue
-            span Wed
-            span Thu
-            span Fri
-            span Sat
-            span Sun
+            iframe allowfullscreen="" frameborder="0" height="150" src="https://www.google.com/maps/embed/v1/place?key=#{Ewa::App.config.GMAP_TOKEN}&q=Space+Needle,螺絲瑪莉" style="border:0" width="100%" 
+            span 評論goes here
             
 
   .row

@@ -1,0 +1,31 @@
+.container
+  form role="form" action="/restaurant" method='POST' id='show-project-form'
+    .row.vertical-align.query-bar
+      .col-md-2.col-sm-3
+        .text-right town:
+      .col-md-8.col-sm-6
+        input { 
+          type='text' name='town'
+          id='github_url_input' class="form-control"
+        }
+      .col-md-2.col-sm-3
+        .text-right min_money:        
+      .col-md-8.col-sm-6
+        input { 
+          type='text' name='min_money'
+          id='min_money' class="form-control"
+        } 
+      .col-md-2.col-sm-3
+        .text-right max_money:              
+      .col-md-8.col-sm-6
+        input { 
+          type='text' name='max_money'
+          id='max_money' class="form-control"
+        }        
+      .col-md-2.col-sm-3
+        button { 
+          type='submit' id='repo-form-submit' class='submit' 
+          value='submit' class="btn btn-success" 
+        } Show restaurant
+    .row
+      .col-md-12.blank-row
