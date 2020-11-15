@@ -45,7 +45,7 @@ module Ewa
 
         def iterate_pois(item)
           @cities.map do |tp_city|
-            @poi_hashes << @pix_gateway_class.new(item, 4, tp_city).poi_lists['data']['pois']
+            @poi_hashes << @pix_gateway_class.new(item, 1, tp_city).poi_lists['data']['pois']
           end
         end
       end
@@ -53,9 +53,9 @@ module Ewa
       # get google map place full details
       def gmap_place_details(poi_filtered_hash)
         place_name = if poi_filtered_hash['branch_store_name'] != ''
-                       (poi_filtered_hash['name']).concat(poi_filtered_hash['branch_store_name'].to_s).gsub(' ', '')
+                       "#{poi_filtered_hash['name']}#{poi_filtered_hash['branch_store_name'].to_s}".gsub(' ', '')
                      else
-                       (poi_filtered_hash['name']).concat(poi_filtered_hash['town']).gsub(' ', '')
+                       "#{poi_filtered_hash['name']}#{poi_filtered_hash['town']}".gsub(' ', '')
                      end
         gmap_place_gateway = @gateway_classes[:gmap_place].new(@token, place_name)
         place_id = gmap_place_gateway.place_id['candidates']
