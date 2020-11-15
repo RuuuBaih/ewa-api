@@ -12,7 +12,7 @@ module Ewa
       attribute :id, Integer.optional
       attribute :restaurant_id, Strict::Integer
       # ewa_tag or ewa_tags type not sure yet
-      attribute :ewa_tag, Strict::Array.of(String).optional
+      attribute :ewa_tag, Strict::String.optional
 
       def to_attr_hash
         to_hash.reject { |key, _| [:id].include? key }

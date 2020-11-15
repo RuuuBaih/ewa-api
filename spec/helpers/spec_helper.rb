@@ -19,10 +19,16 @@ require 'webmock'
 # require_relative '../app/models/entities/restaurant'
 # require_relative '../app/models/mappers/review_mapper'
 # require_relative '../app/models/entities/review'
+=begin
+require_relative '../app/models/init'
+=======
 
 require_relative '../app/init'
+>>>>>>> main:spec/spec_helper.rb
 require_relative '../app/controllers/init'
 require_relative '../config/init'
+=end
+require_relative '../../init'
 
 USERNAME = ''
 PROJECT_NAME = 'SOA_project'
