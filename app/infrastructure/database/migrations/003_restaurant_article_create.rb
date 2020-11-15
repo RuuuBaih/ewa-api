@@ -6,7 +6,7 @@ Sequel.migration do
   change do
     create_table(:articles) do
       primary_key :id
-      foreign_key :restaurant_id, :restaurants
+      foreign_key :restaurant_id, :restaurants, on_delete: :cascade
 
       String :link
 
