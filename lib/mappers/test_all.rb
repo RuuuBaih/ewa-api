@@ -13,8 +13,8 @@ new_res = RestaurantMapper.new(config['GMAP_TOKEN'])
 ret = new_res.restaurant_obj_lists
 puts ret.class
 puts ret.inspect
-#ret = RestaurantMapper::BuildRestaurantEntity.new(data).build_entity
-#puts ret
-#puts ret.inspect
+# ret = RestaurantMapper::BuildRestaurantEntity.new(data).build_entity
+# puts ret
+# puts ret.inspect
 
 # puts ret.attributes

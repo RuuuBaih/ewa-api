@@ -28,7 +28,7 @@ namespace :db do
   task :config do
     require 'sequel'
     require_relative 'config/environment' # load config info
-    require_relative 'spec/helpers/database_helper'
+    # require_relative 'spec/helpers/database_helper'
 
     def app
       Ewa::App
@@ -36,20 +36,20 @@ namespace :db do
   end
 
   desc 'Run migrations'
-  task :migrate => :config do
+  task migrate: :config do
     Sequel.extension :migration
     puts "Migrating #{app.environment} database to latest"
     Sequel::Migrator.run(app.DB, 'app/infrastructure/database/migrations')
   end
 
   desc 'Wipe records from all tables'
-  task :wipe => :config do
+  task wipe: :config do
     DatabaseHelper.setup_database_cleaner
     DatabaseHelper.wipe_database
   end
 
   desc 'Delete dev or test database file'
-  task :drop => :config do
+  task drop: :config do
     if app.environment == :production
       puts 'Cannot remove production database!'
       return

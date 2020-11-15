@@ -10,7 +10,7 @@ module Ewa
                  class: :'Ewa::Database::ArticleOrm'
 
       one_to_many :reviews,
-                 class: :'Ewa::Database::ReviewOrm'
+                  class: :'Ewa::Database::ReviewOrm'
 
       plugin :timestamps, update_on_create: true
     end
