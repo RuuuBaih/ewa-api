@@ -15,7 +15,7 @@ module Ewa
 
       # GET /
       routing.root do
-        view 'home'
+        view 'home_test'
       end
 
       #       routing.on 'restaurant' do

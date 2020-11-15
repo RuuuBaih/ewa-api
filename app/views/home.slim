@@ -18,12 +18,12 @@
     .col-md-6
       .row
         .col-md-12
-          form role="form" action="/res_nine" method='POST' id='filter-form'
+          form role="form" action="/restaurant" method='POST' id='filter-form'
             .form-group
               .row
                 .col-md-12
-                  label[for="sel1"]
-                  select#sel1.form-control[name="sellist1"]
+                  label[for="town"]
+                  select#town.form-control[name="town"]
                     option
                       | 地區
                     optgroup label=("台北市") 
@@ -114,8 +114,8 @@
 
                 
                 .col-md-6
-                  label[for="min_money_sel"]
-                  select#min_money_sel.form-control[name="min_money_sel"]
+                  label[for="min_money"]
+                  select#min_money.form-control[name="min_money"]
                     option
                       | Min Price
                     option
@@ -144,14 +144,12 @@
                       | 1000
 
                 .col-md-6
-                  label[for="min_money_sel"]
-                  select#min_money_sel.form-control[name="min_money_sel"]
+                  label[for="max_money"]
+                  select#min_money.form-control[name="max_money"]
                     option
                       | Max Price
                     option
                       | 0
-                    option
-                      | 100
                     option
                       | 100
                     option
