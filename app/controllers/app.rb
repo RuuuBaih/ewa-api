@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-
+require 'json'
 require 'roda'
 require 'slim'
 
@@ -42,7 +42,6 @@ module Ewa
             # pick 9 restaurants
             rests = Mapper::RestaurantOptions.new(selected_entities)
             pick_9rests = rests.random_9picks
-            # select one of them
             #pick_one = rests.pick_one(pick_9rests, img_num)
 
             view 'restaurant', locals: { pick_9rests: pick_9rests, rests: rests}
@@ -59,13 +58,13 @@ module Ewa
           # GET /restaurantd
           routing.post do
             # parameters call from view
-            pick_9rests = routing.params['img_num'][1]
-            rests = routing.params['img_num'][2]
-            img_num = routing.params['img_num'][0]
+            all = routing.params['img_num']
+            #all_array = JSON.parse([all].to_json)
             # select one of them
-            pick_one = rests.pick_one(pick_9rests, img_num)
+            #pick_one = rests.pick_one(pick_9rests, img_num)
 
-            view 'res_detail', locals: {  img_num: img_num, pick_one: pick_one}
+            #view 'res_detail', locals: {  img_num: img_num, pick_one: pick_one}
+            view 'res_detail', locals: {  img_num: all}
             
           end
         end
