@@ -45,7 +45,7 @@ module Ewa
 
         def iterate_pois(item)
           @cities.map do |tp_city|
-            @poi_hashes << @pix_gateway_class.new(item, 1, tp_city).poi_lists['data']['pois']
+            @poi_hashes << @pix_gateway_class.new(item, 5, tp_city).poi_lists['data']['pois']
           end
         end
       end
