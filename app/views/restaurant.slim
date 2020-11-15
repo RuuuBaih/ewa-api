@@ -1,12 +1,23 @@
 .container
-  .row
-    h2
-      span.pick_9rests
-        = pick_9rests
-      br
-      span.pick_one
-        = pick_one
-      span.restaurants.name
+  form role="form" action="/restaurant/test_detail" method='POST' id='show-project-form'
+    .row
+      h2    
+        span.pick_9rests
+          = pick_9rests
+
+        .col-md-8.col-sm-6
+          input { 
+            type='text' name='num'
+            id='num' class="form-control"
+            value='2'
+          }   
+
+        .col-md-2.col-sm-3
+          button { 
+            type='submit' id='repo-form-submit' class='submit' 
+            value='submit' class="btn btn-success" 
+          } Show restaurant  
+
   .container
     .row
       .col-lg-1.col-md-2.col-sm-2

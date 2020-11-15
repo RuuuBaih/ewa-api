@@ -23,13 +23,6 @@ module Ewa
         routing.is do
           # GET /restaurant
           routing.post do
-            # Get restaurant information from pixnet & gmap api
-            #             restaurant_entities = Restaurant::RestaurantMapper.new(App.config.GMAP_TOKEN).restaurant_obj_lists
-            #
-            #             restaurant_repo_entities = restaurant_entities.map do |restaurant_entity|
-            #               Repository::For.entity(restaurant_entity).create(restaurant_entity)
-            #             end
-            # parameters call from view
             town = routing.params['town']
             min_money = routing.params['min_money']
             max_money = routing.params['max_money']
@@ -39,12 +32,23 @@ module Ewa
                                                .find_by_town_money(town, min_money, max_money)
 
             # pick 9 restaurants
-            rests = Mapper::RestaurantOptions.new(selected_entities)
-            pick_9rests = rests.random_9picks
-            # select one of them
-            pick_one = rests.pick_one(pick_9rests, 2)
+            @rests = Mapper::RestaurantOptions.new(selected_entities)
+            @pick_9rests = @rests.random_9picks
 
-            view 'restaurant', locals: { pick_9rests: pick_9rests, pick_one: pick_one }
+            view 'restaurant', locals: { pick_9rests: @pick_9rests }
+          end
+        end
+
+        routing.on 'test_detail' do
+            # GET /restaurant/test_detail
+            # select one of them
+          routing.is do
+            routing.post do
+              # num = routing.params['num']
+              pick_one = @rests.pick_one(@pick_9rests, 2)
+
+              view 'test_detail', locals: { pick_one: pick_one }
+            end
           end
         end
       end
