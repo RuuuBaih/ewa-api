@@ -47,7 +47,7 @@ module Ewa
       end
 
       def self.create(entity)
-        raise 'Restaurant already exists' if find(entity)
+        return find(entity) if find(entity)
 
         # db_restaurant = find(entity)
         # return rebuild_entity(db_restaurant) if db_restaurant
