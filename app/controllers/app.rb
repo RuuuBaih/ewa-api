@@ -59,13 +59,14 @@ module Ewa
           # GET /restaurantd
           routing.post do
             # parameters call from view
-            pick_9rests = routing.params['img_num'][1]
-            rests = routing.params['img_num'][2]
-            img_num = routing.params['img_num'][0]
+            pick_9rests = routing.params['pick_9rests']
+            img_num = routing.params['img_num']
+            rests = routing.params['rests']
+            #img_num = routing.params['img_num'][0]
             # select one of them
-            pick_one = rests.pick_one(pick_9rests, img_num)
+            #pick_one = rests.pick_one(pick_9rests, img_num)
 
-            view 'res_detail', locals: {  img_num: img_num, pick_one: pick_one}
+            view 'res_detail', locals: { img_num: img_num, pick_9rests: pick_9rests, rests: rests}
             
           end
         end

@@ -46,10 +46,17 @@
         form role="form" action="/res_detail" method='POST' id='filter-form'
           .form-group
             .row
-
+  
               .col-md-4.col-sm-6
-                button name="img_num" type="submit" value=[0, pick_9rests,rests]
-                  img alt="Submit" src="#{pick_9rests[0].cover_img}" 
+                input {type="hidden" name="pick_9rests" value="#{pick_9rests}"}
+                input {type="hidden" name="rests" value="#{rests}"}
+                button {name="img_num" type="submit" value="0"}
+
+                img alt="Submit" src="#{pick_9rests[0].cover_img}" 
+
+                span.pick_9rests
+                = pick_9rests
+
 
               .col-md-4.col-sm-6
                 button name="img_num" type="submit" value=[1, pick_9rests,rests]
