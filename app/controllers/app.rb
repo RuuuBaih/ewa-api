@@ -41,9 +41,10 @@ module Ewa
               .find_by_town_money(town, min_money, max_money)
             
             # pick 9 restaurants
-            pick_9rests = Mapper::Random.new(selected_entities)._9picks
+            rests = Mapper::RestaurantOptions.new(selected_entities)
+            pick_9rests = rests.random_9picks
             # select one of them
-            pick_one = Mapper::PickOne.new(pick_9rests, 2).restaurant_1pick
+            pick_one = rests.pick_one(pick_9rests, 2)
 
             view 'restaurant', locals: { pick_9rests: pick_9rests, pick_one: pick_one }
           end
