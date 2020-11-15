@@ -15,32 +15,36 @@ module Ewa
 
       # GET /
       routing.root do
-        view 'home'
+        restaurants = Repository::For.klass(Entity::Restaurant).all
+        view 'home_test', locals: { restaurants: restaurants }
       end
-
-      #       routing.on 'restaurant' do
-      #         routing.is do
-      #           # POST /restaurant
-      #           routing.post do
-      #             restaurants = Repository::For.klass(Entity::Restaurant).all
-      #             view 'restaurant', locals: { restaurants: restaurants }
-      #           end
-      #         end
-      #       end
 
       routing.on 'restaurant' do
         routing.is do
           # GET /restaurant
           routing.post do
             # Get restaurant information from pixnet & gmap api
-            restaurant_entities = Restaurant::RestaurantMapper.new(App.config.GMAP_TOKEN).restaurant_obj_lists
+            #             restaurant_entities = Restaurant::RestaurantMapper.new(App.config.GMAP_TOKEN).restaurant_obj_lists
+            #
+            #             restaurant_repo_entities = restaurant_entities.map do |restaurant_entity|
+            #               Repository::For.entity(restaurant_entity).create(restaurant_entity)
+            #             end
+            # parameters call from view
+            town = routing.params['town']
+            min_money = routing.params['min_money']
+            max_money = routing.params['max_money']
 
-            restaurant_repo_entities = restaurant_entities.map do |restaurant_entity|
-              Repository::For.entity(restaurant_entity).create(restaurant_entity)
-            end
-            # Add restaurant to database
-            view 'restaurant', locals: { restaurants: restaurant_repo_entities.inspect }
-            # view 'restaurant', locals: { restaurants: restaurant_entity }
+            # select restaurants from the database
+            selected_entities = Repository::For.klass(Entity::Restaurant)
+                                               .find_by_town_money(town, min_money, max_money)
+
+            # pick 9 restaurants
+            rests = Mapper::RestaurantOptions.new(selected_entities)
+            pick_9rests = rests.random_9picks
+            # select one of them
+            pick_one = rests.pick_one(pick_9rests, 2)
+
+            view 'restaurant', locals: { pick_9rests: pick_9rests, pick_one: pick_one }
           end
         end
       end

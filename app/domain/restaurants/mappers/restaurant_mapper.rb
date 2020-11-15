@@ -45,20 +45,24 @@ module Ewa
 
         def iterate_pois(item)
           @cities.map do |tp_city|
-            @poi_hashes << @pix_gateway_class.new(item, 3, tp_city).poi_lists['data']['pois']
+            @poi_hashes << @pix_gateway_class.new(item, 4, tp_city).poi_lists['data']['pois']
           end
         end
       end
 
       # get google map place full details
       def gmap_place_details(poi_filtered_hash)
-        place_name = poi_filtered_hash['name'].gsub(' ', '')
+        place_name = if poi_filtered_hash['branch_store_name'] != ''
+                       (poi_filtered_hash['name']).concat(poi_filtered_hash['branch_store_name'].to_s).gsub(' ', '')
+                     else
+                       (poi_filtered_hash['name']).concat(poi_filtered_hash['town']).gsub(' ', '')
+                     end
         gmap_place_gateway = @gateway_classes[:gmap_place].new(@token, place_name)
         place_id = gmap_place_gateway.place_id['candidates']
         if place_id.length.zero?
           {}
         else
-          @gateway_classes[:gmap_place_details].new(@token, place_id[0]['place_id']).place_details
+          @gateway_classes[:gmap_place_details].new(@token, place_id[0]['place_id']).place_details['result']
         end
       end
 
@@ -66,7 +70,7 @@ module Ewa
         pix_gateway_class = @gateway_classes[:pixnet]
         PoiDetails.new(pix_gateway_class).poi_details.map do |hash|
           place_details = gmap_place_details(hash)
-          if place_details != {}
+          if (place_details != {}) && place_details.key?('reviews')
             AggregatedRestaurantObjs.new(hash, place_details).aggregate_restaurant_objs
           else
             hash.clear
@@ -144,7 +148,7 @@ module Ewa
     class AggregatedRestaurantObjs
       def initialize(poi_hash, place_hash)
         @restaurant_hash = poi_hash
-        @place_rets = place_hash['result']
+        @place_rets = place_hash
         @open_week = @restaurant_hash['open_hours']['date']
       end
 
