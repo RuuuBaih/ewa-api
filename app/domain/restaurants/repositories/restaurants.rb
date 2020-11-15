@@ -17,7 +17,7 @@ module Ewa
       def self.find_by_town_money(town, min_money, max_money)
         db_records = Database::RestaurantOrm.where(town: town, money: min_money...max_money).limit(15).all
         db_records.map do |db_record|
-            rebuild_entity(db_record)
+          rebuild_entity(db_record)
         end
       end
 

@@ -52,11 +52,11 @@ module Ewa
 
       # get google map place full details
       def gmap_place_details(poi_filtered_hash)
-        if poi_filtered_hash['branch_store_name'] != ''
-          place_name = (poi_filtered_hash['name']).concat(poi_filtered_hash['branch_store_name'].to_s).gsub(' ','') 
-        else
-          place_name = (poi_filtered_hash['name']).concat(poi_filtered_hash['town']).gsub(' ','') 
-        end
+        place_name = if poi_filtered_hash['branch_store_name'] != ''
+                       (poi_filtered_hash['name']).concat(poi_filtered_hash['branch_store_name'].to_s).gsub(' ', '')
+                     else
+                       (poi_filtered_hash['name']).concat(poi_filtered_hash['town']).gsub(' ', '')
+                     end
         gmap_place_gateway = @gateway_classes[:gmap_place].new(@token, place_name)
         place_id = gmap_place_gateway.place_id['candidates']
         if place_id.length.zero?
@@ -70,7 +70,7 @@ module Ewa
         pix_gateway_class = @gateway_classes[:pixnet]
         PoiDetails.new(pix_gateway_class).poi_details.map do |hash|
           place_details = gmap_place_details(hash)
-          if place_details != {} and place_details.key?('reviews')
+          if (place_details != {}) && place_details.key?('reviews')
             AggregatedRestaurantObjs.new(hash, place_details).aggregate_restaurant_objs
           else
             hash.clear
