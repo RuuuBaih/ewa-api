@@ -1,4 +1,5 @@
 .container
+<<<<<<< HEAD
   form role="form" action="/test_detail" method='POST' id='show-project-form'
     .row
       h2    
@@ -23,3 +24,120 @@
       .col-lg-1.col-md-2.col-sm-2
         span.restaurants.attribute
       .col-lg-11.col-md-10.col-sm-6
+=======
+  .row
+    .col-md-6
+      .row
+        .col-md-12
+          form role="form" action="/restaurant" method='POST' id='filter-form'
+            .form-group
+              .row
+                .col-md-12
+                  input { 
+                    type='text' name='town'
+                    id='github_url_input' class="form-control"
+                    placeholder= 'Town'
+                  }
+
+                
+                .col-md-6
+                  input { 
+                    type='text' name='min_money'
+                    id='min_money' class="form-control"
+                    placeholder= 'Min Price'
+                  } 
+
+                .col-md-6
+                  input { 
+                    type='text' name='max_money'
+                    id='max_money' class="form-control"
+                    placeholder= 'Max Price'
+                  } 
+                   
+                .col-md-12
+                  .row.blank-row      
+                .col-md-12
+                  button { 
+                    type='submit' id='repo-form-submit' class='submit' 
+                    value='submit' class="btn btn-primary btn-block" 
+                  } Ewa Recommend
+
+
+      .row
+        .col-md-6.blank-row 
+
+  .row
+    .col-md-6
+      .row
+        form role="form" action="/res_detail" method='POST' id='filter-form'
+          .form-group
+            .row
+
+              .col-md-4.col-sm-6
+                button name="img_num" type="submit" value=pick_9rests[0].inspect
+                  img alt="Submit" src="#{pick_9rests[0].cover_img}" width=150 height=150 
+
+              .col-md-4.col-sm-6
+                button name="img_num" type="submit" value=pick_9rests[1].inspect
+                  img alt="Submit" src="#{pick_9rests[1].cover_img}" width=150 height=150 
+              .col-md-4.col-sm-6
+                button name="img_num" type="submit" value=pick_9rests[2].inspect
+                  img alt="Submit" src="#{pick_9rests[2].cover_img}" width=150 height=150
+              
+              .col-md-4.col-sm-6
+                button name="img_num" type="submit" value=pick_9rests[3].inspect
+                  img alt="Submit" src="#{pick_9rests[3].cover_img}" width=150 height=150 
+
+              .col-md-4.col-sm-6
+                button name="img_num" type="submit" value=pick_9rests[4].inspect
+                  img alt="Submit" src="#{pick_9rests[4].cover_img}" width=150 height=150
+              .col-md-4.col-sm-6
+                button name="img_num" type="submit" value=pick_9rests[5].inspect
+                  img alt="Submit" src="#{pick_9rests[5].cover_img}" width=150 height=150
+
+              
+              .col-md-4.col-sm-6
+                button name="img_num" type="submit" value=pick_9rests[6].inspect
+                  img alt="Submit" src="#{pick_9rests[6].cover_img}" width=150 height=150 
+
+              .col-md-4.col-sm-6
+                button name="img_num" type="submit" value=pick_9rests[7].inspect
+                  img alt="Submit" src="#{pick_9rests[7].cover_img}" width=150 height=150 
+              .col-md-4.col-sm-6
+                button name="img_num" type="submit" value=pick_9rests[8].inspect
+                  img alt="Submit" src="#{pick_9rests[8].cover_img}" width=150 height=150 
+              
+
+
+
+      .row
+        .blank-row
+
+      .row
+        .col-md-12
+          button { 
+            type='submit' id='repo-form-submit' action="/res_nine" class='submit' 
+            value='submit' class="btn btn-block btn-primary" 
+          } Try Again
+
+    .col-md-6
+        .card.flex-md-row.mb-4.box-shadow.h-md-250
+          .card-body.d-flex.flex-column.align-items-start
+            .row
+              .col-md-12
+                strong.d-inline-block.mb-2.text-success Good Good Eat
+                h3.mb-0
+                  a.text-dark 螺絲瑪莉
+                .mb-1.text-muted Telephone: 0915913612
+                .mb-1.text-muted Address: 新竹市東區101號
+                .mb-1.text-muted Money: 500
+      
+            span 評論goes here
+            
+
+  .row
+    .blank-row
+  .row
+    .col-md-12
+      iframe allowfullscreen="" frameborder="0" height="500" src="https://aboa1110.pixnet.net/blog/post/290826385" style="border:0" width="100%" 
+>>>>>>> origin/main
