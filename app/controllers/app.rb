@@ -32,23 +32,20 @@ module Ewa
                                                .find_by_town_money(town, min_money, max_money)
 
             # pick 9 restaurants
-            @rests = Mapper::RestaurantOptions.new(selected_entities)
-            @pick_9rests = @rests.random_9picks
-
-            view 'restaurant', locals: { pick_9rests: @pick_9rests }
+            rests = Mapper::RestaurantOptions.new(selected_entities)
+            pick_9rests = rests.random_9picks
+            # pick_one = @rests.pick_one(@pick_9rests, 2)
+            #view 'restaurant', locals: { pick_9rests: pick_9rests }
+            routing.redirect "restaurant/test_detail"
           end
         end
-
         routing.on 'test_detail' do
-            # GET /restaurant/test_detail
-            # select one of them
+          # GET /restaurant/test_detail
+          # select one of them
           routing.is do
-            routing.post do
-              # num = routing.params['num']
-              pick_one = @rests.pick_one(@pick_9rests, 2)
-
-              view 'test_detail', locals: { pick_one: pick_one }
-            end
+            # num = routing.params['num']
+            pick_one = rests.pick_one(pick_9rests, 2)
+            view 'test_detail', locals: { pick_one: pick_one }
           end
         end
       end
