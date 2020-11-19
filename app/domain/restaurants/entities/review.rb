@@ -5,7 +5,7 @@ require 'dry-struct'
 
 module Ewa
   module Entity
-    # Article Entity
+    # Review Entity
     class Review < Dry::Struct
       include Dry.Types
       attribute :id, Integer.optional

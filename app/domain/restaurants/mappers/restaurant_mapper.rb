@@ -45,7 +45,7 @@ module Ewa
 
         def iterate_pois(item)
           @cities.map do |tp_city|
-            @poi_hashes << @pix_gateway_class.new(item, 5, tp_city).poi_lists['data']['pois']
+            @poi_hashes << @pix_gateway_class.new(item, 1, tp_city).poi_lists['data']['pois']
           end
         end
       end
@@ -70,7 +70,7 @@ module Ewa
         pix_gateway_class = @gateway_classes[:pixnet]
         PoiDetails.new(pix_gateway_class).poi_details.map do |hash|
           place_details = gmap_place_details(hash)
-          if (place_details != {}) && place_details.key?('reviews')
+          if (place_details != {}) && place_details.key?('reviews') && place_details.key?('photos') 
             AggregatedRestaurantObjs.new(hash, place_details).aggregate_restaurant_objs
           else
             hash.clear
@@ -84,26 +84,28 @@ module Ewa
         filtered_nil_hashes = aggregate_rest_hashes
         filtered_nil_hashes.delete_if(&:empty?)
 
-        RestaurantMapper::BuildRestaurantEntity.new(filtered_nil_hashes).build_entity
+        RestaurantMapper::BuildRestaurantEntity.new(filtered_nil_hashes, @token).build_entity
       end
 
       # build Restaurant Entity
       class BuildRestaurantEntity
-        def initialize(array_of_hashes)
+        def initialize(array_of_hashes, token)
           @array_of_hashes = array_of_hashes
+          @token = token
         end
 
         def build_entity
           @array_of_hashes.map do |hash|
-            DataMapper.new(hash).build_entity
+            DataMapper.new(hash, @token).build_entity
           end
         end
       end
 
       # Extracts entity specific elements from data structure
       class DataMapper
-        def initialize(data)
+        def initialize(data, token)
           @data = data
+          @token = token
         end
 
         # rubocop:disable Metrics/MethodLength
@@ -125,6 +127,7 @@ module Ewa
             address: @data['address'],
             website: @data['website'],
             reviews: reviews,
+            pictures: pictures,
             article: article
           )
         end
@@ -140,6 +143,11 @@ module Ewa
         def article
           article = ArticleMapper.new(@data['name']).the_newest_article
           ArticleMapper::BuildArticleEntity.new(article).build_entity
+        end
+
+        def pictures
+          pictures = PictureMapper.new(@token, @data['photos']).photo_lists
+          PictureMapper::BuildPictureEntity.new(pictures).build_entity
         end
       end
     end
@@ -158,6 +166,7 @@ module Ewa
         open_hours
         google_rating
         reviews
+        photos
 
         @restaurant_hash
       end
@@ -191,7 +200,13 @@ module Ewa
 
       def reviews
         @restaurant_hash['reviews'] = @place_rets['reviews'].reduce([]) do |start, hash|
-          start << FilterHash.new(hash).filtered_gmap_place_details_hash
+          start << FilterHash.new(hash).filtered_gmap_place_reviews_hash
+        end
+      end
+
+      def photos
+        @restaurant_hash['photos'] = @place_rets['photos'].reduce([]) do |start, hash|
+          start << FilterHash.new(hash).filtered_gmap_place_photos_hash
         end
       end
     end
@@ -223,8 +238,8 @@ module Ewa
       end
       # rubocop:enable Metrics/MethodLength
 
-      # filter the gmap place details fields, select what we want
-      def filtered_gmap_place_details_hash
+      # filter the gmap place reviews fields, select what we want
+      def filtered_gmap_place_reviews_hash
         @hash.select do |key, _value|
           key_lists = %w[
             author_name
@@ -232,6 +247,16 @@ module Ewa
             rating
             text
             relative_time_description
+          ]
+          key_lists.include? key
+        end
+      end
+
+      # filter the gmap place photos fields, select what we want
+      def filtered_gmap_place_photos_hash
+        @hash.select do |key, _value|
+          key_lists = %w[
+            photo_reference
           ]
           key_lists.include? key
         end
