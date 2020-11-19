@@ -52,11 +52,7 @@ module Ewa
 
       # get google map place full details
       def gmap_place_details(poi_filtered_hash)
-        place_name = if poi_filtered_hash['branch_store_name'] != ''
-                       "#{poi_filtered_hash['name']}#{poi_filtered_hash['branch_store_name'].to_s}".gsub(' ', '')
-                     else
-                       "#{poi_filtered_hash['name']}#{poi_filtered_hash['town']}".gsub(' ', '')
-                     end
+        place_name = FoolProof.new(poi_filtered_hash).check_gmap_place_name
         gmap_place_gateway = @gateway_classes[:gmap_place].new(@token, place_name)
         place_id = gmap_place_gateway.place_id['candidates']
         if place_id.length.zero?
@@ -68,12 +64,36 @@ module Ewa
 
       def aggregate_rest_hashes
         pix_gateway_class = @gateway_classes[:pixnet]
-        PoiDetails.new(pix_gateway_class).poi_details.map do |hash|
-          place_details = gmap_place_details(hash)
-          if (place_details != {}) && place_details.key?('reviews') && place_details.key?('photos') 
-            AggregatedRestaurantObjs.new(hash, place_details).aggregate_restaurant_objs
+        PoiDetails.new(pix_gateway_class).poi_details.map do |poi_hash|
+          place_details = gmap_place_details(poi_hash)
+          FoolProof.new(place_details).check_aggregate(poi_hash)
+        end
+      end
+
+      # try to avoid some situations
+      class FoolProof
+        def initialize(hash)
+          @hash = hash
+        end
+
+        # try to avoid the restaurants without reviews and photos
+        def check_aggregate(poi_hash)
+          if (@hash != {}) && @hash.key?('reviews') && @hash.key?('photos')
+            AggregatedRestaurantObjs.new(poi_hash, @hash).aggregate_restaurant_objs
           else
             hash.clear
+          end
+        end
+
+        # try to search with restaurant name & branch store name or restaurant name & town
+        # try to avoid getting results from the wrong branch store or town
+        def check_gmap_place_name
+          branch_name = @hash['branch_store_name']
+          name = @hash['name']
+          if branch_name != ''
+            "#{name}#{branch_name}".gsub(' ', '')
+          else
+            "#{name}#{@hash['town']}".gsub(' ', '')
           end
         end
       end
@@ -162,16 +182,19 @@ module Ewa
 
       # get each aggregated restaurant obj ( Aggregate Pixnet POI, Gmap Place & Place details )
       def aggregate_restaurant_objs
+        filter
+        @restaurant_hash
+      end
+
+      private
+
+      def filter
         address_website
         open_hours
         google_rating
         reviews
         photos
-
-        @restaurant_hash
       end
-
-      private
 
       def address_website
         @restaurant_hash['address'] = @place_rets['formatted_address']

@@ -16,19 +16,13 @@ module Ewa
         photo_infos = photo_details
         if photo_infos != []
           photo_infos.map do |photo_info|
-            # Type check
-            photo_ref = photo_info["photo_reference"]
-            thumb = photo_info["thumb"]
-            #photo_ref = photo_info[:photo_reference]
-            #thumb = photo_info[:thumb]
+            thumb = photo_info['thumb']
             {
-              link: @gateway_class.new(@token, photo_ref, thumb).place_photo,
+              link: @gateway_class.new(@token, photo_info['photo_reference'], thumb).place_photo,
               thumb: thumb
             }
           end
-        else
-          photo_infos
-        end
+        else photo_infos end
       end
 
       # get photo details
@@ -36,10 +30,10 @@ module Ewa
         if @photos.length < 5 then []
         else
           @photos.map.with_index do |photo, idx|
-            if 0 <= idx and idx <= 3 then photo["thumb"] = true
-            else photo["thumb"] = false end
+            photo['thumb'] = if (idx >= 0) && (idx <= 3) then true
+                             else false                  end
           end
-        @photos
+          @photos
         end
       end
 
@@ -67,7 +61,7 @@ module Ewa
           Ewa::Entity::Picture.new(
             id: nil,
             link: link,
-            thumb: thumb 
+            thumb: thumb
           )
         end
 

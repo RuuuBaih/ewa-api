@@ -65,7 +65,6 @@ module Ewa
     class PlacePhotoApi
       GMAP_API_PATH = 'https://maps.googleapis.com/maps/api/place/photo?'
 
-
       # language default is Taiwanese
       def initialize(token, photo_refer, thumb = TRUE)
         @gmap_token = token
@@ -75,7 +74,7 @@ module Ewa
 
       def place_photo
         # will receive a 302 redirect to another website url
-          PlacePhotosRequest.new(GMAP_API_PATH, @gmap_token, @photo_refer, @thumb).gmap_place_http["Location"]
+        PlacePhotosRequest.new(GMAP_API_PATH, @gmap_token, @photo_refer, @thumb).gmap_place_http['Location']
       end
 
       # Sends out HTTP requests to Gmap
@@ -89,18 +88,18 @@ module Ewa
 
         def size_setting
           if @thumb
-            {maxwidth: 180, maxheight: 180}
+            { maxwidth: 180, maxheight: 180 }
           else
-            {maxwidth: 400, maxheight: 400}
+            { maxwidth: 400, maxheight: 400 }
           end
         end
 
-
         def gmap_place_http
           size = size_setting
-          max_width = size[:maxwidth]
-          max_height = size[:maxwidth]
-          Gmap::Request.new("#{@resource_root}photo_reference=#{@photo_refer}&maxwidth=#{max_width}&maxheight=#{max_height}&key=#{@token}").get
+          wid = size[:maxwidth]
+          ht = size[:maxheight]
+          url_with_photo_ref = "#{@resource_root}photo_reference=#{@photo_refer}"
+          Gmap::Request.new("#{url_with_photo_ref}&maxwidth=#{wid}&maxheight=#{ht}&key=#{@token}").get
         end
       end
     end
