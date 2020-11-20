@@ -17,7 +17,7 @@ module Ewa
       # POST /
       routing.root do
         restaurants = Repository::For.klass(Entity::Restaurant).all
-        session[:pick_9rests] ||= []
+        # session[:pick_9rests] ||= []
         view 'home_test', locals: { restaurants: restaurants }
       end
 
@@ -68,7 +68,7 @@ module Ewa
               # path = request.remaining_path
               rest_detail = Repository::For.klass(Entity::Restaurant).find_by_rest_id(rest_id)
               # pick_9rests = session[:pick_9rests]
-              view 'test_detail', locals: { rest_detail: rest_detail, pick_9rests: pick_9rests }
+              view 'test_detail', locals: { rest_detail: rest_detail }
             end
           end
         end
