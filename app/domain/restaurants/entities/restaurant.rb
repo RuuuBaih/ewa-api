@@ -27,6 +27,7 @@ module Ewa
       attribute :website,       Strict::String.optional
 
       attribute :reviews,       Strict::Array.of(Review)
+      attribute :pictures,      Strict::Array.of(Picture)
       attribute :article,       Article
 
       def to_attr_hash
