@@ -22,6 +22,11 @@ module Ewa
         end
       end
 
+      def self.find_by_rest_id(id)
+        db_record = Database::RestaurantOrm.first(id: id)
+        rebuild_entity(db_record)
+      end
+
       def self.find_restaurant_id(entity)
         db_record = Database::RestaurantOrm.first(id: entity.id)
         rebuild_entity(db_record)
