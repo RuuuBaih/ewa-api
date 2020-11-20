@@ -21,6 +21,13 @@ require 'webmock'
 # require_relative '../app/models/entities/review'
 =begin
 require_relative '../app/models/init'
+<<<<<<< HEAD
+=======
+
+require_relative '../app/init'
+>>>>>>> main:spec/spec_helper.rb
+=======
+>>>>>>> views_sep
 require_relative '../app/controllers/init'
 require_relative '../config/init'
 =end

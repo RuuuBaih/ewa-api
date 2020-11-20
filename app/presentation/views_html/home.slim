@@ -18,164 +18,107 @@
     .col-md-6
       .row
         .col-md-12
-          form role="form" action="/restaurant" method='POST' id='filter-form'
-            .form-group
-              .row
-                .col-md-12
-                  label[for="town"]
-                  select#town.form-control[name="town"]
-                    option
-                      | 地區
-                    optgroup label=("台北市") 
-                    option
-                      | 中正區
-                    option
-                      | 大同區
-                    option
-                      | 中山區
-                    option
-                      | 松山區
-                    option
-                      | 大安區
-                    option
-                      | 萬華區
-                    option
-                      | 信義區
-                    option
-                      | 士林區
-                    option
-                      | 北投區
-                    option
-                      | 內湖區
-                    option
-                      | 南港區
-                    option
-                      | 文山區
-                    optgroup label=("新北市") 
-                    option
-                      | 板橋區
-                    option
-                      | 中和區
-                    option
-                      | 新莊區
-                    option
-                      | 土城區
-                    option
-                      | 汐止區
-                    option
-                      | 鶯歌區
-                    option
-                      | 淡水區
-                    option
-                      | 五股區
-                    option
-                      | 林口區
-                    option
-                      | 深坑區
-                    option
-                      | 坪林區
-                    option
-                      | 石門區
-                    option
-                      | 萬里區
-                    option
-                      | 雙溪區
-                    option
-                      | 烏來區
-                    option
-                      | 三重區
-                    option
-                      | 永和區
-                    option
-                      | 新店區
-                    option
-                      | 蘆洲區
-                    option
-                      | 樹林區
-                    option
-                      | 三峽區
-                    option
-                      | 瑞芳區
-                    option
-                      | 泰山區
-                    option
-                      | 八里區
-                    option
-                      | 石碇區
-                    option
-                      | 三芝區
-                    option
-                      | 金山區
-                    option
-                      | 平溪區
-                    option
-                      | 貢寮區
+          form role="form" method='POST' id='filter-form'
+              .form-group
+                label[for="sel1"]
+                select#sel1.form-control[name="sellist1"]
+                  option
+                    | 地區
+                  optgroup label=("台北市") 
+                  option
+                    | 中正區
+                  option
+                    | 大同區
+                  option
+                    | 中山區
+                  option
+                    | 松山區
+                  option
+                    | 大安區
+                  option
+                    | 萬華區
+                  option
+                    | 信義區
+                  option
+                    | 士林區
+                  option
+                    | 北投區
+                  option
+                    | 內湖區
+                  option
+                    | 南港區
+                  option
+                    | 文山區
+                  optgroup label=("新北市") 
+                  option
+                    | 板橋區
+                  option
+                    | 中和區
+                  option
+                    | 新莊區
+                  option
+                    | 土城區
+                  option
+                    | 汐止區
+                  option
+                    | 鶯歌區
+                  option
+                    | 淡水區
+                  option
+                    | 五股區
+                  option
+                    | 林口區
+                  option
+                    | 深坑區
+                  option
+                    | 坪林區
+                  option
+                    | 石門區
+                  option
+                    | 萬里區
+                  option
+                    | 雙溪區
+                  option
+                    | 烏來區
+                  option
+                    | 三重區
+                  option
+                    | 永和區
+                  option
+                    | 新店區
+                  option
+                    | 蘆洲區
+                  option
+                    | 樹林區
+                  option
+                    | 三峽區
+                  option
+                    | 瑞芳區
+                  option
+                    | 泰山區
+                  option
+                    | 八里區
+                  option
+                    | 石碇區
+                  option
+                    | 三芝區
+                  option
+                    | 金山區
+                  option
+                    | 平溪區
+                  option
+                    | 貢寮區
 
-
-                
-                .col-md-6
-                  label[for="min_money"]
-                  select#min_money.form-control[name="min_money"]
-                    option
-                      | Min Price
-                    option
-                      | 0
-                    option
-                      | 100
-                    option
-                      | 100
-                    option
-                      | 200
-                    option
-                      | 300
-                    option
-                      | 400
-                    option
-                      | 500
-                    option
-                      | 600
-                    option
-                      | 700
-                    option
-                      | 800
-                    option
-                      | 900
-                    option
-                      | 1000
-
-                .col-md-6
-                  label[for="max_money"]
-                  select#min_money.form-control[name="max_money"]
-                    option
-                      | Max Price
-                    option
-                      | 0
-                    option
-                      | 100
-                    option
-                      | 200
-                    option
-                      | 300
-                    option
-                      | 400
-                    option
-                      | 500
-                    option
-                      | 600
-                    option
-                      | 700
-                    option
-                      | 800
-                    option
-                      | 900
-                    option
-                      | 1000
-                .col-md-12
-                  .row.blank-row      
-                .col-md-12
-                  button.btn.btn-primary.btn-block[ type="submit"]
-                    | Ewa recommend
-      
+           
+              .col-md-12
+                .form-group
+                  input.form-control[type="text" placeholder="Min Price" name="min_money"]
+              .col-md-12
+                .form-group
+                  input.form-control[type="text" placeholder="Max Price" name="mas_money"]
+           
+                button.btn.btn-primary.btn-block[ type="submit"]
+                  | Ewa recommend
       .row
         .col-md-6.blank-row 
 
