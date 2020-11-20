@@ -85,14 +85,19 @@
           .card-body.d-flex.flex-column.align-items-start
             .row
               .col-md-12
-                strong.d-inline-block.mb-2.text-success Good Good Eat
+                strong.d-inline-block.mb-2.text-success =restaurants[0].tags
                 h3.mb-0
-                  a.text-dark 螺絲瑪莉
-                .mb-1.text-muted Telephone: 0915913612
-                .mb-1.text-muted Address: 新竹市東區101號
-                .mb-1.text-muted Money: 500
+                  a.text-dark =restaurants[0].name
+                .mb-1.text-muted =restaurants[0].branch_store_name
+                .mb-1.text-muted =restaurants[0].telephone
+                .mb-1.text-muted =restaurants[0].address
+                .mb-1.text-muted =restaurants[0].money
+                .mb-1.text-muted =restaurants[0].city
+                .mb-1.text-muted =restaurants[0].google_rating
+                .mb-1.text-muted =restaurants[0].open_hours
+                .mb-1.text-muted =restaurants[0].website
             iframe allowfullscreen="" frameborder="0" height="150" src="https://www.google.com/maps/embed/v1/place?key=#{Ewa::App.config.GMAP_TOKEN}&q=Space+Needle,螺絲瑪莉" style="border:0" width="100%" 
-            span 評論goes here
+
             
 
   .row

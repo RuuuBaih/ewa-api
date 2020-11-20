@@ -46,47 +46,13 @@
         form role="form" action="/res_detail" method='POST' id='filter-form'
           .form-group
             .row
-  
-              .col-md-4.col-sm-6
-                input {type="hidden" name="pick_9rests" value="#{pick_9rests}"}
-                input {type="hidden" name="rests" value="#{rests}"}
-                button {name="img_num" type="submit" value="0"}
 
-                img alt="Submit" src="#{pick_9rests[0].cover_img}" 
+            .row      
+              - 9.times do |num|
+                .col-md-4.col-sm-6
+                  button name="img_num" type="submit" value="#{pick_9rests[num].name}"
+                    img alt="Submit" src="#{pick_9rests[num].cover_img}" width=150 height=150 
 
-                span.pick_9rests
-                = pick_9rests
-
-
-              .col-md-4.col-sm-6
-                button name="img_num" type="submit" value=[1, pick_9rests,rests]
-                  img alt="Submit" src="#{pick_9rests[1].cover_img}" 
-              .col-md-4.col-sm-6
-                button name="img_num" type="submit" value=[2, pick_9rests,rests]
-                  img alt="Submit" src="#{pick_9rests[2].cover_img}" 
-              
-              .col-md-4.col-sm-6
-                button name="img_num" type="submit" value=[3, pick_9rests,rests] 
-                  img alt="Submit" src="#{pick_9rests[3].cover_img}" 
-
-              .col-md-4.col-sm-6
-                button name="img_num" type="submit" value=[4, pick_9rests,rests]
-                  img alt="Submit" src="#{pick_9rests[4].cover_img}" 
-              .col-md-4.col-sm-6
-                button name="img_num" type="submit" value=[5, pick_9rests,rests]
-                  img alt="Submit" src="#{pick_9rests[5].cover_img}"
-              
-              .col-md-4.col-sm-6
-                button name="img_num" type="submit" value=[6, pick_9rests,rests]
-                  img alt="Submit" src="#{pick_9rests[6].cover_img}" 
-
-              .col-md-4.col-sm-6
-                button name="img_num" type="submit" value=[7, pick_9rests,rests] 
-                  img alt="Submit" src="#{pick_9rests[7].cover_img}" 
-              .col-md-4.col-sm-6
-                button name="img_num" type="submit" value=[8, pick_9rests,rests]
-                  img alt="Submit" src="#{pick_9rests[8].cover_img}"
-              
 
 
 
