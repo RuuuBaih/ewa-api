@@ -12,6 +12,9 @@ module Ewa
       one_to_many :reviews,
                   class: :'Ewa::Database::ReviewOrm'
 
+      one_to_many :pictures,
+                  class: :'Ewa::Database::PictureOrm'
+
       plugin :timestamps, update_on_create: true
     end
   end
