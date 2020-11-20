@@ -46,15 +46,12 @@
         form role="form" action="/res_detail" method='POST' id='filter-form'
           .form-group
             .row
-
+            
             .row      
               - 9.times do |num|
                 .col-md-4.col-sm-6
-                  button name="img_num" type="submit" value="#{pick_9rests[num].name}"
+                  button class="btn" name="img_num" type="submit" value="#{pick_9rests[num].name}"
                     img alt="Submit" src="#{pick_9rests[num].cover_img}" width=150 height=150 
-
-
-
 
       .row
         .blank-row
@@ -76,7 +73,7 @@
                   a.text-dark 螺絲瑪莉
                 .mb-1.text-muted Telephone: 0915913612
                 .mb-1.text-muted Address: 新竹市東區101號
-                .mb-1.text-muted Money: 500
+                .mb-1.text-muted Money: 400
             iframe allowfullscreen="" frameborder="0" height="150" src="https://www.google.com/maps/embed/v1/place?key=#{Ewa::App.config.GMAP_TOKEN}&q=Space+Needle,螺絲瑪莉" style="border:0" width="100%" 
             span 評論goes here
             
