@@ -10,8 +10,6 @@ module Ewa
       include Dry.Types
 
       attribute :id, Integer.optional
-      attribute :restaurant_id, Strict::Integer
-      # ewa_tag or ewa_tags type not sure yet
       attribute :ewa_tag, Strict::String.optional
 
       def to_attr_hash
