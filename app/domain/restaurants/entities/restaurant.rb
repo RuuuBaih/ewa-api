@@ -4,6 +4,8 @@ require 'dry-types'
 require 'dry-struct'
 require_relative 'review'
 require_relative 'article'
+require_relative 'picture'
+require_relative '../../restaurant_options/entities/ewa_tag'
 
 module Ewa
   module Entity
@@ -29,6 +31,7 @@ module Ewa
       attribute :reviews,       Strict::Array.of(Review)
       attribute :pictures,      Strict::Array.of(Picture)
       attribute :article,       Article
+      attribute :ewa_tag,       EwaTag
 
       def to_attr_hash
         to_hash.reject { |key, _| [:id].include? key }
