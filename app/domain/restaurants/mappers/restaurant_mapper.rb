@@ -1,5 +1,8 @@
 # frozen_string_literal: false
 
+# require_relative '../../restaurant_options/mappers/restaurant_pick_mapper'
+require_relative '../../restaurant_options/init'
+
 module Ewa
   # Provides access to restuarant sites lists data
   module Restaurant
@@ -45,7 +48,7 @@ module Ewa
 
         def iterate_pois(item)
           @cities.map do |tp_city|
-            @poi_hashes << @pix_gateway_class.new(item, 1, tp_city).poi_lists['data']['pois']
+            @poi_hashes << @pix_gateway_class.new(item, 5, tp_city).poi_lists['data']['pois']
           end
         end
       end
@@ -148,7 +151,8 @@ module Ewa
             website: @data['website'],
             reviews: reviews,
             pictures: pictures,
-            article: article
+            article: article,
+            ewa_tag: ewa_tag
           )
         end
         # rubocop:enable Metrics/MethodLength
@@ -168,6 +172,11 @@ module Ewa
         def pictures
           pictures = PictureMapper.new(@token, @data['photos']).photo_lists
           PictureMapper::BuildPictureEntity.new(pictures).build_entity
+        end
+
+        def ewa_tag
+          ewa_tag_hash = RestaurantPickMapper.new(@data).ewa_tag
+          RestaurantPickMapper::BuildEwaTagEntity.new(ewa_tag_hash).build_entity
         end
       end
     end

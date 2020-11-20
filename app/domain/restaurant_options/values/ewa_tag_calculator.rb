@@ -4,15 +4,14 @@ module Ewa
   module Value
     # Define Ewa tags
     class EwaTags
-      def initialize(id, money, google_rating)
-        @id = id
+      def initialize(money, google_rating)
         @money = money
         @google_rating = google_rating
       end
 
-      def ewa_tag_hash
-        { restaurant_id: @id, ewa_tag: tag_rules }
-      end
+      #       def ewa_tag_hash
+      #         { restaurant_id: @id, ewa_tag: tag_rules }
+      #       end
 
       def tag_rules
         if @money >= 1000 && @google_rating >= 4.5 then '老闆請客 Boss, please treat me!'
