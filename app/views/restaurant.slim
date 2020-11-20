@@ -1,17 +1,20 @@
 .container
-  form role="form" action="/pick" method='POST' id='show-project-form'
+  form role="form" action="restaurant/pick" method='POST' id='show-project-form'
     .row      
       - 9.times do |num|
         .col-md-4.col-sm-6
-          button name="img_num" type="submit" value="#{pick_9rests[num].name}"
+          button name="img_num" type="submit" value="#{pick_9rests[num].id}"
             img alt="Submit" src="#{pick_9rests[num].cover_img}" width=150 height=150 
-
+          
+          span.rest_detail
+          = "#{pick_9rests[num].id}"
 
       .col-md-2.col-sm-3
         button { 
           type='submit' id='repo-form-submit' class='submit' 
           value='submit' class="btn btn-success" 
         } Show restaurant  
+
 
   .container
     .row

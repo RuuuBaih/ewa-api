@@ -51,16 +51,23 @@ module Ewa
             # routing.redirect "restaurant/test_detail"
           end
         end
-      end
 
-      routing.on 'pick' do
-        # POST /restaurant/test_detail
-        # select one of them
-        routing.is do
-          routing.post do
-            img_num = routing.params['img_num']
-            pick_nine = session[:pick_9rests]
-            view 'test_detail', locals: { pick_nine: pick_nine, img_num: img_num }
+        routing.on 'pick' do
+          # POST /restaurant/pick
+          # select one of them
+          routing.is do
+            routing.post do
+              rest_id = routing.params['img_num'].to_i
+              routing.redirect "pick/#{rest_id}"
+            end
+          end
+
+          routing.on String do |rest_id|
+            routing.get do
+              # path = request.remaining_path
+              rest_detail = Repository::For.klass(Entity::Restaurant).find_restaurant_id(rest_id)
+              view 'test_detail', locals: { rest_detail: rest_detail }
+            end
           end
         end
       end
