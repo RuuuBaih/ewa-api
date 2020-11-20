@@ -13,7 +13,6 @@
                     placeholder= 'Town'
                   }
 
-                
                 .col-md-6
                   input { 
                     type='text' name='min_money'
@@ -46,53 +45,24 @@
         form role="form" action="/res_detail" method='POST' id='filter-form'
           .form-group
             .row
-
-              .col-md-4.col-sm-6
-                button name="img_num" type="submit" value=pick_9rests[0].inspect
-                  img alt="Submit" src="#{pick_9rests[0].cover_img}" width=150 height=150 
-
-              .col-md-4.col-sm-6
-                button name="img_num" type="submit" value=pick_9rests[1].inspect
-                  img alt="Submit" src="#{pick_9rests[1].cover_img}" width=150 height=150 
-              .col-md-4.col-sm-6
-                button name="img_num" type="submit" value=pick_9rests[2].inspect
-                  img alt="Submit" src="#{pick_9rests[2].cover_img}" width=150 height=150
-              
-              .col-md-4.col-sm-6
-                button name="img_num" type="submit" value=pick_9rests[3].inspect
-                  img alt="Submit" src="#{pick_9rests[3].cover_img}" width=150 height=150 
-
-              .col-md-4.col-sm-6
-                button name="img_num" type="submit" value=pick_9rests[4].inspect
-                  img alt="Submit" src="#{pick_9rests[4].cover_img}" width=150 height=150
-              .col-md-4.col-sm-6
-                button name="img_num" type="submit" value=pick_9rests[5].inspect
-                  img alt="Submit" src="#{pick_9rests[5].cover_img}" width=150 height=150
-
-              
-              .col-md-4.col-sm-6
-                button name="img_num" type="submit" value=pick_9rests[6].inspect
-                  img alt="Submit" src="#{pick_9rests[6].cover_img}" width=150 height=150 
-
-              .col-md-4.col-sm-6
-                button name="img_num" type="submit" value=pick_9rests[7].inspect
-                  img alt="Submit" src="#{pick_9rests[7].cover_img}" width=150 height=150 
-              .col-md-4.col-sm-6
-                button name="img_num" type="submit" value=pick_9rests[8].inspect
-                  img alt="Submit" src="#{pick_9rests[8].cover_img}" width=150 height=150 
-              
-
-
+            
+            .row      
+              - 9.times do |num|
+                .col-md-4.col-sm-6
+                  button class="btn" name="img_num" type="submit" value="#{pick_9rests[num].name}"
+                    .img_wrap
+                      img alt="Submit" src="#{pick_9rests[num].cover_img}" width=150 height=150 
+                      .img_description_layer
+                        p.img_description = pick_9rests[num].name 
 
       .row
         .blank-row
 
       .row
-        .col-md-12
-          button { 
-            type='submit' id='repo-form-submit' action="/res_nine" class='submit' 
-            value='submit' class="btn btn-block btn-primary" 
-          } Try Again
+            button { 
+              type='submit' id='repo-form-submit' action="/res_nine" class='submit' 
+              value='submit' class="btn btn-block btn-primary" 
+            } Try Again
 
     .col-md-6
         .card.flex-md-row.mb-4.box-shadow.h-md-250
@@ -104,10 +74,9 @@
                   a.text-dark 螺絲瑪莉
                 .mb-1.text-muted Telephone: 0915913612
                 .mb-1.text-muted Address: 新竹市東區101號
-                .mb-1.text-muted Money: 500
+                .mb-1.text-muted Money: 400
             iframe allowfullscreen="" frameborder="0" height="150" src="https://www.google.com/maps/embed/v1/place?key=#{Ewa::App.config.GMAP_TOKEN}&q=Space+Needle,螺絲瑪莉" style="border:0" width="100%" 
             span 評論goes here
-            
 
   .row
     .blank-row
