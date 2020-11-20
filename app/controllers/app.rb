@@ -47,7 +47,7 @@ module Ewa
             session[:pick_9rests] = pick_9rests
             #session[:img_num] = img_num
             # pick_one = @rests.pick_one(@pick_9rests, 2)
-            view 'restaurant', locals: { pick_9rests: pick_9rests }
+            view 'restaurant_test', locals: { pick_9rests: pick_9rests }
             # routing.redirect "restaurant/test_detail"
           end
         end
