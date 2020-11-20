@@ -58,6 +58,7 @@ module Ewa
           routing.is do
             routing.post do
               rest_id = routing.params['img_num'].to_i
+              pick_9rests = session[:pick_9rests]
               routing.redirect "pick/#{rest_id}"
             end
           end
@@ -65,8 +66,9 @@ module Ewa
           routing.on String do |rest_id|
             routing.get do
               # path = request.remaining_path
-              rest_detail = Repository::For.klass(Entity::Restaurant).find_restaurant_id(rest_id)
-              view 'test_detail', locals: { rest_detail: rest_detail }
+              rest_detail = Repository::For.klass(Entity::Restaurant).find_by_rest_id(rest_id)
+              # pick_9rests = session[:pick_9rests]
+              view 'test_detail', locals: { rest_detail: rest_detail, pick_9rests: pick_9rests }
             end
           end
         end
