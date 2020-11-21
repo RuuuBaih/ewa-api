@@ -22,6 +22,11 @@ module Ewa
         end
       end
 
+      def self.find_by_rest_id(id)
+        db_record = Database::RestaurantOrm.first(id: id)
+        rebuild_entity(db_record)
+      end
+
       def self.find_restaurant_id(entity)
         db_record = Database::RestaurantOrm.first(id: entity.id)
         rebuild_entity(db_record)
@@ -32,8 +37,8 @@ module Ewa
         raise 'Related restaurant not found' unless db_entity
       end
 
-      def self.update_reviews2db(entity)
-        rest_exist
+      def self.update_reviews2db(db_entity)
+        rest_exist(db_entity)
 
         entity_id = db_entity.id
         raise 'Already five reviews exist' if Reviews.find_all_reviews_by_restaurant_id(entity_id).length > 4
@@ -41,8 +46,8 @@ module Ewa
         Reviews.rebuild_many(PersistRestaurant.new(entity).put_reviews_to_db(entity_id))
       end
 
-      def self.update_article2db(entity)
-        rest_exist
+      def self.update_article2db(db_entity)
+        rest_exist(db_entity)
 
         entity_id = db_entity.id
         raise 'Article exist' if Articles.find_article_by_restaurant_id(entity_id)
@@ -50,13 +55,22 @@ module Ewa
         Article.rebuild_entity(PersistRestaurant.new(entity).put_article_to_db(entity_id))
       end
 
-      def self.update_pictures2db(entity)
-        rest_exist
+      def self.update_pictures2db(db_entity)
+        rest_exist(db_entity)
 
         entity_id = db_entity.id
         raise 'Already ten pictures exist' if Pictures.find_all_pics_by_restaurant_id(entity_id).length > 9
 
         Pictures.rebuild_many(PersistRestaurant.new(entity).put_pics_to_db(entity_id))
+      end
+
+      def self.update_ewa_tag2db(db_entity)
+        rest_exist(db_entity)
+
+        entity_id = db_entity.id
+        raise 'Ewa tag exist' if EwaTags.find_ewa_tag_by_restaurant_id(entity_id)
+
+        EwaTags.rebuild_entity(PersistRestaurant.new(entity).put_ewa_tag_to_db(entity_id))
       end
 
       def self.create(entity)
@@ -76,13 +90,16 @@ module Ewa
         db_record[:tags] = JSON.parse(db_record[:tags])
         db_record[:open_hours] = JSON.parse(db_record[:open_hours])
 
-        Entity::Restaurant.new(db_record.to_hash.merge(
-                                 article: Articles.rebuild_entity(
-                                   Articles.find_article_by_restaurant_id(db_record_id), db_record.name
-                                 ),
-                                 reviews: Reviews.find_all_reviews_by_restaurant_id(db_record_id),
-                                 pictures: Pictures.find_all_pics_by_restaurant_id(db_record_id)
-                               ))
+        Entity::Restaurant.new(
+          db_record.to_hash.merge(
+            article: Articles.rebuild_entity(
+              Articles.find_article_by_restaurant_id(db_record_id), db_record.name
+            ),
+            reviews: Reviews.find_all_reviews_by_restaurant_id(db_record_id),
+            pictures: Pictures.find_all_pics_by_restaurant_id(db_record_id),
+            ewa_tag: EwaTags.find_ewa_tag_by_restaurant_id(db_record_id)
+          )
+        )
       end
       # rubocop:enable Metrics/MethodLength
 
@@ -98,6 +115,7 @@ module Ewa
           @hash_rest.delete(:reviews)
           @hash_rest.delete(:article)
           @hash_rest.delete(:pictures)
+          @hash_rest.delete(:ewa_tag)
         end
 
         def create_restaurant
@@ -118,6 +136,9 @@ module Ewa
 
           # create pictures to database
           put_pics_to_db(restaurant_db_entity_id)
+
+          # create ewa_tag to database
+          put_ewa_tag_to_db(restaurant_db_entity_id)
         end
 
         def call
@@ -149,6 +170,11 @@ module Ewa
           pictures.map do |picture|
             Pictures.db_find_or_create(picture, restaurant_db_entity_id)
           end
+        end
+
+        def put_ewa_tag_to_db(restaurant_db_entity_id)
+          ewa_tag = @entity.ewa_tag
+          EwaTags.db_find_or_create(ewa_tag, restaurant_db_entity_id)
         end
       end
     end
