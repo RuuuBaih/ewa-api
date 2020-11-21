@@ -84,7 +84,7 @@ module Ewa
           if (@hash != {}) && @hash.key?('reviews') && @hash.key?('photos')
             AggregatedRestaurantObjs.new(poi_hash, @hash).aggregate_restaurant_objs
           else
-            hash.clear
+            poi_hash.clear
           end
         end
 
