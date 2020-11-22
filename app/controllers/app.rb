@@ -2,6 +2,7 @@
 require 'json'
 require 'roda'
 require 'slim'
+require 'slim/include'
 
 module Ewa
   # Web App
@@ -10,6 +11,9 @@ module Ewa
     plugin :assets, css: 'style.css', path: 'app/presentation/assets'
     plugin :halt
     plugin :flash
+    plugin :all_verbs
+
+    use Rack::MethodOverride
 
     route do |routing|
       routing.assets # load CSS
@@ -17,6 +21,10 @@ module Ewa
       # POST /
       routing.root do
         restaurants = Repository::For.klass(Entity::Restaurant).all
+
+        if restaurants.none?
+          flash.now[:notice] = '尋找城市，開啟饗宴！ Search a place to get started'
+        end
         # session[:pick_9rests] ||= []
         view 'home_test', locals: { restaurants: restaurants }
       end
@@ -25,14 +33,6 @@ module Ewa
         routing.is do
           # POST /restaurant
           routing.post do
-            # Get restaurant information from pixnet & gmap api
-=begin            
-                         restaurant_entities = Restaurant::RestaurantMapper.new(App.config.GMAP_TOKEN).restaurant_obj_lists
-            
-                         restaurant_entities.map do |restaurant_entity|
-                           Repository::For.entity(restaurant_entity).create(restaurant_entity)
-                         end
-=end                         
             # parameters call from view
             town = routing.params['town']
             min_money = routing.params['min_money']
@@ -67,8 +67,8 @@ module Ewa
             routing.get do
               # path = request.remaining_path
               rest_detail = Repository::For.klass(Entity::Restaurant).find_by_rest_id(rest_id)
-              # pick_9rests = session[:pick_9rests]
-              view 'test_detail', locals: { rest_detail: rest_detail }
+              pick_9rests = session[:pick_9rests]
+              view 'test_detail', locals: { rest_detail: rest_detail, pick_9rests: pick_9rests }
             end
           end
         end
