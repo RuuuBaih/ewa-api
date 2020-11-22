@@ -44,10 +44,13 @@ module Ewa
             # pick 9 restaurants
             rests = Mapper::RestaurantOptions.new(selected_entities)
             pick_9rests = rests.random_9picks
-            session[:pick_9rests] = pick_9rests
+            rests_info = Mapper::RestaurantOptions::GetRestInfo.new(pick_9rests)
+            pick_ids = rests_info._9_id_infos
+            img_links = rests_info.random_thumbs
+            session[:pick_9rests] = pick_ids
             #session[:img_num] = img_num
             # pick_one = @rests.pick_one(@pick_9rests, 2)
-            view 'restaurant_test', locals: { pick_9rests: pick_9rests }
+            view 'restaurant_test', locals: { pick_9rests: pick_ids , img_links: img_links}
             # routing.redirect "restaurant/test_detail"
           end
         end
@@ -67,8 +70,8 @@ module Ewa
             routing.get do
               # path = request.remaining_path
               rest_detail = Repository::For.klass(Entity::Restaurant).find_by_rest_id(rest_id)
-              # pick_9rests = session[:pick_9rests]
-              view 'test_detail', locals: { rest_detail: rest_detail }
+              pick_9rests = session[:pick_9rests]
+              view 'test_detail', locals: { rest_detail: rest_detail , pick_9rests: pick_9rests }
             end
           end
         end
