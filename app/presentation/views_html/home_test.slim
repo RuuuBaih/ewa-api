@@ -12,14 +12,14 @@
                     id='github_url_input' class="form-control"
                     placeholder= 'Town'
                   }
-
+            
                 .col-md-6
                   input { 
                     type='text' name='min_money'
                     id='min_money' class="form-control"
                     placeholder= 'Min Price'
                   } 
-
+                
                 .col-md-6
                   input { 
                     type='text' name='max_money'
@@ -32,7 +32,7 @@
                 .col-md-12
                   button { 
                     type='submit' id='repo-form-submit' class='submit' 
-                    value='submit' class="btn btn-primary btn-block" 
+                    value='submit' class="btn btn-outline-primary btn-block" 
                   } Ewa Recommend
 
       .row
@@ -65,7 +65,6 @@
               .col-md-4.col-sm-6
                 input alt="Submit" src="https://findlife.com.tw/menu/blog/wp-content/uploads/2019/09/6-1.jpg" type="image" value="8" name="img_num"/
 
-    
       .row
         .blank-row
 
@@ -73,29 +72,5 @@
         .col-md-12
           button { 
             type='submit' id='repo-form-submit' action="/res_nine" class='submit' 
-            value='submit' class="btn btn-block btn-primary" 
+            value='submit' class="btn btn-block btn-outline-primary" 
           } Try Again
-
-    .col-md-6
-        .card.flex-md-row.mb-4.box-shadow.h-md-250
-          .card-body.d-flex.flex-column.align-items-start
-            .row
-              .col-md-12
-                strong.d-inline-block.mb-2.text-success =restaurants[0].tags
-                h3.mb-0
-                  a.text-dark =restaurants[0].name
-                .mb-1.text-muted =restaurants[0].branch_store_name
-                .mb-1.text-muted =restaurants[0].telephone
-                .mb-1.text-muted =restaurants[0].address
-                .mb-1.text-muted =restaurants[0].money
-                .mb-1.text-muted =restaurants[0].city
-                .mb-1.text-muted =restaurants[0].google_rating
-                .mb-1.text-muted =restaurants[0].open_hours
-                .mb-1.text-muted =restaurants[0].website
-            iframe allowfullscreen="" frameborder="0" height="150" src="https://www.google.com/maps/embed/v1/place?key=#{Ewa::App.config.GMAP_TOKEN}&q=Space+Needle,螺絲瑪莉" style="border:0" width="100%" 
-
-  .row
-    .blank-row
-  .row
-    .col-md-12
-      iframe allowfullscreen="" frameborder="0" height="500" src="https://aboa1110.pixnet.net/blog/post/290826385" style="border:0" width="100%" 
