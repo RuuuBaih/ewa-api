@@ -39,10 +39,11 @@ html
       section
         .row style="vertical-align: middle;"
           .col-6
-            h1.top-buffer
+            h1.top-buffer id="main_header"
               a href="/" Ewa in Tapei Area
               
       section
+        include :flash_bar
         == yield
 
       footer

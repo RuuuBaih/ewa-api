@@ -11,6 +11,7 @@ Sequel.migration do
       String :author_name
       String :profile_photo_url
       String :relative_time_description
+      Float :rating
       String :text
 
       DateTime :created_at

@@ -3,17 +3,11 @@
     .row      
       - 9.times do |num|
         .col-md-4.col-sm-6
-          button name="img_num" type="submit" value="#{pick_9rests[num].id}"
-            img alt="Submit" src="#{pick_9rests[num].cover_img}" width=150 height=150 
+          button name="img_num" type="submit" value="#{pick_ids[num]}"
+            img alt="Submit" src="#{img_links[num]}" width=150 height=150 
           
-          span.rest_detail
-          = "#{pick_9rests[num].id}"
 
-      .col-md-2.col-sm-3
-        button { 
-          type='submit' id='repo-form-submit' class='submit' 
-          value='submit' class="btn btn-success" 
-        } Show restaurant  
+
 
 
   .container
@@ -21,3 +15,5 @@
       .col-lg-1.col-md-2.col-sm-2
         span.restaurants.attribute
       .col-lg-11.col-md-10.col-sm-6
+      .col-md-2.col-sm-3
+        button class="btn btn-success" onclick="window.location.reload();" More Satisfied

@@ -32,6 +32,8 @@ module Ewa
       attribute :pictures,      Strict::Array.of(Picture)
       attribute :article,       Article
       attribute :ewa_tag,       EwaTag
+      attribute :clicks,        Integer.optional
+      attribute :likes,         Integer.optional
 
       def to_attr_hash
         to_hash.reject { |key, _| [:id].include? key }

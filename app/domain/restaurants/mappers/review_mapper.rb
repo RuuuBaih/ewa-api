@@ -31,7 +31,8 @@ module Ewa
             author_name: name,
             profile_photo_url: url,
             relative_time_description: time,
-            text: text
+            text: text,
+            rating: rating
           )
         end
 
@@ -51,6 +52,10 @@ module Ewa
 
         def text
           @data['text']
+        end
+
+        def rating
+          @data['rating'].to_f
         end
       end
     end
