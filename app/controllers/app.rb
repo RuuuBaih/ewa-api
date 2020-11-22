@@ -47,7 +47,7 @@ module Ewa
             session[:pick_9rests] = pick_9rests
             #session[:img_num] = img_num
             # pick_one = @rests.pick_one(@pick_9rests, 2)
-            view 'restaurant_test', locals: { pick_9rests: pick_9rests }
+            view 'restaurant', locals: { pick_9rests: pick_9rests }
             # routing.redirect "restaurant/test_detail"
           end
         end
@@ -68,7 +68,7 @@ module Ewa
               # path = request.remaining_path
               rest_detail = Repository::For.klass(Entity::Restaurant).find_by_rest_id(rest_id)
               # pick_9rests = session[:pick_9rests]
-              view 'test_detail', locals: { rest_detail: rest_detail }
+              view 'res_detail', locals: { rest_detail: rest_detail }
             end
           end
         end

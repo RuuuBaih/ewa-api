@@ -42,14 +42,14 @@
   .row
     .col-md-6
       .row
-        form role="form" action="/res_detail" method='POST' id='filter-form'
+        form role="form" action="restaurant/pick" method='POST' id='filter-form'
           .form-group
             .row
             
             .row      
               - 9.times do |num|
                 .col-md-4.col-sm-6
-                  button class="btn" name="img_num" type="submit" value="#{pick_9rests[num].name}"
+                  button class="btn" name="img_num" type="submit" value="#{pick_9rests[num].id}"
                     .img_wrap
                       img alt="Submit" src="#{pick_9rests[num].cover_img}" width=150 height=150 
                       .img_description_layer

@@ -1,15 +1,63 @@
 .container
   .row
-    h2
+    .col-md-6
       .row
-        span.img_num
-        = img_num
+        .col-md-12
+          form role="form" action="/restaurant" method='POST' id='filter-form'
+            .form-group
+              .row
+                .col-md-12
+                  input { 
+                    type='text' name='town'
+                    id='github_url_input' class="form-control"
+                    placeholder= 'Town'
+                  }
 
+                .col-md-6
+                  input { 
+                    type='text' name='min_money'
+                    id='min_money' class="form-control"
+                    placeholder= 'Min Price'
+                  } 
 
-        
+                .col-md-6
+                  input { 
+                    type='text' name='max_money'
+                    id='max_money' class="form-control"
+                    placeholder= 'Max Price'
+                  } 
+                   
+                .col-md-12
+                  .row.blank-row      
+                .col-md-12
+                  button { 
+                    type='submit' id='repo-form-submit' class='submit' 
+                    value='submit' class="btn btn-primary btn-block" 
+                  } Ewa Recommend
 
+    .col-md-6
+        .card.flex-md-row.mb-4.box-shadow.h-md-250
+          .card-body.d-flex.flex-column.align-items-start
+            .row
+              .col-md-12
+                strong.d-inline-block.mb-2.text-success =rest_detail.ewa_tag.ewa_tag
+                h3.mb-0
+                  a.text-dark =rest_detail.name
+                .mb-1.text-muted =rest_detail.telephone
+                .mb-1.text-muted =rest_detail.address
+                .mb-1.text-muted =rest_detail.money
+            iframe allowfullscreen="" frameborder="0" height="150" src="https://www.google.com/maps/embed/v1/place?key=#{Ewa::App.config.GMAP_TOKEN}&q=Space+Needle,螺絲瑪莉" style="border:0" width="100%" 
 
-
-
-  
-
+  .row
+    .blank-row
+  .row
+    .col-md-8
+      iframe allowfullscreen="" frameborder="0" height="700" src=rest_detail.article.link style="border:0" width="100%" 
+    .col-md-4
+      - 5.times do |num|
+        .card.flex-md-row.mb-4.box-shadow.h-md-250
+          .card-body.d-flex.flex-column.align-items-start
+            img src=rest_detail.reviews[num].profile_photo_url width=40 height=40 
+            span =rest_detail.reviews[num].author_name 
+            span =rest_detail.reviews[num].text
+            .mb-1.text-muted =rest_detail.reviews[num].relative_time_description
