@@ -20,6 +20,8 @@ Sequel.migration do
       String :open_hours
       String :address
       String :website
+      Integer :clicks
+      Integer :likes
 
       DateTime :created_at
       DateTime :updated_at

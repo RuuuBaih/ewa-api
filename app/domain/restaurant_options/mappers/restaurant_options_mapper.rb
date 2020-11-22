@@ -31,7 +31,6 @@ module Ewa
             pick.pictures[0..3].sample(1)[0].link
           end
         end
-
       end
     end
   end
