@@ -152,7 +152,9 @@ module Ewa
             reviews: reviews,
             pictures: pictures,
             article: article,
-            ewa_tag: ewa_tag
+            ewa_tag: ewa_tag,
+            clicks: nil,
+            likes: nil
           )
         end
         # rubocop:enable Metrics/MethodLength
