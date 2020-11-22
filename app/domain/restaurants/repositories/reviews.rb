@@ -24,6 +24,7 @@ module Ewa
           author_name: db_record.author_name,
           profile_photo_url: db_record.profile_photo_url,
           relative_time_description: db_record.relative_time_description,
+          rating: db_record.rating,
           text: db_record.text
         )
       end
