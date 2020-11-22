@@ -18,7 +18,6 @@ module Ewa
         Entity::Article.new(
           id: db_record.id,
           restaurant_name: restaurant_name,
-          # restaurant_id: db_record.restaurant_id,
           link: db_record.link
         )
       end

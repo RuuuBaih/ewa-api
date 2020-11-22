@@ -5,12 +5,12 @@ require 'dry-struct'
 
 module Ewa
   module Entity
-    # One restaurant pick of 9 restaurant options
-    class EwaTag < Dry::Struct
+    # Picture  Entity
+    class Picture < Dry::Struct
       include Dry.Types
-
       attribute :id, Integer.optional
-      attribute :ewa_tag, Strict::String.optional
+      attribute :link, Strict::String.optional
+      attribute :thumb, Strict::Bool.optional
 
       def to_attr_hash
         to_hash.reject { |key, _| [:id].include? key }

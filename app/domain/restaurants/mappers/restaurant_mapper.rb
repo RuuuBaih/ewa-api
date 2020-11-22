@@ -1,5 +1,8 @@
 # frozen_string_literal: false
 
+# require_relative '../../restaurant_options/mappers/restaurant_pick_mapper'
+require_relative '../../restaurant_options/init'
+
 module Ewa
   # Provides access to restuarant sites lists data
   module Restaurant
@@ -52,11 +55,7 @@ module Ewa
 
       # get google map place full details
       def gmap_place_details(poi_filtered_hash)
-        place_name = if poi_filtered_hash['branch_store_name'] != ''
-                       "#{poi_filtered_hash['name']}#{poi_filtered_hash['branch_store_name'].to_s}".gsub(' ', '')
-                     else
-                       "#{poi_filtered_hash['name']}#{poi_filtered_hash['town']}".gsub(' ', '')
-                     end
+        place_name = FoolProof.new(poi_filtered_hash).check_gmap_place_name
         gmap_place_gateway = @gateway_classes[:gmap_place].new(@token, place_name)
         place_id = gmap_place_gateway.place_id['candidates']
         if place_id.length.zero?
@@ -68,12 +67,36 @@ module Ewa
 
       def aggregate_rest_hashes
         pix_gateway_class = @gateway_classes[:pixnet]
-        PoiDetails.new(pix_gateway_class).poi_details.map do |hash|
-          place_details = gmap_place_details(hash)
-          if (place_details != {}) && place_details.key?('reviews')
-            AggregatedRestaurantObjs.new(hash, place_details).aggregate_restaurant_objs
+        PoiDetails.new(pix_gateway_class).poi_details.map do |poi_hash|
+          place_details = gmap_place_details(poi_hash)
+          FoolProof.new(place_details).check_aggregate(poi_hash)
+        end
+      end
+
+      # try to avoid some situations
+      class FoolProof
+        def initialize(hash)
+          @hash = hash
+        end
+
+        # try to avoid the restaurants without reviews and photos
+        def check_aggregate(poi_hash)
+          if (@hash != {}) && @hash.key?('reviews') && @hash.key?('photos')
+            AggregatedRestaurantObjs.new(poi_hash, @hash).aggregate_restaurant_objs
           else
-            hash.clear
+            poi_hash.clear
+          end
+        end
+
+        # try to search with restaurant name & branch store name or restaurant name & town
+        # try to avoid getting results from the wrong branch store or town
+        def check_gmap_place_name
+          branch_name = @hash['branch_store_name']
+          name = @hash['name']
+          if branch_name != ''
+            "#{name}#{branch_name}".gsub(' ', '')
+          else
+            "#{name}#{@hash['town']}".gsub(' ', '')
           end
         end
       end
@@ -84,26 +107,28 @@ module Ewa
         filtered_nil_hashes = aggregate_rest_hashes
         filtered_nil_hashes.delete_if(&:empty?)
 
-        RestaurantMapper::BuildRestaurantEntity.new(filtered_nil_hashes).build_entity
+        RestaurantMapper::BuildRestaurantEntity.new(filtered_nil_hashes, @token).build_entity
       end
 
       # build Restaurant Entity
       class BuildRestaurantEntity
-        def initialize(array_of_hashes)
+        def initialize(array_of_hashes, token)
           @array_of_hashes = array_of_hashes
+          @token = token
         end
 
         def build_entity
           @array_of_hashes.map do |hash|
-            DataMapper.new(hash).build_entity
+            DataMapper.new(hash, @token).build_entity
           end
         end
       end
 
       # Extracts entity specific elements from data structure
       class DataMapper
-        def initialize(data)
+        def initialize(data, token)
           @data = data
+          @token = token
         end
 
         # rubocop:disable Metrics/MethodLength
@@ -125,7 +150,9 @@ module Ewa
             address: @data['address'],
             website: @data['website'],
             reviews: reviews,
-            article: article
+            pictures: pictures,
+            article: article,
+            ewa_tag: ewa_tag
           )
         end
         # rubocop:enable Metrics/MethodLength
@@ -141,6 +168,16 @@ module Ewa
           article = ArticleMapper.new(@data['name']).the_newest_article
           ArticleMapper::BuildArticleEntity.new(article).build_entity
         end
+
+        def pictures
+          pictures = PictureMapper.new(@token, @data['photos']).photo_lists
+          PictureMapper::BuildPictureEntity.new(pictures).build_entity
+        end
+
+        def ewa_tag
+          ewa_tag_hash = RestaurantPickMapper.new(@data).ewa_tag
+          RestaurantPickMapper::BuildEwaTagEntity.new(ewa_tag_hash).build_entity
+        end
       end
     end
 
@@ -154,15 +191,19 @@ module Ewa
 
       # get each aggregated restaurant obj ( Aggregate Pixnet POI, Gmap Place & Place details )
       def aggregate_restaurant_objs
-        address_website
-        open_hours
-        google_rating
-        reviews
-
+        filter
         @restaurant_hash
       end
 
       private
+
+      def filter
+        address_website
+        open_hours
+        google_rating
+        reviews
+        photos
+      end
 
       def address_website
         @restaurant_hash['address'] = @place_rets['formatted_address']
@@ -191,7 +232,13 @@ module Ewa
 
       def reviews
         @restaurant_hash['reviews'] = @place_rets['reviews'].reduce([]) do |start, hash|
-          start << FilterHash.new(hash).filtered_gmap_place_details_hash
+          start << FilterHash.new(hash).filtered_gmap_place_reviews_hash
+        end
+      end
+
+      def photos
+        @restaurant_hash['photos'] = @place_rets['photos'].reduce([]) do |start, hash|
+          start << FilterHash.new(hash).filtered_gmap_place_photos_hash
         end
       end
     end
@@ -223,8 +270,8 @@ module Ewa
       end
       # rubocop:enable Metrics/MethodLength
 
-      # filter the gmap place details fields, select what we want
-      def filtered_gmap_place_details_hash
+      # filter the gmap place reviews fields, select what we want
+      def filtered_gmap_place_reviews_hash
         @hash.select do |key, _value|
           key_lists = %w[
             author_name
@@ -232,6 +279,16 @@ module Ewa
             rating
             text
             relative_time_description
+          ]
+          key_lists.include? key
+        end
+      end
+
+      # filter the gmap place photos fields, select what we want
+      def filtered_gmap_place_photos_hash
+        @hash.select do |key, _value|
+          key_lists = %w[
+            photo_reference
           ]
           key_lists.include? key
         end
