@@ -14,7 +14,7 @@ module Ewa
       end
 
       # get restaurant id
-      class GetRestId
+      class GetRestInfo
         def initialize(nine_picks)
           @nine_picks = nine_picks
         end
@@ -23,6 +23,15 @@ module Ewa
         def _9_id_infos
           @nine_picks.map(&:id)
         end
+
+        # Get array of nine_picks's random thumb
+        def random_thumbs
+          # random_9picks's random thumb picture
+          @nine_picks.map do |pick|
+            pick.pictures[0..3].sample(1)[0].link
+          end
+        end
+
       end
     end
   end
