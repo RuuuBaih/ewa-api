@@ -8,10 +8,21 @@
               strong.d-inline-block.mb-2.text-success =rest_detail.ewa_tag.ewa_tag
               h3.mb-0
                 a.text-dark =rest_detail.name
-              .mb-1.text-muted =rest_detail.telephone
-              .mb-1.text-muted =rest_detail.address
-              .mb-1.text-muted =rest_detail.money
-              .mb-1.text-muted =rest_detail.google_rating
+              table style="width:100%" 
+                tr
+                  td Tel 
+                  td.mb-1.text-muted =rest_detail.telephone
+                tr
+                  td Address 
+                  td.mb-1.text-muted =rest_detail.address
+                tr
+                  td Cost 
+                  td.mb-1.text-muted =rest_detail.money
+                tr
+                  td Rating 
+                  td.mb-1.text-muted =rest_detail.google_rating
+
+
               
           iframe allowfullscreen="" frameborder="0" height="200" src="https://www.google.com/maps/embed/v1/place?key=#{Ewa::App.config.GMAP_TOKEN}&q=Space+Needle,龍都酒樓" style="border:0" width="100%" 
     .col-md-6
@@ -33,7 +44,7 @@
     .blank-row
   .row
     .col-md-8
-      iframe allowfullscreen="" frameborder="0" height="700" src=rest_detail.article.link style="border:0" width="100%" 
+      iframe allowfullscreen="" frameborder="0" height="1000" src=rest_detail.article.link style="border:0" width="100%" 
     .col-md-4
       - 5.times do |num|
         .card.flex-md-row.mb-4.box-shadow.h-md-250
