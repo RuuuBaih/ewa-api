@@ -20,10 +20,13 @@ module Ewa
 
       # POST /
       routing.root do
+        # Get cookie viewer's previously seen projects
+        session[:watching] ||= []
+
         restaurants = Repository::For.klass(Entity::Restaurant).all
 
         if restaurants.none?
-          flash.now[:notice] = '尋找城市，開啟饗宴！ Search a place to get started'
+          flash.now[:watching] = '尋找城市，開啟饗宴！ Search a place to get started!'
         end
         # session[:pick_9rests] ||= []
         view 'home_test', locals: { restaurants: restaurants }
