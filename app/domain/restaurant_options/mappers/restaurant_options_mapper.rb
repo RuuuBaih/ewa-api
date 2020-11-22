@@ -31,6 +31,14 @@ module Ewa
             pick.pictures[0..3].sample(1)[0].link
           end
         end
+
+        def _9_name_infos
+          # random_9picks's array of names
+          @nine_picks.map do |pick|
+            pick.name
+          end
+        end
+
       end
     end
   end

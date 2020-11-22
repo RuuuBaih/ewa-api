@@ -15,14 +15,16 @@
             
                 .col-md-6
                   input { 
-                    type='text' name='min_money'
+                    type='number' name='min_money'
+                    min='0'
                     id='min_money' class="form-control"
                     placeholder= 'Min Price'
                   } 
                 
                 .col-md-6
                   input { 
-                    type='text' name='max_money'
+                    type='number' name='max_money'
+                    min='100'
                     id='max_money' class="form-control"
                     placeholder= 'Max Price'
                   } 
