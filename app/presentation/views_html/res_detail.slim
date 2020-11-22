@@ -12,22 +12,22 @@
               .mb-1.text-muted =rest_detail.address
               .mb-1.text-muted =rest_detail.money
               .mb-1.text-muted =rest_detail.google_rating
-          iframe allowfullscreen="" frameborder="0" height="150" src="https://www.google.com/maps/embed/v1/place?key=#{Ewa::App.config.GMAP_TOKEN}&q=Space+Needle,螺絲瑪莉" style="border:0" width="100%" 
+              
+          iframe allowfullscreen="" frameborder="0" height="200" src="https://www.google.com/maps/embed/v1/place?key=#{Ewa::App.config.GMAP_TOKEN}&q=Space+Needle,龍都酒樓" style="border:0" width="100%" 
     .col-md-6
       .row
         .column
-          img src=rest_detail.pictures[0].link style="width:100%" 
-          img src=rest_detail.pictures[1].link style="width:100%" 
-          img src=rest_detail.pictures[2].link style="width:100%" 
+          img.res-pic src=rest_detail.pictures[0].link style="width:100%" 
+          img.res-pic src=rest_detail.pictures[1].link style="width:100%" 
+          img.res-pic src=rest_detail.pictures[2].link style="width:100%" 
         .column
-          img src=rest_detail.pictures[3].link style="width:100%" 
-          img src=rest_detail.pictures[4].link style="width:100%"
-          img src=rest_detail.pictures[5].link style="width:100%"  
+          img.res-pic src=rest_detail.pictures[3].link style="width:100%" 
+          img.res-pic src=rest_detail.pictures[4].link style="width:100%"
+          img.res-pic src=rest_detail.pictures[5].link style="width:100%"  
         .column
-          img src=rest_detail.pictures[6].link style="width:100%" 
-          img src=rest_detail.pictures[7].link style="width:100%" 
-          img src=rest_detail.pictures[8].link style="width:100%" 
-
+          img.res-pic src=rest_detail.pictures[6].link style="width:100%" 
+          img.res-pic src=rest_detail.pictures[7].link style="width:100%" 
+          img.res-pic src=rest_detail.pictures[8].link style="width:100%" 
 
   .row
     .blank-row

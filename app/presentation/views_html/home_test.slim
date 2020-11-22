@@ -40,37 +40,15 @@
 
   .row
     .col-md-6
-      .row
-        form role="form" action="/res_detail" method='POST' id='filter-form'
+
+        form role="form" action="restaurant/pick" method='POST' id='filter-form'
           .form-group
             .row
-              .col-md-4.col-sm-6
-                   input alt="Submit" src="https://s.pixfs.net/common/poi/restaurant.jpg" type="image" value="0" name="img_num"/
-              .col-md-4.col-sm-6
-                input alt="Submit" src="https://cdn.funnow.com.tw/images/oblog/%E6%96%B9%E5%BD%A2960_9603.002_8bbd8a.jpg" type="image" value="1" name="img_num"/
-              .col-md-4.col-sm-6
-                input alt="Submit" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSE2WdGlyjIyeNJEjgALVoKGjoCxDBKfaEFsA&usqp=CAU" type="image" value="2" name="img_num"/
-
-              .col-md-4.col-sm-6
-                input alt="Submit" src="https://i1.wp.com/imreadygo.com/wp-content/uploads/2019/08/FotoJet-2-9.jpg?fit=750%2C750&ssl=1" type="image" value="3" name="img_num"/
-              .col-md-4.col-sm-6
-                input alt="Submit" src="https://pic.pimg.tw/ping01ching02/1598768853-2660427255-g_l.jpg" type="image" value="4" name="img_num"/
-              .col-md-4.col-sm-6
-                input alt="Submit" src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/ryjtyj-1599131005.jpg?crop=0.487xw:0.974xh;0,0.0261xh&resize=640:*" type="image" value="5" name="img_num"/
-
-              .col-md-4.col-sm-6
-                input alt="Submit" src="https://www.adaymag.com/wp-content/uploads/2015/08/adaymag-food-photography-tips-8-02.jpg" type="image" value="6" name="img_num"/
-              .col-md-4.col-sm-6
-                input alt="Submit" src="https://www.adaymag.com/wp-content/uploads/2015/08/adaymag-instagram9-05.jpg" type="image" value="7" name="img_num"/
-              .col-md-4.col-sm-6
-                input alt="Submit" src="https://findlife.com.tw/menu/blog/wp-content/uploads/2019/09/6-1.jpg" type="image" value="8" name="img_num"/
-
-      .row
-        .blank-row
-
-      .row
-        .col-md-12
-          button { 
-            type='submit' id='repo-form-submit' action="/res_nine" class='submit' 
-            value='submit' class="btn btn-block btn-outline-primary" 
-          } Try Again
+              - 9.times do |num|
+                .col-md-4.col-sm-6
+                  button class="btn bg-transparent" name="img_num" type="submit" value="#{restaurants[num].id}"
+                    .img_wrap
+                      img.res-pic alt="Submit" src="#{restaurants[num].pictures[1].link}" width=150 height=150 
+                      .img_description_layer
+                        p.img_description = restaurants[num].name
+                        

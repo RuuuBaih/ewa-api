@@ -44,10 +44,11 @@
     align-content: center;
   }
 
-  input {
-    width: 90%;
-    height: 90%;
+  .res-pic {
     border-radius: 3%;
+    width:150px;
+    height:150px;
+    object-fit:cover;
   }
 
   .img_wrap:hover .img_description_layer {
@@ -175,3 +176,4 @@
         max-width: 100%;
       }
     }
+    

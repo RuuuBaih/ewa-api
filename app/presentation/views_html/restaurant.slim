@@ -1,4 +1,4 @@
-.container    
+.container
   .row
     .col-md-6
       .row
@@ -49,9 +49,9 @@
             .row      
               - 9.times do |num|
                 .col-md-4.col-sm-6
-                  button class="btn" name="img_num" type="submit" value="#{pick_9rests[num].id}"
+                  button class="btn bg-transparent" name="img_num" type="submit" value="#{pick_9rests[num].id}" 
                     .img_wrap
-                      img alt="Submit" src="#{pick_9rests[num].cover_img}" width=150 height=150 
+                      img.res-pic alt="Submit" src="#{pick_9rests[num].pictures[1].link}" width=150 height=150 
                       .img_description_layer
                         p.img_description = pick_9rests[num].name
 
@@ -62,4 +62,5 @@
             button { 
               type='submit' id='repo-form-submit' action="/res_nine" class='submit' 
               value='submit' class="btn btn-block btn-outline-primary" 
+              onclick="window.location.reload();" More Satisfied
             } Try Again
