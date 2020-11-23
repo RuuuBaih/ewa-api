@@ -24,7 +24,7 @@
 
 
               
-          iframe allowfullscreen="" frameborder="0" height="300" src="https://www.google.com/maps/embed/v1/place?key=#{Ewa::App.config.GMAP_TOKEN}&q=#{rest_detail.name}" style="border:0" width="100%" 
+          iframe allowfullscreen="" frameborder="0" height="300" src="https://www.google.com/maps/embed/v1/place?key=#{Ewa::App.config.GMAP_TOKEN}&q=#{rest_detail.name}#{rest_detail.branch_store_name}" style="border:0" width="100%" 
     .col-md-6
       .row
         .column
@@ -43,9 +43,9 @@
   .row
     .blank-row
   .row
-    .col-md-8
+    .col-md-9
       iframe allowfullscreen="" frameborder="0" height="1500" src=rest_detail.article.link style="border:0" width="100%" 
-    .col-md-4
+    .col-md-3
       - 5.times do |num|
         .card.flex-md-row.mb-4.box-shadow.h-md-250
           .card-body.d-flex.flex-column.align-items-start
