@@ -33,6 +33,8 @@ group :test do
   gem 'simplecov', '~> 0'
   gem 'vcr', '~> 6.0'
   gem 'webmock', '~> 3.0'
+  gem 'watir', '~> 6.17'
+  gem 'headless', '~> 2.3'
 end
 
 group :development, :test do
@@ -56,3 +58,4 @@ gem 'rake'
 group :production do
   gem 'pg'
 end
+
