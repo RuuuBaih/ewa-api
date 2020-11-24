@@ -51,7 +51,7 @@ module Ewa
             min_money = routing.params['min_money']
             max_money = routing.params['max_money']
             if (min_money.to_i >= max_money.to_i) ||
-                  (min_money.to_i <= 0) || (max_money.to_i <= 0)
+                  (min_money.to_i < 0) || (max_money.to_i <= 0)
               flash[:error] = '輸入格式錯誤 Wrong number type.'
               response.status = 400
               routing.redirect '/'
