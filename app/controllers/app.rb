@@ -51,7 +51,7 @@ module Ewa
             min_money = routing.params['min_money']
             max_money = routing.params['max_money']
             if (min_money.to_i >= max_money.to_i) ||
-                  (min_money.to_i <= 0) || (max_money.to_i <= 0)
+                  (min_money.to_i < 0) || (max_money.to_i <= 0)
               flash[:error] = '輸入格式錯誤 Wrong number type.'
               response.status = 400
               routing.redirect '/'
@@ -73,7 +73,7 @@ module Ewa
             img_links = rests_info.random_thumbs
             pick_names = rests_info._9_name_infos
             session[:pick_9rests] = pick_ids
-            if (pick_ids.count < 9)
+            if pick_ids.count < 9
               flash[:error] = '資料過少，無法顯示 Not enough data.'
               response.status = 400
               routing.redirect '/'
@@ -90,17 +90,31 @@ module Ewa
           routing.is do
             routing.post do
               rest_id = routing.params['img_num'].to_i
+              search = routing.params['search']
+              unless search.nil?
+                begin
+                  rest_search = Repository::For.klass(Entity::Restaurant).rest_convert2_id(search).nil?
+                rescue
+                  true
+                end
+                if rest_search == false
+                  rest_id = Repository::For.klass(Entity::Restaurant).rest_convert2_id(search).id
+                else
+                  flash[:error] = '無此餐廳 Restaurant is not found.'
+                  response.status = 400
+                  routing.redirect '/'
+                end
+              end 
               routing.redirect "pick/#{rest_id}"
             end
           end
 
           routing.on String do |rest_id|
             routing.get do
-              # path = request.remaining_path
               rest_detail = Repository::For.klass(Entity::Restaurant).find_by_rest_id(rest_id)
               pick_ids = session[:pick_ids]
               session[:watching].insert(0, rest_detail.id).uniq!
-              view 'res_detail', locals: { rest_detail: rest_detail , pick_ids: pick_ids }
+              view 'res_detail', locals: { rest_detail: rest_detail, pick_ids: pick_ids }
             end
           end
         end

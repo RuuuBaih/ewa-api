@@ -132,4 +132,21 @@
                       img.res-pic alt="Submit" src="#{restaurants[num].pictures[1].link}" width=150 height=150 
                       .img_description_layer
                         p.img_description = restaurants[num].name
+
+          .form-group
+            .row
+              .col-md-6
+                input { 
+                  type='text' name='search'
+                  id='search' class="form-control"
+                  placeholder= 'Max Price'
+                } 
+              .col-md-12
+                .row.blank-row      
+              .col-md-12
+                button {
+                  type='submit' id='filter-form-submit' class='submit' 
+                  value='submit' class="btn btn-outline-primary btn-block" 
+                } Find restaurant
+
                         
