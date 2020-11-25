@@ -27,18 +27,12 @@
           iframe allowfullscreen="" frameborder="0" height="300" src="https://www.google.com/maps/embed/v1/place?key=#{Ewa::App.config.GMAP_TOKEN}&q=#{rest_detail.name}#{rest_detail.branch_store_name}" style="border:0" width="100%" 
     .col-md-6
       .row
-        .column
-          img.res-pic src=rest_detail.pictures[0].link style="width:100%" 
-          img.res-pic src=rest_detail.pictures[1].link style="width:100%" 
-          img.res-pic src=rest_detail.pictures[2].link style="width:100%" 
-        .column
-          img.res-pic src=rest_detail.pictures[3].link style="width:100%" 
-          img.res-pic src=rest_detail.pictures[4].link style="width:100%"
-          img.res-pic src=rest_detail.pictures[5].link style="width:100%"  
-        .column
-          img.res-pic src=rest_detail.pictures[6].link style="width:100%" 
-          img.res-pic src=rest_detail.pictures[7].link style="width:100%" 
-          img.res-pic src=rest_detail.pictures[8].link style="width:100%" 
+        - x = 0
+        - 3.times do |col|
+          .column
+            - x.upto(x+2) do |num| 
+              img.res-pic src=rest_detail.pictures[num].link style="width:100%"
+                - x += 1
 
   .row
     .blank-row
