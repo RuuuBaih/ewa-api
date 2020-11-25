@@ -73,7 +73,7 @@ module Ewa
             img_links = rests_info.random_thumbs
             pick_names = rests_info._9_name_infos
             session[:pick_9rests] = pick_ids
-            if (pick_ids.count < 9)
+            if pick_ids.count < 9
               flash[:error] = '資料過少，無法顯示 Not enough data.'
               response.status = 400
               routing.redirect '/'
@@ -91,8 +91,12 @@ module Ewa
             routing.post do
               rest_id = routing.params['img_num'].to_i
               search = routing.params['search']
-              if !search.nil?
-                rest_search = Repository::For.klass(Entity::Restaurant).rest_convert2_id(search).nil? rescue true
+              unless search.nil?
+                begin
+                  rest_search = Repository::For.klass(Entity::Restaurant).rest_convert2_id(search).nil?
+                rescue
+                  true
+                end
                 if rest_search == false
                   rest_id = Repository::For.klass(Entity::Restaurant).rest_convert2_id(search).id
                 else
@@ -100,20 +104,13 @@ module Ewa
                   response.status = 400
                   routing.redirect '/'
                 end
-              end
-=begin               
-              else
-                flash[:error] = '無此餐廳 Restaurant is not found.'
-                response.status = 400
-                routing.redirect '/'
-=end          
+              end 
               routing.redirect "pick/#{rest_id}"
             end
           end
 
           routing.on String do |rest_id|
             routing.get do
-              # path = request.remaining_path
               rest_detail = Repository::For.klass(Entity::Restaurant).find_by_rest_id(rest_id)
               pick_ids = session[:pick_ids]
               session[:watching].insert(0, rest_detail.id).uniq!
