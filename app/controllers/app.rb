@@ -90,6 +90,23 @@ module Ewa
           routing.is do
             routing.post do
               rest_id = routing.params['img_num'].to_i
+              search = routing.params['search']
+              if !search.nil?
+                rest_search = Repository::For.klass(Entity::Restaurant).rest_convert2_id(search).nil? rescue true
+                if rest_search == false
+                  rest_id = Repository::For.klass(Entity::Restaurant).rest_convert2_id(search).id
+                else
+                  flash[:error] = '無此餐廳 Restaurant is not found.'
+                  response.status = 400
+                  routing.redirect '/'
+                end
+              end
+=begin               
+              else
+                flash[:error] = '無此餐廳 Restaurant is not found.'
+                response.status = 400
+                routing.redirect '/'
+=end          
               routing.redirect "pick/#{rest_id}"
             end
           end
@@ -100,7 +117,7 @@ module Ewa
               rest_detail = Repository::For.klass(Entity::Restaurant).find_by_rest_id(rest_id)
               pick_ids = session[:pick_ids]
               session[:watching].insert(0, rest_detail.id).uniq!
-              view 'res_detail', locals: { rest_detail: rest_detail , pick_ids: pick_ids }
+              view 'res_detail', locals: { rest_detail: rest_detail, pick_ids: pick_ids }
             end
           end
         end
