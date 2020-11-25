@@ -69,6 +69,7 @@ module Ewa
             rests = Mapper::RestaurantOptions.new(selected_entities)
             pick_9rests = rests.random_9picks
             rests_info = Mapper::RestaurantOptions::GetRestInfo.new(pick_9rests)
+            # rests_info = Restaurant::RestaurantOptionsMapper::GetRestInfo.new(pick_9rests)
             pick_ids = rests_info._9_id_infos
             img_links = rests_info.random_thumbs
             pick_names = rests_info._9_name_infos
@@ -91,30 +92,26 @@ module Ewa
             routing.post do
               rest_id = routing.params['img_num'].to_i
               search = routing.params['search']
-              unless search.nil?
-                begin
-                  rest_search = Repository::For.klass(Entity::Restaurant).rest_convert2_id(search).nil?
-                rescue
-                  true
-                end
-                if rest_search == false
-                  rest_id = Repository::For.klass(Entity::Restaurant).rest_convert2_id(search).id
-                else
-                  flash[:error] = '無此餐廳 Restaurant is not found.'
-                  response.status = 400
-                  routing.redirect '/'
-                end
-              end 
-              routing.redirect "pick/#{rest_id}"
+              rest_search = Repository::For.klass(Entity::Restaurant).rest_convert2_id(search).nil? rescue true
+              if rest_search == false
+                rest_pick_id = Repository::For.klass(Entity::Restaurant).rest_convert2_id(search).id
+                routing.redirect "pick/#{rest_pick_id}"
+              elsif !rest_id.zero?
+                rest_pick_id = rest_id
+                routing.redirect "pick/#{rest_pick_id}"
+              else
+                flash[:error] = '無此餐廳 Restaurant is not found.'
+                response.status = 400
+                routing.redirect '/'
+              end
             end
           end
 
           routing.on String do |rest_id|
             routing.get do
               rest_detail = Repository::For.klass(Entity::Restaurant).find_by_rest_id(rest_id)
-              pick_ids = session[:pick_ids]
               session[:watching].insert(0, rest_detail.id).uniq!
-              view 'res_detail', locals: { rest_detail: rest_detail, pick_ids: pick_ids }
+              view 'res_detail', locals: { rest_detail: rest_detail }
             end
           end
         end
