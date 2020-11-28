@@ -118,10 +118,12 @@
                     type='submit' id='filter-form-submit' class='submit' 
                     value='submit' class="btn btn-outline-primary btn-block" 
                   } Ewa Recommend
+              
+
+
 
   .row
     .col-md-6
-
         form role="form" action="restaurant/pick" method='POST' id='filter-form'
           .form-group
             .row
@@ -135,12 +137,6 @@
 
           .form-group
             .row
-              .col-md-6
-                input { 
-                  type='text' name='search'
-                  id='search' class="form-control"
-                  placeholder= 'Max Price'
-                } 
               .col-md-12
                 .row.blank-row      
               .col-md-12
@@ -148,5 +144,25 @@
                   type='submit' id='filter-form-submit' class='submit' 
                   value='submit' class="btn btn-outline-primary btn-block" 
                 } Find restaurant
+    
+    .col-md-6
+      form role="form" action="/restaurant" method='POST' id='filter-form'
+        .form-group
+          .col-md-6
+              input { 
+                type='text' name='min_money'
+                id='min_money' class="form-control"
+                placeholder= 'Search for a restaurant'
+              }
+              button {
+                    type='submit' id='filter-form-submit' class='submit' 
+                    value='submit' class="btn btn-outline-primary btn-block" 
+                  } Ewa Recommend
+          
+
+
+
+
+
 
                         
