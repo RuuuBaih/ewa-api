@@ -38,26 +38,18 @@ module Ewa
           session[:watching] = session[:watching][0..4]
         end
 
-        history_id = RestaurantOthers::History_id.new.call(session[:watching])
+        history = RestaurantOthers::History.new.call(session[:watching])
 
-        if history_id.failure?
-          flash[:error] = history_id.failure
+        if history.failure?
+          flash[:error] = history.failure
         else
-          his_id = history_id.value!
+          history_detail = history.value!
           if session[:watching].nil?
             flash.now[:notice] = '尋找城市，開啟饗宴！ Search a place to get started!'
           end
         end
 
-        history_name = RestaurantOthers::History_name.new.call(session[:watching])
-
-        if history_name.failure?
-          flash[:error] = history_name.failure
-        else
-          his_name = history_name.value!
-        end
-
-        view 'home_test', locals: { restaurants: restaurants, history_id: his_id, history_name: his_name  }
+        view 'home_test', locals: { restaurants: restaurants, history: history_detail }
       end
 
       routing.on 'restaurant' do
