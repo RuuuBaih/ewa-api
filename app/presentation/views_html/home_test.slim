@@ -8,9 +8,9 @@
             | History
           .dropdown-menu aria-labelledby="navbarDropdown"
 
-            - history.each do |hist|
+            - history.entity.each do |hist|
               a.dropdown-item onclick="window.location='restaurant/pick/#{hist.id}'" href="#"  =hist.name
-              -if history.last != hist
+              -if history.entity.last != hist
                 .dropdown-divider
 
     form.form-inline.my-2.my-lg-0 role="form" action="restaurant/pick" method="POST" id="search-form"
@@ -148,11 +148,11 @@
             .row
               - 9.times do |num|
                 .col-md-4.col-sm-6
-                  button class="btn bg-transparent" name="img_num" type="submit" value="#{restaurants[num].id}"
+                  button class="btn bg-transparent" name="img_num" type="submit" value="#{restaurants.entity[num].id}"
                     .img_wrap
-                      img.res-pic alt="Submit" src="#{restaurants[num].pictures[1].link}" width=150 height=150 
+                      img.res-pic alt="Submit" src="#{restaurants.entity[num].pictures[1].link}" width=150 height=150 
                       .img_description_layer
-                        p.img_description = restaurants[num].name
+                        p.img_description = restaurants.entity[num].name
           
     .col-md-6
       .card.flex-md-row.mb-4.box-shadow.h-md-250
