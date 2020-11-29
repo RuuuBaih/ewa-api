@@ -6,7 +6,7 @@
           form role="form" action="/restaurant" method='POST' id='filter-form'
             .form-group
               .row
-                .col-md-12
+                .col-md-8
                   select#sel1.form-control name="town"
                     option
                       | 地區
@@ -94,8 +94,14 @@
                       | 平溪區
                     option
                       | 貢寮區
-                    
-                .col-md-6
+                
+                .col-md-4
+                  button {
+                    type='submit' id='filter-form-submit' class='submit' 
+                    value='submit' class="btn btn-outline-primary btn-block" 
+                  } Ewa
+
+                .col-md-4
                   input { 
                     type='number' name='min_money'
                     min='0'
@@ -103,23 +109,15 @@
                     placeholder= 'Min Price'
                   } 
                 
-                .col-md-6
+                .col-md-4
                   input { 
                     type='number' name='max_money'
                     min='100'
                     id='max_money' class="form-control"
                     placeholder= 'Max Price'
                   } 
-                   
-                .col-md-12
-                  .row.blank-row      
-                .col-md-12
-                  button {
-                    type='submit' id='filter-form-submit' class='submit' 
-                    value='submit' class="btn btn-outline-primary btn-block" 
-                  } Ewa Recommend
-              
 
+        
 
 
   .row
@@ -134,30 +132,6 @@
                       img.res-pic alt="Submit" src="#{restaurants[num].pictures[1].link}" width=150 height=150 
                       .img_description_layer
                         p.img_description = restaurants[num].name
-
-          .form-group
-            .row
-              .col-md-12
-                .row.blank-row      
-              .col-md-12
-                button {
-                  type='submit' id='filter-form-submit' class='submit' 
-                  value='submit' class="btn btn-outline-primary btn-block" 
-                } Find restaurant
-    
-    .col-md-6
-      form role="form" action="/restaurant" method='POST' id='filter-form'
-        .form-group
-          .col-md-6
-              input { 
-                type='text' name='min_money'
-                id='min_money' class="form-control"
-                placeholder= 'Search for a restaurant'
-              }
-              button {
-                    type='submit' id='filter-form-submit' class='submit' 
-                    value='submit' class="btn btn-outline-primary btn-block" 
-                  } Ewa Recommend
           
 
 
