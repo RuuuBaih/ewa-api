@@ -9,7 +9,7 @@
                 .col-md-12
                   input { 
                     type='text' name='town'
-                    id='github_url_input' class="form-control"
+                    id='town' class="form-control"
                     placeholder= 'Town'
                   }
 
@@ -33,7 +33,7 @@
                   .row.blank-row      
                 .col-md-12
                   button { 
-                    type='submit' id='repo-form-submit' class='submit' 
+                    type='submit' id='filter-form-submit' class='submit' 
                     value='submit' class="btn btn-outline-primary btn-block" 
                   } Ewa Recommend
 
@@ -51,7 +51,7 @@
             .row      
               - 9.times do |num|
                 .col-md-4.col-sm-6
-                  button class="btn bg-transparent" name="img_num" type="submit" value="#{pick_9rests[num]}" 
+                  button class="btn bg-transparent" id="rest_pick_#{num}" name="img_num" type="submit" value="#{pick_9rests[num]}" 
                     .img_wrap
                       img.res-pic alt="Submit" src="#{img_links[num]}" width=150 height=150 
                       .img_description_layer
@@ -62,7 +62,7 @@
 
       .row
             button { 
-              type='submit' id='repo-form-submit' action="/res_nine" class='submit' 
+              type='submit' id='refresh-button' action="/res_nine" class='submit' 
               value='submit' class="btn btn-block btn-outline-primary" 
               onclick="window.location.reload();" More Satisfied
             } Try Again
