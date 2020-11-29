@@ -10,7 +10,7 @@
         .card-body.d-flex.flex-column.align-items-start
           .row
             .col-md-12
-              strong.d-inline-block.mb-2.text-success =rest_detail.ewa_tag.ewa_tag
+              strong.d-inline-block.mb-2.text-success =rest_detail.ewa_tag
               h3.mb-0
                 a.text-dark =rest_detail.name
               table style="width:100%" 
@@ -35,19 +35,19 @@
         - 3.times do |col|
           .column
             - x.upto(x+2) do |num| 
-              img.res-pic src=rest_detail.pictures[num].link style="width:100%"
+              img.res-pic src=rest_detail.entity.pictures[num].link style="width:100%"
                 - x += 1
 
   .row
     .blank-row
   .row
     .col-md-9
-      iframe allowfullscreen="" frameborder="0" height="1500" src=rest_detail.article.link style="border:0" width="100%" 
+      iframe allowfullscreen="" frameborder="0" height="1500" src=rest_detail.entity.article.link style="border:0" width="100%" 
     .col-md-3
       - 5.times do |num|
         .card.flex-md-row.mb-4.box-shadow.h-md-250
           .card-body.d-flex.flex-column.align-items-start
-            img src=rest_detail.reviews[num].profile_photo_url width=30 height=30 
-            span =rest_detail.reviews[num].author_name 
-            span =rest_detail.reviews[num].text
-            .mb-1.text-muted =rest_detail.reviews[num].relative_time_description
+            img src=rest_detail.entity.reviews[num].profile_photo_url width=30 height=30 
+            span =rest_detail.entity.reviews[num].author_name 
+            span =rest_detail.entity.reviews[num].text
+            .mb-1.text-muted =rest_detail.entity.reviews[num].relative_time_description

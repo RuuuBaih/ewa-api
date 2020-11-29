@@ -58,5 +58,10 @@ module Views
       def review_text
         @resdetail.reviews.text
       end
+      
+      def branch_store_name
+        @resdetail.branch_store_name
+      end
+      
     end
   end

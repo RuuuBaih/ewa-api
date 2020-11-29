@@ -7,6 +7,10 @@ module Views
       @restaurant = restaurant
     end
 
+    def entity
+      @restaurant
+    end
+
     def id
       @restaurant.id
     end
