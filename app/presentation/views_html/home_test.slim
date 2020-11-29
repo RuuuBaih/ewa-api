@@ -9,7 +9,8 @@
           .dropdown-menu aria-labelledby="navbarDropdown"
             - 5.times do |num|
               a.dropdown-item onclick="window.location='restaurant/pick/#{history[num].id}'" href="#"  =history[num].name 
-              .dropdown-divider
+              - unless num == 4
+                .dropdown-divider
 
     form.form-inline.my-2.my-lg-0 role="form" action="restaurant/pick" method="POST" id="search-form"
       input.form-control.mr-sm-2 aria-label="Search" placeholder="Search" type="search" name="search"
