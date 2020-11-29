@@ -1,3 +1,8 @@
+.container  
+  nav.navbar.navbar-expand-lg.navbar-light.bg-light
+    a.navbar-brand href="/"  Ewa in Taipei Area
+  .row.blank-row
+
 .container
   .row
     .col-md-6
@@ -5,7 +10,7 @@
         .card-body.d-flex.flex-column.align-items-start
           .row
             .col-md-12
-              strong.d-inline-block.mb-2.text-success =rest_detail.ewa_tag.ewa_tag
+              strong.d-inline-block.mb-2.text-success =rest_detail.ewa_tag
               h3.mb-0
                 a.text-dark =rest_detail.name
               table style="width:100%" id="rest_infos"
@@ -21,8 +26,6 @@
                 tr
                   td Rating 
                   td.mb-1.text-muted =rest_detail.google_rating
-
-
               
           iframe id="gmap_iframe" allowfullscreen="" frameborder="0" height="300" src="https://www.google.com/maps/embed/v1/place?key=#{Ewa::App.config.GMAP_TOKEN}&q=#{rest_detail.name}#{rest_detail.branch_store_name}" style="border:0" width="100%" 
     .col-md-6

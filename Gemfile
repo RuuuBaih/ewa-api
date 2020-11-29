@@ -3,11 +3,19 @@
 source 'https://rubygems.org'
 ruby File.read('.ruby_version').strip
 
+# PRESENTATION LAYER
+gem 'slim', '~> 3.0'
+
 # Web Application
 gem 'econfig', '~> 2.1'
 gem 'puma', '~> 3.11'
 gem 'roda', '~> 3.8'
-gem 'slim', '~> 3.0'
+gem 'rack', '~> 2'
+
+# Controllers and services
+gem 'dry-monads'
+gem 'dry-transaction'
+gem 'dry-validation'
 
 # Validation
 gem 'dry-struct', '~> 1.3'
@@ -36,6 +44,10 @@ group :test do
   gem 'vcr', '~> 6.0'
   gem 'watir', '~> 6.17'
   gem 'webmock', '~> 3.0'
+
+  gem 'headless', '~> 2.3'
+  gem 'page-object', '~> 2.2'
+  gem 'watir', '~> 6.17'
 end
 
 group :development, :test do
@@ -54,7 +66,7 @@ group :development, :test do
 end
 
 # Utilities
-gem 'rake'
+gem 'rake', '~> 13.0'
 
 group :production do
   gem 'pg'
