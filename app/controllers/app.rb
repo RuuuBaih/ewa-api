@@ -26,16 +26,14 @@ module Ewa
 
         restaurants = Repository::For.klass(Entity::Restaurant).all
 
-        if session[:watching].count > 5
-          session[:watching] = session[:watching][0..4]
-        end
+        session[:watching] = session[:watching][0..4] if session[:watching].count > 5
 
-        unless session[:watching].nil?
+        if session[:watching].nil?
+          flash.now[:notice] = '尋找城市，開啟饗宴！ Search a place to get started!'
+        else
           history = session[:watching].map do |history_id|
             Repository::For.klass(Entity::Restaurant).find_by_rest_id(history_id)
           end
-        else
-          flash.now[:notice] = '尋找城市，開啟饗宴！ Search a place to get started!'
         end
 
         # session[:pick_9rests] ||= []
@@ -51,12 +49,12 @@ module Ewa
             min_money = routing.params['min_money']
             max_money = routing.params['max_money']
             if (min_money.to_i >= max_money.to_i) ||
-                  (min_money.to_i <= 0) || (max_money.to_i <= 0)
+               (min_money.to_i <= 0) || (max_money.to_i <= 0)
               flash[:error] = '輸入格式錯誤 Wrong number type.'
               response.status = 400
               routing.redirect '/'
             end
-            if (max_money.to_i <= 100)
+            if max_money.to_i <= 100
               flash[:error] = '金額過小 Max price is too small.'
               response.status = 400
               routing.redirect '/'
@@ -66,14 +64,14 @@ module Ewa
                                                .find_by_town_money(town, min_money, max_money)
 
             # pick 9 restaurants
-            rests = Mapper::RestaurantOptions.new(selected_entities)
+            rests = Restaurant::RestaurantOptionsMapper.new(selected_entities)
             pick_9rests = rests.random_9picks
-            rests_info = Mapper::RestaurantOptions::GetRestInfo.new(pick_9rests)
+            rests_info = Restaurant::RestaurantOptionsMapper::GetRestInfo.new(pick_9rests)
             pick_ids = rests_info._9_id_infos
             img_links = rests_info.random_thumbs
             pick_names = rests_info._9_name_infos
             session[:pick_9rests] = pick_ids
-            if (pick_ids.count < 9)
+            if pick_ids.count < 9
               flash[:error] = '資料過少，無法顯示 Not enough data.'
               response.status = 400
               routing.redirect '/'
@@ -100,7 +98,7 @@ module Ewa
               rest_detail = Repository::For.klass(Entity::Restaurant).find_by_rest_id(rest_id)
               pick_ids = session[:pick_ids]
               session[:watching].insert(0, rest_detail.id).uniq!
-              view 'res_detail', locals: { rest_detail: rest_detail , pick_ids: pick_ids }
+              view 'res_detail', locals: { rest_detail: rest_detail, pick_ids: pick_ids }
             end
           end
         end
