@@ -4,10 +4,12 @@ require 'json'
 require 'roda'
 require 'slim'
 require 'slim/include'
+#require_relative 'helpers.rb'
 
 module Ewa
   # Web App
   class App < Roda
+    #include RouteHelpers
     plugin :render, engine: 'slim', views: 'app/presentation/views_html'
     plugin :assets, css: 'style.css', path: 'app/presentation/assets'
     plugin :halt
@@ -30,6 +32,17 @@ module Ewa
           session[:watching] = session[:watching][0..4]
         end
 
+        history_id = RestaurantOthers::History.new.call(session[:watching])
+
+        if history_id.failure?
+          flash[:error] = result.failure
+        else
+          history = history_id.value!
+          if session[:watching].nil?
+            flash.now[:notice] = '尋找城市，開啟饗宴！ Search a place to get started!'
+          end
+        end
+=begin
         unless session[:watching].nil?
           history = session[:watching].map do |history_id|
             Repository::For.klass(Entity::Restaurant).find_by_rest_id(history_id)
@@ -37,7 +50,7 @@ module Ewa
         else
           flash.now[:notice] = '尋找城市，開啟饗宴！ Search a place to get started!'
         end
-
+=end
         # session[:pick_9rests] ||= []
         view 'home_test', locals: { restaurants: restaurants, history: history }
       end
@@ -87,22 +100,22 @@ module Ewa
 
         routing.on 'pick' do
           # POST /restaurant/pick
-          # select one of them
+          # select one of 9 pick or search restaurant by name
           routing.is do
             routing.post do
               rest_id = routing.params['img_num'].to_i
               search = routing.params['search']
-              rest_search = Repository::For.klass(Entity::Restaurant).rest_convert2_id(search).nil? rescue true
-              if rest_search == false
-                rest_pick_id = Repository::For.klass(Entity::Restaurant).rest_convert2_id(search).id
-                routing.redirect "pick/#{rest_pick_id}"
-              elsif !rest_id.zero?
+              search_result = RestaurantOthers::SearchRest.new.call(search)
+              if !rest_id.zero?
                 rest_pick_id = rest_id
                 routing.redirect "pick/#{rest_pick_id}"
-              else
-                flash[:error] = '無此餐廳 Restaurant is not found.'
-                response.status = 400
+                # viewable_projects = []
+              elsif search_result.failure?
+                flash[:error] = search_result.failure
                 routing.redirect '/'
+              else
+                rest_pick_id = search_result.value!
+                routing.redirect "pick/#{rest_pick_id}"
               end
             end
           end
