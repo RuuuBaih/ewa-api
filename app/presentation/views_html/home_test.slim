@@ -7,7 +7,6 @@
           a#navbarDropdown.nav-link.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button" 
             | History
           .dropdown-menu aria-labelledby="navbarDropdown"
-
             - 5.times do |num|
               a.dropdown-item onclick="window.location='restaurant/pick/#{history[num].id}'" href="#"  =history[num].name 
               .dropdown-divider
@@ -134,13 +133,12 @@
                     id='max_money' class="form-control"
                     placeholder= 'Max Price'
                   } 
-        .row
+
   .row
     .col-md-6
       .row
         form role="form" action="restaurant/pick" method='POST' id='filter-form'
           .form-group
-            .row
             .row
               - 9.times do |num|
                 .col-md-4.col-sm-6
