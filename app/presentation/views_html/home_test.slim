@@ -119,6 +119,15 @@
                     value='submit' class="btn btn-outline-primary btn-block" 
                   } Ewa Recommend
 
+                .col-md-12
+                  - history_id.each do |id|
+                      span.history_id
+                      =id
+                .col-md-12
+                  - history_name.each do |id|
+                      span.history_name
+                      =id              
+
   .row
     .col-md-6
 
