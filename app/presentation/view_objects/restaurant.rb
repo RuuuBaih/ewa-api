@@ -2,18 +2,10 @@
 
 module Views
     # View for a single project entity
-    class Restaurant
-      def initialize(restaurant)
-        @restaurant = restaurant
-      end
-  
-      def entity
-        @restaurant
-      end
-    
-      def name
-        @restaurant.name
-      end
+  class Restaurant
+    def initialize(restaurant)
+      @restaurant = restaurant
+    end
 
       def id
         @restaurant.id
@@ -24,3 +16,4 @@ module Views
       end
     end
   end
+end

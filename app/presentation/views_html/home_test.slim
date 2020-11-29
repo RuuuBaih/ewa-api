@@ -7,14 +7,10 @@
           a#navbarDropdown.nav-link.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button" 
             | History
           .dropdown-menu aria-labelledby="navbarDropdown"
-            - x = 0
-            - 5.times do |num|
-              - if history[num] != nil
-                - x += 1
 
-            - x.times do |num|
-              a.dropdown-item onclick="window.location='restaurant/pick/#{history[num].id}'" href="#"  =history[num].name 
-              - unless num == x-1
+            - history.each do |hist|
+              a.dropdown-item onclick="window.location='restaurant/pick/#{hist.id}'" href="#"  =hist.name
+              -if history.last != hist
                 .dropdown-divider
 
     form.form-inline.my-2.my-lg-0 role="form" action="restaurant/pick" method="POST" id="search-form"
@@ -142,6 +138,7 @@
                         type='submit' id='filter-form-submit' class='submit' 
                         value='submit' class="btn btn-outline-primary btn-block" 
                       } Ewa
+          
 
   .row
     .col-md-6
