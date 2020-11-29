@@ -7,13 +7,12 @@ module Views
       @restaurant = restaurant
     end
 
-      def id
-        @restaurant.id
-      end
+    def id
+      @restaurant.id
+    end
 
-      def pic_link
-        @restaurant.picture.link
-      end
+    def pic_link
+      @restaurant.picture.link
     end
   end
 end
