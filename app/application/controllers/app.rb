@@ -34,6 +34,8 @@ module Ewa
           restaurants = rest_all.value!
         end
 
+        viewable_restaurants = Views::Restaurant.new(restaurants)
+
         if session[:watching].count > 5
           session[:watching] = session[:watching][0..4]
         end
@@ -49,7 +51,9 @@ module Ewa
           end
         end
 
-        view 'home_test', locals: { restaurants: restaurants, history: history_detail }
+        viewable_history = Views::History.new(history_detail)
+
+        view 'home_test', locals: { restaurants: viewable_restaurants, history: viewable_history }
       end
 
       routing.on 'restaurant' do
@@ -104,7 +108,6 @@ module Ewa
             routing.post do
               rest_id = routing.params['img_num'].to_i
               search = routing.params['search']
-              #history = routing.params['history']
               search_result = RestaurantOthers::SearchRest.new.call(search)
               if !rest_id.zero?
                 rest_pick_id = rest_id
@@ -129,7 +132,8 @@ module Ewa
                 rest_detail = rest_find.value!
               end
               session[:watching].insert(0, rest_detail.id).uniq!
-              view 'res_detail', locals: { rest_detail: rest_detail }
+              viewable_resdetail = Views::Resdetail.new(rest_detail)
+              view 'res_detail', locals: { rest_detail: viewable_resdetail }
             end
           end
         end
