@@ -1,4 +1,22 @@
-.container
+.container  
+  nav.navbar.navbar-expand-lg.navbar-light.bg-light
+    a.navbar-brand href="/"  Ewa in Taipei Area
+    #navbarSupportedContent.collapse.navbar-collapse
+      ul.navbar-nav.mr-auto
+        li.nav-item.dropdown
+          a#navbarDropdown.nav-link.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button" 
+            | History
+          .dropdown-menu aria-labelledby="navbarDropdown" 
+            - 5.times do |num|
+              a.dropdown-item href="#"  =history[num].name 
+
+              .dropdown-divider
+
+    form.form-inline.my-2.my-lg-0
+      input.form-control.mr-sm-2 aria-label="Search" placeholder="Search" type="search" /
+      button.btn.btn-outline-success.my-2.my-sm-0 type="submit"  Search
+  .row.blank-row
+
   .row
     .col-md-6
       .row
@@ -116,14 +134,13 @@
                     id='max_money' class="form-control"
                     placeholder= 'Max Price'
                   } 
-
-        
-
-
+        .row
   .row
     .col-md-6
+      .row
         form role="form" action="restaurant/pick" method='POST' id='filter-form'
           .form-group
+            .row
             .row
               - 9.times do |num|
                 .col-md-4.col-sm-6
