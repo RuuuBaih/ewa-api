@@ -28,7 +28,7 @@
                 .form-group
                   .row
                     .col-md-4
-                      select#sel1.form-control name="town"
+                      select#sel1.form-control name="town" id="town_select"
                         option
                           | 地區
                         optgroup label=("台北市") 
@@ -143,7 +143,7 @@
   .row
     .col-md-6
       .row
-        form role="form" action="restaurant/pick" method='POST' id='filter-form'
+        form role="form" action="restaurant/pick" method='POST' id='filter-form-2'
           .form-group
             .row
               - 9.times do |num|
