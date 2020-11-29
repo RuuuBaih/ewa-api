@@ -12,8 +12,8 @@
               a.dropdown-item onclick="window.location='restaurant/pick/#{history[num].id}'" href="#"  =history[num].name 
               .dropdown-divider
 
-    form.form-inline.my-2.my-lg-0
-      input.form-control.mr-sm-2 aria-label="Search" placeholder="Search" type="search" /
+    form.form-inline.my-2.my-lg-0 role="form" action="restaurant/pick" method="POST" id="search-form"
+      input.form-control.mr-sm-2 aria-label="Search" placeholder="Search" type="search" name="search"
       button.btn.btn-outline-success.my-2.my-sm-0 type="submit"  Search
   .row.blank-row
 
@@ -150,10 +150,41 @@
                       .img_description_layer
                         p.img_description = restaurants[num].name
           
-
-
-
-
-
-
+    .col-md-6
+      .card.flex-md-row.mb-4.box-shadow.h-md-250
+        .card-body.d-flex.flex-column.align-items-start
+          .row
+            .col-md-12
+              strong.d-inline-block.mb-2.text-success What's Ewa Tag ?
+              table style="width:100%" 
+                tr
+                  td 老闆請客 Boss, please treat me!
+                  td.mb-1.text-muted Price[>= 1000] & Rating[>= 4.5]
+                tr
+                  td 存點錢再吃  Eat when you have budget!
+                  td.mb-1.text-muted  Price[>= 1000] & Rating[4 ~ 4.5]
+                tr
+                  td 女朋友叫你帶她去吃 Your girlfriend said she wants to eat that!
+                  td.mb-1.text-muted Price[500 ~ 1000] & Rating[>= 4.5]
+                tr
+                  td 同學會可食 Eat this in your class reunion!
+                  td.mb-1.text-muted Price[500 ~ 1000] & Rating[4 ~ 4.5]
+                tr
+                  td 發薪日可食 Eat when you get your salary!
+                  td.mb-1.text-muted Price[300 ~ 500] & Rating[>= 4.5]
+                tr
+                  td 吃拉，哪次不吃~ Ok, just eat that.
+                  td.mb-1.text-muted  Price[300 ~ 500] & Rating[4 ~ 4.5]
+                tr
+                  td 便宜上天堂 Go to heaven~
+                  td.mb-1.text-muted Price[1 ~ 300] & Rating[>= 4.5]
+                tr
+                  td cp值爆高 Cheap and happy!
+                  td.mb-1.text-muted Price[1 ~ 300] & Rating[4 ~ 4.5]
+                tr
+                  td 維持生命 Only maintaining my life
+                  td.mb-1.text-muted Price[1 ~ 300] & Rating[<= 3.5]
+                tr
+                  td 痛苦盤子 Eat sh**!
+                  td.mb-1.text-muted Price[> 300] & Rating[<= 3.5]
                         
