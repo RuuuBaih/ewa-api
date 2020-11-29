@@ -10,7 +10,7 @@ include Ewa
 include Ewa::Database
 include Restaurant
 include Repository
-include Mapper
+#include Mapper
 
 # config = YAML.safe_load(File.read('config/secrets.yml'))
 
