@@ -30,6 +30,7 @@ module Ewa
 
         if rest_all.failure?
           flash[:error] = rest_all.failure
+          routing.redirect '/'
         else
           restaurants = rest_all.value!
         end
@@ -44,6 +45,7 @@ module Ewa
 
         if history.failure?
           flash[:error] = history.failure
+          routing.redirect '/'
         else
           history_detail = history.value!
           if session[:watching].nil?
@@ -77,6 +79,7 @@ module Ewa
             selected_rest = RestaurantActions::SelectRest.new.call(town, min_money, max_money)
             if selected_rest.failure?
               flash[:error] = selected_rest.failure
+              routing.redirect '/'
             else
               selected_entities = selected_rest.value!
             end
@@ -85,6 +88,7 @@ module Ewa
             rests = RestaurantActions::Pick_9.new.call(selected_entities)
             if rests.failure?
               flash[:error] = rests.failure
+              routing.redirect '/'
             else
               rests_info = rests.value!
             end
@@ -128,6 +132,7 @@ module Ewa
               rest_find = RestaurantActions::FindRest.new.call(rest_id)
               if rest_find.failure?
                 flash[:error] = rest_find.failure
+                routing.redirect '/'
               else
                 rest_detail = rest_find.value!
               end
