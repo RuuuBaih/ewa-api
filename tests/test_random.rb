@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 include Ewa
 include Mapper
 include Repository
 include Entity
-town = '中山區' 
+town = '中山區'
 min_money = 0
 max_money = 1000
 # select restaurants from the database
