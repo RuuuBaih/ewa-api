@@ -19,13 +19,11 @@ require 'webmock'
 # require_relative '../app/models/entities/restaurant'
 # require_relative '../app/models/mappers/review_mapper'
 # require_relative '../app/models/entities/review'
-=begin
-require_relative '../app/models/init'
-=======
->>>>>>> views_sep
-require_relative '../app/controllers/init'
-require_relative '../config/init'
-=end
+# require_relative '../app/models/init'
+# =======
+# >>>>>>> views_sep
+# require_relative '../app/controllers/init'
+# require_relative '../config/init'
 require_relative '../../init'
 
 USERNAME = ''
@@ -34,3 +32,8 @@ GMAP_TOKEN = Ewa::App.config.GMAP_TOKEN
 
 CASSETTES_FOLDER = 'spec/fixtures/cassettes'
 CASSETTE_FILE = 'apis'
+
+# Helper methods
+def homepage
+  Ewa::App.config.APP_HOST
+end

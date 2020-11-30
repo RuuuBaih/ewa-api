@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Ewa
-  module Mapper
+  module Restaurant
     # Get filtered restaurant_pick
     class RestaurantPickMapper
       def initialize(rest_hash)

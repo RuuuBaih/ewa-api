@@ -13,8 +13,8 @@
               form role="form" action="/restaurant" method='POST' id='filter-form'
                 .form-group
                   .row
-                    .col-md-4
-                      select#sel1.form-control name="town"
+                    .col-md-4 id="town"
+                      select#sel1.form-control name="town" 
                         option
                           | 地區
                         optgroup label=("台北市") 
@@ -133,7 +133,7 @@
             .row      
               - 9.times do |num|
                 .col-md-4.col-sm-6
-                  button class="btn bg-transparent" name="img_num" type="submit" value="#{pick_9rests[num]}" 
+                  button class="btn bg-transparent" id="rest_pick_#{num}" name="img_num" type="submit" value="#{pick_9rests[num]}" 
                     .img_wrap
                       img.res-pic alt="Submit" src="#{img_links[num]}" width=150 height=150 
                       .img_description_layer
@@ -142,7 +142,7 @@
     .col-md-3
       .row
             button { 
-              type='submit' id='repo-form-submit' action="/res_nine" class='submit' 
+              type='submit' id='refresh-button' action="/res_nine" class='submit' 
               value='submit' class="btn btn-block btn-outline-primary" 
               onclick="window.location.reload();" More Satisfied
             } Try Again

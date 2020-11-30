@@ -7,17 +7,15 @@ REST_NAME = '螺絲瑪莉 Rose Mary'
 # puts 'newest_article'
 # puts @article_mapper.new(REST_NAME).the_newest_article
 @restaurant_mapper = Ewa::Restaurant::RestaurantMapper
-=begin
-# puts 'poi_details'
-poi = @restaurant_mapper.new(GMAP_TOKEN).PoiDetails.poi_details
-puts poi
-puts poi.length
-puts poi.class
-puts poi[0]['category_id']
-
-restaurant_entities = Ewa::Restaurant::RestaurantMapper.new(GMAP_TOKEN).restaurant_obj_lists[2]
-puts restaurant_entities
-=end
+# # puts 'poi_details'
+# poi = @restaurant_mapper.new(GMAP_TOKEN).PoiDetails.poi_details
+# puts poi
+# puts poi.length
+# puts poi.class
+# puts poi[0]['category_id']
+#
+# restaurant_entities = Ewa::Restaurant::RestaurantMapper.new(GMAP_TOKEN).restaurant_obj_lists[2]
+# puts restaurant_entities
 
 town = '三峽區'
 min_money = 10
