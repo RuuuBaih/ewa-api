@@ -34,7 +34,7 @@ describe 'Acceptance Tests' do
         @browser.goto @homepage
 
         # THEN: user should see basic headers, and a welcome message
-        _(@browser.select_lists(id: 'town_select').present?).must_equal true
+        _(@browser.select_list(name: 'town').present?).must_equal true
         _(@browser.text_field(id: 'min_money').present?).must_equal true
         _(@browser.text_field(id: 'max_money').present?).must_equal true
         _(@browser.button(id: 'filter-form-submit').present?).must_equal true
@@ -50,7 +50,11 @@ describe 'Acceptance Tests' do
         good_town = '中山區'
         good_min_mon = 10
         good_max_mon = 1000
-        @browser.select_lists(id: 'town_select').select_value(good_town)
+        @browser.select_list(name: 'town').options.each do |option|
+          if option.text == good_town
+            option.click
+          end
+        end
         @browser.text_field(id: 'min_money').set(good_min_mon)
         @browser.text_field(id: 'max_money').set(good_max_mon)
         @browser.button(id: 'filter-form-submit').click
@@ -62,27 +66,6 @@ describe 'Acceptance Tests' do
         end
       end
 
-=begin
-      it '(BAD) should not be able to search an invalid town' do
-        # GIVEN: user is on the home page
-        @browser.goto @homepage
-
-        # WHEN: they request restaurants with an invalid money input
-        bad_town = '新竹市'
-        good_min_mon = 10
-        good_max_mon = 1000
-        @browser.div(id: 'town').select(bad_town)
-        @browser.select_lists(id: 'town_select').select_value(bad_town)
-        @browser.text_field(id: 'min_money').set(good_min_mon)
-        @browser.text_field(id: 'max_money').set(good_max_mon)
-        @browser.button(id: 'filter-form-submit').click
-
-        # THEN: they should see a warning message
-        _(@browser.div(id: 'flash_bar_danger').present?).must_equal true
-        _(@browser.div(id: 'flash_bar_danger').text.downcase).must_include 'not enough'
-      end
-=end
-
       it '(BAD) should not be able to search an invalid money input ' do
         # GIVEN: user is on the home page
         @browser.goto @homepage
@@ -91,7 +74,11 @@ describe 'Acceptance Tests' do
         good_town = '中山區'
         bad_min_mon = 1000
         bad_max_mon = 100
-        @browser.select_lists(id: 'town_select').select_value(good_town)
+        @browser.select_list(name: 'town').options.each do |option|
+          if option.text == good_town
+            option.click
+          end
+        end
         @browser.text_field(id: 'min_money').set(bad_min_mon)
         @browser.text_field(id: 'max_money').set(bad_max_mon)
         @browser.button(id: 'filter-form-submit').click
@@ -108,37 +95,49 @@ describe 'Acceptance Tests' do
     good_min_mon = 10
     good_max_mon = 1000
 
-    it '(HAPPY) should see 9 recommended restaurants' do
-      # GIVEN: user is on the homepage's searching bars
-      @browser.goto @homepage
-      @browser.select_lists(id: 'town_select').select_value(good_town)
-      @browser.text_field(id: 'min_money').set(good_min_mon)
-      @browser.text_field(id: 'max_money').set(good_max_mon)
+    describe '9 recommended restaurants' do
+      it '(HAPPY) should see 9 recommended restaurants' do
+        # GIVEN: user is on the homepage's searching bars
+        @browser.goto @homepage
+        @browser.select_list(name: 'town').options.each do |option|
+          if option.text == good_town
+            option.click
+          end
+        end
+        @browser.text_field(id: 'min_money').set(good_min_mon)
+        @browser.text_field(id: 'max_money').set(good_max_mon)
 
-      # WHEN: they enter the correct town & money format and goes directly to the restaurants recommended page
-      @browser.button(id: 'filter-form-submit').click
+        # WHEN: they enter the correct town & money format and goes directly to the restaurants recommended page
+        @browser.button(id: 'filter-form-submit').click
 
-      # THEN: they should see the 9 restaurants recommended
-      9.times do |num|
-        _(@browser.button(id: "rest_pick_#{num}").present?).must_equal true
+        # THEN: they should see the 9 restaurants recommended
+        9.times do |num|
+          _(@browser.button(id: "rest_pick_#{num}").present?).must_equal true
+        end
       end
     end
 
-    it '(HAPPY) should see the try again button and also the search bars' do
-      # GIVEN: user is on the homepage's searching bars
-      @browser.goto @homepage
-      @browser.select_lists(id: 'town_select').select_value(good_town)
-      @browser.text_field(id: 'min_money').set(good_min_mon)
-      @browser.text_field(id: 'max_money').set(good_max_mon)
+    describe 'Searching bar & Retry button' do
+      it '(HAPPY) should see the try again button and also the search bars' do
+        # GIVEN: user is on the homepage's searching bars
+        @browser.goto @homepage
+        @browser.select_list(name: 'town').options.each do |option|
+          if option.text == good_town
+            option.click
+          end
+        end
+        @browser.text_field(id: 'min_money').set(good_min_mon)
+        @browser.text_field(id: 'max_money').set(good_max_mon)
 
-      # WHEN: they enter the correct town & money format and goes directly to the restaurants recommended page
-      @browser.button(id: 'filter-form-submit').click
+        # WHEN: they enter the correct town & money format and goes directly to the restaurants recommended page
+        @browser.button(id: 'filter-form-submit').click
 
-      # THEN: they should see the searching bars and refresh button
-      _(@browser.select_lists(id: 'town_select').present?).must_equal true
-      _(@browser.text_field(id: 'min_money').present?).must_equal true
-      _(@browser.text_field(id: 'max_money').present?).must_equal true
-      _(@browser.button(id: 'refresh-button').present?).must_equal true
+        # THEN: they should see the searching bars and refresh button on the restaurant recommended page
+        _(@browser.select_list(name: 'town').present?).must_equal true
+        _(@browser.text_field(id: 'min_money').present?).must_equal true
+        _(@browser.text_field(id: 'max_money').present?).must_equal true
+        _(@browser.button(id: 'refresh-button').present?).must_equal true
+      end
     end
   end
 
@@ -151,7 +150,11 @@ describe 'Acceptance Tests' do
       flag = true
       while flag
         @browser.goto @homepage
-        @browser.select_lists(id: 'town_select').select_value(good_town)
+        @browser.select_list(name: 'town').options.each do |option|
+          if option.text == good_town
+            option.click
+          end
+        end
         @browser.text_field(id: 'min_money').set(good_min_mon)
         @browser.text_field(id: 'max_money').set(good_max_mon)
         @browser.button(id: 'filter-form-submit').click
