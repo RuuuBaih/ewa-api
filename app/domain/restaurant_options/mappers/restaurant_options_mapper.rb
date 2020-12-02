@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 module Ewa
-  module Mapper
+  module Restaurant
     # Get filtered restaurant_repo_entites
-    class RestaurantOptions
+    class RestaurantOptionsMapper
       def initialize(filtered_all)
         @filtered_all = filtered_all
       end
@@ -34,11 +34,8 @@ module Ewa
 
         def _9_name_infos
           # random_9picks's array of names
-          @nine_picks.map do |pick|
-            pick.name
-          end
+          @nine_picks.map(&:name)
         end
-
       end
     end
   end

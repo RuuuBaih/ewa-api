@@ -20,9 +20,9 @@ module Ewa
     class Pick_9
       include Dry::Transaction
       def call(selected_entities)
-        rests = Mapper::RestaurantOptions.new(selected_entities)
+        rests = Restaurant::RestaurantOptionsMapper.new(selected_entities)
         pick_9rests = rests.random_9picks
-        rests_info = Mapper::RestaurantOptions::GetRestInfo.new(pick_9rests)
+        rests_info = Restaurant::RestaurantOptionsMapper::GetRestInfo.new(pick_9rests)
         Success(rests_info)
       rescue StandardError
         Failure('篩選資料錯誤 Filter error!')

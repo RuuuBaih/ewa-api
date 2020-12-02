@@ -36,10 +36,13 @@ end
 
 # Testing
 group :test do
+  gem 'geckodriver-helper'
+  gem 'headless', '~> 2.3'
   gem 'minitest', '~> 5.0'
   gem 'minitest-rg', '~> 5.0'
   gem 'simplecov', '~> 0'
   gem 'vcr', '~> 6.0'
+  gem 'watir', '~> 6.17'
   gem 'webmock', '~> 3.0'
 
   gem 'headless', '~> 2.3'
