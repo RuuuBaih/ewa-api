@@ -1,20 +1,20 @@
 # frozen_string_literal: true
 
-#require 'dry/monads'
+# require 'dry/monads'
 require 'dry/transaction'
 
 module Ewa
-  module RestaurantOthers
+  module Service
     # Retrieves restaurant entity by searching restaurant name
-    class SearchRest
+    class SearchRestName
       include Dry::Transaction
-      #include Dry::Monads::Result::Mixin
+      # include Dry::Monads::Result::Mixin
 
       def call(search)
         rest_pick_id = Repository::For.klass(Entity::Restaurant).rest_convert2_id(search).id
         Success(rest_pick_id)
-        rescue StandardError
-          Failure('無此餐廳 Restaurant is not found.')
+      rescue StandardError
+        Failure('無此餐廳 Restaurant is not found.')
       end
     end
   end

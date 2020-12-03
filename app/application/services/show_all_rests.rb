@@ -3,11 +3,11 @@
 require 'dry/transaction'
 
 module Ewa
-  module RestaurantActions
-    # filter restaurants based on money 
-    class Rest
+  module Service
+    # filter restaurants based on money
+    class ShowAllRests
       include Dry::Transaction
-      def RestAll
+      def call
         restaurants = Repository::For.klass(Entity::Restaurant).all
         Success(restaurants)
       rescue StandardError
