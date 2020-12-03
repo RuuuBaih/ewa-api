@@ -3,13 +3,13 @@
 require 'dry/transaction'
 
 module Ewa
-  module RestaurantActions
-    # filter restaurants based on money 
-    class SelectRest
+  module Service
+    # filter restaurants based on money
+    class SelectRests
       include Dry::Transaction
       def call(town, min_money, max_money)
         selected_entities = Repository::For.klass(Entity::Restaurant)
-                            .find_by_town_money(town, min_money, max_money)
+                                           .find_by_town_money(town, min_money, max_money)
         Success(selected_entities)
       rescue StandardError
         Failure('篩選資料錯誤 Filter error!')
@@ -17,7 +17,7 @@ module Ewa
     end
 
     # generate 9 restaurants
-    class Pick_9
+    class Pick9Rests
       include Dry::Transaction
       def call(selected_entities)
         rests = Restaurant::RestaurantOptionsMapper.new(selected_entities)

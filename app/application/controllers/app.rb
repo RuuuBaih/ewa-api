@@ -4,12 +4,12 @@ require 'json'
 require 'roda'
 require 'slim'
 require 'slim/include'
-#require_relative 'helpers.rb'
+# require_relative 'helpers.rb'
 
 module Ewa
   # Web App
   class App < Roda
-    #include RouteHelpers
+    # include RouteHelpers
     plugin :render, engine: 'slim', views: 'app/presentation/views_html'
     plugin :assets, css: 'style.css', path: 'app/presentation/assets'
     plugin :halt
@@ -26,7 +26,7 @@ module Ewa
         # Get cookie viewer's previously seen projects
         session[:watching] ||= []
 
-        rest_all = RestaurantActions::Rest.new.RestAll
+        rest_all = Service::ShowAllRests.new.call
 
         if rest_all.failure?
           flash[:error] = rest_all.failure
@@ -37,20 +37,16 @@ module Ewa
 
         viewable_restaurants = Views::Restaurant.new(restaurants)
 
-        if session[:watching].count > 5
-          session[:watching] = session[:watching][0..4]
-        end
+        session[:watching] = session[:watching][0..4] if session[:watching].count > 5
 
-        history = RestaurantOthers::History.new.call(session[:watching])
+        history = Service::SearchHistory.new.call(session[:watching])
 
         if history.failure?
           flash[:error] = history.failure
           routing.redirect '/'
         else
           history_detail = history.value!
-          if session[:watching].nil?
-            flash.now[:notice] = '尋找城市，開啟饗宴！ Search a place to get started!'
-          end
+          flash.now[:notice] = '尋找城市，開啟饗宴！ Search a place to get started!' if session[:watching].nil?
         end
 
         viewable_history = Views::History.new(history_detail)
@@ -67,16 +63,16 @@ module Ewa
             min_money = routing.params['min_money']
             max_money = routing.params['max_money']
             if (min_money.to_i >= max_money.to_i) ||
-                  (min_money.to_i < 0) || (max_money.to_i <= 0)
+               min_money.to_i.negative? || (max_money.to_i <= 0)
               flash[:error] = '輸入格式錯誤 Wrong number type.'
               routing.redirect '/'
             end
-            if (max_money.to_i <= 100)
+            if max_money.to_i <= 100
               flash[:error] = '金額過小 Max price is too small.'
               routing.redirect '/'
             end
             # select restaurants from the database
-            selected_rest = RestaurantActions::SelectRest.new.call(town, min_money, max_money)
+            selected_rest = Service::SelectRests.new.call(town, min_money, max_money)
             if selected_rest.failure?
               flash[:error] = selected_rest.failure
               routing.redirect '/'
@@ -85,7 +81,7 @@ module Ewa
             end
 
             # pick 9 restaurants
-            rests = RestaurantActions::Pick_9.new.call(selected_entities)
+            rests = Service::Pick9Rests.new.call(selected_entities)
             if rests.failure?
               flash[:error] = rests.failure
               routing.redirect '/'
@@ -112,7 +108,7 @@ module Ewa
             routing.post do
               rest_id = routing.params['img_num'].to_i
               search = routing.params['search']
-              search_result = RestaurantOthers::SearchRest.new.call(search)
+              search_result = Service::SearchRestName.new.call(search)
               if !rest_id.zero?
                 rest_pick_id = rest_id
                 routing.redirect "pick/#{rest_pick_id}"
@@ -129,7 +125,7 @@ module Ewa
 
           routing.on String do |rest_id|
             routing.get do
-              rest_find = RestaurantActions::FindRest.new.call(rest_id)
+              rest_find = Service::FindPickRest.new.call(rest_id)
               if rest_find.failure?
                 flash[:error] = rest_find.failure
                 routing.redirect '/'
@@ -140,6 +136,23 @@ module Ewa
               viewable_resdetail = Views::Resdetail.new(rest_detail)
               view 'res_detail', locals: { rest_detail: viewable_resdetail }
             end
+          end
+        end
+
+        routing.on 'random' do
+          # POST /restaurant/pick
+          # select one of 9 pick or search restaurant by name
+          routing.get do
+            test_ids = [1, 12, 22, 33, 32, 27, 45]
+            test_num = 5
+            random_picks = Service::SelectRandomRestList.new.call(test_ids, test_num)
+            if random_picks.failure?
+              flash[:error] = random_picks.failure
+              routing.redirect '/'
+            else
+              ret = random_picks.value!
+            end
+            view 'test_random', locals: { ret: ret }
           end
         end
       end
