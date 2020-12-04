@@ -12,6 +12,19 @@ module Ewa
 
       # :filtered_rests_infos include a collection of [ restaurant id ]
       collection :filtered_rests_infos, extend: Representer::RestaurantDetails, class: Response::OpenStructWithId
+      
+      link :filtered_details do
+        "#{Api.config.API_HOST}/filtered_restaurants/filtered_rests_infos/details"
+      end
+
+      link :filtered_random do
+        "#{Api.config.API_HOST}/filtered_restaurants/filtered_rests_infos/random"
+      end
+
+      link :filtered_random_details do
+        "#{Api.config.API_HOST}/filtered_restaurants/filtered_rests_infos/details?random_list={#{filtered_random}}"
+      end
+    
     end
   end
 end
