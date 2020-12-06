@@ -43,9 +43,9 @@ module Ewa
               routing.halt failed.http_status_code, failed.to_json
             end
             http_response = Representer::HttpResponse.new(result.value!)
-            raise "#{http_response.inspect}, #{http_response.class}, #{http_response.represented.status}"
+            
             response.status = http_response.http_status_code
-
+            raise "#{http_response.inspect}, #{http_response.class}, #{http_response.represented.status}"
             # change to our own representer "restaurant_all"
             Representer::AllRestaurants.new(
               result.value!.message
