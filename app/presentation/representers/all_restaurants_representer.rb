@@ -2,7 +2,8 @@
 
 require 'roar/decorator'
 require 'roar/json'
-require_relative 'restaurant_details_representer'
+require_relative 'restaurant_id_name_representer'
+require_relative 'openstruct_with_id_name'
 
 module Ewa
   module Representer
@@ -12,7 +13,7 @@ module Ewa
       
 
       # :rests_infos include a collection of [ restaurant id & restaurant name ]
-      collection :rests_infos, extend: Representer::RestaurantDetails, class: Response::OpenStructWithIdName
+      collection :rests_infos, extend: Representer::RestaurantIdName, class: Representer::OpenStructWithIdName
     
 
     end  
