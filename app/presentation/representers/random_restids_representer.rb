@@ -8,6 +8,8 @@ module Ewa
     # Represents random ids of restaurants
     class RandomRestIds < Roar::Decorator
       include Roar::JSON
+      include Roar::Hypermedia
+      include Roar::Decorator::HypermediaConsumer
       collection :ids, class: Response::OpenStructWithId
 
       link :random_details do

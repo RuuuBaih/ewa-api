@@ -9,6 +9,8 @@ module Ewa
     # Represents filtered restaurant ids & names
     class FilteredRestaurants < Roar::Decorator
       include Roar::JSON
+      include Roar::Hypermedia
+      include Roar::Decorator::HypermediaConsumer
 
       # :filtered_rests_infos include a collection of [ restaurant id ]
       collection :filtered_rests_infos, extend: Representer::RestaurantDetails, class: Response::OpenStructWithId
