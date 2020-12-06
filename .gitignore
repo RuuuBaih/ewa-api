@@ -1,4 +1,6 @@
 config/secrets.yml
+.irb_history
+*.db
 spec/fixtures/
 coverage/*
 !coverage/.resultset.json
@@ -16,6 +18,8 @@ build/
 *.bridgesupport
 build-iPhoneOS/
 build-iPhoneSimulator/
+
+.bundle/
 
 ## Specific to RubyMotion (use of CocoaPods):
 #

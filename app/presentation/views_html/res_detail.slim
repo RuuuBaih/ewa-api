@@ -1,0 +1,52 @@
+.container  
+  nav.navbar.navbar-expand-lg.navbar-light.bg-light
+    a.navbar-brand href="/"  Ewa in Taipei Area
+  .row.blank-row
+
+.container
+  .row
+    .col-md-6
+      .card.flex-md-row.mb-4.box-shadow.h-md-250
+        .card-body.d-flex.flex-column.align-items-start
+          .row
+            .col-md-12
+              strong.d-inline-block.mb-2.text-success =rest_detail.ewa_tag
+              h3.mb-0
+                a.text-dark =rest_detail.name
+              table style="width:100%" id="rest_infos"
+                tr
+                  td Tel 
+                  td.mb-1.text-muted =rest_detail.telephone
+                tr
+                  td Address 
+                  td.mb-1.text-muted =rest_detail.address
+                tr
+                  td Cost 
+                  td.mb-1.text-muted =rest_detail.money
+                tr
+                  td Rating 
+                  td.mb-1.text-muted =rest_detail.google_rating
+              
+          iframe id="gmap_iframe" allowfullscreen="" frameborder="0" height="300" src="https://www.google.com/maps/embed/v1/place?key=#{Ewa::App.config.GMAP_TOKEN}&q=#{rest_detail.name}#{rest_detail.branch_store_name}" style="border:0" width="100%" 
+    .col-md-6
+      .row
+        - x = 0
+        - 3.times do |col|
+          .column
+            - x.upto(x+2) do |num| 
+              img.res-pic id="picture_#{num}" src=rest_detail.entity.pictures[num].link style="width:100%"
+                - x += 1
+
+  .row
+    .blank-row
+  .row
+    .col-md-9
+      iframe id="blog_article" allowfullscreen="" frameborder="0" height="1500" src=rest_detail.entity.article.link style="border:0" width="100%" 
+    .col-md-3
+      - 5.times do |num|
+        .card.flex-md-row.mb-4.box-shadow.h-md-250
+          .card-body.d-flex.flex-column.align-items-start id="review_#{num}"
+            img src=rest_detail.entity.reviews[num].profile_photo_url width=30 height=30 
+            span id="review_name_#{num}" =rest_detail.entity.reviews[num].author_name 
+            span id="review_text_#{num}" =rest_detail.entity.reviews[num].text
+            .mb-1.text-muted id="review_time_#{num}" =rest_detail.entity.reviews[num].relative_time_description
