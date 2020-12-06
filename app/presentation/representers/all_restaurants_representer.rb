@@ -9,6 +9,7 @@ module Ewa
     # Represents all Restaurants ids & names
     class AllRestaurants < Roar::Decorator
       include Roar::JSON
+      
 
       # :rests_infos include a collection of [ restaurant id & restaurant name ]
       collection :rests_infos, extend: Representer::RestaurantDetails, class: Response::OpenStructWithIdName
