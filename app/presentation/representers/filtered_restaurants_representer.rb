@@ -26,6 +26,7 @@ module Ewa
       link :filtered_random_details do
         "#{Api.config.API_HOST}/filtered_restaurants/filtered_rests_infos/details?random_list={#{filtered_random}}"
       end
+
     
     end
   end

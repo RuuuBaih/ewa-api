@@ -16,6 +16,7 @@ module Ewa
         "#{Api.config.API_HOST}/random_rest_ids/ids/details"
       end
 
+
     end
   end
 end

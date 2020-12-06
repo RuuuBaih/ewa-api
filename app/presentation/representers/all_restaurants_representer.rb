@@ -15,9 +15,6 @@ module Ewa
       # :rests_infos include a collection of [ restaurant id & restaurant name ]
       collection :rests_infos, extend: Representer::RestaurantDetails, class: Response::OpenStructWithIdName
     
-      link :options do
-        "#{Api.config.API_HOST}/allrestaurants/rest_infos?town=#{town}&min=#{min}&max=#{max}"
-      end
 
       link :all_details do
         "#{Api.config.API_HOST}/allrestaurants/rest_infos/details"
