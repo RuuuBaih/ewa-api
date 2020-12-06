@@ -10,9 +10,7 @@ module Ewa
       include Roar::JSON
       collection :ids, class: Response::OpenStructWithId
 
-      link :random_details do
-        "#{Api.config.API_HOST}/random_rest_ids/ids/details"
-      end
+
 
     end
   end
