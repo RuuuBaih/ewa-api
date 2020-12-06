@@ -32,5 +32,6 @@ module Ewa
       link :random_details do
         "#{Api.config.API_HOST}/allrestaurants/rest_infos/details?random_list={#{random}}"
       end
+    end
   end
 end
