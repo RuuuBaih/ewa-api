@@ -3,8 +3,8 @@
 require 'roar/decorator'
 require 'roar/json'
 
-require_relative 'pictures_representer'
-require_relative 'reviews_representer'
+require_relative 'picture_representer'
+require_relative 'review_representer'
 require_relative 'article_representer'
 require_relative 'ewa_tag_representer'
 
@@ -31,8 +31,8 @@ module Ewa
       property :website
 
       ## reviews & pictures maybe more than one (consider the usage)
-      property :reviews, extend: Representer::Reviews, class: OpenStruct
-      property :pictures, extend: Representer::Pictures, class: OpenStruct
+      collection :reviews, extend: Representer::Review, class: OpenStruct
+      collection :pictures, extend: Representer::Picture, class: OpenStruct
 
       property :article, extend: Representer::Article, class: OpenStruct
       property :ewa_tag, extend: Representer::EwaTag, class: OpenStruct

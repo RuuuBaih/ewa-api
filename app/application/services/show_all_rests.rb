@@ -7,11 +7,17 @@ module Ewa
     # filter restaurants based on money
     class ShowAllRests
       include Dry::Transaction
+
       def call
         restaurants = Repository::For.klass(Entity::Restaurant).all
-        Success(restaurants)
+
+        Response::AllRestaurantsResp.new(restaurants)
+          .then do |all_rests|
+          Success(Response::ApiResult.new(status: :ok, message: all_rests))
+        end
+
       rescue StandardError
-        Failure('資料錯誤 Data error!')
+        Failure(Response::ApiResult.new(status: :internal_error, message: '無法獲取資料 Cannot access db'))
       end
     end
   end
