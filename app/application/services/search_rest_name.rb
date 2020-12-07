@@ -14,9 +14,13 @@ module Ewa
         # random pick one of the search, if the names are the same.
         # e.g. In db: ABC小館 DEF小館 --> user search "小館" will random show one of two
         rest_pick_id = (Repository::For.klass(Entity::Restaurant).rest_convert2_id(search)).sample(1)[0].id
-        Success(rest_pick_id)
+        Response::AllRestaurantsResp.new(rest_pick_id)
+          .then do |all_rests|
+          Success(Response::ApiResult.new(status: :ok, message: all_rests))
+        end
+
       rescue StandardError
-        Failure('無此餐廳 Restaurant is not found.')
+        Failure(Response::ApiResult.new(status: :internal_error, message: '無法獲取資料 Cannot access db'))
       end
     end
   end

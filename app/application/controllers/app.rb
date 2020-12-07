@@ -43,7 +43,7 @@ module Ewa
               routing.halt failed.http_status_code, failed.to_json
             end
             http_response = Representer::HttpResponse.new(result.value!)
-            #raise "#{http_response.inspect}, #{http_response.class}, #{http_response.represented.status}"
+            # raise "#{http_response.inspect}, #{http_response.class}, #{http_response.represented.status}"
             response.status = http_response.http_status_code
 
             # change to our own representer "restaurant_all"
@@ -81,7 +81,7 @@ module Ewa
               routing.get do
                 # select_id = Request::SelectbyID.new(routing.params)
                 result = Service::FindPickRest.new.call(rest_id)
-
+                raise "#{}"
                 if result.failure?
                   failed = Representer::HttpResponse.new(result.failure)
                   routing.halt failed.http_status_code, failed.to_json

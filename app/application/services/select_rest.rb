@@ -10,9 +10,13 @@ module Ewa
       def call(town, min_money, max_money)
         selected_entities = Repository::For.klass(Entity::Restaurant)
                                            .find_by_town_money(town, min_money, max_money)
-        Success(selected_entities)
+        Response::FilterRestaurantsResp.new(selected_entities)
+          .then do |all_rests|
+          Success(Response::ApiResult.new(status: :ok, message: all_rests))
+        end
+
       rescue StandardError
-        Failure('篩選資料錯誤 Filter error!')
+        Failure(Response::ApiResult.new(status: :internal_error, message: '無法獲取資料 Cannot access db'))
       end
     end
 
