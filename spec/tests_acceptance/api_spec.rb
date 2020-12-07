@@ -6,7 +6,7 @@ require_relative '../helpers/database_helper'
 require 'rack/test'
 
 def app
-  CodePraise::App
+  Ewa::App
 end
 
 describe 'Test API routes' do
@@ -16,7 +16,7 @@ describe 'Test API routes' do
   DatabaseHelper.setup_database_cleaner
 
   before do
-    VcrHelper.configure_vcr_for_github
+    VcrHelper.configure_vcr_for_restaurant
     DatabaseHelper.wipe_database
   end
 
@@ -32,6 +32,18 @@ describe 'Test API routes' do
       body = JSON.parse(last_response.body)
       _(body['status']).must_equal 'ok'
       _(body['message']).must_include 'api/v1'
+    end
+  end
+
+  describe 'display rests infos' do
+    it 'should be able to return rest infos' do
+
+      get "/api/v1/restaurants"
+      _(last_response.status).must_equal 200
+      puts last_response.inspect
+      rest_infos = JSON.parse last_response.body
+      puts rest_infos
+      _(rest_infos.count).must_equal 27
     end
   end
 end

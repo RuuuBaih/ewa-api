@@ -73,3 +73,7 @@ gem 'rake', '~> 13.0'
 group :production do
   gem 'pg'
 end
+
+# UTILITIES
+gem 'rack-test' # can also be used to diagnose production
+gem 'rake', '~> 13.0'
