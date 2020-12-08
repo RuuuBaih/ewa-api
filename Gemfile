@@ -4,6 +4,8 @@ source 'https://rubygems.org'
 ruby File.read('.ruby_version').strip
 
 # PRESENTATION LAYER
+gem 'multi_json'
+gem 'roar'
 gem 'slim', '~> 3.0'
 
 # Web Application

@@ -28,8 +28,10 @@ module Ewa
       end
 
       def self.rest_convert2_id(rest)
-        rest_id = Database::RestaurantOrm.first(name: rest)
-        rebuild_entity(rest_id)
+        db_records = Database::RestaurantOrm.where(Sequel.like(:name, "%#{rest}%")).all
+        db_records.map do |db_record|
+          rebuild_entity(db_record)
+        end
       end
 
       def self.find_restaurant_id(entity)
