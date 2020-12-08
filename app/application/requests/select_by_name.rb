@@ -16,16 +16,21 @@ module Ewa
 
       # Use in API to parse incoming list requests
       def call
+        #@params = @params.to_s.gsub('=>', ':')
         Success(
-          JSON.parse(decode(@params))
+          @params['name']
         )
       rescue StandardError
+
+        raise "#{JSON.parse(@params)}"
+
         Failure(
           Response::ApiResult.new(
             status: :bad_request,
             message: 'Name not found'
           )
         )
+
       end
 
       # Decode params

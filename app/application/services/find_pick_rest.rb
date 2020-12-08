@@ -9,7 +9,7 @@ module Ewa
       include Dry::Transaction
       def call(rest_id)
         rest_detail = Repository::For.klass(Entity::Restaurant).find_by_rest_id(rest_id)
-        Response::AllRestaurantsResp.new(rest_detail)
+        Response::SearchedRestaurants.new(rest_detail)
           .then do |all_rests|
           Success(Response::ApiResult.new(status: :ok, message: all_rests))
         end

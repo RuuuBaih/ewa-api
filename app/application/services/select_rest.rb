@@ -27,9 +27,13 @@ module Ewa
         rests = Restaurant::RestaurantOptionsMapper.new(selected_entities)
         pick_9rests = rests.random_9picks
         rests_info = Restaurant::RestaurantOptionsMapper::GetRestInfo.new(pick_9rests)
-        Success(rests_info)
+        Response::SearchedRestaurants.new(rests_info)
+          .then do |all_rests|
+          Success(Response::ApiResult.new(status: :ok, message: all_rests))
+        end
+
       rescue StandardError
-        Failure('篩選資料錯誤 Filter error!')
+        Failure(Response::ApiResult.new(status: :internal_error, message: '無法獲取資料 Cannot access db'))
       end
     end
   end

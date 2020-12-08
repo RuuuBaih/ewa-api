@@ -3,14 +3,14 @@
 require 'roar/decorator'
 require 'roar/json'
 require_relative 'openstruct_with_id'
-require_relative 'restaurant_id_name_representer'
+require_relative 'restaurant_details_representer'
 
 module Ewa
   module Representer
     # Represents searched restaurants ids
     class SearchedRestaurants < Roar::Decorator
       include Roar::JSON
-      collection :ids, extend: Representer::RestaurantIdName, class: Representer::OpenStructWithId
+      property :details, extend: Representer::RestaurantDetails, class: Representer::OpenStructWithId
     end
   end
 end

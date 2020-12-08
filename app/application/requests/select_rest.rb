@@ -17,7 +17,7 @@ module Ewa
       # Use in API to parse incoming list requests
       def call
         Success(
-          JSON.parse(decode(@params['town'], @params['min_money'], @params['max_money']))
+          @params
         )
       rescue StandardError
         Failure(
