@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require 'base64'
 require 'dry/monads/result'
 require 'json'
 
@@ -16,8 +15,11 @@ module Ewa
 
       # Use in API to parse incoming list requests
       def call
+        if @params == {}
+          raise StandardError
+        end
         Success(
-          JSON.parse(decode(@params))
+          @params['name']
         )
       rescue StandardError
         Failure(
@@ -26,22 +28,6 @@ module Ewa
             message: 'Name not found'
           )
         )
-      end
-
-      # Decode params
-      def decode(params)
-        Base64.urlsafe_decode64(params)
-      end
-
-      # Client App will encode params to send as a string
-      # - Use this method to create encoded params for testing
-      def self.to_encoded(name)
-        Base64.urlsafe_encode64(name.to_json)
-      end
-
-      # Use in tests to create a ProjectList object from a list
-      def self.to_request(name)
-        SelectbyName.new('name' => to_encoded(name))
       end
     end
   end

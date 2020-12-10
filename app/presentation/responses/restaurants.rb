@@ -2,6 +2,6 @@
 module Ewa
   module Response
     # all restaurants list
-    AllRestaurantsResp = Struct.new(:rests_infos)
+    RestaurantsResp = Struct.new(:total, :rests_infos)
   end
 end
