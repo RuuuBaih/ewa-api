@@ -33,6 +33,7 @@ module Ewa
       end
 
       routing.on "api/v1" do
+<<<<<<< HEAD
           routing.on "restaurants" do
           # GET /restaurant
 =begin          routing.get do
@@ -75,6 +76,20 @@ module Ewa
           end
           #end
         end
+=======
+        routing.on "restaurants" do
+          # GET /restaurants
+          routing.is do
+            routing.get do
+              params = routing.params
+              # GET /restaurants?town={town}&min_money={min_mon}&max_money={max_mon}
+              if params.key?('town')
+                select_rest = Request::SelectRests.new(params)
+                result = Service::SelectRests.new.call(select_rest)
+              else
+                result = Service::ShowAllRests.new.call(params)
+              end
+>>>>>>> origin
 
         routing.on "picks" do
           # GET /restaurant/picks/#{id}
@@ -90,12 +105,18 @@ module Ewa
               http_response = Representer::HttpResponse.new(result.value!)
               response.status = http_response.http_status_code
 
+<<<<<<< HEAD
               # change to our own representer "restaurant id"
               Representer::SearchedRestaurants.new(
+=======
+              # change to our own representer "restaurants"
+              Representer::Restaurants.new(
+>>>>>>> origin
                 result.value!.message
               ).to_json
             end
           end
+<<<<<<< HEAD
               # GET /restaurant/picks?name={restaurant name}
             routing.get do
               #search = routing.params['name']
@@ -119,11 +140,37 @@ module Ewa
           routing.on "random" do
             # POST /restaurant/pick/random?num={random number}&
             # select one of 9 pick or search restaurant by name
+=======
+
+          routing.on "picks" do
+            # GET /restaurants/picks/#{id}
+            # select one of 9 pick
+            routing.on String do |rest_id|
+              routing.get do
+                result = Service::FindPickRest.new.call(rest_id)
+                if result.failure?
+                  failed = Representer::HttpResponse.new(result.failure)
+                  routing.halt failed.http_status_code, failed.to_json
+                end
+                http_response = Representer::HttpResponse.new(result.value!)
+                response.status = http_response.http_status_code
+
+                # change to our own representer "pick restaurant"
+                Representer::PickRestaurant.new(
+                  result.value!.message
+                ).to_json
+              end
+            end
+          end
+
+          routing.on "searches" do
+            # GET /restaurants/searches?name={restaurant name}
+            # search restaurants by name
+>>>>>>> origin
             routing.get do
-              # test_ids = [1, 12, 22, 33, 32, 27, 45]
-              # test_num = 5
-              random_num = Request::SelectbyName.new(routing.params)
-              result = Service::SelectRandomRestList.new.call(test_ids, test_num: random_num)
+              select_name = Request::SelectbyName.new(routing.params)
+              result = Service::SearchRestName.new.call(select_name)
+
               if result.failure?
                 failed = Representer::HttpResponse.new(result.failure)
                 routing.halt failed.http_status_code, failed.to_json
@@ -131,8 +178,8 @@ module Ewa
               http_response = Representer::HttpResponse.new(result.value!)
               response.status = http_response.http_status_code
 
-              # change to our own representer "restaurant name"
-              Representer::ProjectFolderContributions.new(
+              # change to our own representer "searched restaurants"
+              Representer::SearchedRestaurants.new(
                 result.value!.message
               ).to_json
             end
