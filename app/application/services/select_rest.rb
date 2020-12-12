@@ -1,12 +1,14 @@
 # frozen_string_literal: true
 
-require 'dry/transaction'
+# require 'dry/transaction'
+require 'dry/monads'
 
 module Ewa
   module Service
     # filter restaurants based on money
     class SelectRests
-      include Dry::Transaction
+      # include Dry::Transaction
+      include Dry::Monads::Result::Mixin
       def call(input)
         # input is a response obj
         params = input.call.value!
@@ -47,25 +49,8 @@ module Ewa
       rescue ArgumentError
         Failure(Response::ApiResult.new(status: :cannot_process, message: '參數錯誤 Invalid input'))
 
-<<<<<<< HEAD
-    # generate 9 restaurants
-    class Pick9Rests
-      include Dry::Transaction
-      def call(selected_entities)
-        rests = Restaurant::RestaurantOptionsMapper.new(selected_entities)
-        pick_9rests = rests.random_9picks
-        rests_info = Restaurant::RestaurantOptionsMapper::GetRestInfo.new(pick_9rests)
-        Response::SearchedRestaurants.new(rests_info)
-          .then do |all_rests|
-          Success(Response::ApiResult.new(status: :ok, message: all_rests))
-        end
-
-      rescue StandardError
-        Failure(Response::ApiResult.new(status: :internal_error, message: '無法獲取資料 Cannot access db'))
-=======
       rescue StandardError
         Failure(Response::ApiResult.new(status: :not_found, message: '無此資料 resource not found'))
->>>>>>> origin
       end
     end
   end

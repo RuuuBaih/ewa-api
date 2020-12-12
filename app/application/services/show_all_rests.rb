@@ -1,12 +1,14 @@
 # frozen_string_literal: true
 
-require 'dry/transaction'
+# require 'dry/transaction'
+require 'dry/monads'
 
 module Ewa
   module Service
     # filter restaurants based on money
     class ShowAllRests
-      include Dry::Transaction
+      # include Dry::Transaction
+      include Dry::Monads::Result::Mixin
 
       def call(input)
         # default page is 1 and records on per page is 5
