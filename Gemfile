@@ -8,11 +8,17 @@ gem 'multi_json'
 gem 'roar'
 gem 'slim', '~> 3.0'
 
+# APPLICATION LAYER
 # Web Application
 gem 'econfig', '~> 2.1'
 gem 'puma', '~> 3.11'
 gem 'roda', '~> 3.8'
 gem 'rack', '~> 2'
+
+# Caching
+gem 'rack-cache', '~> 1.12'
+gem 'redis', '~> 4.2'
+gem 'redis-rack-cache', '~> 2.2'
 
 # Controllers and services
 gem 'dry-monads'
