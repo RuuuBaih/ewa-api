@@ -33,7 +33,7 @@ module Ewa
       end
 
       routing.on "api/v1" do
-        routing.on "restaurants" do
+          routing.on "restaurants" do
           # GET /restaurant
 =begin          routing.get do
             result = Service::ShowAllRests.new.call
