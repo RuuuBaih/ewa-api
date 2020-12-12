@@ -15,13 +15,9 @@ module Ewa
 
       # Use in API to parse incoming list requests
       def call
-<<<<<<< HEAD
-        #@params = @params.to_s.gsub('=>', ':')
-=======
         if @params == {}
           raise StandardError
         end
->>>>>>> origin
         Success(
           @params['name']
         )

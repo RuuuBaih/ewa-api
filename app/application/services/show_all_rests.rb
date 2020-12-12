@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # require 'dry/transaction'
-require 'dry/monads'
+require 'dry/monads/all'
 
 module Ewa
   module Service
