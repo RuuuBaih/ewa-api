@@ -1,5 +1,5 @@
 # API testing workflow config for CI/CD on Github
-# test 1
+# test 2
 
 name: API continuous integration
 
