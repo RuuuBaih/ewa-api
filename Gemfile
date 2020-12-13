@@ -76,7 +76,7 @@ group :development, :test do
   gem 'rubocop'
 end
 
-# UTILITIES
+# Utilities
 gem 'rack-test' # can also be used to diagnose production
 gem 'rake', '~> 13.0'
 

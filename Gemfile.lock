@@ -135,8 +135,11 @@ GEM
     public_suffix (4.0.6)
     puma (3.12.6)
     rack (2.2.3)
+<<<<<<< HEAD
     rack-cache (1.12.1)
       rack (>= 0.4)
+=======
+>>>>>>> main
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
     rainbow (2.2.2)
@@ -235,7 +238,6 @@ DEPENDENCIES
   pg
   puma (~> 3.11)
   rack (~> 2)
-  rack-cache (~> 1.12)
   rack-test
   rake (~> 13.0)
   redis (~> 4.2)
