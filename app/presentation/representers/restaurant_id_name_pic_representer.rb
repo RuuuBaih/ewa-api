@@ -14,6 +14,8 @@ module Ewa
       property :name
       collection :pictures, extend: Representer::Picture, class: OpenStruct
 
+    
+
     end
   end
 end
