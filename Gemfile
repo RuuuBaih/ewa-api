@@ -53,9 +53,7 @@ group :test do
   gem 'watir', '~> 6.17'
   gem 'webmock', '~> 3.0'
 
-  gem 'headless', '~> 2.3'
   gem 'page-object', '~> 2.2'
-  gem 'watir', '~> 6.17'
 end
 
 group :development, :test do
@@ -83,7 +81,3 @@ gem 'rake', '~> 13.0'
 group :production do
   gem 'pg'
 end
-
-# UTILITIES
-gem 'rack-test' # can also be used to diagnose production
-gem 'rake', '~> 13.0'

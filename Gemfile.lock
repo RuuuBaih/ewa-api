@@ -135,14 +135,6 @@ GEM
     public_suffix (4.0.6)
     puma (3.12.6)
     rack (2.2.3)
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-    rack-cache (1.12.1)
-      rack (>= 0.4)
-=======
->>>>>>> main
->>>>>>> main
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
     rainbow (2.2.2)
