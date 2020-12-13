@@ -1,35 +1,56 @@
 # frozen_string_literal: true
 
-require 'dry/transaction'
+# require 'dry/transaction'
+require 'dry/monads/all'
 
 module Ewa
   module Service
     # filter restaurants based on money
     class SelectRests
-      include Dry::Transaction
-      def call(town, min_money, max_money)
-        selected_entities = Repository::For.klass(Entity::Restaurant)
-                                           .find_by_town_money(town, min_money, max_money)
-        Response::FilterRestaurantsResp.new(selected_entities)
-          .then do |all_rests|
-          Success(Response::ApiResult.new(status: :ok, message: all_rests))
+      # include Dry::Transaction
+      include Dry::Monads::Result::Mixin
+      def call(input)
+        # input is a response obj
+        params = input.call.value!
+        town = params['town']
+        min_money = params['min_money']
+        max_money = params['max_money']
+        # default page is 1 and records on per page is 5
+        # which page
+        page = params.key?("page") ? params["page"].to_i : 1 
+        # how many records on per page  
+        # 5 can be changed in the future
+        per_page = params.key?("per_page") ? params["per_page"].to_i : 5
+        if per_page > 10
+          raise StandardError
         end
 
-      rescue StandardError
-        Failure(Response::ApiResult.new(status: :internal_error, message: '無法獲取資料 Cannot access db'))
-      end
-    end
+        # input invalid
+        if (page == 0) or (per_page == 0)
+          raise ArgumentError
+        end
 
-    # generate 9 restaurants
-    class Pick9Rests
-      include Dry::Transaction
-      def call(selected_entities)
-        rests = Restaurant::RestaurantOptionsMapper.new(selected_entities)
-        pick_9rests = rests.random_9picks
-        rests_info = Restaurant::RestaurantOptionsMapper::GetRestInfo.new(pick_9rests)
-        Success(rests_info)
+        selected_entities = Repository::For.klass(Entity::Restaurant)
+                                           .find_by_town_money(town, min_money, max_money)
+        if selected_entities == []
+          raise StandardError
+        end
+
+        total = selected_entities.count
+
+        # slice restaurants(array of entities) into pieces
+        limited_rests = selected_entities.each_slice(per_page).to_a[page - 1]
+
+        Response::RestaurantsResp.new(total, limited_rests)
+          .then do |filtered_rests|
+          Success(Response::ApiResult.new(status: :ok, message: filtered_rests))
+        end
+
+      rescue ArgumentError
+        Failure(Response::ApiResult.new(status: :cannot_process, message: '參數錯誤 Invalid input'))
+
       rescue StandardError
-        Failure('篩選資料錯誤 Filter error!')
+        Failure(Response::ApiResult.new(status: :not_found, message: '無此資料 resource not found'))
       end
     end
   end

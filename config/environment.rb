@@ -3,6 +3,8 @@
 require 'roda'
 require 'econfig'
 require 'delegate'
+require 'rack/cache'
+require 'redis-rack-cache'
 
 module Ewa
   # Configuration for the App
@@ -21,6 +23,10 @@ module Ewa
 
     configure :production do
       # Set DATABASE_URL environment variable on production platform
+      use Rack::Cache,
+        verbose: true,
+        metastore: config.REDISCLOUD_URL + '/0/metastore',
+        entitystore: config.REDISCLOUD_URL + '/0/entitystore'
     end
 
     configure do
