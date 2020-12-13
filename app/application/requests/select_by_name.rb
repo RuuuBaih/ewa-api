@@ -22,12 +22,16 @@ module Ewa
           @params['name']
         )
       rescue StandardError
+
+        raise "#{JSON.parse(@params)}"
+
         Failure(
           Response::ApiResult.new(
             status: :bad_request,
             message: 'Name not found'
           )
         )
+
       end
     end
   end
