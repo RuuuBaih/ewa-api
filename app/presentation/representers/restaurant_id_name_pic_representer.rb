@@ -2,16 +2,18 @@
 
 require 'roar/decorator'
 require 'roar/json'
-
 require_relative 'picture_representer'
 
 module Ewa
   module Representer
-    # Represents pictures of one specific restaurant
-    class Pictures < Roar::Decorator
+    # Represents searched restaurants' ids & names
+    class RestaurantIdNamePic < Roar::Decorator
       include Roar::JSON
 
+      property :id
+      property :name
       collection :pictures, extend: Representer::Picture, class: OpenStruct
+
     end
   end
 end
