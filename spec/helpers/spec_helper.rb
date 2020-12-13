@@ -25,6 +25,7 @@ require 'webmock'
 # require_relative '../app/controllers/init'
 #require_relative '../../config/init'
 require_relative '../../init'
+require_relative '../../app/init'
 
 USERNAME = ''
 PROJECT_NAME = 'SOA_project'
