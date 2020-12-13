@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 source 'https://rubygems.org'
-ruby File.read('.ruby_version').strip
+ruby File.read('.ruby-version').strip
 
 # PRESENTATION LAYER
 gem 'multi_json'
@@ -68,6 +68,7 @@ group :development, :test do
 end
 
 # Utilities
+gem 'rack-test' # can also be used to diagnose production
 gem 'rake', '~> 13.0'
 
 group :production do
