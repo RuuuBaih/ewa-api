@@ -62,9 +62,12 @@ group :development, :test do
   gem 'rerun', '~> 0.13'
 end
 
-# Debugging: see https://stackify.com/ruby-debugger-using-visual-studio-code/
-gem 'debase', '~> 0.2'
-gem 'ruby-debug-ide', '~> 0.7'
+# DEBUGGING
+group :development do
+  # Debugging: see https://stackify.com/ruby-debugger-using-visual-studio-code/
+  gem 'debase', '~> 0.2'
+  gem 'ruby-debug-ide', '~> 0.7'
+end
 
 # Quality
 group :development, :test do
@@ -73,7 +76,8 @@ group :development, :test do
   gem 'rubocop'
 end
 
-# Utilities
+# UTILITIES
+gem 'rack-test' # can also be used to diagnose production
 gem 'rake', '~> 13.0'
 
 group :production do
