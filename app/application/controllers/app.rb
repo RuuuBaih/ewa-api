@@ -1,17 +1,17 @@
 # frozen_string_literal: true
 
-require "json"
-require "roda"
-require "slim"
-require "slim/include"
+require 'json'
+require 'roda'
+require 'slim'
+require 'slim/include'
 # require_relative 'helpers.rb'
 
 module Ewa
   # Web App
   class App < Roda
     # include RouteHelpers
-    plugin :render, engine: "slim", views: "app/presentation/views_html"
-    plugin :assets, css: "style.css", path: "app/presentation/assets"
+    plugin :render, engine: 'slim', views: 'app/presentation/views_html'
+    plugin :assets, css: 'style.css', path: 'app/presentation/assets'
     plugin :halt
     plugin :flash
     plugin :all_verbs
@@ -19,7 +19,7 @@ module Ewa
     use Rack::MethodOverride
 
     route do |routing|
-      response["Content-Type"] = "application/json"
+      response['Content-Type'] = 'application/json'
 
       # GET /
       routing.root do
@@ -32,8 +32,8 @@ module Ewa
         result_response.to_json
       end
 
-      routing.on "api/v1" do
-        routing.on "restaurants" do
+      routing.on 'api/v1' do
+        routing.on 'restaurants' do
           # GET /restaurants
           routing.is do
             routing.get do
@@ -60,7 +60,7 @@ module Ewa
             end
           end
 
-          routing.on "picks" do
+          routing.on 'picks' do
             # GET /restaurants/picks/#{id}
             # select one of 9 pick
             routing.on String do |rest_id|
@@ -81,7 +81,7 @@ module Ewa
             end
           end
 
-          routing.on "searches" do
+          routing.on 'searches' do
             # GET /restaurants/searches?name={restaurant name}
             # search restaurants by name
             routing.get do

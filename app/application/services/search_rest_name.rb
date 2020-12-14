@@ -17,20 +17,15 @@ module Ewa
         search = input.call.value!
         rest_searches = Repository::For.klass(Entity::Restaurant).rest_convert2_id(search)
         # if database results not found
-        if rest_searches == []
-          raise StandardError
-        end
+        raise StandardError if rest_searches == []
 
         # if searches have more than 5 records, than show only five records
-        if rest_searches.length > 5
-          rest_searches = rest_searches[0..4]
-        end
+        rest_searches = rest_searches[0..4] if rest_searches.length > 5
 
         Response::SearchRestaurantResp.new(rest_searches)
-          .then do |searches|
+                                      .then do |searches|
           Success(Response::ApiResult.new(status: :ok, message: searches))
         end
-
       rescue StandardError
         Failure(Response::ApiResult.new(status: :not_found, message: '無此資料 Resource not found'))
       end
