@@ -15,9 +15,8 @@ module Ewa
 
       # Use in API to parse incoming list requests
       def call
-        if @params == {}
-          raise StandardError
-        end
+        raise StandardError if @params == {}
+
         Success(
           @params['name']
         )

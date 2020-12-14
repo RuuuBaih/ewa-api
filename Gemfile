@@ -11,8 +11,8 @@ gem 'slim', '~> 3.0'
 # Web Application
 gem 'econfig', '~> 2.1'
 gem 'puma', '~> 3.11'
-gem 'roda', '~> 3.8'
 gem 'rack', '~> 2'
+gem 'roda', '~> 3.8'
 
 # Controllers and services
 gem 'dry-monads'
