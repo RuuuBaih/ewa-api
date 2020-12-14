@@ -6,4 +6,4 @@ development:
 
 test:
   DB_FILENAME: app/infrastructure/database/local/test.db
-  APP_HOST: http://localhost:9292
+  API_HOST: http://localhost:9292

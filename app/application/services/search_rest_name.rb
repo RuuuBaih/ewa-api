@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
-# require 'dry/monads'
-require 'dry/transaction'
+require 'dry/monads/all'
+# require 'dry/transaction'
 
 module Ewa
   module Service
     # Retrieves restaurant entity by searching restaurant name
     class SearchRestName
-      include Dry::Transaction
-      # include Dry::Monads::Result::Mixin
+      #include Dry::Transaction
+      include Dry::Monads::Result::Mixin
 
       def call(input)
         # pick all of the search, if the names are the same.

@@ -1,12 +1,14 @@
 # frozen_string_literal: true
 
-require 'dry/transaction'
+# require 'dry/transaction'
+require 'dry/monads/all'
 
 module Ewa
   module Service
     # filter restaurants based on money
     class SelectRests
-      include Dry::Transaction
+      # include Dry::Transaction
+      include Dry::Monads::Result::Mixin
       def call(input)
         # input is a response obj
         params = input.call.value!
