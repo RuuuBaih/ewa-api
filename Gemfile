@@ -8,11 +8,17 @@ gem 'multi_json'
 gem 'roar'
 gem 'slim', '~> 3.0'
 
+# APPLICATION LAYER
 # Web Application
 gem 'econfig', '~> 2.1'
 gem 'puma', '~> 3.11'
 gem 'roda', '~> 3.8'
 gem 'rack', '~> 2'
+
+# Caching
+gem 'rack-cache', '~> 1.12'
+gem 'redis', '~> 4.2'
+gem 'redis-rack-cache', '~> 2.2'
 
 # Controllers and services
 gem 'dry-monads'
@@ -47,18 +53,19 @@ group :test do
   gem 'watir', '~> 6.17'
   gem 'webmock', '~> 3.0'
 
-  gem 'headless', '~> 2.3'
   gem 'page-object', '~> 2.2'
-  gem 'watir', '~> 6.17'
 end
 
 group :development, :test do
   gem 'rerun', '~> 0.13'
 end
 
-# Debugging: see https://stackify.com/ruby-debugger-using-visual-studio-code/
-gem 'debase', '~> 0.2'
-gem 'ruby-debug-ide', '~> 0.7'
+# DEBUGGING
+group :development do
+  # Debugging: see https://stackify.com/ruby-debugger-using-visual-studio-code/
+  gem 'debase', '~> 0.2'
+  gem 'ruby-debug-ide', '~> 0.7'
+end
 
 # Quality
 group :development, :test do
@@ -68,6 +75,7 @@ group :development, :test do
 end
 
 # Utilities
+gem 'rack-test' # can also be used to diagnose production
 gem 'rake', '~> 13.0'
 
 group :production do
