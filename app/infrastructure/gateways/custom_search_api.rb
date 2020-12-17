@@ -3,8 +3,8 @@
 require 'http'
 
 module Ewa
-  module Gmap
-    # Client Library for Gmap Web API: PlaceApi, use a place name to search place id
+  module CustomSearch
+    # Client Library for Google Custom Search API, use a restaurant name to search for photos
     class CustomSearchApi
       GMAP_API_PATH = 'https://customsearch.googleapis.com/customsearch/v1?fileType=jpg&searchType=image&imgType=photo'
 
@@ -14,12 +14,12 @@ module Ewa
         @search_engine = cx
       end
 
-      def place_id
-        PlaceRequest.new(GMAP_API_PATH, @gmap_token, @restaurant_name, @search_engine).gmap_place_http.parse(:json)
+      def search_photo
+        CustomSearchRequest.new(GMAP_API_PATH, @gmap_token, @restaurant_name, @search_engine).gmap_place_http.parse(:json)
       end
 
-      # Sends out HTTP requests to Gmap
-      class PlaceRequest
+      # Sends out HTTP requests to Custom Search API
+      class CustomSearchRequest
         def initialize(resource_root, token, rest, cx)
           @resource_root = resource_root
           @token = token
@@ -28,8 +28,8 @@ module Ewa
         end
         
         
-        def gmap_place_http
-          Gmap::Request.new("#{@resource_root}&q=#{@restaurant_name}&cx=#{@search_engine}&key=#{@token}").get
+        def custom_search_http
+          CustomSearch::Request.new("#{@resource_root}&q=#{@restaurant_name}&cx=#{@search_engine}&key=#{@token}").get
         end
       end
     end
