@@ -15,7 +15,7 @@ module Ewa
       end
 
       def search_photo
-        CustomSearchRequest.new(GMAP_API_PATH, @gmap_token, @restaurant_name, @search_engine).gmap_place_http.parse(:json)
+        CustomSearchRequest.new(GMAP_API_PATH, @gmap_token, @restaurant_name, @search_engine).custom_search_http
       end
 
       # Sends out HTTP requests to Custom Search API
@@ -38,6 +38,8 @@ module Ewa
     class Request
       def initialize(url)
         @url = url
+        puts @url
+        
       end
 
       def get
