@@ -15,7 +15,7 @@ module Ewa
       end
 
       def search_photo
-        CustomSearchRequest.new(GMAP_API_PATH, @gmap_token, @restaurant_name, @search_engine).custom_search_http
+        CustomSearchRequest.new(GMAP_API_PATH, @gmap_token, @restaurant_name, @search_engine).custom_search_http.parse(:json)
       end
 
       # Sends out HTTP requests to Custom Search API
@@ -53,10 +53,12 @@ module Ewa
 
     # Decorates HTTP responses from GMap with success/error
     class Response < SimpleDelegator
+      BadRequest = Class.new(StandardError)
       Unauthorized = Class.new(StandardError)
       NotFound = Class.new(StandardError)
 
       HTTP_ERROR = {
+        400 => BadRequest,
         401 => Unauthorized,
         404 => NotFound
       }.freeze
