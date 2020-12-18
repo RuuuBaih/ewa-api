@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative '../app/models/gateways/gmap_api'
+require_relative '../app/infrastructure/gateways/gmap_api'
 require 'yaml'
 
 include Ewa
