@@ -8,7 +8,9 @@ Sequel.migration do
       primary_key :id
       foreign_key :restaurant_id, :restaurants, on_delete: :cascade
 
-      String :link
+      String :picture_link
+      String :article_link
+
 
       DateTime :created_at
       DateTime :updated_at

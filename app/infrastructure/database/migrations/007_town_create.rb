@@ -8,7 +8,7 @@ Sequel.migration do
       primary_key :id
 
       Integer :page
-      Integer : search_times
+      Integer :search_times
 
       DateTime :created_at
       DateTime :updated_at

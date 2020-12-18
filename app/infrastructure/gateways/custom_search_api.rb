@@ -27,7 +27,6 @@ module Ewa
           @search_engine = cx
         end
         
-        
         def custom_search_http
           CustomSearch::Request.new("#{@resource_root}&q=#{@restaurant_name}&cx=#{@search_engine}&key=#{@token}").get
         end
