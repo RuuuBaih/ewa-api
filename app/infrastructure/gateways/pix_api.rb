@@ -8,30 +8,38 @@ module Ewa
     class PoiApi
       POI_API_PATH = 'https://emma.pixnet.cc/poi?'
 
-      def initialize(page, per_page, city)
+      def initialize(page, per_page, city, town = nil)
         @page = page
         @per_page = per_page
         @city = city
+        @town = town
       end
 
       def poi_lists
-        PoiRequest.new(POI_API_PATH, @page, @per_page, @city).poi_http.parse
+        PoiRequest.new(POI_API_PATH, @page, @per_page, @city, @town).poi_http.parse(:json)
       end
 
       # Sends out HTTP requests to POI
       class PoiRequest
-        def initialize(resource_root, page, per_page, city)
+        def initialize(resource_root, page, per_page, city, town)
           @resource_root = resource_root
           @page = page
           @per_page = per_page
           @city = city
+          @town = town
         end
 
         def poi_http
-          Pixnet::Request.new("#{@resource_root}page=#{@page}&per_page=#{@per_page}&city=#{@city}").get
+          if @town.nil?
+            request_path = "#{@resource_root}page=#{@page}&per_page=#{@per_page}&city=#{@city}"
+          else
+            request_path = "#{@resource_root}page=#{@page}&per_page=#{@per_page}&city=#{@city}&town=#{@town}"
+          end
+          Pixnet::Request.new(request_path).get
         end
       end
     end
+
     # Library for Pixnet APIs: ArticleApi, search blog articles from keyword
     class ArticleApi
       ARTICLE_API_PATH = 'https://emma.pixnet.cc/blog/articles/search?'
@@ -76,14 +84,16 @@ module Ewa
       end
     end
 
-    # Decorates HTTP responses from GMap with success/error
+    # Decorates HTTP responses from Pixnet with success/error
     class Response < SimpleDelegator
       Unauthorized = Class.new(StandardError)
       NotFound = Class.new(StandardError)
+      Forbidden = Class.new(StandardError)
 
       HTTP_ERROR = {
         401 => Unauthorized,
-        404 => NotFound
+        404 => NotFound,
+        403 => Forbidden,
       }.freeze
 
       def successful?

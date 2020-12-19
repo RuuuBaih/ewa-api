@@ -12,7 +12,7 @@ module Ewa
       plugin :timestamps, update_on_create: true
 
       def self.find_or_create(cover_picture_info)
-        first(restaurant_id: cover_picture_info[:restaurant_id]) || create(cover_picture_info)
+        first(id: cover_picture_info[:id]) || create(cover_picture_info)
       end
     end
   end

@@ -23,15 +23,11 @@ module Ewa
       attribute :cover_img,     Strict::String.optional
       attribute :tags,          Strict::Array.of(String).optional
       attribute :pixnet_rating, Strict::Float.optional
-      attribute :google_rating, Strict::Float.optional
       attribute :open_hours,    Strict::Array.of(String).optional
       attribute :address,       Strict::String.optional
       attribute :website,       Strict::String.optional
 
-      attribute :reviews,       Strict::Array.of(Review)
-      attribute :pictures,      Strict::Array.of(Picture)
-      attribute :article,       Article
-      attribute :ewa_tag,       EwaTag
+      attribute :cover_pictures,Strict::Array.of(CoverPicture)
       attribute :clicks,        Integer.optional
       attribute :likes,         Integer.optional
 

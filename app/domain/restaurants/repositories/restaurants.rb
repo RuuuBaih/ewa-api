@@ -97,6 +97,7 @@ module Ewa
         db_record[:tags] = JSON.parse(db_record[:tags])
         db_record[:open_hours] = JSON.parse(db_record[:open_hours])
 
+=begin
         Entity::Restaurant.new(
           db_record.to_hash.merge(
             article: Articles.rebuild_entity(
@@ -105,6 +106,12 @@ module Ewa
             reviews: Reviews.find_all_reviews_by_restaurant_id(db_record_id),
             pictures: Pictures.find_all_pics_by_restaurant_id(db_record_id),
             ewa_tag: EwaTags.find_ewa_tag_by_restaurant_id(db_record_id)
+          )
+        )
+=end
+        Entity::Restaurant.new(
+          db_record.to_hash.merge(
+            cover_pictures: CoverPictures.find_all_cover_pics_by_restaurant_id(db_record_id)
           )
         )
       end
@@ -119,10 +126,11 @@ module Ewa
 
         def delete_unneed
           # delete unused entity fields to input to database
-          @hash_rest.delete(:reviews)
-          @hash_rest.delete(:article)
-          @hash_rest.delete(:pictures)
-          @hash_rest.delete(:ewa_tag)
+          @hash_rest.delete(:cover_pictures)
+          #@hash_rest.delete(:reviews)
+          #@hash_rest.delete(:article)
+          #@hash_rest.delete(:pictures)
+          #@hash_rest.delete(:ewa_tag)
         end
 
         def create_restaurant
@@ -134,7 +142,7 @@ module Ewa
           Database::RestaurantOrm.create(@hash_rest)
         end
 
-        def put_related_to_db(restaurant_db_entity_id)
+        def put_related_details_to_db(restaurant_db_entity_id)
           # create reviews to database
           put_reviews_to_db(restaurant_db_entity_id)
 
@@ -148,16 +156,24 @@ module Ewa
           put_ewa_tag_to_db(restaurant_db_entity_id)
         end
 
+
         def call
           # create restaurant to database and get its id
           restaurant_db_entity = create_restaurant
           restaurant_db_entity_id = restaurant_db_entity.id
 
           # create other related entities to database
-          put_related_to_db(restaurant_db_entity_id)
+          put_cover_pictures_to_db(restaurant_db_entity_id)
 
           # return restaurant entity
           restaurant_db_entity
+        end
+
+        def put_cover_pictures_to_db(restaurant_db_entity_id)
+          cover_pictures = @entity.cover_pictures
+          cover_pictures.map do |cover_picture|
+            CoverPictures.db_find_or_create(cover_picture, restaurant_db_entity_id)
+          end
         end
 
         def put_reviews_to_db(restaurant_db_entity_id)
