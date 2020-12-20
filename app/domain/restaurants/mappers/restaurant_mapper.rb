@@ -23,14 +23,13 @@ module Ewa
         @pix_gateway_class = gateway_class
       end
 
-
       # get poi full details
       class PoiDetails
         # page default is 1 (for first time db populate)
         def initialize(pix_gateway_class, town, page_now, first_time)
           @filter = nil
           @pix_gateway_class = pix_gateway_class
-          @setting = {page_now: page_now, town: town, first_time: first_time}
+          @setting = { page_now: page_now, town: town, first_time: first_time }
           @tp_towns = %w[中正區 萬華區 大同區 中山區 松山區 大安區 信義區 內湖區 南港區 士林區 北投區 文山區]
           @ntp_towns = %w[萬里區 金山區 板橋區 汐止區 深坑區 石碇區 瑞芳區 平溪區 雙溪區 貢寮區 新店區 坪林區 烏來區 永和區 中和區 土城區 三峽區 樹林區 鶯歌區 三重區 新莊區 泰山區 林口區 蘆洲區 五股區 八里區 淡水區 三芝區 石門區]
         end
@@ -52,10 +51,10 @@ module Ewa
 
         def iterate_for_1_time
           poi_hashes = []
-          # return 9 restaurant poi infos from each district (from page 1) 
-          tp_city = '台北市' 
+          # return 9 restaurant poi infos from each district (from page 1)
+          tp_city = '台北市'
           @tp_towns.map do |tp_town|
-            poi_hashes << call_api(tp_city, tp_town) 
+            poi_hashes << call_api(tp_city, tp_town)
           end
 
           ntp_city = '新北市'
@@ -69,10 +68,10 @@ module Ewa
           town = @setting[:town]
           # check town belongs to which city
           # default city is tapei city
-          if @ntp_towns.include? town then city = '新北市'
-          else city = '台北市' end
+          city = if @ntp_towns.include? town then '新北市'
+                 else '台北市' end
 
-          call_api(city, town) 
+          call_api(city, town)
         end
 
         def call_api(city, town)
@@ -111,7 +110,6 @@ module Ewa
         end
 
         # rubocop:disable Metrics/MethodLength
-        # rubocop:disable Metrics/AbcSize
         def build_entity
           Ewa::Entity::Restaurant.new(
             id: nil,
@@ -128,12 +126,11 @@ module Ewa
             address: @data['address'],
             website: @data['website'],
             clicks: 0,
-            likes: nil, 
+            likes: nil,
             cover_pictures: cover_pictures
           )
         end
         # rubocop:enable Metrics/MethodLength
-        # rubocop:enable Metrics/AbcSize
 
         private
 
@@ -143,7 +140,6 @@ module Ewa
           CoverPictureMapper::BuildCoverPictureEntity.new(cover_pics).build_entity
         end
       end
-
 
       # Use to filter hashes
       class FilterHash
@@ -166,15 +162,15 @@ module Ewa
             'pixnet_rating' => @hash['rating']['avg'],
             'city' => addr['city'],
             'town' => addr['town'],
-            'open_hours' => open_hours, 
+            'open_hours' => open_hours,
             'website' => website,
             'address' => address
           }
         end
         # rubocop:enable Metrics/MethodLength
 
-
         private
+
         def open_hours
           open_week = @hash['opening_hours_info']['date']
           [
@@ -187,7 +183,7 @@ module Ewa
 
         def website
           web_url = @hash['urls']['website']
-          if web_url == "" then nil.to_s
+          if web_url == '' then nil.to_s
           else web_url end
         end
 

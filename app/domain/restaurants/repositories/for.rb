@@ -10,7 +10,7 @@ module Ewa
         Entity::Review => Reviews,
         Entity::CoverPicture => CoverPictures,
         Entity::Picture => Pictures,
-        #Entity::RestaurantDetail => RestaurantDetails,
+        Entity::RestaurantDetail => RestaurantDetails
       }.freeze
 
       def self.klass(entity_klass)

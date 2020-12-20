@@ -27,6 +27,14 @@ module Ewa
         hash_entity[:restaurant_id] = restaurant_id
         Database::EwaTagOrm.find_or_create(hash_entity)
       end
+
+      def self.db_update(entity, restaurant_id)
+        hash_entity = entity.to_attr_hash
+        hash_entity[:restaurant_id] = restaurant_id
+        db_record = Database::EwaTagOrm.first(id: entity.id)
+        db_record.update(hash_entity)
+        db_record
+      end
     end
   end
 end
