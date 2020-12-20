@@ -7,7 +7,7 @@ module Ewa
     # Object-Relational Mapper for Articles
     class CoverPictureOrm < Sequel::Model(:cover_pictures)
       many_to_one :restaurant,
-                 class: :'Ewa::Database::RestaurantOrm'
+                  class: :'Ewa::Database::RestaurantOrm'
 
       plugin :timestamps, update_on_create: true
 

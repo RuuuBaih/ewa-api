@@ -30,11 +30,11 @@ module Ewa
         end
 
         def poi_http
-          if @town.nil?
-            request_path = "#{@resource_root}page=#{@page}&per_page=#{@per_page}&city=#{@city}"
-          else
-            request_path = "#{@resource_root}page=#{@page}&per_page=#{@per_page}&city=#{@city}&town=#{@town}"
-          end
+          request_path = if @town.nil?
+                           "#{@resource_root}page=#{@page}&per_page=#{@per_page}&city=#{@city}"
+                         else
+                           "#{@resource_root}page=#{@page}&per_page=#{@per_page}&city=#{@city}&town=#{@town}"
+                         end
           Pixnet::Request.new(request_path).get
         end
       end
@@ -93,7 +93,7 @@ module Ewa
       HTTP_ERROR = {
         401 => Unauthorized,
         404 => NotFound,
-        403 => Forbidden,
+        403 => Forbidden
       }.freeze
 
       def successful?

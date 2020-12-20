@@ -26,7 +26,7 @@ module Ewa
           @restaurant_name = rest
           @search_engine = cx
         end
-        
+
         def custom_search_http
           CustomSearch::Request.new("#{@resource_root}&q=#{@restaurant_name}&cx=#{@search_engine}&key=#{@token}").get
         end
@@ -38,7 +38,6 @@ module Ewa
       def initialize(url)
         @url = url
         puts @url
-        
       end
 
       def get
