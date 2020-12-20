@@ -36,6 +36,7 @@ elsif status
   # get rebuilt repo entity
   # here will auto update click數量
   # update(entity, first_time_or_not)
+  rest_detail_entity = RestaurantDetailMapper.new(poi_entity, token).gmap_place_details
   repo_entity = Repository::RestaurantDetails.update(rest_entity, false)
   puts repo_entity.inspect
 else
