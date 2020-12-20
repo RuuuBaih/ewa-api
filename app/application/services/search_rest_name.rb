@@ -7,7 +7,7 @@ module Ewa
   module Service
     # Retrieves restaurant entity by searching restaurant name
     class SearchRestName
-      #include Dry::Transaction
+      # include Dry::Transaction
       include Dry::Monads::Result::Mixin
 
       def call(input)
