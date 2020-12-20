@@ -10,7 +10,7 @@ module Ewa
     class PickRestaurant < Roar::Decorator
       include Roar::JSON
 
-      # returns pick rest details 
+      # returns pick rest details
       property :pick_rest, extend: Representer::RestaurantDetails
     end
   end

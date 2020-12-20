@@ -22,18 +22,6 @@ module Ewa
         end
       end
 
-      def self.find_by_rest_id(id)
-        db_record = Database::RestaurantOrm.first(id: id)
-        rebuild_entity(db_record)
-      end
-
-      def self.rest_convert2_id(rest)
-        db_records = Database::RestaurantOrm.where(Sequel.like(:name, "%#{rest}%")).all
-        db_records.map do |db_record|
-          rebuild_entity(db_record)
-        end
-      end
-
       def self.find_restaurant_id(entity)
         db_record = Database::RestaurantOrm.first(id: entity.id)
         rebuild_entity(db_record)
@@ -88,7 +76,6 @@ module Ewa
         rebuild_entity(db_restaurant)
       end
 
-      # rubocop:disable Metrics/MethodLength
       def self.rebuild_entity(db_record)
         return nil unless db_record
 
@@ -99,17 +86,10 @@ module Ewa
 
         Entity::Restaurant.new(
           db_record.to_hash.merge(
-            article: Articles.rebuild_entity(
-              Articles.find_article_by_restaurant_id(db_record_id), db_record.name
-            ),
-            reviews: Reviews.find_all_reviews_by_restaurant_id(db_record_id),
-            pictures: Pictures.find_all_pics_by_restaurant_id(db_record_id),
-            ewa_tag: EwaTags.find_ewa_tag_by_restaurant_id(db_record_id)
+            cover_pictures: CoverPictures.find_all_cover_pics_by_restaurant_id(db_record_id)
           )
         )
       end
-      # rubocop:enable Metrics/MethodLength
-
       # make sure data goes to database also
       class PersistRestaurant
         def initialize(entity)
@@ -117,35 +97,18 @@ module Ewa
           @hash_rest = @entity.to_attr_hash
         end
 
-        def delete_unneed
+        def delete_unneed(symbol)
           # delete unused entity fields to input to database
-          @hash_rest.delete(:reviews)
-          @hash_rest.delete(:article)
-          @hash_rest.delete(:pictures)
-          @hash_rest.delete(:ewa_tag)
+          @hash_rest.delete(symbol)
         end
 
         def create_restaurant
-          delete_unneed
+          delete_unneed(:cover_pictures)
 
           # change type to avoid sequel value misused problem
           @hash_rest[:tags] = @hash_rest[:tags].to_s
           @hash_rest[:open_hours] = @hash_rest[:open_hours].to_s
           Database::RestaurantOrm.create(@hash_rest)
-        end
-
-        def put_related_to_db(restaurant_db_entity_id)
-          # create reviews to database
-          put_reviews_to_db(restaurant_db_entity_id)
-
-          # create article to database
-          put_article_to_db(restaurant_db_entity_id)
-
-          # create pictures to database
-          put_pics_to_db(restaurant_db_entity_id)
-
-          # create ewa_tag to database
-          put_ewa_tag_to_db(restaurant_db_entity_id)
         end
 
         def call
@@ -154,34 +117,17 @@ module Ewa
           restaurant_db_entity_id = restaurant_db_entity.id
 
           # create other related entities to database
-          put_related_to_db(restaurant_db_entity_id)
+          put_cover_pictures_to_db(restaurant_db_entity_id)
 
           # return restaurant entity
           restaurant_db_entity
         end
 
-        def put_reviews_to_db(restaurant_db_entity_id)
-          reviews = @entity.reviews
-          reviews.map do |review|
-            Reviews.db_find_or_create(review, restaurant_db_entity_id)
+        def put_cover_pictures_to_db(restaurant_db_entity_id)
+          cover_pictures = @entity.cover_pictures
+          cover_pictures.map do |cover_picture|
+            CoverPictures.db_find_or_create(cover_picture, restaurant_db_entity_id)
           end
-        end
-
-        def put_article_to_db(restaurant_db_entity_id)
-          article = @entity.article
-          Articles.db_find_or_create(article, restaurant_db_entity_id)
-        end
-
-        def put_pics_to_db(restaurant_db_entity_id)
-          pictures = @entity.pictures
-          pictures.map do |picture|
-            Pictures.db_find_or_create(picture, restaurant_db_entity_id)
-          end
-        end
-
-        def put_ewa_tag_to_db(restaurant_db_entity_id)
-          ewa_tag = @entity.ewa_tag
-          EwaTags.db_find_or_create(ewa_tag, restaurant_db_entity_id)
         end
       end
     end

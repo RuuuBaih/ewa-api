@@ -10,7 +10,7 @@ module Ewa
     class SearchedRestaurants < Roar::Decorator
       include Roar::JSON
 
-      # returns searched rests details by restaurant name 
+      # returns searched rests details by restaurant name
       collection :searched_rests, extend: Representer::RestaurantDetails
     end
   end

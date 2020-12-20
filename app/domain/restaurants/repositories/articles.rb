@@ -29,6 +29,15 @@ module Ewa
         hash_entity.delete(:restaurant_name)
         Database::ArticleOrm.find_or_create(hash_entity)
       end
+
+      def self.db_update(entity, restaurant_id)
+        hash_entity = entity.to_attr_hash
+        hash_entity[:restaurant_id] = restaurant_id
+        hash_entity.delete(:restaurant_name)
+        db_record = Database::ArticleOrm.first(id: entity.id)
+        db_record.update(hash_entity)
+        db_record
+      end
     end
   end
 end

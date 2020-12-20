@@ -15,13 +15,14 @@ module Ewa
 
       # Use in API to parse incoming list requests
       def call
-        if @params == {}
-          raise StandardError
-        end
+        raise StandardError if @params == {}
+
         Success(
           @params['name']
         )
       rescue StandardError
+        raise JSON.parse(@params).to_s
+
         Failure(
           Response::ApiResult.new(
             status: :bad_request,
