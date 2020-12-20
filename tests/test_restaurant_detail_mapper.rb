@@ -24,7 +24,7 @@ status = Repository::RestaurantDetails.check_update_click_status(1, 5)
 # check if first time update or clicks above 5 times
 if (rest_entity.google_rating.nil?) and (!status) 
   # get gmap related info
-  rest_detail_entity = RestaurantDetailMapper.new(poi_entity, token).gmap_place_details
+  rest_detail_entity = RestaurantDetailMapper.new(rest_entity, token).gmap_place_details
   #puts rest_detail_entity.inspect
 
   # get rebuilt repo entity
@@ -36,7 +36,15 @@ elsif status
   # get rebuilt repo entity
   # here will auto update click數量
   # update(entity, first_time_or_not)
-  repo_entity = Repository::RestaurantDetails.update(rest_entity, false)
+  rest_detail_entity = RestaurantDetailMapper.new(rest_entity, token).gmap_place_details
+  # update cover_pictures as well
+  trim_name = rest_detail_entity.name.gsub(' ', '')
+  cover_pics = CoverPictureMapper.new(token, cx, trim_name).cover_picture_lists
+  new_cover_pic_entities = CoverPictureMapper::BuildCoverPictureEntity.new(cover_pics).build_entity
+  cov_pic_repo_entities = Repository::CoverPictures.db_update(new_cover_pic_entities, rest_detail_entity.id)
+  puts cov_pic_repo_entities.inspect
+
+  repo_entity = Repository::RestaurantDetails.update(rest_detail_entity, false)
   puts repo_entity.inspect
 else
   # it will return the clicks of that restaurant entity
