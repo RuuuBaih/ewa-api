@@ -205,21 +205,40 @@ namespace :search_queues do
   end
 end
 
-namespace :worker do
+namespace :click_worker do
   namespace :run do
-    desc 'Run the background cloning worker in development mode'
+    desc 'Run the background clicking worker in development mode'
     task :dev => :config do
-      sh 'RACK_ENV=development bundle exec shoryuken -r ./workers/git_click_worker.rb -C ./workers/shoryuken_dev.yml'
+      sh 'RACK_ENV=development bundle exec shoryuken -r ./workers/click_worker.rb -C ./workers/shoryuken_dev.yml'
     end
 
-    desc 'Run the background cloning worker in testing mode'
+    desc 'Run the background clicking worker in testing mode'
     task :test => :config do
-      sh 'RACK_ENV=test bundle exec shoryuken -r ./workers/git_click_worker.rb -C ./workers/shoryuken_test.yml'
+      sh 'RACK_ENV=test bundle exec shoryuken -r ./workers/click_worker.rb -C ./workers/shoryuken_test.yml'
     end
 
-    desc 'Run the background cloning worker in production mode'
+    desc 'Run the background clicking worker in production mode'
     task :production => :config do
-      sh 'RACK_ENV=production bundle exec shoryuken -r ./workers/git_click_worker.rb -C ./workers/shoryuken.yml'
+      sh 'RACK_ENV=production bundle exec shoryuken -r ./workers/click_worker.rb -C ./workers/shoryuken.yml'
+    end
+  end
+end
+
+namespace :search_worker do
+  namespace :run do
+    desc 'Run the background searching worker in development mode'
+    task :dev => :config do
+      sh 'RACK_ENV=development bundle exec shoryuken -r ./workers/search_worker.rb -C ./workers/shoryuken_dev.yml'
+    end
+
+    desc 'Run the background searching worker in testing mode'
+    task :test => :config do
+      sh 'RACK_ENV=test bundle exec shoryuken -r ./workers/search_worker.rb -C ./workers/shoryuken_test.yml'
+    end
+
+    desc 'Run the background searching worker in production mode'
+    task :production => :config do
+      sh 'RACK_ENV=production bundle exec shoryuken -r ./workers/search_worker.rb -C ./workers/shoryuken.yml'
     end
   end
 end
