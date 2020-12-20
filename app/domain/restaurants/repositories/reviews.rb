@@ -41,12 +41,13 @@ module Ewa
         Database::ReviewOrm.find_or_create(hash_entity)
       end
 
-      def self.db_update(entity, restaurant_id)
-        hash_entity = entity.to_attr_hash
-        hash_entity[:restaurant_id] = restaurant_id
-        db_record = Database::ReviewOrm.first(id: entity.id)
-        db_record.update(hash_entity)
-        db_record
+      def self.db_update(new_entities, restaurant_id)
+        old_entities = database::revieworm.where(restaurant_id: restaurant_id).all 
+        old_entities.each_with_index do |db_entity, idx|
+          hash_entity = new_entities[idx].to_attr_hash
+          hash_entity[:restaurant_id] = restaurant_id
+          db_entity.update(hash_entity)
+        end
       end
     end
   end
