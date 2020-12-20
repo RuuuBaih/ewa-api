@@ -12,8 +12,8 @@ gem 'slim', '~> 3.0'
 # Web Application
 gem 'econfig', '~> 2.1'
 gem 'puma', '~> 3.11'
-gem 'roda', '~> 3.8'
 gem 'rack', '~> 2'
+gem 'roda', '~> 3.8'
 
 # Caching
 gem 'rack-cache', '~> 1.12'
@@ -53,9 +53,7 @@ group :test do
   gem 'watir', '~> 6.17'
   gem 'webmock', '~> 3.0'
 
-  gem 'headless', '~> 2.3'
   gem 'page-object', '~> 2.2'
-  gem 'watir', '~> 6.17'
 end
 
 group :development, :test do
