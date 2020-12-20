@@ -31,7 +31,6 @@ module Ewa
       def name
         represented.name
       end
-
     end
   end
 end
