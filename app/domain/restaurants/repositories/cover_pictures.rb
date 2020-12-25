@@ -14,12 +14,14 @@ module Ewa
         rebuild_many Database::CoverPictureOrm.where(restaurant_id: restaurant_id).all
       end
 
-      def self.update(cov_pic_entities)
-        cov_pic_entities.map do |cov_pic_entity|
-          db_entity = Database::CoverPictureOrm.first(id: cov_pic_entity.id)
-          db_entity.update(picture_link: cov_pic_entity.picture_link, article_link: cov_pic_entity.article_link)
-          rebuild_entity cov_pic_entity
+      def self.db_update(new_entities, restaurant_id)
+        old_entities = Database::CoverPictureOrm.where(restaurant_id: restaurant_id).all 
+        old_entities.each_with_index do |db_entity, idx|
+          hash_entity = new_entities[idx].to_attr_hash
+          hash_entity[:restaurant_id] = restaurant_id
+          db_entity.update(hash_entity)
         end
+        rebuild_many old_entities
       end
 
       def self.rebuild_entity(db_record)

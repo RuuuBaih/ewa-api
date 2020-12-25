@@ -140,9 +140,7 @@ module Ewa
         def update_reviews_to_db(restaurant_db_entity_id)
           reviews = @entity.reviews
           true if reviews.nil?
-          reviews.map do |review|
-            Reviews.db_update(review, restaurant_db_entity_id)
-          end
+          Reviews.db_update(reviews, restaurant_db_entity_id)
         end
 
         def update_article_to_db(restaurant_db_entity_id)
@@ -153,9 +151,7 @@ module Ewa
         def update_pics_to_db(restaurant_db_entity_id)
           pictures = @entity.pictures
           true if pictures.nil?
-          pictures.map do |picture|
-            Pictures.db_update(picture, restaurant_db_entity_id)
-          end
+          Pictures.db_update(pictures, restaurant_db_entity_id)
         end
 
         def update_ewa_tag_to_db(restaurant_db_entity_id)
