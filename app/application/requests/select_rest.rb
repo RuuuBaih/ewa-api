@@ -50,8 +50,6 @@ module Ewa
 
           # input invalid
           raise ArgumentError if page.zero? || per_page.zero?
-
-          # slice restaurants(array of entities) into pieces
         end
         @params
       end
