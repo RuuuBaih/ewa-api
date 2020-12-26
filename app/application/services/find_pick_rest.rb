@@ -10,7 +10,7 @@ module Ewa
       # include Dry::Transaction
       include Dry::Monads::Result::Mixin
       def call(rest_id)
-        rest_detail = Repository::For.klass(Entity::Restaurant).find_by_rest_id(rest_id)
+        rest_detail = Repository::For.klass(Entity::RestaurantDetail).find_by_rest_id(rest_id)
         # if database results not found
         raise StandarError if rest_detail.nil?
 
