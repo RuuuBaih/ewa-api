@@ -11,15 +11,10 @@ module Ewa
       include Dry::Monads::Result::Mixin
 
       def call(input)
-        # default page is 1 and records on per page is 5
-        page = input.key?('page') ? input['page'].to_i : 1
-        per_page = input.key?('per_page') ? input['per_page'].to_i : 5
-
-        # one page cannot access higher than 10 records (in the future can be more)
-        raise StandardError if per_page > 10
-
-        # input invalid
-        raise ArgumentError if page.zero? || per_page.zero?
+        params = input.call.value!
+        #binding.irb
+        page = params['page']
+        per_page = params['per_page']
 
         restaurants = Repository::For.klass(Entity::Restaurant).all
         total = restaurants.count
