@@ -10,6 +10,10 @@ module Ewa
         Database::RestaurantOrm.all.map { |db_restaurant| rebuild_entity(db_restaurant) }
       end
 
+      def self.all_desc_order_by_clicks
+        Database::RestaurantOrm.order(Sequel.desc(:clicks)).all.map { |db_restaurant| rebuild_entity(db_restaurant) }
+      end
+
       def self.find(entity)
         Database::RestaurantOrm.first(name: entity.name, branch_store_name: entity.branch_store_name)
       end
