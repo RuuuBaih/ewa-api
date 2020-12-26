@@ -7,7 +7,10 @@ module Ewa
       ENTITY_REPOSITORY = {
         Entity::Article => Articles,
         Entity::Restaurant => Restaurants,
-        Entity::Review => Reviews
+        Entity::Review => Reviews,
+        Entity::CoverPicture => CoverPictures,
+        Entity::Picture => Pictures,
+        Entity::RestaurantDetail => RestaurantDetails
       }.freeze
 
       def self.klass(entity_klass)

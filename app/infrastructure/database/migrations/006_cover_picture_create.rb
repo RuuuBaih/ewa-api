@@ -11,7 +11,6 @@ Sequel.migration do
       String :picture_link
       String :article_link
 
-
       DateTime :created_at
       DateTime :updated_at
     end
