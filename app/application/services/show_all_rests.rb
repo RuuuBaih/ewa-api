@@ -15,6 +15,7 @@ module Ewa
         #binding.irb
         page = params['page']
         per_page = params['per_page']
+        #binding.irb
 
         restaurants = Repository::For.klass(Entity::Restaurant).all
         total = restaurants.count
