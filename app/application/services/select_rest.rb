@@ -2,6 +2,7 @@
 
 # require 'dry/transaction'
 require 'dry/monads/all'
+require_relative '../../domain/restaurant_options/mappers/restaurant_options_mapper'
 
 module Ewa
   module Service
@@ -19,22 +20,23 @@ module Ewa
         page = params['page']
         per_page = params['per_page']
 
-    
+        # get rests filter by town and money  
         selected_entities = Repository::For.klass(Entity::Restaurant)
                                            .find_by_town_money(town, min_money, max_money)
-        raise StandardError if selected_entities == []
 
-        total = selected_entities.count
 
-        if random.zero?
-          limited_rests = selected_entities.each_slice(per_page).to_a[page - 1]
-        else
-          limited_rests = selected_entities.sample(random)
-        end
+        # get option entities
+        option_entities = Restaurant::RestaurantOptionsMapper.new(selected_entities, random, page, per_page)
 
-        Response::RestaurantsResp.new(total, limited_rests)
-                                 .then do |filtered_rests|
-          Success(Response::ApiResult.new(status: :ok, message: filtered_rests))
+        # get total number of option entities
+        total = option_entities.total
+       
+        # get random picks  
+        pick_entities = option_entities.random_picks
+
+        Response::RestaurantsResp.new(total, pick_entities)
+                                 .then do |pick_rests|
+          Success(Response::ApiResult.new(status: :ok, message: pick_rests))
         end
       rescue ArgumentError
         Failure(Response::ApiResult.new(status: :cannot_process, message: '參數錯誤 Invalid input'))

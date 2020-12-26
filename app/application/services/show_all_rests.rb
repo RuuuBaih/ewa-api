@@ -12,12 +12,11 @@ module Ewa
 
       def call(input)
         params = input.call.value!
-        #binding.irb
         page = params['page']
         per_page = params['per_page']
         #binding.irb
 
-        restaurants = Repository::For.klass(Entity::Restaurant).all
+        restaurants = Repository::For.klass(Entity::Restaurant).all_desc_order_by_clicks
         total = restaurants.count
 
         # slice restaurants(array of entities) into pieces
@@ -31,7 +30,6 @@ module Ewa
       rescue ArgumentError
         Failure(Response::ApiResult.new(status: :cannot_process, message: '參數錯誤 Invalid input'))
       rescue StandardError
-        # raise "#{resp.inspect}"
         Failure(Response::ApiResult.new(status: :internal_error, message: '無法獲取資料 Cannot access db'))
       end
     end
