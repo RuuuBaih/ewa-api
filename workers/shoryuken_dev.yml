@@ -1,0 +1,5 @@
+search_queues:
+  - https://sqs.us-east-2.amazonaws.com/468882986872/ewa_search_development
+
+click_queues:
+  - https://sqs.us-east-2.amazonaws.com/468882986872/ewa_click_development

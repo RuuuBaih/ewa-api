@@ -17,11 +17,13 @@ module Ewa
 
         ## This place puts worker & queue
         if rest_entity.google_rating.nil?
+          Message::Queue.new(Api.config.CLICK_QUEUE_URL, API.config)
+            .send(Representer::RestaurantDetail.new(rest_entity).to_json)
           # future will choose token randomly
           # GMAP_TOKEN = App.config.GMAP_TOKENS.sample(1) (GMAP_TOKENS are array of tokens)
-          rest_detail_entity = Restaurant::RestaurantDetailMapper.new(rest_entity, App.config.GMAP_TOKEN).gmap_place_details
+          #rest_detail_entity = Restaurant::RestaurantDetailMapper.new(rest_entity, App.config.GMAP_TOKEN).gmap_place_details
 
-          repo_entity = Repository::RestaurantDetails.update(rest_detail_entity, true)
+          #repo_entity = Repository::RestaurantDetails.update(rest_detail_entity, true)
         else
           Repository::RestaurantDetails.update_click(rest_id)
           repo_entity = rest_entity
