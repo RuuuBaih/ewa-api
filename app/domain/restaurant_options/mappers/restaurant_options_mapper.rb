@@ -4,37 +4,30 @@ module Ewa
   module Restaurant
     # Get filtered restaurant_repo_entites
     class RestaurantOptionsMapper
-      def initialize(filtered_all)
-        @filtered_all = filtered_all
+      def initialize(selected_entities, random_num, page, per_page)
+        @selected_entities = selected_entities
+        @random_num = random_num
+        @page = page
+        @per_page = per_page
       end
 
       # Get random repository entities of restaurants
-      def random_9picks
-        @filtered_all.sample(9)
+      def random_picks
+        if @selected_entities.length.zero?
+          raise StandardError
+        elsif @random_num.zero?
+          @selected_entities.each_slice(@per_page).to_a[@page - 1]
+        else
+          @selected_entities.sample(@random_num)
+        end
       end
 
-      # get restaurant id
-      class GetRestInfo
-        def initialize(nine_picks)
-          @nine_picks = nine_picks
-        end
-
-        # Get an array of restaurant ids of 9 picked restaurants
-        def _9_id_infos
-          @nine_picks.map(&:id)
-        end
-
-        # Get array of nine_picks's random thumb
-        def random_thumbs
-          # random_9picks's random thumb picture
-          @nine_picks.map do |pick|
-            pick.pictures[0..3].sample(1)[0].link
-          end
-        end
-
-        def _9_name_infos
-          # random_9picks's array of names
-          @nine_picks.map(&:name)
+      # Get total numbers 
+      def total
+        if @selected_entities.length.zero?
+          raise StandardError
+        else
+          @selected_entities.count 
         end
       end
     end

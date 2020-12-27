@@ -14,7 +14,7 @@ module Ewa
 
       property :id
       property :name
-      collection :pictures, extend: Representer::Picture, class: OpenStruct
+      collection :cover_pictures, extend: Representer::CoverPicture, class: OpenStruct
 
       link :search_by_id do
         "#{App.config.API_HOST}/api/v1/restaurants/picks/#{id}"
