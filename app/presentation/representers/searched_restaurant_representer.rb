@@ -11,7 +11,7 @@ module Ewa
       include Roar::JSON
 
       # returns searched rests details by restaurant name
-      collection :searched_rests, extend: Representer::RestaurantDetails
+      collection :searched_rests, extend: Representer::RestaurantDetails, class: OpenStruct
     end
   end
 end
