@@ -16,13 +16,15 @@ module Ewa
       def cover_picture_lists
         name = "#{@name}料理"
         ret = @gateway_class.new(@token, name, @cx).search_photo
-        cover_pictures = ret['items']
-        cover_pictures.map do |cover_picture|
-          {
-            picture_link: cover_picture['link'],
-            article_link: cover_picture['image']['contextLink']
-          }
-        end
+        if ret.key?('items')
+          cover_pictures = ret['items']
+          cover_pictures.map do |cover_picture|
+            {
+              picture_link: cover_picture['link'],
+              article_link: cover_picture['image']['contextLink']
+            }
+          end
+        else [] end
       end
 
       # build Picture Entity

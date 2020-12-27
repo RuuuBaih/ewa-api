@@ -1,6 +1,7 @@
 # frozen_string_literal: false
 
 require_relative '../../restaurant_options/init'
+require 'concurrent'
 
 module Ewa
   # Provides access to restuarant sites lists data
@@ -27,7 +28,7 @@ module Ewa
       class PoiDetails
         # page default is 1 (for first time db populate)
         def initialize(pix_gateway_class, town, page_now, first_time)
-          @filter = nil
+          @start = []
           @pix_gateway_class = pix_gateway_class
           @setting = { page_now: page_now, town: town, first_time: first_time }
           @tp_towns = %w[中正區 萬華區 大同區 中山區 松山區 大安區 信義區 內湖區 南港區 士林區 北投區 文山區]
@@ -35,12 +36,14 @@ module Ewa
         end
 
         def poi_details
-          start = []
           iterate_pois.map do |hash|
-            @filter = FilterHash.new(hash).filtered_poi_hash
-            start << @filter if (@filter['category_id']).zero? && (@filter['money'] != 0)
-          end
-          start
+            Concurrent::Promise
+              .new {FilterHash.new(hash).filtered_poi_hash}
+              .then { |filter| @start << filter if (filter['category_id']).zero? && (filter['money'] != 0)}
+              .rescue { { error: "filter process went wrong" } }
+              .execute
+          end.map(&:value)
+          @start
         end
 
         def iterate_pois
@@ -53,14 +56,18 @@ module Ewa
           poi_hashes = []
           # return 9 restaurant poi infos from each district (from page 1)
           tp_city = '台北市'
-          @tp_towns.map do |tp_town|
-            poi_hashes << call_api(tp_city, tp_town)
-          end
+          @tp_towns.each do |tp_town|
+            Concurrent::Promise
+              .new { call_api(tp_city, tp_town) }
+              .then { |ret| poi_hashes << ret }
+          end.each(&:value)
 
           ntp_city = '新北市'
-          @ntp_towns.map do |ntp_town|
-            poi_hashes << call_api(ntp_city, ntp_town)
-          end
+          @ntp_towns.each do |ntp_town|
+            Concurrent::Promise
+              .new { call_api(ntp_city, ntp_town) }
+              .then { |ret| poi_hashes << ret }
+          end.each(&:value)
           poi_hashes.flatten
         end
 
@@ -137,7 +144,11 @@ module Ewa
         def cover_pictures
           trim_name = @data['name'].gsub(' ', '')
           cover_pics = CoverPictureMapper.new(@token, @cx, trim_name).cover_picture_lists
-          CoverPictureMapper::BuildCoverPictureEntity.new(cover_pics).build_entity
+          if cover_pics.length.zero?
+            []
+          else
+            CoverPictureMapper::BuildCoverPictureEntity.new(cover_pics).build_entity
+          end
         end
       end
 
