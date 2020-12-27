@@ -20,14 +20,19 @@ class ClickWorker
   include Shoryuken::Worker
   shoryuken_options queue: config.CLICK_QUEUE_URL, auto_delete: true
 
-=begin   
+
   def perform(_sqs_msg, request)
-    project = Ewa::Representer::Project
+    rest_entity = Ewa::Representer::RestaurantDetails
       .new(OpenStruct.new).from_json(request)
-    Ewa::GitRepo.new(project).clone!
-  rescue Ewa::GitRepo::Errors::CannotOverwriteLocalGitRepo
-    puts 'CLICK EXISTS -- ignoring request'
+
+    #GMAP_TOKEN = App.config.GMAP_TOKENS.sample(1)
+    rest_detail_entity = Restaurant::RestaurantDetailMapper
+        .new(rest_entity, App.config.GMAP_TOKEN).gmap_place_details
+
+    Ewa::Repository::RestaurantDetails.update(rest_detail_entity, true)
+
+  rescue StandardError => e
+    print_error(e)
   end 
-=end
 
 end
