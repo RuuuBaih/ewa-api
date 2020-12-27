@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# require 'dry/transaction'
 require 'dry/monads/all'
 
 module Ewa
@@ -10,11 +9,24 @@ module Ewa
       # include Dry::Transaction
       include Dry::Monads::Result::Mixin
       def call(rest_id)
-        rest_detail = Repository::For.klass(Entity::RestaurantDetail).find_by_rest_id(rest_id)
-        # if database results not found
-        raise StandarError if rest_detail.nil?
+        rest_entity = Repository::For.klass(Entity::RestaurantDetail).find_by_rest_id(rest_id)
 
-        Response::PickRestaurantResp.new(rest_detail)
+        #binding.irb
+        # if database results not found
+        raise StandarError if rest_entity.nil?
+
+        ## This place puts worker & queue
+        if rest_entity.google_rating.nil?
+          rest_detail_entity = Restaurant::RestaurantDetailMapper.new(rest_entity, App.config.GMAP_TOKEN).gmap_place_details
+
+          repo_entity = Repository::RestaurantDetails.update(rest_detail_entity, true)
+        else
+          Repository::RestaurantDetails.update_click(rest_id)
+          repo_entity = rest_entity
+        end
+        ## check if call the gmap api yet
+
+        Response::PickRestaurantResp.new(repo_entity)
                                     .then do |rest_details|
           Success(Response::ApiResult.new(status: :ok, message: rest_details))
         end
