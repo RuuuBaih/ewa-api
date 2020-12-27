@@ -12,23 +12,12 @@ require 'minitest/rg'
 require 'vcr'
 require 'webmock'
 
-# # require_relative '../app/models/mappers/restaurant_mapper'
-# require_relative '../app/models/mappers/article_mapper'
-# require_relative '../app/models/entities/article'
-# require_relative '../app/models/mappers/restaurant_mapper'
-# require_relative '../app/models/entities/restaurant'
-# require_relative '../app/models/mappers/review_mapper'
-# require_relative '../app/models/entities/review'
-# require_relative '../app/models/init'
-# =======
-# >>>>>>> views_sep
-# require_relative '../app/controllers/init'
-# require_relative '../../config/init'
 require_relative '../../init'
 
 USERNAME = ''
 PROJECT_NAME = 'SOA_project'
 GMAP_TOKEN = Ewa::App.config.GMAP_TOKEN
+CX = Ewa::App.config.CX
 
 CASSETTES_FOLDER = 'spec/fixtures/cassettes'
 CASSETTE_FILE = 'apis'
