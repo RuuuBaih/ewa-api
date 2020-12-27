@@ -10,7 +10,7 @@ require_relative '../../restaurant_options/entities/ewa_tag'
 module Ewa
   module Entity
     # Restaurant Entity
-    class Restaurant < Dry::Struct
+    class RestaurantDetail < Dry::Struct
       include Dry.Types
 
       attribute :id, Integer.optional
@@ -23,13 +23,19 @@ module Ewa
       attribute :cover_img,     Strict::String.optional
       attribute :tags,          Strict::Array.of(String).optional
       attribute :pixnet_rating, Strict::Float.optional
+      attribute :google_rating, Strict::Float.optional
       attribute :open_hours,    Strict::Array.of(String).optional
       attribute :address,       Strict::String.optional
       attribute :website,       Strict::String.optional
 
-      attribute :cover_pictures, Strict::Array.of(CoverPicture)
+      attribute :cover_pictures, Array.of(CoverPicture).optional
       attribute :clicks,        Integer.optional
       attribute :likes,         Integer.optional
+
+      attribute :reviews,       Array.of(Review).optional
+      attribute :pictures,      Array.of(Picture).optional
+      attribute :ewa_tag,       EwaTag.optional
+      attribute :article,       Article.optional
 
       def to_attr_hash
         to_hash.reject { |key, _| [:id].include? key }

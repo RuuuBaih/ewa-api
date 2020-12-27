@@ -11,17 +11,11 @@ module Ewa
       include Dry::Monads::Result::Mixin
 
       def call(input)
-        # default page is 1 and records on per page is 5
-        page = input.key?('page') ? input['page'].to_i : 1
-        per_page = input.key?('per_page') ? input['per_page'].to_i : 5
+        params = input.call.value!
+        page = params['page']
+        per_page = params['per_page']
 
-        # one page cannot access higher than 10 records (in the future can be more)
-        raise StandardError if per_page > 10
-
-        # input invalid
-        raise ArgumentError if page.zero? || per_page.zero?
-
-        restaurants = Repository::For.klass(Entity::Restaurant).all
+        restaurants = Repository::For.klass(Entity::Restaurant).all_desc_order_by_clicks
         total = restaurants.count
 
         # slice restaurants(array of entities) into pieces
@@ -35,7 +29,6 @@ module Ewa
       rescue ArgumentError
         Failure(Response::ApiResult.new(status: :cannot_process, message: '參數錯誤 Invalid input'))
       rescue StandardError
-        # raise "#{resp.inspect}"
         Failure(Response::ApiResult.new(status: :internal_error, message: '無法獲取資料 Cannot access db'))
       end
     end

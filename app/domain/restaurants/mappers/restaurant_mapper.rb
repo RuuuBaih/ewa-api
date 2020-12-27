@@ -1,298 +1,206 @@
 # frozen_string_literal: false
 
-# require_relative '../../restaurant_options/mappers/restaurant_pick_mapper'
 require_relative '../../restaurant_options/init'
+require 'concurrent'
 
 module Ewa
   # Provides access to restuarant sites lists data
   module Restaurant
-    # Data Mapper: Pixnet POI, Gmap Place & Place details -> Restuarant entity
+    # Data Mapper: Pixnet POI API, Custom Search API -> Restuarant entity
     class RestaurantMapper
       def initialize(
-        gmap_token,
-        gateway_classes = {
-          pixnet: Pixnet::PoiApi,
-          gmap_place: Gmap::PlaceApi,
-          gmap_place_details: Gmap::PlaceDetailsApi
-        }
+        custom_search_token,
+        custom_search_cx,
+        town = nil,
+        page_now = 1,
+        first_time = false,
+        gateway_class = Pixnet::PoiApi
       )
-        @token = gmap_token
-        @gateway_classes = gateway_classes
+        @token = custom_search_token # custom search api key
+        @cx = custom_search_cx # custom search engine setting key
+        @page_now = page_now
+        @first_time = first_time
+        @town = town
+        @pix_gateway_class = gateway_class
       end
 
       # get poi full details
       class PoiDetails
-        def initialize(pix_gateway_class)
-          @poi_hashes = []
-          @filter = nil
-          @cities = %w[台北市 新北市]
+        # page default is 1 (for first time db populate)
+        def initialize(pix_gateway_class, town, page_now, first_time)
+          @start = []
           @pix_gateway_class = pix_gateway_class
+          @setting = { page_now: page_now, town: town, first_time: first_time }
+          @tp_towns = %w[中正區 萬華區 大同區 中山區 松山區 大安區 信義區 內湖區 南港區 士林區 北投區 文山區]
+          @ntp_towns = %w[萬里區 金山區 板橋區 汐止區 深坑區 石碇區 瑞芳區 平溪區 雙溪區 貢寮區 新店區 坪林區 烏來區 永和區 中和區 土城區 三峽區 樹林區 鶯歌區 三重區 新莊區 泰山區 林口區 蘆洲區 五股區 八里區 淡水區 三芝區 石門區]
         end
 
         def poi_details
-          start = []
-          multi_pages.map do |hash|
-            @filter = FilterHash.new(hash).filtered_poi_hash
-            start << @filter if (@filter['category_id']).zero? && (@filter['money'] != 0)
-          end
-          start
+          iterate_pois.map do |hash|
+            Concurrent::Promise
+              .new {FilterHash.new(hash).filtered_poi_hash}
+              .then { |filter| @start << filter if (filter['category_id']).zero? && (filter['money'] != 0)}
+              .rescue { { error: "filter process went wrong" } }
+              .execute
+          end.map(&:value)
+          @start
         end
 
-        # get multi pages of results from new taipei city & taipei city
-        def multi_pages
-          1.upto(3) do |item|
-            iterate_pois(item)
-          end
-          @poi_hashes.flatten
+        def iterate_pois
+          first_time = @setting[:first_time]
+          if first_time then iterate_for_1_time
+          else iterate end
         end
 
-        def iterate_pois(item)
-          @cities.map do |tp_city|
-            @poi_hashes << @pix_gateway_class.new(item, 5, tp_city).poi_lists['data']['pois']
-          end
-        end
-      end
+        def iterate_for_1_time
+          poi_hashes = []
+          # return 9 restaurant poi infos from each district (from page 1)
+          tp_city = '台北市'
+          @tp_towns.each do |tp_town|
+            Concurrent::Promise
+              .new { call_api(tp_city, tp_town) }
+              .then { |ret| poi_hashes << ret }
+          end.each(&:value)
 
-      # get google map place full details
-      def gmap_place_details(poi_filtered_hash)
-        place_name = FoolProof.new(poi_filtered_hash).check_gmap_place_name
-        gmap_place_gateway = @gateway_classes[:gmap_place].new(@token, place_name)
-        place_id = gmap_place_gateway.place_id['candidates']
-        if place_id.length.zero?
-          {}
-        else
-          @gateway_classes[:gmap_place_details].new(@token, place_id[0]['place_id']).place_details['result']
-        end
-      end
-
-      def aggregate_rest_hashes
-        pix_gateway_class = @gateway_classes[:pixnet]
-        PoiDetails.new(pix_gateway_class).poi_details.map do |poi_hash|
-          place_details = gmap_place_details(poi_hash)
-          FoolProof.new(place_details).check_aggregate(poi_hash)
-        end
-      end
-
-      # try to avoid some situations
-      class FoolProof
-        def initialize(hash)
-          @hash = hash
+          ntp_city = '新北市'
+          @ntp_towns.each do |ntp_town|
+            Concurrent::Promise
+              .new { call_api(ntp_city, ntp_town) }
+              .then { |ret| poi_hashes << ret }
+          end.each(&:value)
+          poi_hashes.flatten
         end
 
-        # try to avoid the restaurants without reviews and photos
-        def check_aggregate(poi_hash)
-          if (@hash != {}) && @hash.key?('reviews') && @hash.key?('photos')
-            AggregatedRestaurantObjs.new(poi_hash, @hash).aggregate_restaurant_objs
-          else
-            poi_hash.clear
-          end
+        def iterate
+          town = @setting[:town]
+          # check town belongs to which city
+          # default city is tapei city
+          city = if @ntp_towns.include? town then '新北市'
+                 else '台北市' end
+
+          call_api(city, town)
         end
 
-        # try to search with restaurant name & branch store name or restaurant name & town
-        # try to avoid getting results from the wrong branch store or town
-        def check_gmap_place_name
-          branch_name = @hash['branch_store_name']
-          name = @hash['name']
-          if branch_name != ''
-            "#{name}#{branch_name}".gsub(' ', '')
-          else
-            "#{name}#{@hash['town']}".gsub(' ', '')
-          end
+        def call_api(city, town)
+          # return an array of data hashes
+          @pix_gateway_class.new(@setting[:page_now], 9, city, town).poi_lists['data']['pois']
         end
       end
 
-      # get filtered and aggregated restaurant object lists
+      # get restaurant objs
       def restaurant_obj_lists
-        # filter nil results
-        filtered_nil_hashes = aggregate_rest_hashes
-        filtered_nil_hashes.delete_if(&:empty?)
-
-        RestaurantMapper::BuildRestaurantEntity.new(filtered_nil_hashes, @token).build_entity
+        filtered_hashes = PoiDetails.new(@pix_gateway_class, @town, @page_now, @first_time).poi_details
+        RestaurantMapper::BuildRestaurantEntity.new(filtered_hashes, @token, @cx).build_entity
       end
 
       # build Restaurant Entity
       class BuildRestaurantEntity
-        def initialize(array_of_hashes, token)
+        def initialize(array_of_hashes, token, cx)
           @array_of_hashes = array_of_hashes
           @token = token
+          @cx = cx
         end
 
         def build_entity
           @array_of_hashes.map do |hash|
-            DataMapper.new(hash, @token).build_entity
+            DataMapper.new(hash, @token, @cx).build_entity
           end
         end
       end
 
       # Extracts entity specific elements from data structure
       class DataMapper
-        def initialize(data, token)
+        def initialize(data, token, cx)
           @data = data
           @token = token
+          @cx = cx
         end
 
         # rubocop:disable Metrics/MethodLength
-        # rubocop:disable Metrics/AbcSize
         def build_entity
           Ewa::Entity::Restaurant.new(
             id: nil,
             name: @data['name'],
             branch_store_name: @data['branch_store_name'],
             town: @data['town'],
+            money: @data['money'],
             city: @data['city'],
-            open_hours: @data['open_hours'],
             telephone: @data['telephone'],
             cover_img: @data['cover_img'],
             tags: @data['tags'],
-            money: @data['money'],
             pixnet_rating: @data['pixnet_rating'].to_f,
-            google_rating: @data['google_rating'].to_f,
+            open_hours: @data['open_hours'],
             address: @data['address'],
             website: @data['website'],
-            reviews: reviews,
-            pictures: pictures,
-            article: article,
-            ewa_tag: ewa_tag,
-            clicks: nil,
-            likes: nil
+            clicks: 0,
+            likes: nil,
+            cover_pictures: cover_pictures
           )
         end
         # rubocop:enable Metrics/MethodLength
-        # rubocop:enable Metrics/AbcSize
 
         private
 
-        def reviews
-          ReviewMapper::BuildReviewEntity.new(@data['reviews']).build_entity
-        end
-
-        def article
-          article = ArticleMapper.new(@data['name']).the_newest_article
-          ArticleMapper::BuildArticleEntity.new(article).build_entity
-        end
-
-        def pictures
-          pictures = PictureMapper.new(@token, @data['photos']).photo_lists
-          PictureMapper::BuildPictureEntity.new(pictures).build_entity
-        end
-
-        def ewa_tag
-          ewa_tag_hash = RestaurantPickMapper.new(@data).ewa_tag
-          RestaurantPickMapper::BuildEwaTagEntity.new(ewa_tag_hash).build_entity
-        end
-      end
-    end
-
-    # Aggregate poi & gmap place informations
-    class AggregatedRestaurantObjs
-      def initialize(poi_hash, place_hash)
-        @restaurant_hash = poi_hash
-        @place_rets = place_hash
-        @open_week = @restaurant_hash['open_hours']['date']
-      end
-
-      # get each aggregated restaurant obj ( Aggregate Pixnet POI, Gmap Place & Place details )
-      def aggregate_restaurant_objs
-        filter
-        @restaurant_hash
-      end
-
-      private
-
-      def filter
-        address_website
-        open_hours
-        google_rating
-        reviews
-        photos
-      end
-
-      def address_website
-        @restaurant_hash['address'] = @place_rets['formatted_address']
-        @restaurant_hash['website'] = if !@place_rets.key?('website')
-                                        @restaurant_hash['website']['website']
-                                      else
-                                        @place_rets['website']
-                                      end
-      end
-
-      def open_hours
-        if !@place_rets.key?('opening_hours')
-          @restaurant_hash['open_hours'] = ["星期一: #{@open_week['Mo']}", "星期二: #{@open_week['Tu']}",
-                                            "星期三: #{@open_week['We']}", "星期四: #{@open_week['Th']}",
-                                            "星期五: #{@open_week['Fr']}", "星期六: #{@open_week['Sa']}",
-                                            "星期日: #{@open_week['Sun']}"]
-
-        else
-          @restaurant_hash['open_hours'] = @place_rets['opening_hours']['weekday_text']
+        def cover_pictures
+          trim_name = @data['name'].gsub(' ', '')
+          cover_pics = CoverPictureMapper.new(@token, @cx, trim_name).cover_picture_lists
+          if cover_pics.length.zero?
+            []
+          else
+            CoverPictureMapper::BuildCoverPictureEntity.new(cover_pics).build_entity
+          end
         end
       end
 
-      def google_rating
-        @restaurant_hash['google_rating'] = @place_rets['rating']
-      end
-
-      def reviews
-        @restaurant_hash['reviews'] = @place_rets['reviews'].reduce([]) do |start, hash|
-          start << FilterHash.new(hash).filtered_gmap_place_reviews_hash
+      # Use to filter hashes
+      class FilterHash
+        def initialize(hash)
+          @hash = hash
         end
-      end
 
-      def photos
-        @restaurant_hash['photos'] = @place_rets['photos'].reduce([]) do |start, hash|
-          start << FilterHash.new(hash).filtered_gmap_place_photos_hash
+        # filter the poi fields, select what we want
+        # rubocop:disable Metrics/MethodLength
+        def filtered_poi_hash
+          addr = @hash['address']
+          {
+            'category_id' => @hash['category_id'],
+            'name' => @hash['name'],
+            'branch_store_name' => @hash['branch_store_name'],
+            'money' => @hash['money'],
+            'telephone' => @hash['telephone'],
+            'cover_img' => @hash['cover_image_url'],
+            'tags' => @hash['tags'],
+            'pixnet_rating' => @hash['rating']['avg'],
+            'city' => addr['city'],
+            'town' => addr['town'],
+            'open_hours' => open_hours,
+            'website' => website,
+            'address' => address
+          }
         end
-      end
-    end
+        # rubocop:enable Metrics/MethodLength
 
-    # Use to filter hashes
-    class FilterHash
-      def initialize(hash)
-        @hash = hash
-      end
+        private
 
-      # filter the poi fields, select what we want
-      # rubocop:disable Metrics/MethodLength
-      def filtered_poi_hash
-        addr = @hash['address']
-        {
-          'category_id' => @hash['category_id'],
-          'name' => @hash['name'],
-          'branch_store_name' => @hash['branch_store_name'],
-          'money' => @hash['money'],
-          'telephone' => @hash['telephone'],
-          'cover_img' => @hash['cover_image_url'],
-          'tags' => @hash['tags'],
-          'pixnet_rating' => @hash['rating']['avg'],
-          'city' => addr['city'],
-          'town' => addr['town'],
-          'open_hours' => @hash['opening_hours_info'],
-          'website' => @hash['urls']
-        }
-      end
-      # rubocop:enable Metrics/MethodLength
-
-      # filter the gmap place reviews fields, select what we want
-      def filtered_gmap_place_reviews_hash
-        @hash.select do |key, _value|
-          key_lists = %w[
-            author_name
-            profile_photo_url
-            rating
-            text
-            relative_time_description
+        def open_hours
+          open_week = @hash['opening_hours_info']['date']
+          [
+            "星期一: #{open_week['Mo']}", "星期二: #{open_week['Tu']}",
+            "星期三: #{open_week['We']}", "星期四: #{open_week['Th']}",
+            "星期五: #{open_week['Fr']}", "星期六: #{open_week['Sa']}",
+            "星期日: #{open_week['Sun']}"
           ]
-          key_lists.include? key
         end
-      end
 
-      # filter the gmap place photos fields, select what we want
-      def filtered_gmap_place_photos_hash
-        @hash.select do |key, _value|
-          key_lists = %w[
-            photo_reference
-          ]
-          key_lists.include? key
+        def website
+          web_url = @hash['urls']['website']
+          if web_url == '' then nil.to_s
+          else web_url end
+        end
+
+        def address
+          addr = @hash['address']
+          "#{addr['zip_code']}#{addr['country']}#{addr['city']}#{addr['town']}#{addr['street']}"
         end
       end
     end

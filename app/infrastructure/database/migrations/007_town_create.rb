@@ -7,6 +7,8 @@ Sequel.migration do
     create_table(:towns) do
       primary_key :id
 
+      String :city
+      String :town_name
       Integer :page
       Integer :search_times
 
