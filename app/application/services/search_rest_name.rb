@@ -7,7 +7,7 @@ module Ewa
   module Service
     # Retrieves restaurant entity by searching restaurant name
     class SearchRestName
-      #include Dry::Transaction
+      # include Dry::Transaction
       include Dry::Monads::Result::Mixin
 
       def call(input)
@@ -15,7 +15,7 @@ module Ewa
         # e.g. In db: ABC小館 DEF小館 --> user search "小館" will show both of two
         # search is a response obj
         search = input.call.value!
-        rest_searches = Repository::For.klass(Entity::Restaurant).rest_convert2_id(search)
+        rest_searches = Repository::For.klass(Entity::RestaurantDetail).rest_convert2_id(search)
         # if database results not found
         raise StandardError if rest_searches == []
 
