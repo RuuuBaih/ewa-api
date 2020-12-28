@@ -41,7 +41,7 @@ module Ewa
 
           # how many records on per page
           # 5 can be changed in the future
-          per_page = @params.key?('per_page') ? @params['per_page'].to_i : 5
+          per_page = @params.key?('per_page') ? @params['per_page'].to_i : 9
           @params["per_page"] = per_page
 
           # records on per page can be up than 10
