@@ -2,19 +2,15 @@
 
 require 'json'
 require 'roda'
-require 'slim'
-require 'slim/include'
-# require_relative 'helpers.rb'
 
 module Ewa
   # Web App
   class App < Roda
     # include RouteHelpers
-    plugin :render, engine: 'slim', views: 'app/presentation/views_html'
-    plugin :assets, css: 'style.css', path: 'app/presentation/assets'
     plugin :halt
     plugin :flash
     plugin :all_verbs
+    plugin :caching
 
     use Rack::MethodOverride
 
@@ -37,6 +33,7 @@ module Ewa
           # GET /restaurants
           routing.is do
             routing.get do
+              response.cache_control public: true, max_age: 3600
               params = routing.params
               # GET /restaurants?town={town}&min_money={min_mon}&max_money={max_mon}
               select_rest = Request::SelectRests.new(params)
@@ -65,6 +62,7 @@ module Ewa
             # select one of 9 pick
             routing.on String do |rest_id|
               routing.get do
+                response.cache_control public: true, max_age: 3600
                 result = Service::FindPickRest.new.call(rest_id)
                 if result.failure?
                   failed = Representer::HttpResponse.new(result.failure)
@@ -86,6 +84,7 @@ module Ewa
             # GET /restaurants/searches?name={restaurant name}
             # search restaurants by name
             routing.get do
+              response.cache_control public: true, max_age: 3600
               select_name = Request::SelectbyName.new(routing.params)
               result = Service::SearchRestName.new.call(select_name)
 
