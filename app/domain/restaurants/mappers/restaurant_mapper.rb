@@ -90,7 +90,14 @@ module Ewa
       # get restaurant objs
       def restaurant_obj_lists
         filtered_hashes = PoiDetails.new(@pix_gateway_class, @town, @page_now, @first_time).poi_details
-        RestaurantMapper::BuildRestaurantEntity.new(filtered_hashes, @token, @cx).build_entity
+        # filter out hashes without cover pictures
+        cov_pic_filtered_hashes = filtered_hashes.map do |hash|
+          FilterHash.new(hash).filter_out_empty_cov_pics(@token, @cx)
+        end
+        # delete restaurants with empty cover pictures
+        cov_pic_filtered_hashes.delete_if(&:empty?)
+
+        RestaurantMapper::BuildRestaurantEntity.new(cov_pic_filtered_hashes, @token, @cx).build_entity
       end
 
       # build Restaurant Entity
@@ -142,13 +149,8 @@ module Ewa
         private
 
         def cover_pictures
-          trim_name = @data['name'].gsub(' ', '')
-          cover_pics = CoverPictureMapper.new(@token, @cx, trim_name).cover_picture_lists
-          if cover_pics.length.zero?
-            []
-          else
-            CoverPictureMapper::BuildCoverPictureEntity.new(cover_pics).build_entity
-          end
+          cover_pics = @data['cover_pictures']
+          CoverPictureMapper::BuildCoverPictureEntity.new(cover_pics).build_entity
         end
       end
 
@@ -179,6 +181,17 @@ module Ewa
           }
         end
         # rubocop:enable Metrics/MethodLength
+
+        def filter_out_empty_cov_pics(token, cx)
+          trim_name = @hash['name'].gsub(' ', '')
+          cover_pics = CoverPictureMapper.new(token, cx, trim_name).cover_picture_lists
+          if cover_pics.length.zero?
+            {}
+          else
+            @hash['cover_pictures'] = cover_pics
+            @hash
+          end
+        end
 
         private
 
