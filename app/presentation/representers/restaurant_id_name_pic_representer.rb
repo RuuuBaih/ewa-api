@@ -17,11 +17,11 @@ module Ewa
       collection :cover_pictures, extend: Representer::CoverPicture, class: OpenStruct
 
       link :search_by_id do
-        "#{App.config.API_HOST}/api/v1/restaurants/picks/#{id}"
+        "#{App.config.API_HOST}api/v1/restaurants/picks/#{id}"
       end
 
       link :search_by_name do
-        "#{App.config.API_HOST}/api/v1/restaurants/searches?name=#{name}"
+        "#{App.config.API_HOST}api/v1/restaurants/searches?name=#{name}"
       end
 
       def id
