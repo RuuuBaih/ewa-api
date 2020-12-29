@@ -9,4 +9,4 @@ test:
   API_HOST: http://localhost:9292
 
 production:
-  API_HOST:  http://ewa-api.herokuapp.com/
+  API_HOST:  http://ewa-api.herokuapp.com
