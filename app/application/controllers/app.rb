@@ -33,7 +33,7 @@ module Ewa
           # GET /restaurants
           routing.is do
             routing.get do
-              response.cache_control public: true, max_age: 3600
+              response.cache_control public: true, max_age: 60
               params = routing.params
               # GET /restaurants?town={town}&min_money={min_mon}&max_money={max_mon}
               select_rest = Request::SelectRests.new(params)
@@ -62,7 +62,7 @@ module Ewa
             # select one of 9 pick
             routing.on String do |rest_id|
               routing.get do
-                response.cache_control public: true, max_age: 3600
+                response.cache_control public: true, max_age: 60
                 result = Service::FindPickRest.new.call(rest_id)
                 if result.failure?
                   failed = Representer::HttpResponse.new(result.failure)
@@ -84,7 +84,7 @@ module Ewa
             # GET /restaurants/searches?name={restaurant name}
             # search restaurants by name
             routing.get do
-              response.cache_control public: true, max_age: 3600
+              response.cache_control public: true, max_age: 60
               select_name = Request::SelectbyName.new(routing.params)
               result = Service::SearchRestName.new.call(select_name)
 
