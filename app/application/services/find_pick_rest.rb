@@ -30,8 +30,8 @@ module Ewa
           Success(Response::ApiResult.new(status: :ok, message: rest_details))
         end
 
-      rescue StandardError
-        Failure(Response::ApiResult.new(status: :not_found, message: '無此資料 Resource not found'))
+      #rescue StandardError
+        #Failure(Response::ApiResult.new(status: :not_found, message: '無此資料 Resource not found'))
       end
     end
   end
