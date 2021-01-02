@@ -47,10 +47,10 @@ module Ewa
         # try to search with restaurant name & branch store name or restaurant name & town
         # try to avoid getting results from the wrong branch store or town
         def check_gmap_place_name
-          if @branch_name != ''
-            "#{@name}#{@branch_name}".gsub(' ', '')
-          else
+          if @branch_name.to_s.length.zero?
             "#{@name}#{@town}".gsub(' ', '')
+          else
+            "#{@name}#{@branch_name}".gsub(' ', '')
           end
         end
       end
