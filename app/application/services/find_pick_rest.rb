@@ -17,6 +17,8 @@ module Ewa
         Messaging::Queue.new(App.config.CLICK_QUEUE_URL, App.config)
           .send(rest_id)
 
+        
+
 
         ## check if call the gmap api yet
         if rest_entity.google_rating.nil?
