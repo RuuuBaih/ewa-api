@@ -243,6 +243,26 @@ namespace :search_worker do
   end
 end
 
+namespace :click_create_worker do
+  namespace :run do
+    desc 'Run the background click_create worker in development mode'
+    task :dev => :config do
+      sh 'RACK_ENV=development bundle exec shoryuken -r ./workers/click_create_worker.rb -C ./workers/shoryuken_dev.yml'
+    end
+
+    desc 'Run the background clicking worker in testing mode'
+    task :test => :config do
+      sh 'RACK_ENV=test bundle exec shoryuken -r ./workers/click_create_worker.rb -C ./workers/shoryuken_test.yml'
+    end
+
+    desc 'Run the background clicking worker in production mode'
+    task :production => :config do
+      sh 'RACK_ENV=production bundle exec shoryuken -r ./workers/click_create_worker.rb -C ./workers/shoryuken.yml'
+    end
+  end
+end
+
+
 desc 'Run application console (irb)'
 task :console do
   sh 'irb -r ./init'
