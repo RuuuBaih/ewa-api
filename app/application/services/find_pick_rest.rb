@@ -21,6 +21,10 @@ module Ewa
 
           repo_entity = Repository::RestaurantDetails.update(rest_detail_entity, true)
         else
+          # send message to queue for update (trigger by clicks upon limit)
+          Messaging::Queue.new(App.config.CLICK_QUEUE_URL, App.config)
+            .send(rest_id)
+
           Repository::RestaurantDetails.update_click(rest_id)
           repo_entity = rest_entity
         end
