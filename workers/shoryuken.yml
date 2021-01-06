@@ -3,3 +3,6 @@ search_queues:
 
 click_queues:
   - https://sqs.us-east-1.amazonaws.com/468882986872/ewa_click_production
+
+click_create_queues:
+  - https://sqs.us-east-1.amazonaws.com/468882986872/ewa_click_create_production
