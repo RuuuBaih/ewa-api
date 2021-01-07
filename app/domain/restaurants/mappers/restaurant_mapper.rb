@@ -60,6 +60,8 @@ module Ewa
             Concurrent::Promise
               .new { call_api(tp_city, tp_town) }
               .then { |ret| poi_hashes << ret }
+              .rescue { { error: "iterate process went wrong" } }
+              .execute
           end.each(&:value)
 
           ntp_city = '新北市'
@@ -67,6 +69,8 @@ module Ewa
             Concurrent::Promise
               .new { call_api(ntp_city, ntp_town) }
               .then { |ret| poi_hashes << ret }
+              .rescue { { error: "iterate process went wrong" } }
+              .execute
           end.each(&:value)
           poi_hashes.flatten
         end

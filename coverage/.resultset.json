@@ -1,7 +1,7 @@
 {
   "Minitest": {
     "coverage": {
-      "/Users/vivianlu/Projects/ewa-api/init.rb": {
+      "/root/work/api-ewa/init.rb": {
         "lines": [
           null,
           null,
@@ -10,14 +10,14 @@
           null
         ]
       },
-      "/Users/vivianlu/Projects/ewa-api/config/init.rb": {
+      "/root/work/api-ewa/config/init.rb": {
         "lines": [
           null,
           null,
           1
         ]
       },
-      "/Users/vivianlu/Projects/ewa-api/config/environment.rb": {
+      "/root/work/api-ewa/config/environment.rb": {
         "lines": [
           null,
           null,
@@ -62,7 +62,7 @@
           null
         ]
       },
-      "/Users/vivianlu/Projects/ewa-api/app/init.rb": {
+      "/root/work/api-ewa/app/init.rb": {
         "lines": [
           null,
           null,
@@ -72,7 +72,7 @@
           null
         ]
       },
-      "/Users/vivianlu/Projects/ewa-api/app/application/init.rb": {
+      "/root/work/api-ewa/app/application/init.rb": {
         "lines": [
           null,
           null,
@@ -82,7 +82,7 @@
           null
         ]
       },
-      "/Users/vivianlu/Projects/ewa-api/app/application/controllers/init.rb": {
+      "/root/work/api-ewa/app/application/controllers/init.rb": {
         "lines": [
           null,
           null,
@@ -91,21 +91,17 @@
           null
         ]
       },
-      "/Users/vivianlu/Projects/ewa-api/app/application/controllers/app.rb": {
+      "/root/work/api-ewa/app/application/controllers/app.rb": {
         "lines": [
           null,
           null,
           1,
           1,
-          1,
-          1,
-          null,
           null,
           1,
           null,
           1,
           null,
-          1,
           1,
           1,
           1,
@@ -133,34 +129,15 @@
           0,
           0,
           0,
-          null,
           0,
-          0,
-          0,
-          null,
-          0,
-          null,
           null,
           0,
           0,
           0,
           null,
           0,
-          0,
           null,
           null,
-          0,
-          null,
-          null,
-          null,
-          null,
-          null,
-          0,
-          null,
-          null,
-          0,
-          0,
-          0,
           0,
           0,
           0,
@@ -175,10 +152,33 @@
           null,
           null,
           null,
+          0,
+          null,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          null,
+          0,
+          0,
+          null,
           null,
           0,
           null,
           null,
+          null,
+          null,
+          null,
+          null,
+          0,
+          null,
+          null,
+          0,
           0,
           0,
           0,
@@ -203,7 +203,7 @@
           null
         ]
       },
-      "/Users/vivianlu/Projects/ewa-api/app/application/controllers/helpers.rb": {
+      "/root/work/api-ewa/app/application/controllers/helpers.rb": {
         "lines": [
           null,
           null,
@@ -232,7 +232,7 @@
           null
         ]
       },
-      "/Users/vivianlu/Projects/ewa-api/app/application/services/init.rb": {
+      "/root/work/api-ewa/app/application/services/init.rb": {
         "lines": [
           null,
           null,
@@ -241,10 +241,11 @@
           null
         ]
       },
-      "/Users/vivianlu/Projects/ewa-api/app/application/services/find_pick_rest.rb": {
+      "/root/work/api-ewa/app/application/services/find_pick_rest.rb": {
         "lines": [
           null,
           null,
+<<<<<<< Updated upstream
           1,
           null,
           1,
@@ -3786,6 +3787,8 @@
         "lines": [
           null,
           null,
+=======
+>>>>>>> Stashed changes
           1,
           null,
           1,
@@ -3816,9 +3819,22 @@
           null,
           null,
           null,
+          null,
+          0,
+          null,
+          null,
           0,
           null,
           0,
+          null,
+          0,
+          0,
+          null,
+          null,
+          0,
+          null,
+          0,
+          null,
           null,
           null,
           0,
@@ -3828,7 +3844,7 @@
           null
         ]
       },
-      "/Users/vivianlu/Projects/ewa-api/app/application/services/search_rest_name.rb": {
+      "/root/work/api-ewa/app/application/services/search_rest_name.rb": {
         "lines": [
           null,
           null,
@@ -3866,7 +3882,7 @@
           null
         ]
       },
-      "/Users/vivianlu/Projects/ewa-api/app/application/services/select_rest.rb": {
+      "/root/work/api-ewa/app/application/services/select_rest.rb": {
         "lines": [
           null,
           null,
@@ -3918,7 +3934,7 @@
           null
         ]
       },
-      "/Users/vivianlu/Projects/ewa-api/app/domain/restaurant_options/mappers/restaurant_options_mapper.rb": {
+      "/root/work/api-ewa/app/domain/restaurant_options/mappers/restaurant_options_mapper.rb": {
         "lines": [
           null,
           null,
@@ -3957,7 +3973,7 @@
           null
         ]
       },
-      "/Users/vivianlu/Projects/ewa-api/app/application/services/show_all_rests.rb": {
+      "/root/work/api-ewa/app/application/services/show_all_rests.rb": {
         "lines": [
           null,
           null,
@@ -3984,7 +4000,6 @@
           null,
           0,
           null,
-          null,
           0,
           null,
           null,
@@ -3997,308 +4012,7 @@
           null
         ]
       },
-      "/Users/vivianlu/Projects/ewa-api/app/application/requests/init.rb": {
-        "lines": [
-          null,
-          null,
-          1,
-          3,
-          null
-        ]
-      },
-      "/Users/vivianlu/Projects/ewa-api/app/application/requests/select_by_name.rb": {
-        "lines": [
-          null,
-          null,
-          1,
-          1,
-          null,
-          1,
-          1,
-          null,
-          1,
-          1,
-          null,
-          1,
-          0,
-          null,
-          null,
-          null,
-          1,
-          0,
-          null,
-          0,
-          null,
-          null,
-          null,
-          0,
-          null,
-          0,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ]
-      },
-      "/Users/vivianlu/Projects/ewa-api/app/application/requests/select_rest.rb": {
-        "lines": [
-          null,
-          null,
-          1,
-          1,
-          1,
-          null,
-          1,
-          1,
-          null,
-          1,
-          1,
-          null,
-          1,
-          0,
-          null,
-          null,
-          null,
-          1,
-          0,
-          null,
-          null,
-          null,
-          0,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          1,
-          null,
-          0,
-          0,
-          null,
-          0,
-          null,
-          null,
-          0,
-          0,
-          null,
-          null,
-          null,
-          0,
-          0,
-          null,
-          null,
-          null,
-          0,
-          null,
-          null,
-          0,
-          null,
-          0,
-          null,
-          null,
-          null,
-          null
-        ]
-      },
-      "/Users/vivianlu/Projects/ewa-api/app/infrastructure/init.rb": {
-        "lines": [
-          null,
-          null,
-          1,
-          1,
-          2,
-          null
-        ]
-      },
-      "/Users/vivianlu/Projects/ewa-api/app/infrastructure/database/init.rb": {
-        "lines": [
-          null,
-          null,
-          1,
-          1,
-          1,
-          null
-        ]
-      },
-      "/Users/vivianlu/Projects/ewa-api/app/infrastructure/database/orms/init.rb": {
-        "lines": [
-          null,
-          null,
-          1,
-          8,
-          null
-        ]
-      },
-      "/Users/vivianlu/Projects/ewa-api/app/infrastructure/database/orms/article_orm.rb": {
-        "lines": [
-          null,
-          null,
-          1,
-          null,
-          1,
-          1,
-          null,
-          1,
-          1,
-          null,
-          null,
-          1,
-          null,
-          1,
-          0,
-          null,
-          null,
-          null,
-          null
-        ]
-      },
-      "/Users/vivianlu/Projects/ewa-api/app/infrastructure/database/orms/cover_picture_orm.rb": {
-        "lines": [
-          null,
-          null,
-          1,
-          null,
-          1,
-          1,
-          null,
-          1,
-          1,
-          null,
-          null,
-          1,
-          null,
-          1,
-          0,
-          null,
-          null,
-          null,
-          null
-        ]
-      },
-      "/Users/vivianlu/Projects/ewa-api/app/infrastructure/database/orms/ewa_tag_orm.rb": {
-        "lines": [
-          null,
-          null,
-          1,
-          null,
-          1,
-          1,
-          null,
-          1,
-          1,
-          null,
-          null,
-          1,
-          null,
-          1,
-          0,
-          null,
-          null,
-          null,
-          null
-        ]
-      },
-      "/Users/vivianlu/Projects/ewa-api/app/infrastructure/database/orms/picture_orm.rb": {
-        "lines": [
-          null,
-          null,
-          1,
-          null,
-          1,
-          null,
-          1,
-          null,
-          1,
-          1,
-          null,
-          null,
-          1,
-          null,
-          null,
-          1,
-          0,
-          null,
-          null,
-          null
-        ]
-      },
-      "/Users/vivianlu/Projects/ewa-api/app/infrastructure/database/orms/restaurant_orm.rb": {
-        "lines": [
-          null,
-          null,
-          1,
-          null,
-          1,
-          1,
-          null,
-          1,
-          1,
-          null,
-          null,
-          1,
-          null,
-          null,
-          1,
-          null,
-          null,
-          1,
-          null,
-          null,
-          null
-        ]
-      },
-      "/Users/vivianlu/Projects/ewa-api/app/infrastructure/database/orms/review_orm.rb": {
-        "lines": [
-          null,
-          null,
-          1,
-          null,
-          1,
-          null,
-          1,
-          null,
-          1,
-          1,
-          null,
-          null,
-          1,
-          null,
-          null,
-          1,
-          0,
-          null,
-          null,
-          null
-        ]
-      },
-      "/Users/vivianlu/Projects/ewa-api/app/infrastructure/database/orms/town_orm.rb": {
-        "lines": [
-          null,
-          null,
-          1,
-          null,
-          1,
-          1,
-          null,
-          1,
-          1,
-          null,
-          1,
-          0,
-          null,
-          null,
-          null,
-          null
-        ]
-      },
-      "/Users/vivianlu/Projects/ewa-api/app/infrastructure/gateways/init.rb": {
+      "/root/work/api-ewa/app/application/requests/init.rb": {
         "lines": [
           null,
           null,
@@ -4307,7 +4021,428 @@
           null
         ]
       },
-      "/Users/vivianlu/Projects/ewa-api/app/infrastructure/gateways/custom_search_api.rb": {
+      "/root/work/api-ewa/app/application/requests/select_by_name.rb": {
+        "lines": [
+          null,
+          null,
+          1,
+          1,
+          null,
+          1,
+          1,
+          null,
+          1,
+          1,
+          null,
+          1,
+          0,
+          null,
+          null,
+          null,
+          1,
+          0,
+          null,
+          0,
+          null,
+          null,
+          null,
+          0,
+          null,
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "/root/work/api-ewa/app/application/requests/select_by_town.rb": {
+        "lines": [
+          null,
+          null,
+          1,
+          1,
+          null,
+          1,
+          1,
+          null,
+          1,
+          1,
+          null,
+          1,
+          0,
+          null,
+          null,
+          null,
+          1,
+          0,
+          null,
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          0,
+          null,
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "/root/work/api-ewa/app/application/requests/select_rest.rb": {
+        "lines": [
+          null,
+          null,
+          1,
+          1,
+          1,
+          null,
+          1,
+          1,
+          null,
+          1,
+          1,
+          null,
+          1,
+          0,
+          null,
+          null,
+          null,
+          1,
+          0,
+          null,
+          null,
+          null,
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          null,
+          0,
+          0,
+          null,
+          0,
+          null,
+          null,
+          0,
+          0,
+          null,
+          null,
+          null,
+          0,
+          0,
+          null,
+          null,
+          null,
+          0,
+          null,
+          null,
+          0,
+          null,
+          0,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "/root/work/api-ewa/app/infrastructure/init.rb": {
+        "lines": [
+          null,
+          null,
+          1,
+          1,
+          3,
+          null
+        ]
+      },
+      "/root/work/api-ewa/app/infrastructure/database/init.rb": {
+        "lines": [
+          null,
+          null,
+          1,
+          1,
+          1,
+          null
+        ]
+      },
+      "/root/work/api-ewa/app/infrastructure/database/orms/init.rb": {
+        "lines": [
+          null,
+          null,
+          1,
+          8,
+          null
+        ]
+      },
+      "/root/work/api-ewa/app/infrastructure/database/orms/article_orm.rb": {
+        "lines": [
+          null,
+          null,
+          1,
+          null,
+          1,
+          1,
+          null,
+          1,
+          1,
+          null,
+          null,
+          1,
+          null,
+          1,
+          0,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "/root/work/api-ewa/app/infrastructure/database/orms/cover_picture_orm.rb": {
+        "lines": [
+          null,
+          null,
+          1,
+          null,
+          1,
+          1,
+          null,
+          1,
+          1,
+          null,
+          null,
+          1,
+          null,
+          1,
+          90,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "/root/work/api-ewa/app/infrastructure/database/orms/ewa_tag_orm.rb": {
+        "lines": [
+          null,
+          null,
+          1,
+          null,
+          1,
+          1,
+          null,
+          1,
+          1,
+          null,
+          null,
+          1,
+          null,
+          1,
+          0,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "/root/work/api-ewa/app/infrastructure/database/orms/picture_orm.rb": {
+        "lines": [
+          null,
+          null,
+          1,
+          null,
+          1,
+          null,
+          1,
+          null,
+          1,
+          1,
+          null,
+          null,
+          1,
+          null,
+          null,
+          1,
+          0,
+          null,
+          null,
+          null
+        ]
+      },
+      "/root/work/api-ewa/app/infrastructure/database/orms/restaurant_orm.rb": {
+        "lines": [
+          null,
+          null,
+          1,
+          null,
+          1,
+          1,
+          null,
+          1,
+          1,
+          null,
+          null,
+          1,
+          null,
+          null,
+          1,
+          null,
+          null,
+          1,
+          null,
+          null,
+          null
+        ]
+      },
+      "/root/work/api-ewa/app/infrastructure/database/orms/review_orm.rb": {
+        "lines": [
+          null,
+          null,
+          1,
+          null,
+          1,
+          null,
+          1,
+          null,
+          1,
+          1,
+          null,
+          null,
+          1,
+          null,
+          null,
+          1,
+          0,
+          null,
+          null,
+          null
+        ]
+      },
+      "/root/work/api-ewa/app/infrastructure/database/orms/town_orm.rb": {
+        "lines": [
+          null,
+          null,
+          1,
+          null,
+          1,
+          1,
+          null,
+          1,
+          1,
+          null,
+          1,
+          0,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "/root/work/api-ewa/app/infrastructure/gateways/init.rb": {
+        "lines": [
+          null,
+          null,
+          1,
+          4,
+          null
+        ]
+      },
+      "/root/work/api-ewa/app/infrastructure/gateways/custom_search_api.rb": {
+        "lines": [
+          null,
+          null,
+          1,
+          null,
+          1,
+          1,
+          null,
+          1,
+          null,
+          1,
+          1,
+          null,
+          1,
+          9,
+          9,
+          9,
+          null,
+          null,
+          1,
+          9,
+          null,
+          null,
+          null,
+          1,
+          1,
+          9,
+          9,
+          9,
+          9,
+          null,
+          null,
+          1,
+          9,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          1,
+          9,
+          9,
+          null,
+          null,
+          1,
+          9,
+          null,
+          9,
+          9,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          1,
+          null,
+          null,
+          null,
+          null,
+          1,
+          9,
+          null,
+          null,
+          1,
+          0,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "/root/work/api-ewa/app/infrastructure/gateways/gmap_api.rb": {
         "lines": [
           null,
           null,
@@ -4322,6 +4457,34 @@
           1,
           0,
           0,
+          null,
+          null,
+          1,
+          0,
+          null,
+          null,
+          null,
+          1,
+          1,
+          0,
+          0,
+          0,
+          null,
+          null,
+          1,
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          1,
+          null,
+          null,
+          1,
+          0,
+          0,
           0,
           null,
           null,
@@ -4347,12 +4510,54 @@
           null,
           1,
           1,
+          null,
+          null,
+          1,
+          0,
+          0,
+          0,
+          null,
+          null,
+          1,
+          null,
+          0,
+          null,
+          null,
+          null,
+          1,
+          1,
+          0,
+          0,
           0,
           0,
           null,
           null,
           1,
           0,
+          0,
+          null,
+          0,
+          null,
+          null,
+          null,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          1,
+          0,
+          null,
+          null,
+          1,
+          0,
           null,
           0,
           0,
@@ -4364,11 +4569,9 @@
           1,
           1,
           1,
-          1,
           null,
           null,
           1,
-          null,
           null,
           null,
           null,
@@ -4384,7 +4587,7 @@
           null
         ]
       },
-      "/Users/vivianlu/Projects/ewa-api/app/infrastructure/gateways/gmap_api.rb": {
+      "/root/work/api-ewa/app/infrastructure/gateways/pix_api.rb": {
         "lines": [
           null,
           null,
@@ -4397,54 +4600,33 @@
           1,
           null,
           1,
-          0,
-          0,
-          null,
-          null,
-          1,
-          0,
-          null,
-          null,
-          null,
           1,
           1,
-          0,
-          0,
-          0,
-          null,
-          null,
           1,
-          0,
-          null,
-          null,
-          null,
+          1,
           null,
           null,
           1,
           1,
           null,
           null,
-          1,
-          0,
-          0,
-          0,
-          null,
-          null,
-          1,
-          0,
-          null,
-          null,
           null,
           1,
           1,
-          0,
-          0,
-          0,
-          0,
+          1,
+          1,
+          1,
+          1,
+          1,
           null,
           null,
           1,
+          1,
           0,
+          null,
+          1,
+          null,
+          1,
           null,
           null,
           null,
@@ -4453,7 +4635,6 @@
           1,
           1,
           null,
-          null,
           1,
           0,
           0,
@@ -4461,7 +4642,6 @@
           null,
           null,
           1,
-          null,
           0,
           null,
           null,
@@ -4476,33 +4656,6 @@
           null,
           1,
           0,
-          0,
-          null,
-          0,
-          null,
-          null,
-          null,
-          1,
-          0,
-          0,
-          0,
-          0,
-          0,
-          null,
-          null,
-          null,
-          null,
-          null,
-          1,
-          1,
-          0,
-          null,
-          null,
-          1,
-          0,
-          null,
-          0,
-          0,
           null,
           null,
           null,
@@ -4514,11 +4667,28 @@
           null,
           null,
           1,
+          1,
+          null,
+          1,
+          1,
+          null,
+          null,
           null,
           null,
           null,
           1,
-          0,
+          1,
+          1,
+          1,
+          null,
+          null,
+          1,
+          null,
+          null,
+          null,
+          null,
+          1,
+          1,
           null,
           null,
           1,
@@ -4529,7 +4699,16 @@
           null
         ]
       },
-      "/Users/vivianlu/Projects/ewa-api/app/infrastructure/gateways/pix_api.rb": {
+      "/root/work/api-ewa/app/infrastructure/messaging/init.rb": {
+        "lines": [
+          null,
+          null,
+          1,
+          2,
+          null
+        ]
+      },
+      "/root/work/api-ewa/app/infrastructure/messaging/queue.rb": {
         "lines": [
           null,
           null,
@@ -4538,41 +4717,6 @@
           1,
           1,
           null,
-          1,
-          1,
-          null,
-          1,
-          0,
-          0,
-          0,
-          0,
-          null,
-          null,
-          1,
-          0,
-          null,
-          null,
-          null,
-          1,
-          1,
-          0,
-          0,
-          0,
-          0,
-          0,
-          null,
-          null,
-          1,
-          0,
-          0,
-          null,
-          0,
-          null,
-          0,
-          null,
-          null,
-          null,
-          null,
           null,
           1,
           1,
@@ -4580,20 +4724,15 @@
           1,
           0,
           0,
-          0,
-          null,
-          null,
-          1,
-          0,
           null,
           null,
           null,
-          1,
-          1,
+          null,
           0,
-          0,
-          0,
-          0,
+          null,
+          null,
+          null,
+          null,
           null,
           null,
           1,
@@ -4603,45 +4742,19 @@
           null,
           null,
           null,
-          1,
-          1,
-          0,
-          null,
           null,
           1,
           0,
-          null,
           0,
           0,
           null,
-          null,
-          null,
-          null,
-          null,
-          1,
-          1,
-          1,
-          1,
-          null,
-          null,
-          1,
-          null,
-          null,
-          null,
-          null,
-          1,
-          0,
-          null,
-          null,
-          1,
-          0,
           null,
           null,
           null,
           null
         ]
       },
-      "/Users/vivianlu/Projects/ewa-api/app/domain/init.rb": {
+      "/root/work/api-ewa/app/domain/init.rb": {
         "lines": [
           null,
           null,
@@ -4653,7 +4766,7 @@
           null
         ]
       },
-      "/Users/vivianlu/Projects/ewa-api/app/domain/restaurants/init.rb": {
+      "/root/work/api-ewa/app/domain/restaurants/init.rb": {
         "lines": [
           null,
           null,
@@ -4663,7 +4776,7 @@
           null
         ]
       },
-      "/Users/vivianlu/Projects/ewa-api/app/domain/restaurants/entities/init.rb": {
+      "/root/work/api-ewa/app/domain/restaurants/entities/init.rb": {
         "lines": [
           null,
           null,
@@ -4675,7 +4788,7 @@
           null
         ]
       },
-      "/Users/vivianlu/Projects/ewa-api/app/domain/restaurants/entities/article.rb": {
+      "/root/work/api-ewa/app/domain/restaurants/entities/article.rb": {
         "lines": [
           null,
           null,
@@ -4700,7 +4813,31 @@
           null
         ]
       },
-      "/Users/vivianlu/Projects/ewa-api/app/domain/restaurants/entities/cover_picture.rb": {
+      "/root/work/api-ewa/app/domain/restaurants/entities/cover_picture.rb": {
+        "lines": [
+          null,
+          null,
+          1,
+          1,
+          null,
+          1,
+          1,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          1,
+          360,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "/root/work/api-ewa/app/domain/restaurants/entities/picture.rb": {
         "lines": [
           null,
           null,
@@ -4724,125 +4861,7 @@
           null
         ]
       },
-      "/Users/vivianlu/Projects/ewa-api/app/domain/restaurants/entities/picture.rb": {
-        "lines": [
-          null,
-          null,
-          1,
-          1,
-          null,
-          1,
-          1,
-          null,
-          1,
-          1,
-          1,
-          1,
-          1,
-          null,
-          1,
-          0,
-          null,
-          null,
-          null,
-          null
-        ]
-      },
-      "/Users/vivianlu/Projects/ewa-api/app/domain/restaurants/entities/restaurant.rb": {
-        "lines": [
-          null,
-          null,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          null,
-          1,
-          1,
-          null,
-          1,
-          1,
-          null,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          null,
-          1,
-          1,
-          1,
-          null,
-          1,
-          0,
-          null,
-          null,
-          null,
-          null
-        ]
-      },
-      "/Users/vivianlu/Projects/ewa-api/app/domain/restaurants/entities/review.rb": {
-        "lines": [
-          null,
-          null,
-          1,
-          1,
-          null,
-          1,
-          1,
-          null,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          null,
-          1,
-          0,
-          null,
-          null,
-          null,
-          null
-        ]
-      },
-      "/Users/vivianlu/Projects/ewa-api/app/domain/restaurant_options/entities/ewa_tag.rb": {
-        "lines": [
-          null,
-          null,
-          1,
-          1,
-          null,
-          1,
-          1,
-          null,
-          1,
-          1,
-          null,
-          1,
-          1,
-          null,
-          1,
-          0,
-          null,
-          null,
-          null,
-          null
-        ]
-      },
-      "/Users/vivianlu/Projects/ewa-api/app/domain/restaurants/entities/restaurant_detail.rb": {
+      "/root/work/api-ewa/app/domain/restaurants/entities/restaurant.rb": {
         "lines": [
           null,
           null,
@@ -4872,6 +4891,100 @@
           1,
           1,
           1,
+          null,
+          1,
+          1,
+          1,
+          null,
+          1,
+          153,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "/root/work/api-ewa/app/domain/restaurants/entities/review.rb": {
+        "lines": [
+          null,
+          null,
+          1,
+          1,
+          null,
+          1,
+          1,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          1,
+          0,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "/root/work/api-ewa/app/domain/restaurant_options/entities/ewa_tag.rb": {
+        "lines": [
+          null,
+          null,
+          1,
+          1,
+          null,
+          1,
+          1,
+          null,
+          1,
+          1,
+          null,
+          1,
+          1,
+          null,
+          1,
+          0,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "/root/work/api-ewa/app/domain/restaurants/entities/restaurant_detail.rb": {
+        "lines": [
+          null,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          1,
+          1,
+          null,
+          1,
+          1,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
           1,
           null,
           1,
@@ -4891,7 +5004,7 @@
           null
         ]
       },
-      "/Users/vivianlu/Projects/ewa-api/app/domain/restaurants/entities/town.rb": {
+      "/root/work/api-ewa/app/domain/restaurants/entities/town.rb": {
         "lines": [
           null,
           null,
@@ -4917,7 +5030,7 @@
           null
         ]
       },
-      "/Users/vivianlu/Projects/ewa-api/app/domain/restaurants/mappers/init.rb": {
+      "/root/work/api-ewa/app/domain/restaurants/mappers/init.rb": {
         "lines": [
           null,
           null,
@@ -4926,7 +5039,7 @@
           null
         ]
       },
-      "/Users/vivianlu/Projects/ewa-api/app/domain/restaurants/mappers/article_mapper.rb": {
+      "/root/work/api-ewa/app/domain/restaurants/mappers/article_mapper.rb": {
         "lines": [
           null,
           null,
@@ -4993,7 +5106,81 @@
           null
         ]
       },
-      "/Users/vivianlu/Projects/ewa-api/app/domain/restaurants/mappers/cover_picture_mapper.rb": {
+      "/root/work/api-ewa/app/domain/restaurants/mappers/cover_picture_mapper.rb": {
+        "lines": [
+          null,
+          null,
+          1,
+          null,
+          1,
+          null,
+          1,
+          1,
+          9,
+          9,
+          9,
+          9,
+          null,
+          null,
+          null,
+          1,
+          9,
+          9,
+          9,
+          9,
+          9,
+          null,
+          90,
+          null,
+          null,
+          null,
+          0,
+          null,
+          null,
+          null,
+          1,
+          1,
+          9,
+          null,
+          null,
+          1,
+          9,
+          90,
+          90,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          1,
+          90,
+          null,
+          null,
+          1,
+          90,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          null,
+          1,
+          90,
+          null,
+          null,
+          1,
+          90,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "/root/work/api-ewa/app/domain/restaurants/mappers/picture_mapper.rb": {
         "lines": [
           null,
           null,
@@ -5006,7 +5193,6 @@
           0,
           0,
           0,
-          0,
           null,
           null,
           null,
@@ -5015,13 +5201,24 @@
           0,
           0,
           0,
-          0,
           null,
           0,
           null,
           null,
           null,
           0,
+          null,
+          null,
+          null,
+          1,
+          0,
+          null,
+          0,
+          0,
+          0,
+          null,
+          0,
+          null,
           null,
           null,
           null,
@@ -5067,91 +5264,7 @@
           null
         ]
       },
-      "/Users/vivianlu/Projects/ewa-api/app/domain/restaurants/mappers/picture_mapper.rb": {
-        "lines": [
-          null,
-          null,
-          1,
-          null,
-          1,
-          null,
-          1,
-          1,
-          0,
-          0,
-          0,
-          null,
-          null,
-          null,
-          1,
-          0,
-          0,
-          0,
-          0,
-          null,
-          0,
-          null,
-          null,
-          null,
-          0,
-          null,
-          null,
-          null,
-          1,
-          0,
-          null,
-          0,
-          0,
-          0,
-          null,
-          0,
-          null,
-          null,
-          null,
-          null,
-          1,
-          1,
-          0,
-          null,
-          null,
-          1,
-          0,
-          0,
-          0,
-          null,
-          null,
-          null,
-          null,
-          null,
-          1,
-          1,
-          0,
-          null,
-          null,
-          1,
-          0,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          1,
-          null,
-          1,
-          0,
-          null,
-          null,
-          1,
-          0,
-          null,
-          null,
-          null,
-          null,
-          null
-        ]
-      },
-      "/Users/vivianlu/Projects/ewa-api/app/domain/restaurants/mappers/restaurant_detail_mapper.rb": {
+      "/root/work/api-ewa/app/domain/restaurants/mappers/restaurant_detail_mapper.rb": {
         "lines": [
           null,
           null,
@@ -5360,7 +5473,7 @@
           null
         ]
       },
-      "/Users/vivianlu/Projects/ewa-api/app/domain/restaurant_options/init.rb": {
+      "/root/work/api-ewa/app/domain/restaurant_options/init.rb": {
         "lines": [
           null,
           null,
@@ -5370,7 +5483,7 @@
           null
         ]
       },
-      "/Users/vivianlu/Projects/ewa-api/app/domain/restaurant_options/values/init.rb": {
+      "/root/work/api-ewa/app/domain/restaurant_options/values/init.rb": {
         "lines": [
           null,
           null,
@@ -5379,7 +5492,7 @@
           null
         ]
       },
-      "/Users/vivianlu/Projects/ewa-api/app/domain/restaurant_options/values/ewa_tag_calculator.rb": {
+      "/root/work/api-ewa/app/domain/restaurant_options/values/ewa_tag_calculator.rb": {
         "lines": [
           null,
           null,
@@ -5417,7 +5530,7 @@
           null
         ]
       },
-      "/Users/vivianlu/Projects/ewa-api/app/domain/restaurant_options/entities/init.rb": {
+      "/root/work/api-ewa/app/domain/restaurant_options/entities/init.rb": {
         "lines": [
           null,
           null,
@@ -5426,7 +5539,7 @@
           null
         ]
       },
-      "/Users/vivianlu/Projects/ewa-api/app/domain/restaurant_options/entities/restaurant_pick.rb": {
+      "/root/work/api-ewa/app/domain/restaurant_options/entities/restaurant_pick.rb": {
         "lines": [
           null,
           null,
@@ -5451,7 +5564,7 @@
           null
         ]
       },
-      "/Users/vivianlu/Projects/ewa-api/app/domain/restaurant_options/repositories/init.rb": {
+      "/root/work/api-ewa/app/domain/restaurant_options/repositories/init.rb": {
         "lines": [
           null,
           null,
@@ -5460,7 +5573,7 @@
           null
         ]
       },
-      "/Users/vivianlu/Projects/ewa-api/app/domain/restaurant_options/repositories/ewa_tags.rb": {
+      "/root/work/api-ewa/app/domain/restaurant_options/repositories/ewa_tags.rb": {
         "lines": [
           null,
           null,
@@ -5504,7 +5617,7 @@
           null
         ]
       },
-      "/Users/vivianlu/Projects/ewa-api/app/domain/restaurant_options/mappers/init.rb": {
+      "/root/work/api-ewa/app/domain/restaurant_options/mappers/init.rb": {
         "lines": [
           null,
           null,
@@ -5513,7 +5626,7 @@
           null
         ]
       },
-      "/Users/vivianlu/Projects/ewa-api/app/domain/restaurant_options/mappers/restaurant_pick_mapper.rb": {
+      "/root/work/api-ewa/app/domain/restaurant_options/mappers/restaurant_pick_mapper.rb": {
         "lines": [
           null,
           null,
@@ -5547,7 +5660,7 @@
           null
         ]
       },
-      "/Users/vivianlu/Projects/ewa-api/app/domain/restaurants/mappers/restaurant_mapper.rb": {
+      "/root/work/api-ewa/app/domain/restaurants/mappers/restaurant_mapper.rb": {
         "lines": [
           null,
           null,
@@ -5579,53 +5692,43 @@
           1,
           null,
           1,
-          0,
-          0,
-          0,
-          0,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          9,
+          9,
+          9,
           0,
           null,
           null,
           1,
-          0,
-          0,
-          0,
-          0,
-          0,
-          null,
-          null,
-          0,
           null,
           null,
           1,
-          0,
-          0,
-          0,
-          null,
-          null,
           1,
-          0,
-          null,
-          0,
-          0,
-          0,
-          0,
-          0,
-          null,
-          null,
-          0,
-          0,
-          0,
-          0,
-          0,
-          null,
-          0,
+          1,
+          1,
           null,
           null,
           1,
           0,
           null,
+          0,
+          0,
+          0,
+          0,
+          0,
           null,
+          null,
+          0,
+          0,
+          0,
           0,
           0,
           null,
@@ -5633,72 +5736,45 @@
           null,
           null,
           1,
-          null,
-          0,
-          null,
-          null,
-          null,
-          null,
           1,
-          0,
-          0,
-          null,
           null,
           null,
           1,
           1,
-          0,
-          0,
-          0,
+          null,
+          1,
           null,
           null,
           1,
-          0,
-          0,
           null,
+          1,
           null,
           null,
           null,
           null,
           1,
           1,
-          0,
-          0,
-          0,
-          null,
-          null,
           null,
           1,
-          0,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
+          9,
           null,
           null,
           1,
           null,
           1,
-          0,
-          0,
-          0,
-          0,
           null,
-          0,
+          null,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          9,
           null,
           null,
           null,
@@ -5706,15 +5782,18 @@
           null,
           1,
           1,
-          0,
-          null,
+          9,
+          9,
+          9,
           null,
           null,
           null,
           1,
-          0,
+          9,
           null,
-          0,
+          null,
+          null,
+          null,
           null,
           null,
           null,
@@ -5734,9 +5813,33 @@
           1,
           null,
           1,
-          0,
+          9,
+          9,
           null,
-          0,
+          null,
+          null,
+          null,
+          1,
+          1,
+          18,
+          null,
+          null,
+          null,
+          null,
+          1,
+          9,
+          null,
+          9,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
           null,
           null,
           null,
@@ -5744,14 +5847,37 @@
           null,
           null,
           1,
+          9,
+          9,
+          9,
           0,
-          0,
+          null,
+          9,
+          9,
+          null,
+          null,
+          null,
+          1,
+          null,
+          1,
+          9,
+          null,
+          9,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          9,
+          9,
           0,
           null,
           null,
           1,
-          0,
-          0,
+          9,
+          9,
           null,
           null,
           null,
@@ -5759,7 +5885,7 @@
           null
         ]
       },
-      "/Users/vivianlu/Projects/ewa-api/app/domain/restaurants/mappers/review_mapper.rb": {
+      "/root/work/api-ewa/app/domain/restaurants/mappers/review_mapper.rb": {
         "lines": [
           null,
           null,
@@ -5826,7 +5952,7 @@
           null
         ]
       },
-      "/Users/vivianlu/Projects/ewa-api/app/domain/restaurants/repositories/init.rb": {
+      "/root/work/api-ewa/app/domain/restaurants/repositories/init.rb": {
         "lines": [
           null,
           null,
@@ -5841,7 +5967,7 @@
           1
         ]
       },
-      "/Users/vivianlu/Projects/ewa-api/app/domain/restaurants/repositories/restaurants.rb": {
+      "/root/work/api-ewa/app/domain/restaurants/repositories/restaurants.rb": {
         "lines": [
           null,
           null,
@@ -5860,7 +5986,7 @@
           null,
           null,
           1,
-          0,
+          9,
           null,
           null,
           1,
@@ -5918,64 +6044,64 @@
           null,
           null,
           1,
-          0,
-          0,
+          9,
+          9,
           null,
-          0,
-          0,
-          null,
-          null,
-          1,
-          0,
-          null,
-          0,
-          null,
-          0,
-          0,
-          null,
-          0,
-          null,
-          null,
-          null,
-          null,
+          9,
+          9,
           null,
           null,
           1,
-          1,
-          0,
-          0,
+          9,
+          null,
+          9,
+          null,
+          9,
+          9,
+          null,
+          9,
+          null,
+          null,
+          null,
+          null,
           null,
           null,
           1,
-          null,
-          0,
-          null,
-          null,
           1,
-          0,
-          null,
-          null,
-          0,
-          0,
-          0,
+          9,
+          9,
           null,
           null,
           1,
           null,
-          0,
-          0,
-          null,
-          null,
-          0,
-          null,
-          null,
-          0,
+          9,
           null,
           null,
           1,
-          0,
-          0,
-          0,
+          9,
+          null,
+          null,
+          9,
+          9,
+          9,
+          null,
+          null,
+          1,
+          null,
+          9,
+          9,
+          null,
+          null,
+          9,
+          null,
+          null,
+          9,
+          null,
+          null,
+          1,
+          9,
+          9,
+          90,
           null,
           null,
           null,
@@ -5984,7 +6110,7 @@
           null
         ]
       },
-      "/Users/vivianlu/Projects/ewa-api/app/domain/restaurants/repositories/restaurant_details.rb": {
+      "/root/work/api-ewa/app/domain/restaurants/repositories/restaurant_details.rb": {
         "lines": [
           null,
           null,
@@ -6176,64 +6302,6 @@
           null,
           null,
           1,
-          0,
-          0,
-          null,
-          null,
-          null,
-          null,
-          null
-        ]
-      },
-      "/Users/vivianlu/Projects/ewa-api/app/domain/restaurants/repositories/reviews.rb": {
-        "lines": [
-          null,
-          null,
-          1,
-          1,
-          null,
-          1,
-          1,
-          0,
-          null,
-          null,
-          1,
-          0,
-          null,
-          null,
-          1,
-          0,
-          null,
-          null,
-          1,
-          0,
-          null,
-          0,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          1,
-          0,
-          0,
-          null,
-          null,
-          null,
-          1,
-          0,
-          0,
-          0,
-          null,
-          null,
-          1,
-          0,
-          0,
-          0,
           0,
           0,
           null,
@@ -6243,7 +6311,7 @@
           null
         ]
       },
-      "/Users/vivianlu/Projects/ewa-api/app/domain/restaurants/repositories/articles.rb": {
+      "/root/work/api-ewa/app/domain/restaurants/repositories/reviews.rb": {
         "lines": [
           null,
           null,
@@ -6262,64 +6330,14 @@
           1,
           0,
           null,
-          0,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          1,
-          0,
-          0,
-          null,
-          0,
-          0,
-          null,
-          null,
-          1,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          null,
-          null,
-          null,
-          null
-        ]
-      },
-      "/Users/vivianlu/Projects/ewa-api/app/domain/restaurants/repositories/pictures.rb": {
-        "lines": [
-          null,
-          null,
-          1,
-          null,
-          1,
-          1,
-          null,
-          1,
-          1,
-          0,
-          null,
-          null,
-          1,
-          0,
-          null,
-          null,
-          1,
-          0,
-          null,
-          null,
-          1,
-          0,
-          null,
           null,
           1,
           0,
           null,
           0,
+          null,
+          null,
+          null,
           null,
           null,
           null,
@@ -6351,7 +6369,54 @@
           null
         ]
       },
-      "/Users/vivianlu/Projects/ewa-api/app/domain/restaurants/repositories/cover_pictures.rb": {
+      "/root/work/api-ewa/app/domain/restaurants/repositories/articles.rb": {
+        "lines": [
+          null,
+          null,
+          1,
+          1,
+          null,
+          1,
+          1,
+          0,
+          null,
+          null,
+          1,
+          0,
+          null,
+          null,
+          1,
+          0,
+          null,
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          0,
+          0,
+          null,
+          0,
+          0,
+          null,
+          null,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "/root/work/api-ewa/app/domain/restaurants/repositories/pictures.rb": {
         "lines": [
           null,
           null,
@@ -6371,11 +6436,9 @@
           null,
           1,
           0,
-          0,
-          0,
-          0,
-          0,
           null,
+          null,
+          1,
           0,
           null,
           null,
@@ -6399,13 +6462,91 @@
           0,
           0,
           0,
+          null,
+          null,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
           null,
           null,
           null,
           null
         ]
       },
-      "/Users/vivianlu/Projects/ewa-api/app/domain/restaurants/repositories/towns.rb": {
+      "/root/work/api-ewa/app/domain/restaurants/repositories/cover_pictures.rb": {
+        "lines": [
+          null,
+          null,
+          1,
+          null,
+          1,
+          1,
+          null,
+          1,
+          1,
+          0,
+          null,
+          null,
+          1,
+<<<<<<< Updated upstream
+          0,
+=======
+          9,
+>>>>>>> Stashed changes
+          null,
+          null,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          null,
+          null,
+          1,
+<<<<<<< Updated upstream
+          0,
+          null,
+          0,
+=======
+          90,
+          null,
+          90,
+>>>>>>> Stashed changes
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+<<<<<<< Updated upstream
+          0,
+          0,
+=======
+          9,
+          90,
+>>>>>>> Stashed changes
+          null,
+          null,
+          null,
+          1,
+          90,
+          90,
+          90,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "/root/work/api-ewa/app/domain/restaurants/repositories/towns.rb": {
         "lines": [
           null,
           null,
@@ -6501,7 +6642,7 @@
           null
         ]
       },
-      "/Users/vivianlu/Projects/ewa-api/app/domain/restaurants/repositories/for.rb": {
+      "/root/work/api-ewa/app/domain/restaurants/repositories/for.rb": {
         "lines": [
           null,
           null,
@@ -6523,14 +6664,18 @@
           null,
           null,
           1,
+<<<<<<< Updated upstream
           1,
+=======
+          9,
+>>>>>>> Stashed changes
           null,
           null,
           null,
           null
         ]
       },
-      "/Users/vivianlu/Projects/ewa-api/app/presentation/init.rb": {
+      "/root/work/api-ewa/app/presentation/init.rb": {
         "lines": [
           null,
           null,
@@ -6541,7 +6686,7 @@
           null
         ]
       },
-      "/Users/vivianlu/Projects/ewa-api/app/presentation/view_objects/init.rb": {
+      "/root/work/api-ewa/app/presentation/view_objects/init.rb": {
         "lines": [
           null,
           null,
@@ -6550,7 +6695,7 @@
           null
         ]
       },
-      "/Users/vivianlu/Projects/ewa-api/app/presentation/view_objects/history.rb": {
+      "/root/work/api-ewa/app/presentation/view_objects/history.rb": {
         "lines": [
           null,
           null,
@@ -6576,7 +6721,7 @@
           null
         ]
       },
-      "/Users/vivianlu/Projects/ewa-api/app/presentation/view_objects/resdetail.rb": {
+      "/root/work/api-ewa/app/presentation/view_objects/resdetail.rb": {
         "lines": [
           null,
           null,
@@ -6646,7 +6791,7 @@
           null
         ]
       },
-      "/Users/vivianlu/Projects/ewa-api/app/presentation/view_objects/restaurant.rb": {
+      "/root/work/api-ewa/app/presentation/view_objects/restaurant.rb": {
         "lines": [
           null,
           null,
@@ -6672,7 +6817,7 @@
           null
         ]
       },
-      "/Users/vivianlu/Projects/ewa-api/app/presentation/responses/init.rb": {
+      "/root/work/api-ewa/app/presentation/responses/init.rb": {
         "lines": [
           null,
           null,
@@ -6681,7 +6826,7 @@
           null
         ]
       },
-      "/Users/vivianlu/Projects/ewa-api/app/presentation/responses/api_result.rb": {
+      "/root/work/api-ewa/app/presentation/responses/api_result.rb": {
         "lines": [
           null,
           null,
@@ -6710,7 +6855,7 @@
           null
         ]
       },
-      "/Users/vivianlu/Projects/ewa-api/app/presentation/responses/pick_restaurant.rb": {
+      "/root/work/api-ewa/app/presentation/responses/pick_restaurant.rb": {
         "lines": [
           null,
           null,
@@ -6722,7 +6867,7 @@
           null
         ]
       },
-      "/Users/vivianlu/Projects/ewa-api/app/presentation/responses/restaurants.rb": {
+      "/root/work/api-ewa/app/presentation/responses/restaurants.rb": {
         "lines": [
           null,
           null,
@@ -6734,7 +6879,7 @@
           null
         ]
       },
-      "/Users/vivianlu/Projects/ewa-api/app/presentation/responses/search_detail.rb": {
+      "/root/work/api-ewa/app/presentation/responses/search_detail.rb": {
         "lines": [
           null,
           null,
@@ -6746,7 +6891,7 @@
           null
         ]
       },
-      "/Users/vivianlu/Projects/ewa-api/app/presentation/responses/search_restaurant.rb": {
+      "/root/work/api-ewa/app/presentation/responses/search_restaurant.rb": {
         "lines": [
           null,
           null,
@@ -6758,7 +6903,7 @@
           null
         ]
       },
-      "/Users/vivianlu/Projects/ewa-api/app/presentation/representers/init.rb": {
+      "/root/work/api-ewa/app/presentation/representers/init.rb": {
         "lines": [
           null,
           null,
@@ -6767,7 +6912,7 @@
           null
         ]
       },
-      "/Users/vivianlu/Projects/ewa-api/app/presentation/representers/article_representer.rb": {
+      "/root/work/api-ewa/app/presentation/representers/article_representer.rb": {
         "lines": [
           null,
           null,
@@ -6787,7 +6932,7 @@
           null
         ]
       },
-      "/Users/vivianlu/Projects/ewa-api/app/presentation/representers/cover_picture_representer.rb": {
+      "/root/work/api-ewa/app/presentation/representers/cover_picture_representer.rb": {
         "lines": [
           null,
           null,
@@ -6808,7 +6953,7 @@
           null
         ]
       },
-      "/Users/vivianlu/Projects/ewa-api/app/presentation/representers/ewa_tag_representer.rb": {
+      "/root/work/api-ewa/app/presentation/representers/ewa_tag_representer.rb": {
         "lines": [
           null,
           null,
@@ -6827,7 +6972,7 @@
           null
         ]
       },
-      "/Users/vivianlu/Projects/ewa-api/app/presentation/representers/http_response_representer.rb": {
+      "/root/work/api-ewa/app/presentation/representers/http_response_representer.rb": {
         "lines": [
           null,
           null,
@@ -6870,7 +7015,7 @@
           null
         ]
       },
-      "/Users/vivianlu/Projects/ewa-api/app/presentation/representers/openstruct_with_links.rb": {
+      "/root/work/api-ewa/app/presentation/representers/openstruct_with_links.rb": {
         "lines": [
           null,
           null,
@@ -6884,7 +7029,7 @@
           null
         ]
       },
-      "/Users/vivianlu/Projects/ewa-api/app/presentation/representers/pick_restaurant_representer.rb": {
+      "/root/work/api-ewa/app/presentation/representers/pick_restaurant_representer.rb": {
         "lines": [
           null,
           null,
@@ -6905,7 +7050,7 @@
           null
         ]
       },
-      "/Users/vivianlu/Projects/ewa-api/app/presentation/representers/restaurant_details_representer.rb": {
+      "/root/work/api-ewa/app/presentation/representers/restaurant_details_representer.rb": {
         "lines": [
           null,
           null,
@@ -6951,27 +7096,7 @@
           null
         ]
       },
-      "/Users/vivianlu/Projects/ewa-api/app/presentation/representers/picture_representer.rb": {
-        "lines": [
-          null,
-          null,
-          1,
-          1,
-          null,
-          1,
-          1,
-          null,
-          1,
-          1,
-          null,
-          1,
-          1,
-          null,
-          null,
-          null
-        ]
-      },
-      "/Users/vivianlu/Projects/ewa-api/app/presentation/representers/review_representer.rb": {
+      "/root/work/api-ewa/app/presentation/representers/picture_representer.rb": {
         "lines": [
           null,
           null,
@@ -6986,6 +7111,26 @@
           null,
           1,
           1,
+          null,
+          null,
+          null
+        ]
+      },
+      "/root/work/api-ewa/app/presentation/representers/review_representer.rb": {
+        "lines": [
+          null,
+          null,
+          1,
+          1,
+          null,
+          1,
+          1,
+          null,
+          1,
+          1,
+          null,
+          1,
+          1,
           1,
           1,
           1,
@@ -6995,7 +7140,7 @@
           null
         ]
       },
-      "/Users/vivianlu/Projects/ewa-api/app/presentation/representers/restaurant_id_name_pic_representer.rb": {
+      "/root/work/api-ewa/app/presentation/representers/restaurant_id_name_pic_representer.rb": {
         "lines": [
           null,
           null,
@@ -7035,7 +7180,7 @@
           null
         ]
       },
-      "/Users/vivianlu/Projects/ewa-api/app/presentation/representers/restaurants_representer.rb": {
+      "/root/work/api-ewa/app/presentation/representers/restaurants_representer.rb": {
         "lines": [
           null,
           null,
@@ -7057,7 +7202,7 @@
           null
         ]
       },
-      "/Users/vivianlu/Projects/ewa-api/app/presentation/representers/searched_restaurant_representer.rb": {
+      "/root/work/api-ewa/app/presentation/representers/searched_restaurant_representer.rb": {
         "lines": [
           null,
           null,
@@ -7142,6 +7287,10 @@
         ]
       }
     },
+<<<<<<< Updated upstream
     "timestamp": 1609086250
+=======
+    "timestamp": 1609560184
+>>>>>>> Stashed changes
   }
 }
