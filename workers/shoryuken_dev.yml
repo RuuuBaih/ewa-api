@@ -1,5 +1,2 @@
-search_queues:
-  - https://sqs.ap-northeast-1.amazonaws.com/468882986872/ewa_search_development
-
-click_queues:
-  - https://sqs.ap-northeast-1.amazonaws.com/468882986872/ewa_click_development
+queues:
+  - https://sqs.ap-northeast-1.amazonaws.com/468882986872/ewa_click_create_development
