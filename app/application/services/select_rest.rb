@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# require 'dry/transaction'
+#require 'dry/transaction'
 require 'dry/monads/all'
 require_relative '../../domain/restaurant_options/mappers/restaurant_options_mapper'
 
@@ -34,10 +34,21 @@ module Ewa
         # get random picks  
         pick_entities = option_entities.random_picks
 
+
+        whole_status = Repository::Towns.check_update_status(town, 3)
+        status = whole_status[:status]
+
+        if status
+          Messaging::Queue.new(App.config.SEARCH_QUEUE_URL, App.config)
+            .send(town)
+        end
+
         Response::RestaurantsResp.new(total, pick_entities)
                                  .then do |pick_rests|
           Success(Response::ApiResult.new(status: :ok, message: pick_rests))
         end
+
+
       rescue ArgumentError
         Failure(Response::ApiResult.new(status: :cannot_process, message: '參數錯誤 Invalid input'))
       rescue StandardError
