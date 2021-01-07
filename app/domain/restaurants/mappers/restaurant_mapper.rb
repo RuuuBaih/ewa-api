@@ -31,8 +31,10 @@ module Ewa
           @start = []
           @pix_gateway_class = pix_gateway_class
           @setting = { page_now: page_now, town: town, first_time: first_time }
-          @tp_towns = %w[中正區 萬華區 大同區 中山區 松山區 大安區 信義區 內湖區 南港區 士林區 北投區 文山區]
-          @ntp_towns = %w[萬里區 金山區 板橋區 汐止區 深坑區 石碇區 瑞芳區 平溪區 雙溪區 貢寮區 新店區 坪林區 烏來區 永和區 中和區 土城區 三峽區 樹林區 鶯歌區 三重區 新莊區 泰山區 林口區 蘆洲區 五股區 八里區 淡水區 三芝區 石門區]
+          #@tp_towns = %w[中正區 萬華區 大同區 中山區 松山區 大安區 信義區 內湖區 南港區 士林區 北投區 文山區]
+          @tp_towns = %w[中正區 萬華區]
+          @ntp_towns = %w[萬里區 金山區]
+          #@ntp_towns = %w[萬里區 金山區 板橋區 汐止區 深坑區 石碇區 瑞芳區 平溪區 雙溪區 貢寮區 新店區 坪林區 烏來區 永和區 中和區 土城區 三峽區 樹林區 鶯歌區 三重區 新莊區 泰山區 林口區 蘆洲區 五股區 八里區 淡水區 三芝區 石門區]
         end
 
         def poi_details
@@ -56,22 +58,22 @@ module Ewa
           poi_hashes = []
           # return 9 restaurant poi infos from each district (from page 1)
           tp_city = '台北市'
-          @tp_towns.each do |tp_town|
+          @tp_towns.map do |tp_town|
             Concurrent::Promise
               .new { call_api(tp_city, tp_town) }
               .then { |ret| poi_hashes << ret }
               .rescue { { error: "iterate process went wrong" } }
               .execute
-          end.each(&:value)
+          end.map(&:value)
 
           ntp_city = '新北市'
-          @ntp_towns.each do |ntp_town|
+          @ntp_towns.map do |ntp_town|
             Concurrent::Promise
               .new { call_api(ntp_city, ntp_town) }
               .then { |ret| poi_hashes << ret }
               .rescue { { error: "iterate process went wrong" } }
               .execute
-          end.each(&:value)
+          end.map(&:value)
           poi_hashes.flatten
         end
 
