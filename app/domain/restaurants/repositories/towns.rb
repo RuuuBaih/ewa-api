@@ -28,7 +28,7 @@ module Ewa
           if db_entity
             rebuild_entity(db_entity)
           else
-            db_town = Database::TownOrm.create(city: city, town_name: town_name, page: 0, search_times: 0)
+            db_town = Database::TownOrm.create(city: city, town_name: town_name, page: 1, search_times: 0)
             rebuild_entity(db_town)
           end
         end
