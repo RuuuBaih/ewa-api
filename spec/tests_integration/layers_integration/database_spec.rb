@@ -1,9 +1,8 @@
 # frozen_string_literal: false
 
-require_relative 'spec_helper'
-require_relative 'helpers/vcr_helper'
-require_relative 'helpers/database_helper'
-# require 'database_cleaner'
+require_relative '../../helpers/spec_helper'
+require_relative '../../helpers/vcr_helper'
+require_relative '../../helpers/database_helper'
 
 describe 'Integration Tests of Gmap API and Database' do
   VcrHelper.setup_vcr
@@ -23,12 +22,19 @@ describe 'Integration Tests of Gmap API and Database' do
     end
 
     it 'HAPPY: should be able to save restaurant to database' do
-      restaurant = Ewa::Restaurant::RestaurantMapper
-                   .new(GMAP_TOKEN)
-                   .restaurant_obj_lists[0]
-      puts restaurant.inspect
 
+      config = YAML.safe_load(File.read('config/secrets.yml'))
+      token = config['development']['GMAP_TOKEN']
+      cx = config['development']['CX']
+      restaurant = Ewa::Restaurant::RestaurantMapper
+                   .new(token, cx,
+                   town = "中山區")
+      
+      puts "res"
+      puts restaurant
+      
       rebuilt = Ewa::Repository::For.entity(restaurant).create(restaurant)
+
 
       _(rebuilt.restaurant_id).must_equal(restaurant.restaurant_id)
       _(rebuilt.article_id).must_equal(restaurant.article_id)

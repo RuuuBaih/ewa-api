@@ -868,4 +868,256 @@ http_interactions:
         2521 9822","payment_method":[],"equipment":[],"urls":{"website":"","facebook":"","instagram":""},"view":8306,"articles_count":0,"address":{"zipcode":"","country":"TW","city":"台北市","town":"中山區","street":"南京西路12巷13弄9號"},"geo":{"latitude":25.0517157,"longitude":121.5219134,"distance":null},"rating":{"avg":4.2,"count":20},"tags":["義式料理"],"comment_tags":[]},{"hash_id":"178bc1c54dae0f3a092a0fe4bf119e18","category_id":0,"cover_image_url":"https:\/\/s.pixfs.net\/common\/poi\/restaurant.jpg","name":"三味食堂日式料理","branch_store_name":"","opening_hours_info":{"date":{"Mo":["11:30-14:30","17:00-22:00"],"Tu":["11:30-14:30","17:00-22:00"],"We":["11:30-14:30","17:00-22:00"],"Th":["11:30-14:30","17:00-22:00"],"Fr":["11:30-14:30","17:00-22:00"],"Sa":["11:30-14:30","17:00-22:00"],"Su":["11:30-14:30","17:00-22:00"]},"is_open":true,"opening_time":"","permanently_closed":false},"icon":{"url":"https:\/\/pic.pimg.tw\/dkdk0824\/1602306772-3216173205-g_n.jpg","source_name":"蝌醬","source_url":"http:\/\/dkdk0824.pixnet.net\/blog\/post\/327910045","locked":false},"money":308,"money_description":"平均301-500元\/人","telephone":"02
         2389 2211","payment_method":[],"equipment":[],"urls":{"website":"","facebook":"","instagram":""},"view":8476,"articles_count":0,"address":{"zipcode":"","country":"TW","city":"台北市","town":"萬華區","street":"貴陽街二段116號"},"geo":{"latitude":25.0399176,"longitude":121.5026592,"distance":null},"rating":{"avg":4.6,"count":8},"tags":["日式料理","日本料理","綜合日式料理"],"comment_tags":[]}]},"api_version":2}'
   recorded_at: Thu, 12 Nov 2020 10:12:59 GMT
+- request:
+    method: get
+    uri: https://emma.pixnet.cc/poi?city=%E5%8F%B0%E5%8C%97%E5%B8%82&page=1&per_page=9&town=%E4%B8%AD%E5%B1%B1%E5%8D%80
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      Connection:
+      - close
+      Host:
+      - emma.pixnet.cc
+      User-Agent:
+      - http.rb/4.4.1
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sun, 27 Dec 2020 15:57:09 GMT
+      X-Xss-Protection:
+      - 1; mode=block
+      Set-Cookie:
+      - PIXCCSESSION=deleted; expires=Thu, 01-Jan-1970 00:00:01 GMT; Max-Age=0
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET, POST, PUT, DELETE
+      Access-Control-Allow-Headers:
+      - origin, authorization, x-requested-with
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Content-Length:
+      - '9454'
+      Vary:
+      - User-Agent,Accept-Encoding
+      P3p:
+      - CP="CURa ADMa DEVa PSAo PSDo OUR IND UNI PUR INT DEM STA PRE COM NAV OTC NOI
+        DSP COR"
+      X-Farmid:
+      - accba0a034a15285992d98a77d04b5f95ed4cda9accc22286f6f9c7e2c955d9a
+      Keep-Alive:
+      - timeout=5, max=100
+      Connection:
+      - close
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: '{"error":0,"message":"取得資料成功","data":{"page":1,"per_page":9,"total_num":3666,"total_page":408,"pois":[{"hash_id":"a2481c83af895dc8777db3e6965d6c8d","category_id":0,"cover_image_url":"https:\/\/s.pixfs.net\/common\/poi\/restaurant.jpg","name":"私宅打邊爐","branch_store_name":"長安店","opening_hours_info":{"date":{"Mo":["18:00-22:30"],"Tu":["18:00-22:30"],"We":["18:00-22:30"],"Th":["18:00-22:30"],"Fr":["18:00-22:30"],"Sa":["12:00-14:00","18:00-22:30"],"Su":[]},"is_open":false,"opening_time":"18:00","permanently_closed":false},"icon":{"url":"","source_name":"","source_url":"","locked":false},"money":580,"money_description":"平均501-700元\/人","telephone":"02
+        8772 5728","payment_method":[],"equipment":[],"urls":{"website":"","facebook":"","instagram":""},"view":36,"articles_count":0,"address":{"zipcode":"","country":"TW","city":"台北市","town":"中山區","street":"長安東路二段174-1號2樓"},"geo":{"latitude":25.0481473,"longitude":121.5402493,"distance":null},"rating":{"avg":4,"count":1},"tags":["麻辣火鍋"],"comment_tags":[]},{"hash_id":"21daaf05bc8b119a6c016947de1ed82d","category_id":0,"cover_image_url":"https:\/\/s.pixfs.net\/common\/poi\/restaurant.jpg","name":"龍都酒樓","branch_store_name":"","opening_hours_info":{"date":{"Mo":["11:30-14:30","17:30-21:00"],"Tu":["11:30-14:30","17:30-21:00"],"We":["11:30-14:30","17:30-21:00"],"Th":["11:30-14:30","17:30-21:00"],"Fr":["11:30-14:30","17:30-21:00"],"Sa":["11:30-14:30","17:30-21:00"],"Su":["11:30-14:30","17:30-21:00"]},"is_open":false,"opening_time":"11:30","permanently_closed":false},"icon":{"url":"","source_name":"","source_url":"","locked":false},"money":769,"money_description":"平均701-900元\/人","telephone":"02
+        2563 9293","payment_method":[],"equipment":[],"urls":{"website":"","facebook":"","instagram":""},"view":5218,"articles_count":0,"address":{"zipcode":"","country":"TW","city":"台北市","town":"中山區","street":"中山北路一段105巷18-1號"},"geo":{"latitude":25.0503764,"longitude":121.5244996,"distance":null},"rating":{"avg":4.6,"count":13},"tags":["港式","港式料理","港式飲茶","粵菜","粵菜港式飲茶","飲茶"],"comment_tags":[]},{"hash_id":"41dcf5b125a79d77e678aefa9e314e8a","category_id":0,"cover_image_url":"https:\/\/s.pixfs.net\/common\/poi\/restaurant.jpg","name":"涮鮮日式火鍋","branch_store_name":"民權旗艦店","opening_hours_info":{"date":{"Mo":["00:00-01:00","11:00-24:00"],"Tu":["00:00-01:00","11:00-24:00"],"We":["00:00-01:00","11:00-24:00"],"Th":["00:00-01:00","11:00-24:00"],"Fr":["00:00-01:00","11:00-24:00"],"Sa":["00:00-01:00","11:00-24:00"],"Su":["00:00-01:00","11:00-24:00"]},"is_open":true,"opening_time":"","permanently_closed":false},"icon":{"url":"","source_name":"","source_url":"","locked":false},"money":313,"money_description":"平均301-500元\/人","telephone":"02
+        2596 9568","payment_method":[],"equipment":[],"urls":{"website":"","facebook":"","instagram":""},"view":211,"articles_count":0,"address":{"zipcode":"","country":"TW","city":"台北市","town":"中山區","street":"民權東路一段63號"},"geo":{"latitude":25.0628219,"longitude":121.525478,"distance":null},"rating":{"avg":0,"count":0},"tags":["涮涮鍋"],"comment_tags":[]},{"hash_id":"9bb5c4eb80d039baa6d7161cf04a5105","category_id":0,"cover_image_url":"https:\/\/s.pixfs.net\/common\/poi\/restaurant.jpg","name":"博多一風堂拉麵","branch_store_name":"","opening_hours_info":{"date":{"Mo":["11:30-00:00"],"Tu":["11:30-00:00"],"We":["11:30-00:00"],"Th":["11:30-00:00"],"Fr":["11:30-00:00"],"Sa":["11:30-00:00"],"Su":["11:30-00:00"]},"is_open":true,"opening_time":"","permanently_closed":false},"icon":{"url":"","source_name":"","source_url":"","locked":false},"money":310,"money_description":"平均301-500元\/人","telephone":"02
+        2562 9222","payment_method":[],"equipment":[],"urls":{"website":"","facebook":"","instagram":""},"view":102,"articles_count":0,"address":{"zipcode":"","country":"TW","city":"台北市","town":"中山區","street":"中山北路一段85號"},"geo":{"latitude":25.0504645,"longitude":121.5222446,"distance":null},"rating":{"avg":4,"count":1},"tags":["日式料理","日式麵食專賣","日本料理"],"comment_tags":[]},{"hash_id":"7ced7bd8b4a3e33217b026c5151d9ca9","category_id":0,"cover_image_url":"https:\/\/s.pixfs.net\/common\/poi\/restaurant.jpg","name":"柒串燒屋","branch_store_name":"","opening_hours_info":{"date":{"Mo":["00:00-02:00","17:00-24:00"],"Tu":["00:00-02:00","17:00-24:00"],"We":["00:00-02:00","17:00-24:00"],"Th":["00:00-02:00","17:00-24:00"],"Fr":["00:00-02:00","17:00-24:00"],"Sa":["00:00-02:00","17:00-24:00"],"Su":["00:00-02:00","17:00-24:00"]},"is_open":true,"opening_time":"","permanently_closed":false},"icon":{"url":"","source_name":"","source_url":"","locked":false},"money":318,"money_description":"平均301-500元\/人","telephone":"02
+        2567 2770","payment_method":[],"equipment":[],"urls":{"website":"","facebook":"","instagram":""},"view":15391,"articles_count":0,"address":{"zipcode":"","country":"TW","city":"台北市","town":"中山區","street":"長安東路一段46號-1"},"geo":{"latitude":25.0483995,"longitude":121.5273356,"distance":null},"rating":{"avg":4.7,"count":12},"tags":["串燒","炭烤","炭烤串燒","燒烤","碳烤"],"comment_tags":[]},{"hash_id":"867712b736b2cdb505c0af1444562e45","category_id":0,"cover_image_url":"https:\/\/s.pixfs.net\/common\/poi\/restaurant.jpg","name":"SEASONCuisine
+        Pâtissiartism","branch_store_name":"","opening_hours_info":{"date":{"Mo":["10:30-17:00"],"Tu":["10:30-17:00"],"We":["10:30-17:00"],"Th":["10:30-17:00"],"Fr":["10:30-17:00"],"Sa":["10:30-18:00"],"Su":["10:30-18:00"]},"is_open":false,"opening_time":"10:30","permanently_closed":false},"icon":{"url":"","source_name":"","source_url":"","locked":false},"money":668,"money_description":"平均501-700元\/人","telephone":"02
+        2533 2377","payment_method":[],"equipment":[],"urls":{"website":"","facebook":"","instagram":""},"view":23,"articles_count":0,"address":{"zipcode":"","country":"TW","city":"台北市","town":"中山區","street":"明水路397巷2弄22號"},"geo":{"latitude":25.0780062,"longitude":121.5464131,"distance":null},"rating":{"avg":0,"count":0},"tags":["蛋糕","西點","西點蛋糕","西點蛋糕麵包","麵包"],"comment_tags":[]},{"hash_id":"c2a429c2622284c12e4f9903f8ad83a3","category_id":0,"cover_image_url":"https:\/\/s.pixfs.net\/common\/poi\/restaurant.jpg","name":"品田牧場","branch_store_name":"","opening_hours_info":{"date":{"Mo":["11:30-14:30","17:30-22:00"],"Tu":["11:30-14:30","17:30-22:00"],"We":["11:30-14:30","17:30-22:00"],"Th":["11:30-14:30","17:30-22:00"],"Fr":["11:30-14:30","17:30-22:00"],"Sa":["11:30-14:30","17:30-22:00"],"Su":["11:30-14:30","17:30-22:00"]},"is_open":false,"opening_time":"11:30","permanently_closed":false},"icon":{"url":"","source_name":"","source_url":"","locked":false},"money":340,"money_description":"平均301-500元\/人","telephone":"02
+        2507 7279","payment_method":[],"equipment":[],"urls":{"website":"","facebook":"","instagram":""},"view":759,"articles_count":0,"address":{"zipcode":"","country":"TW","city":"台北市","town":"中山區","street":"南京東路二段146號2樓"},"geo":{"latitude":25.0517213,"longitude":121.5340179,"distance":null},"rating":{"avg":0,"count":0},"tags":["日式料理","日式豬排","日式豬排專賣","日本料理"],"comment_tags":[]},{"hash_id":"7e7d4805bdc76cfb3e821769816e2915","category_id":0,"cover_image_url":"https:\/\/s.pixfs.net\/common\/poi\/restaurant.jpg","name":"L''
+        IDIOTRESTAURANT 子餐廳","branch_store_name":"","opening_hours_info":{"date":{"Mo":["11:30-14:30","17:30-21:30"],"Tu":["11:30-14:30","17:30-21:30"],"We":["11:30-14:30","17:30-21:30"],"Th":["11:30-14:30","17:30-21:30"],"Fr":["11:30-14:30","17:30-21:30"],"Sa":["11:30-14:30","17:30-21:30"],"Su":["11:30-14:30","17:30-21:30"]},"is_open":false,"opening_time":"11:30","permanently_closed":false},"icon":{"url":"","source_name":"","source_url":"","locked":false},"money":973,"money_description":"平均901-1,000元\/人","telephone":"0903
+        393 098","payment_method":[],"equipment":[],"urls":{"website":"","facebook":"","instagram":""},"view":10259,"articles_count":0,"address":{"zipcode":"","country":"TW","city":"台北市","town":"中山區","street":"林森北路369號1樓"},"geo":{"latitude":25.0578557,"longitude":121.5256993,"distance":null},"rating":{"avg":5,"count":5},"tags":["義式料理"],"comment_tags":[]},{"hash_id":"c1b55d1c8e9fd629b5cd80cfcd80f2af","category_id":0,"cover_image_url":"https:\/\/s.pixfs.net\/common\/poi\/restaurant.jpg","name":"Vasa
+        Pizzeria 瓦薩比薩","branch_store_name":"中山店","opening_hours_info":{"date":{"Mo":["11:00-21:30"],"Tu":["11:00-21:30"],"We":["11:00-21:30"],"Th":["11:00-21:30"],"Fr":["11:00-21:30"],"Sa":["11:00-21:30"],"Su":["11:00-21:30"]},"is_open":false,"opening_time":"11:00","permanently_closed":false},"icon":{"url":"","source_name":"","source_url":"","locked":false},"money":358,"money_description":"平均301-500元\/人","telephone":"02
+        2562 3360","payment_method":[],"equipment":[],"urls":{"website":"","facebook":"","instagram":""},"view":44,"articles_count":0,"address":{"zipcode":"","country":"TW","city":"台北市","town":"中山區","street":"中山北路二段27巷2號"},"geo":{"latitude":25.0531552,"longitude":121.523204,"distance":null},"rating":{"avg":0,"count":0},"tags":["義式料理"],"comment_tags":[]}]},"api_version":2}'
+  recorded_at: Sun, 27 Dec 2020 15:57:09 GMT
+- request:
+    method: get
+    uri: https://customsearch.googleapis.com/customsearch/v1?cx=&fileType=jpg&imgType=photo&key=<GMAP_TOKEN>&q=%E5%8D%9A%E5%A4%9A%E4%B8%80%E9%A2%A8%E5%A0%82%E6%8B%89%E9%BA%B5%E6%96%99%E7%90%86&searchType=image
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      Connection:
+      - close
+      Host:
+      - customsearch.googleapis.com
+      User-Agent:
+      - http.rb/4.4.1
+  response:
+    status:
+      code: 400
+      message: Bad Request
+    headers:
+      Vary:
+      - Origin,Accept-Encoding
+      - Referer
+      - X-Origin
+      Content-Type:
+      - application/json; charset=UTF-8
+      Date:
+      - Sun, 27 Dec 2020 15:57:09 GMT
+      Server:
+      - ESF
+      Cache-Control:
+      - private
+      X-Xss-Protection:
+      - '0'
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      Alt-Svc:
+      - h3-29=":443"; ma=2592000,h3-T051=":443"; ma=2592000,h3-Q050=":443"; ma=2592000,h3-Q046=":443";
+        ma=2592000,h3-Q043=":443"; ma=2592000,quic=":443"; ma=2592000; v="46,43"
+      Accept-Ranges:
+      - none
+      Connection:
+      - close
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "error": {
+            "code": 400,
+            "message": "Request contains an invalid argument.",
+            "errors": [
+              {
+                "message": "Request contains an invalid argument.",
+                "domain": "global",
+                "reason": "badRequest"
+              }
+            ],
+            "status": "INVALID_ARGUMENT"
+          }
+        }
+  recorded_at: Sun, 27 Dec 2020 15:57:09 GMT
+- request:
+    method: get
+    uri: https://customsearch.googleapis.com/customsearch/v1?cx=&fileType=jpg&imgType=photo&key=<GMAP_TOKEN>&q=%E7%A7%81%E5%AE%85%E6%89%93%E9%82%8A%E7%88%90%E6%96%99%E7%90%86&searchType=image
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      Connection:
+      - close
+      Host:
+      - customsearch.googleapis.com
+      User-Agent:
+      - http.rb/4.4.1
+  response:
+    status:
+      code: 400
+      message: Bad Request
+    headers:
+      Vary:
+      - Origin,Accept-Encoding
+      - Referer
+      - X-Origin
+      Content-Type:
+      - application/json; charset=UTF-8
+      Date:
+      - Sun, 27 Dec 2020 16:00:58 GMT
+      Server:
+      - ESF
+      Cache-Control:
+      - private
+      X-Xss-Protection:
+      - '0'
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      Alt-Svc:
+      - h3-29=":443"; ma=2592000,h3-T051=":443"; ma=2592000,h3-Q050=":443"; ma=2592000,h3-Q046=":443";
+        ma=2592000,h3-Q043=":443"; ma=2592000,quic=":443"; ma=2592000; v="46,43"
+      Accept-Ranges:
+      - none
+      Connection:
+      - close
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "error": {
+            "code": 400,
+            "message": "Request contains an invalid argument.",
+            "errors": [
+              {
+                "message": "Request contains an invalid argument.",
+                "domain": "global",
+                "reason": "badRequest"
+              }
+            ],
+            "status": "INVALID_ARGUMENT"
+          }
+        }
+  recorded_at: Sun, 27 Dec 2020 16:00:58 GMT
+- request:
+    method: get
+    uri: https://customsearch.googleapis.com/customsearch/v1?cx=&fileType=jpg&imgType=photo&key=<GMAP_TOKEN>&q=%E9%BE%8D%E9%83%BD%E9%85%92%E6%A8%93%E6%96%99%E7%90%86&searchType=image
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      Connection:
+      - close
+      Host:
+      - customsearch.googleapis.com
+      User-Agent:
+      - http.rb/4.4.1
+  response:
+    status:
+      code: 400
+      message: Bad Request
+    headers:
+      Vary:
+      - Origin,Accept-Encoding
+      - Referer
+      - X-Origin
+      Content-Type:
+      - application/json; charset=UTF-8
+      Date:
+      - Sun, 27 Dec 2020 16:01:55 GMT
+      Server:
+      - ESF
+      Cache-Control:
+      - private
+      X-Xss-Protection:
+      - '0'
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      Alt-Svc:
+      - h3-29=":443"; ma=2592000,h3-T051=":443"; ma=2592000,h3-Q050=":443"; ma=2592000,h3-Q046=":443";
+        ma=2592000,h3-Q043=":443"; ma=2592000,quic=":443"; ma=2592000; v="46,43"
+      Accept-Ranges:
+      - none
+      Connection:
+      - close
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "error": {
+            "code": 400,
+            "message": "Request contains an invalid argument.",
+            "errors": [
+              {
+                "message": "Request contains an invalid argument.",
+                "domain": "global",
+                "reason": "badRequest"
+              }
+            ],
+            "status": "INVALID_ARGUMENT"
+          }
+        }
+  recorded_at: Sun, 27 Dec 2020 16:01:55 GMT
 recorded_with: VCR 6.0.0
