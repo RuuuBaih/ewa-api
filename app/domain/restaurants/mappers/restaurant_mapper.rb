@@ -56,18 +56,22 @@ module Ewa
           poi_hashes = []
           # return 9 restaurant poi infos from each district (from page 1)
           tp_city = '台北市'
-          @tp_towns.each do |tp_town|
+          @tp_towns.map do |tp_town|
             Concurrent::Promise
               .new { call_api(tp_city, tp_town) }
               .then { |ret| poi_hashes << ret }
-          end.each(&:value)
+              .rescue { { error: "iterate process went wrong" } }
+              .execute
+          end.map(&:value)
 
           ntp_city = '新北市'
-          @ntp_towns.each do |ntp_town|
+          @ntp_towns.map do |ntp_town|
             Concurrent::Promise
               .new { call_api(ntp_city, ntp_town) }
               .then { |ret| poi_hashes << ret }
-          end.each(&:value)
+              .rescue { { error: "iterate process went wrong" } }
+              .execute
+          end.map(&:value)
           poi_hashes.flatten
         end
 

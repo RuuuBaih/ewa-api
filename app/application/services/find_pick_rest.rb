@@ -23,7 +23,7 @@ module Ewa
 
           Failure(Response::ApiResult.new(
             status: :processing,
-            message: "Searching for related details, please wait for a moment."
+            message: "#{rest_entity.name} is searching for related details, please wait for a moment."
           ))
           
         else
