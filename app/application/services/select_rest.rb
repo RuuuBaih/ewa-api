@@ -35,7 +35,7 @@ module Ewa
         pick_entities = option_entities.random_picks
 
 
-        whole_status = Repository::Towns.check_update_status(town, 3)
+        whole_status = Repository::Towns.check_update_status(town, 10)
         status = whole_status[:status]
 
         if status
