@@ -20,7 +20,7 @@ puts town_entities.inspect
 # For testing if search_times > 5, call RestaurantMapper for more 9 poi restaurant records
 # search_time limit can be set (not 5)
 whole_status = Repository::Towns.check_update_status("中山區", 5)
-town_entity = whole_status[:entity]
+town_entity = whole_status[:entity].id
 status = whole_status[:status]
 if status
   # return to user random 9 results from db (now use all to replace)
