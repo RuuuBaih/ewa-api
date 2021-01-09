@@ -34,9 +34,13 @@ module Ewa
         # get random picks  
         pick_entities = option_entities.random_picks
 
+        # update search time
+        Repository::Towns.update_search(town)
+
 
         whole_status = Repository::Towns.check_update_status(town, 10)
         status = whole_status[:status]
+        
 
         if status
           Messaging::Queue.new(App.config.SEARCH_QUEUE_URL, App.config)
