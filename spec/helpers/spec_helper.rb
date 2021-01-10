@@ -29,6 +29,7 @@ require_relative '../../init'
 USERNAME = ''
 PROJECT_NAME = 'SOA_project'
 GMAP_TOKEN = Ewa::App.config.GMAP_TOKEN
+CX = Ewa::App.config.CX
 
 CASSETTES_FOLDER = 'spec/fixtures/cassettes'
 CASSETTE_FILE = 'apis'
