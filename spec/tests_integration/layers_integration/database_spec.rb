@@ -10,6 +10,33 @@ describe 'Integration Tests of Gmap API and Database' do
 
   before do
     VcrHelper.configure_vcr_for_restaurant
+
+    config = YAML.safe_load(File.read('config/secrets.yml'))
+    token = config['development']['GMAP_TOKEN']
+    cx = config['development']['CX']
+
+    # Restaurant
+    @restaurants = Ewa::Restaurant::RestaurantMapper
+      .new(token, cx, "中山區", 2).restaurant_obj_lists
+    @restaurant = @restaurants[1]
+    @rebuilt = Ewa::Repository::For.entity(@restaurant).create(@restaurant)
+
+
+    #binding.irb
+    # Restaurant Detail
+    @rebuilt_details = Ewa::Repository::RestaurantDetails.find_by_rest_id(@rebuilt.id)
+
+    @rest_detail_entity = Ewa::Restaurant::RestaurantDetailMapper
+      .new(@rebuilt, token).gmap_place_details
+
+    #binding.irb
+    if @rebuilt_details.google_rating.nil?
+      #if nil, first time
+      @rest_detail = Ewa::Repository::RestaurantDetails.update(@rest_detail_entity, true)
+    else
+      #if not nil, not first time
+      @rest_detail = Ewa::Repository::RestaurantDetails.update(@rest_detail_entity, false)
+    end
   end
 
   after do
@@ -17,45 +44,23 @@ describe 'Integration Tests of Gmap API and Database' do
   end
 
   describe 'Retrieve and store restaurant' do
-    before do
-      DatabaseHelper.wipe_database
-    end
-
     it 'HAPPY: should be able to save restaurant to database' do
+      _(@rebuilt.name).must_equal(@restaurant.name)
+      _(@rebuilt.town).must_equal(@restaurant.town)
+      _(@rebuilt.money).must_equal(@restaurant.money)
+      _(@rebuilt.city).must_equal(@restaurant.city)
+      _(@rebuilt.telephone).must_equal(@restaurant.telephone)
+      _(@rebuilt.cover_img).must_equal(@restaurant.cover_img)
+      _(@rebuilt.tags).must_equal(@restaurant.tags)
+      _(@rebuilt.pixnet_rating).must_equal(@restaurant.pixnet_rating)
+    end
+  end
 
-      config = YAML.safe_load(File.read('config/secrets.yml'))
-      token = config['development']['GMAP_TOKEN']
-      cx = config['development']['CX']
-      restaurant = Ewa::Restaurant::RestaurantMapper
-                   .new(token, cx,
-                   town = "中山區")
-      
-      puts "res"
-      puts restaurant
-      
-      rebuilt = Ewa::Repository::For.entity(restaurant).create(restaurant)
-
-
-      _(rebuilt.restaurant_id).must_equal(restaurant.restaurant_id)
-      _(rebuilt.article_id).must_equal(restaurant.article_id)
-      _(rebuilt.name).must_equal(restaurant.name)
-      _(rebuilt.town).must_equal(restaurant.town)
-      _(rebuilt.money).must_equal(restaurant.money)
-      _(rebuilt.city).must_equal(restaurant.city)
-      _(rebuilt.telephone).must_equal(restaurant.telephone)
-      _(rebuilt.cover_img).must_equal(restaurant.cover_img)
-      _(rebuilt.tags).must_equal(restaurant.tags)
-      _(rebuilt.pixnet_rating).must_equal(restaurant.pixnet_rating)
-      _(rebuilt.google_rating).must_equal(restaurant.google_rating)
-      _(rebuilt.open_hours).must_equal(restaurant.open_hours)
-
-      #       restaurant.reviews.each do |review|
-      #               found = rebuilt.reviews.find do |potential|
-      #                         potential.review_id == review.review_id
-      #                                 end
-      #                                         _(found.author_name).must_equal member.author_name
-      #                                                 # not checking email as it is not always provided
-      #                                                       end
+  describe 'Retrieve and store restaurant details (google)' do
+    it 'Should be able to save restaurant details (google) to database' do
+      _(@rebuilt_details.reviews).must_equal(@rest_detail.reviews)
+      _(@rebuilt_details.pictures).must_equal(@rest_detail.pictures)
+      _(@rebuilt_details.article).must_equal(@rest_detail.article)
     end
   end
 end
