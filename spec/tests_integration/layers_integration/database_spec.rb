@@ -22,7 +22,6 @@ describe 'Integration Tests of Gmap API and Database' do
     @rebuilt = Ewa::Repository::For.entity(@restaurant).create(@restaurant)
 
 
-    #binding.irb
     # Restaurant Detail
     @rebuilt_details = Ewa::Repository::RestaurantDetails.find_by_rest_id(@rebuilt.id)
 
