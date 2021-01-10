@@ -14,9 +14,12 @@ config = YAML.safe_load(File.read('config/secrets.yml'))
 token = config['development']['GMAP_TOKEN']
 cx = config['development']['CX']
 restaurants = RestaurantMapper.new(token, cx, "中山區", 1).restaurant_obj_lists
+puts restaurants.count
+puts restaurants.inspect
+
 repo_entities = restaurants.map do |restaurant_entity|
   puts restaurant_entity.inspect
-  Repository::For.entity(restaurant_entity).create(restaurant_entity)
+  #Repository::For.entity(restaurant_entity).create(restaurant_entity)
 end
 puts repo_entities.inspect
 
@@ -25,7 +28,7 @@ puts repo_entities.inspect
 config = App.config 
 token = config.GMAP_TOKEN
 cx = config.CX
-restaurants = RestaurantMapper.new(token, cx, "中山區", 1).restaurant_obj_lists
+restaurants = RestaurantMapper.new(token, cx, nil, 2, true).restaurant_obj_lists
 puts restaurants.inspect
 repo_entities = restaurants.map do |restaurant_entity|
   puts restaurant_entity.inspect
