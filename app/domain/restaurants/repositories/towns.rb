@@ -45,7 +45,6 @@ module Ewa
       def self.check_update_status(town_name, limit_num)
         db_record = find_by_name(town_name)
         search_times = db_record.search_times
-
         # limit_num can be set to any number
         # if upto the limit then will return town entity(need update, api call)
         # can get searche_times and page with the returning entity
