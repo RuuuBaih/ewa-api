@@ -6,7 +6,7 @@ require 'webmock'
 # Setting up VCR
 class VcrHelper
   CASSETTES_FOLDER = 'spec/fixtures/cassettes'
-  CASSETTE_FILE = 'pix_apis'
+  CASSETTE_FILE = 'apis'
 
   def self.setup_vcr
     VCR.configure do |c|
@@ -22,6 +22,8 @@ class VcrHelper
     VCR.configure do |c|
       c.filter_sensitive_data('<GMAP_TOKEN>') { GMAP_TOKEN }
       c.filter_sensitive_data('<GMAP_TOKEN_ESC>') { CGI.escape(GMAP_TOKEN) }
+      c.filter_sensitive_data('<CX>') { CX }
+      c.filter_sensitive_data('<CX>') { CGI.escape(CX) }
     end
 
     VCR.insert_cassette(

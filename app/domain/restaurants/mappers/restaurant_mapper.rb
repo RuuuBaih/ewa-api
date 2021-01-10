@@ -96,7 +96,6 @@ module Ewa
         end
         # delete restaurants with empty cover pictures
         cov_pic_filtered_hashes.delete_if(&:empty?)
-
         RestaurantMapper::BuildRestaurantEntity.new(cov_pic_filtered_hashes, @token, @cx).build_entity
       end
 
