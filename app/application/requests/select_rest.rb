@@ -29,20 +29,20 @@ module Ewa
       end
 
       def output_with_random_obj
-        #binding.irb
+        # binding.irb
         random = @params.key?('random') ? @params['random'].to_i : 0
-        @params["random"] = random
+        @params['random'] = random
 
         if random.zero?
           # default page is 1 and records on per page is 5
           # which page
           page = @params.key?('page') ? @params['page'].to_i : 1
-          @params["page"] = page
+          @params['page'] = page
 
           # how many records on per page
           # 5 can be changed in the future
           per_page = @params.key?('per_page') ? @params['per_page'].to_i : 9
-          @params["per_page"] = per_page
+          @params['per_page'] = per_page
 
           # records on per page can be up than 10
           # 10 can be changed in the future

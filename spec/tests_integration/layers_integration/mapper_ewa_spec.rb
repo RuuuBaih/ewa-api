@@ -66,7 +66,6 @@ describe 'Tests Ewa API library' do
         _(picture.length).must_equal PIC_LENGTH
       end
     end
-
   end
 
   describe 'Tests article API library' do

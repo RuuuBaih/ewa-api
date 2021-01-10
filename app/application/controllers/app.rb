@@ -37,11 +37,11 @@ module Ewa
               params = routing.params
               # GET /restaurants?town={town}&min_money={min_mon}&max_money={max_mon}
               select_rest = Request::SelectRests.new(params)
-              if params.key?('town')
-                result = Service::SelectRests.new.call(select_rest)
-              else
-                result = Service::ShowAllRests.new.call(select_rest)
-              end
+              result = if params.key?('town')
+                         Service::SelectRests.new.call(select_rest)
+                       else
+                         Service::ShowAllRests.new.call(select_rest)
+                       end
 
               if result.failure?
                 failed = Representer::HttpResponse.new(result.failure)

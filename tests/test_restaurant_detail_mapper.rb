@@ -14,7 +14,6 @@ config = YAML.safe_load(File.read('config/secrets.yml'))
 token = config['development']['GMAP_TOKEN']
 cx = config['development']['CX']
 
-
 # check update status (create為first time, 而後為5次才打一次api 更新)
 
 # get poi entity from db (use id 1 to test)
@@ -22,10 +21,10 @@ rest_entity = Repository::RestaurantDetails.find_by_rest_id(1)
 status = Repository::RestaurantDetails.check_update_click_status(1, 5)
 
 # check if first time update or clicks above 5 times
-if (rest_entity.google_rating.nil?) and (!status) 
+if rest_entity.google_rating.nil? && !status
   # get gmap related info
   rest_detail_entity = RestaurantDetailMapper.new(rest_entity, token).gmap_place_details
-  #puts rest_detail_entity.inspect
+  # puts rest_detail_entity.inspect
 
   # get rebuilt repo entity
   # here will auto update click數量
@@ -49,7 +48,7 @@ elsif status
 else
   # it will return the clicks of that restaurant entity
   Repository::RestaurantDetails.update_click(1)
-end 
+end
 
 # update clicks
 

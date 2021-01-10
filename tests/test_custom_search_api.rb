@@ -8,9 +8,9 @@ include CustomSearch
 
 config = YAML.safe_load(File.read('config/secrets.yml'))
 
-puts "GMAP_TOKEN"
+puts 'GMAP_TOKEN'
 puts config['development']['GMAP_TOKEN']
-puts "SEARCH_ENGINE"
+puts 'SEARCH_ENGINE'
 puts config['development']['SEARCH_ENGINE']
 
 search_photo = CustomSearchApi.new(config['development']['GMAP_TOKEN'], '私宅打邊爐料理', config['development']['SEARCH_ENGINE']).search_photo

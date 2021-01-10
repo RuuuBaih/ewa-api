@@ -17,25 +17,24 @@ describe 'Integration Tests of Gmap API and Database' do
 
     # Restaurant
     @restaurants = Ewa::Restaurant::RestaurantMapper
-      .new(token, cx, "中山區", 2).restaurant_obj_lists
+                   .new(token, cx, '中山區', 2).restaurant_obj_lists
     @restaurant = @restaurants[1]
     @rebuilt = Ewa::Repository::For.entity(@restaurant).create(@restaurant)
-
 
     # Restaurant Detail
     @rebuilt_details = Ewa::Repository::RestaurantDetails.find_by_rest_id(@rebuilt.id)
 
     @rest_detail_entity = Ewa::Restaurant::RestaurantDetailMapper
-      .new(@rebuilt, token).gmap_place_details
+                          .new(@rebuilt, token).gmap_place_details
 
-    #binding.irb
-    if @rebuilt_details.google_rating.nil?
-      #if nil, first time
-      @rest_detail = Ewa::Repository::RestaurantDetails.update(@rest_detail_entity, true)
-    else
-      #if not nil, not first time
-      @rest_detail = Ewa::Repository::RestaurantDetails.update(@rest_detail_entity, false)
-    end
+    # binding.irb
+    @rest_detail = if @rebuilt_details.google_rating.nil?
+                     # if nil, first time
+                     Ewa::Repository::RestaurantDetails.update(@rest_detail_entity, true)
+                   else
+                     # if not nil, not first time
+                     Ewa::Repository::RestaurantDetails.update(@rest_detail_entity, false)
+                   end
   end
 
   after do

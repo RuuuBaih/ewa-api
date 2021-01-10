@@ -38,9 +38,9 @@ module Ewa
         def poi_details
           iterate_pois.map do |hash|
             Concurrent::Promise
-              .new {FilterHash.new(hash).filtered_poi_hash}
-              .then { |filter| @start << filter if (filter['category_id']).zero? && (filter['money'] != 0)}
-              .rescue { { error: "filter process went wrong" } }
+              .new { FilterHash.new(hash).filtered_poi_hash }
+              .then { |filter| @start << filter if (filter['category_id']).zero? && (filter['money'] != 0) }
+              .rescue { { error: 'filter process went wrong' } }
               .execute
           end.map(&:value)
           @start
@@ -60,7 +60,7 @@ module Ewa
             Concurrent::Promise
               .new { call_api(tp_city, tp_town) }
               .then { |ret| poi_hashes << ret }
-              .rescue { { error: "iterate process went wrong" } }
+              .rescue { { error: 'iterate process went wrong' } }
               .execute
           end.map(&:value)
 
@@ -69,7 +69,7 @@ module Ewa
             Concurrent::Promise
               .new { call_api(ntp_city, ntp_town) }
               .then { |ret| poi_hashes << ret }
-              .rescue { { error: "iterate process went wrong" } }
+              .rescue { { error: 'iterate process went wrong' } }
               .execute
           end.map(&:value)
           poi_hashes.flatten
