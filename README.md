@@ -66,7 +66,7 @@ Ewa combines Pixnet poi API, Google Custom Search API and Google Map API, recomm
 1. URL path: `root_path/api/v1/restaurants/picks/{restaurant_id}`
 2. Description: You can see more about one restaurant's infomation. Such as ewa tag, google rating, open_hours, tags, reviews, articles and pictures...etc.
 3. input params:
-    * restaurant_id: integer, restaurant's id. If the restaurant hasn't been clicked before, it will return something like: {"status": "processing", "message": "陳記白玉甜點 is searching for related details, please wait for a moment."} It means our website is loading data for restaurant 陳記白玉甜點, please wait for a moment then reload the page, you will see the restaurant details afterwards.
+    * restaurant_id: integer, restaurant's id. If the restaurant hasn't been clicked before, it will return something like: `{"status": "processing", "message": "陳記白玉甜點 is searching for related details, please wait for a moment."}` It means our website is loading data for restaurant 陳記白玉甜點, please wait for a moment then reload the page, you will see the restaurant details afterwards.
  
 **Ewa can't guarantee for the information quality, which is controlled by Google and Pixnet resources. However, we try to pick out those restaurants we think are the best for everyone. :)**
 
