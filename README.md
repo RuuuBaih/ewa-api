@@ -28,7 +28,7 @@ Ewa combines Pixnet poi API, Google Custom Search API and Google Map API, recomm
 ### Root page
 1. URL path: root_path
 2. Description: It shows the healthy status of our api. For now, it's version 1 for our API.
-    `{"status": "ok", "message": "Ewa API v1 at /api/v1/ in production mode"}`
+    - `{"status": "ok", "message": "Ewa API v1 at /api/v1/ in production mode"}`
 ### Restaurants page  
 1. URL path: root_path/api/v1/restaurants
 2. Description: You can see restaurants lists of our API, our API shows default of top 5 restaurants which clicked by users the most.
@@ -41,14 +41,14 @@ Ewa combines Pixnet poi API, Google Custom Search API and Google Map API, recomm
     * random: integer, the random number you want from a big pool of restaurants
 4. input_examples:
     * Search for top 18 clicked restaurants in our website 
-        `root_path/api/v1/restaurants?page=1&per_page=9` 
-        `root_path/api/v1/restaurants?page=2&per_page=9` 
+        - `root_path/api/v1/restaurants?page=1&per_page=9` 
+        - `root_path/api/v1/restaurants?page=2&per_page=9` 
     * Search for 中山區 top 5 restaurants 
-        `root_path/api/v1/restaurants?town=中山區&page=1&per_page=5` 
+        - `root_path/api/v1/restaurants?town=中山區&page=1&per_page=5` 
     * Search for 中山區 random 5 restaurants 
-        `root_path/api/v1/restaurants?town=中山區&random=5`
+        - `root_path/api/v1/restaurants?town=中山區&random=5`
     * Search for 中山區 random 9 restaurants which money spent there range from 100 ~ 500
-        `root_path/api/v1/restaurants?town=中山區&random=9&min_money=100&max_money=500`
+        - `root_path/api/v1/restaurants?town=中山區&random=9&min_money=100&max_money=500`
 5. output_params
     * total: the total number of restaurants
     * rests_infos:
@@ -66,7 +66,9 @@ Ewa combines Pixnet poi API, Google Custom Search API and Google Map API, recomm
 1. URL path: root_path/api/v1/restaurants/picks/{restaurant_id}
 2. Description: You can see more about one restaurant's infomation. Such as ewa tag, google rating, open_hours, tags, reviews, articles and pictures...etc.
 3. input params:
-    * restaurant_id: integer, restaurant's id. If the restaurant hasn't been clicked before, it will return something like: `{"status": "processing", "message": "陳記白玉甜點 is searching for related details, please wait for a moment."}`. It means our website is loading data for restaurant 陳記白玉甜點, please wait for a moment then reload the page, you will see the restaurant details afterwards.
+    * restaurant_id: integer, restaurant's id. If the restaurant hasn't been clicked before, it will return something like: 
+    ```{"status": "processing", "message": "陳記白玉甜點 is searching for related details, please wait for a moment."}```
+     It means our website is loading data for restaurant 陳記白玉甜點, please wait for a moment then reload the page, you will see the restaurant details afterwards.
  
 **Ewa can't guarantee for the information quality, which is controlled by Google and Pixnet resources. However, we try to pick out those restaurants we think are the best for everyone. :)**
 
