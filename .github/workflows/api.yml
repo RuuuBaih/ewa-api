@@ -45,4 +45,6 @@ jobs:
         env: # define secrets in Github project -> settings -> secrets
           GMAP_TOKEN: ${{ secrets.GMAP_TOKEN }}
           SESSION_SECRET: ${{ secrets.SESSION_SECRET }}
-        run: bundle exec rake spec
+        run: |
+          rake worker:run:test &
+          bundle exec rake spec
