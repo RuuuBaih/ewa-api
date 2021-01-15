@@ -3,10 +3,12 @@
 require_relative '../../helpers/spec_helper'
 require_relative '../../helpers/vcr_helper'
 
-# testing poi
-POI_LENGTH = 2
+# testing cover pic
+COVER_PIC_LENGTH = 10
 # testing review
 REVIEW_LENGTH = 5
+# testing pic
+PIC_LENGTH = 10
 
 REST_NAME = '薌筑園'
 ARTICLE_HASH = { 'keyword' => 'RoseMary', 'link' => 'https://atroposbox.pixnet.net/blog/post/66733015' }.freeze
@@ -32,29 +34,36 @@ describe 'Tests Ewa API library' do
       @restaurant_api = Ewa::Gmap::PlaceApi
       @restaurant_detail_api = Ewa::Gmap::PlaceDetailsApi
       @restaurant_mapper = Ewa::Restaurant::RestaurantMapper
+      @restaurant_detail_mapper = Ewa::Restaurant::RestaurantDetailMapper
       @restaurant_entity = Ewa::Entity::Restaurant
     end
 
-    describe 'restaurant poi' do
-      it 'HAPPY: should have same length of poi' do
-        poi = @restaurant_mapper.new(GMAP_TOKEN).poi_details
-        _(poi.length).must_equal POI_LENGTH
-      end
-      it 'HAPPY: should have category_id = 0' do
-        poi = @restaurant_mapper.new(GMAP_TOKEN).poi_details
-        _(poi[0]['category_id']).must_equal 0
+    describe 'cover picture' do
+      it 'HAPPY: should have same length of cover picture' do
+        rest = @restaurant_mapper.new(GMAP_TOKEN, CX).restaurant_obj_lists[0]
+        cover_pic = rest.cover_pictures
+        _(cover_pic.length).must_equal COVER_PIC_LENGTH
       end
     end
 
     describe 'review' do
       it 'HAPPY: should have same length of review' do
-        review = @restaurant_mapper.new(GMAP_TOKEN).restaurant_obj_lists[0][:reviews]
+        rest = @restaurant_mapper.new(GMAP_TOKEN, CX).restaurant_obj_lists[0]
+        review = @restaurant_detail_mapper.new(rest, GMAP_TOKEN).gmap_place_details.reviews
         _(review.length).must_equal REVIEW_LENGTH
       end
 
       it 'BAD: wrong token cause empty array' do
         bad_token = @restaurant_api.new('GMAP_TOKEN', '薌筑園').place_id['candidates']
         _(bad_token.empty?).must_equal true
+      end
+    end
+
+    describe 'pictures' do
+      it 'HAPPY: should have same length of pictures' do
+        rest = @restaurant_mapper.new(GMAP_TOKEN, CX).restaurant_obj_lists[0]
+        picture = @restaurant_detail_mapper.new(rest, GMAP_TOKEN).gmap_place_details.pictures
+        _(picture.length).must_equal PIC_LENGTH
       end
     end
   end

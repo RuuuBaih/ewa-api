@@ -38,9 +38,9 @@ module Ewa
         def poi_details
           iterate_pois.map do |hash|
             Concurrent::Promise
-              .new {FilterHash.new(hash).filtered_poi_hash}
-              .then { |filter| @start << filter if (filter['category_id']).zero? && (filter['money'] != 0)}
-              .rescue { { error: "filter process went wrong" } }
+              .new { FilterHash.new(hash).filtered_poi_hash }
+              .then { |filter| @start << filter if (filter['category_id']).zero? && (filter['money'] != 0) }
+              .rescue { { error: 'filter process went wrong' } }
               .execute
           end.map(&:value)
           @start
@@ -56,18 +56,22 @@ module Ewa
           poi_hashes = []
           # return 9 restaurant poi infos from each district (from page 1)
           tp_city = '台北市'
-          @tp_towns.each do |tp_town|
+          @tp_towns.map do |tp_town|
             Concurrent::Promise
               .new { call_api(tp_city, tp_town) }
               .then { |ret| poi_hashes << ret }
-          end.each(&:value)
+              .rescue { { error: 'iterate process went wrong' } }
+              .execute
+          end.map(&:value)
 
           ntp_city = '新北市'
-          @ntp_towns.each do |ntp_town|
+          @ntp_towns.map do |ntp_town|
             Concurrent::Promise
               .new { call_api(ntp_city, ntp_town) }
               .then { |ret| poi_hashes << ret }
-          end.each(&:value)
+              .rescue { { error: 'iterate process went wrong' } }
+              .execute
+          end.map(&:value)
           poi_hashes.flatten
         end
 
@@ -96,7 +100,6 @@ module Ewa
         end
         # delete restaurants with empty cover pictures
         cov_pic_filtered_hashes.delete_if(&:empty?)
-
         RestaurantMapper::BuildRestaurantEntity.new(cov_pic_filtered_hashes, @token, @cx).build_entity
       end
 

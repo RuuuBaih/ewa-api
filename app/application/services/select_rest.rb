@@ -20,19 +20,29 @@ module Ewa
         page = params['page']
         per_page = params['per_page']
 
-        # get rests filter by town and money  
+        # get rests filter by town and money
         selected_entities = Repository::For.klass(Entity::Restaurant)
                                            .find_by_town_money(town, min_money, max_money)
-
 
         # get option entities
         option_entities = Restaurant::RestaurantOptionsMapper.new(selected_entities, random, page, per_page)
 
         # get total number of option entities
         total = option_entities.total
-       
-        # get random picks  
+
+        # get random picks
         pick_entities = option_entities.random_picks
+
+        # update search time
+        Repository::Towns.update_search(town)
+
+        whole_status = Repository::Towns.check_update_status(town, 10)
+        status = whole_status[:status]
+
+        if status
+          Messaging::Queue.new(App.config.SEARCH_QUEUE_URL, App.config)
+                          .send(town)
+        end
 
         Response::RestaurantsResp.new(total, pick_entities)
                                  .then do |pick_rests|

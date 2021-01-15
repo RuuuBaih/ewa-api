@@ -28,7 +28,7 @@ module Ewa
           if db_entity
             rebuild_entity(db_entity)
           else
-            db_town = Database::TownOrm.create(city: city, town_name: town_name, page: 0, search_times: 0)
+            db_town = Database::TownOrm.create(city: city, town_name: town_name, page: 1, search_times: 0)
             rebuild_entity(db_town)
           end
         end
@@ -45,7 +45,6 @@ module Ewa
       def self.check_update_status(town_name, limit_num)
         db_record = find_by_name(town_name)
         search_times = db_record.search_times
-
         # limit_num can be set to any number
         # if upto the limit then will return town entity(need update, api call)
         # can get searche_times and page with the returning entity
